@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Introducción a Python
+  numbered: true
+  chapters:
+  - file: IntroduccionPython
+  - file: Pandas
+  - file: Visualizacion
+- caption: Análisis Exploratorio de Datos
+  numbered: true
+  chapters:
+  - file: Descriptiva
+  - file: PruebasHipotesis
+
