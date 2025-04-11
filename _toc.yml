@@ -15,4 +15,8 @@ parts:
   chapters:
   - file: Descriptiva
   - file: PruebasHipotesis
+- caption: Fundamentos y Datos
+  numbered: true
+  chapters:
+  - file: Fundamentos
 
