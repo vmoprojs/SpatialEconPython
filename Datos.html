@@ -1,0 +1,1684 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Datos Espaciales &#8212; Econometría Espacial con Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Datos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="6. Fundamentos" href="Fundamentos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Econometría Espacial con Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="IntroduccionPython.html">1. Python, una introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas.html">2. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizacion.html">3. Gráficos básicos: matplotlib &amp; seaborn</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Descriptiva.html">4. Estadística Descriptiva</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PruebasHipotesis.html">5. Pruebas de Hipótesis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos y Datos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Fundamentos.html">6. Fundamentos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Datos Espaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython/issues/new?title=Issue%20on%20page%20%2FDatos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Datos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Datos Espaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-geograficas">7.1. Tablas geográficas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#superficies">7.2. Superficies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafos-espaciales">7.3. Grafos espaciales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="datos-espaciales">
+<h1><span class="section-number">7. </span>Datos Espaciales<a class="headerlink" href="#datos-espaciales" title="Permalink to this heading">#</a></h1>
+<section id="tablas-geograficas">
+<h2><span class="section-number">7.1. </span>Tablas geográficas<a class="headerlink" href="#tablas-geograficas" title="Permalink to this heading">#</a></h2>
+<p><strong>¿Qué son las tablas geográficas?</strong></p>
+<ul class="simple">
+<li><p>Son estructuras de datos tipo tabla (filas y columnas) donde <strong>una columna contiene geometría</strong>.</p></li>
+<li><p>Cada fila representa un <strong>objeto geográfico</strong> (por ejemplo, un país, cantón o punto).</p></li>
+<li><p>Las columnas contienen <strong>atributos</strong> o características de ese objeto.</p></li>
+</ul>
+<p><em>¿Qué significa “una columna contiene geometría”?</em></p>
+<ul class="simple">
+<li><p>En una tabla geográfica, hay una columna especial llamada <code class="docutils literal notranslate"><span class="pre">geometry</span></code>, que <strong>almacena la forma y ubicación</strong> del objeto en el espacio.</p></li>
+<li><p>Esta columna <strong>no contiene texto ni números tradicionales</strong>, sino <strong>objetos geométricos</strong> definidos según el estándar del <strong>Open Geospatial Consortium (OGC)</strong> conocido como <em>Simple Features</em>.</p></li>
+<li><p>Tipos comunes de geometrías:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Point</span></code> → representa una coordenada (latitud/longitud o X/Y).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LineString</span></code> → una línea definida por múltiples puntos (por ejemplo, una carretera).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Polygon</span></code> → una superficie cerrada (por ejemplo, el contorno de un país).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code> → versiones compuestas de los anteriores.</p></li>
+</ul>
+</li>
+<li><p>Ejemplo de cómo se ve una geometría tipo polígono:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>POLYGON ((-79.2 -2.1, -78.5 -2.1, -78.5 -1.5, -79.2 -1.5, -79.2 -2.1))
+
+
+**Terminología estandarizada**
+- En este enfoque:
+  - **Feature** = columna (variable o atributo)
+  - **Sample** = fila (observación completa)
+- Aunque en GIS “feature” puede significar entidad espacial, aquí se sigue la lógica de ciencia de datos.
+</pre></div>
+</div>
+<p><strong>Ejemplo práctico: <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> en <code class="docutils literal notranslate"><span class="pre">geopandas</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="c1"># Leer archivo GeoPackage</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/countries_clean.gpkg&quot;</span>
+<span class="n">gt_polygons</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos algunos datos de la tabla con <code class="docutils literal notranslate"><span class="pre">.head()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ADMIN</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Indonesia</td>
+      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Malaysia</td>
+      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Chile</td>
+      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.74e+06...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bolivia</td>
+      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Peru</td>
+      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.75e+06...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Cada fila de esta tabla representa un <strong>país</strong>. Para cada país se registran únicamente dos características: el <strong>nombre administrativo</strong> y la <strong>geometría de su límite territorial</strong>. El nombre del país se almacena en la columna <strong><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code></strong> y está codificado como un texto utilizando el tipo <strong><code class="docutils literal notranslate"><span class="pre">str</span></code></strong> de Python. La geometría del límite se encuentra en la columna <strong><code class="docutils literal notranslate"><span class="pre">geometry</span></code></strong>, y está representada mediante una <strong>clase especializada de Python</strong> diseñada para manipular <strong>objetos geométricos</strong>.</p>
+<p>Al igual que en otras <strong>estructuras de datos tabulares</strong> en Python, tanto las <strong>filas</strong> como las <strong>columnas</strong> están <strong>indexadas</strong>; este índice actúa como <strong>identificador único</strong> y aparece resaltado en negrita en el margen izquierdo de la tabla. Esta tabla geográfica corresponde a un objeto del tipo <strong><code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></strong>, ampliamente utilizado en el ecosistema Python para <strong>representar y analizar datos espaciales</strong>.</p>
+<p>Las <strong>tablas geográficas</strong> almacenan <strong>información espacial</strong> incorporándola como una <strong>columna adicional</strong>. Pero, ¿cómo se representa internamente esta información? Para comprenderlo mejor, podemos <strong>examinar el tipo de objeto contenido en la primera fila</strong> de la columna correspondiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.multipolygon.MultiPolygon
+</pre></div>
+</div>
+</div>
+</div>
+<p>En <strong><code class="docutils literal notranslate"><span class="pre">geopandas</span></code></strong>, así como en otros paquetes dedicados a representar datos geográficos, la columna <strong><code class="docutils literal notranslate"><span class="pre">geometry</span></code></strong> posee <strong>características especiales</strong> que no se encuentran en columnas “normales”, como <strong><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code></strong>.</p>
+<p>Por ejemplo, cuando se genera una visualización del DataFrame, <strong>la columna <code class="docutils literal notranslate"><span class="pre">geometry</span></code> se utiliza automáticamente como la base para representar las formas geográficas</strong>, tal como se ilustra en la figura siguiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/375288478a456fb55bcfe21812c188317b534662a6e222ac3955a58719312012.png" src="_images/375288478a456fb55bcfe21812c188317b534662a6e222ac3955a58719312012.png" />
+</div>
+</div>
+<p>Modificar la <strong>representación geométrica</strong> de una muestra debe realizarse con precaución. Dado que la columna <strong><code class="docutils literal notranslate"><span class="pre">geometry</span></code></strong> tiene un comportamiento especial, existen funciones específicas para ajustar su contenido.</p>
+<p>Por ejemplo, si se desea representar cada país mediante su <strong>centroide</strong> —un punto que se ubica en el centro de la forma—, es fundamental asegurarse de que la nueva columna geométrica se establezca correctamente utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">set_geometry()</span></code></strong>. Esto resulta especialmente útil cuando se desea trabajar con <strong>dos representaciones geométricas distintas</strong> de una misma muestra.</p>
+<p>A continuación, construiremos un mapa que muestre tanto el <strong>límite</strong> como el <strong>centroide</strong> de un país. Para calcular el centroide, se puede utilizar la propiedad <strong><code class="docutils literal notranslate"><span class="pre">gt_polygons.geometry.centroid</span></code></strong>, la cual devuelve el punto que <strong>minimiza la distancia promedio</strong> desde todos los demás puntos del contorno de la figura. El resultado puede almacenarse en una nueva columna, por ejemplo, denominada <strong><code class="docutils literal notranslate"><span class="pre">centroid</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="p">[</span><span class="s2">&quot;centroid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gt_polygons</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora tenemos un campo adicional</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ADMIN</th>
+      <th>geometry</th>
+      <th>centroid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Indonesia</td>
+      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+      <td>POINT (1.31e+07 -2.49e+05)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Malaysia</td>
+      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+      <td>POINT (1.22e+07 4.23e+05)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Chile</td>
+      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.74e+06...</td>
+      <td>POINT (-7.96e+06 -4.92e+06)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bolivia</td>
+      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
+      <td>POINT (-7.2e+06 -1.89e+06)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Peru</td>
+      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.75e+06...</td>
+      <td>POINT (-8.28e+06 -1.03e+06)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Aunque la columna <strong><code class="docutils literal notranslate"><span class="pre">centroid</span></code></strong> contiene datos geométricos —lo cual se puede reconocer porque cada celda comienza con <strong><code class="docutils literal notranslate"><span class="pre">POINT</span></code></strong>—, <strong>no está definida como la geometría activa</strong> de la tabla.</p>
+<p>Para cambiar esto, se puede utilizar el método <strong><code class="docutils literal notranslate"><span class="pre">set_geometry()</span></code></strong>, que permite asignar una nueva columna geométrica activa dentro del objeto <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>.</p>
+<p>Una vez realizada esta modificación, es posible <strong>visualizar simultáneamente los centroides y los límites de cada país</strong> al utilizar el nuevo valor de geometría establecido mediante <strong><code class="docutils literal notranslate"><span class="pre">set_geometry()</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot centroids</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">gt_polygons</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="s2">&quot;centroid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;ADMIN&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># Plot polygons without color filling</span>
+<span class="n">gt_polygons</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s2">&quot;ADMIN&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bf9e27ba1d68310c73fdcf771c31181a9fc43b1bdd5228d858f7905a9f5db6ac.png" src="_images/bf9e27ba1d68310c73fdcf771c31181a9fc43b1bdd5228d858f7905a9f5db6ac.png" />
+</div>
+</div>
+<p>Una vez más, es importante notar que podemos <strong>generar un mapa directamente</strong> al aplicar el método <strong><code class="docutils literal notranslate"><span class="pre">.plot()</span></code></strong> sobre un objeto <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>. Además, es posible <strong>asignar colores temáticos</strong> a cada entidad geográfica en función de los valores de una columna específica —por ejemplo, utilizando la columna <strong><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code></strong>—. En todos los casos, se utiliza la <strong>geometría activa</strong> para la visualización.</p>
+<p>Como debe quedar claro hasta este punto, <strong>casi cualquier objeto geográfico</strong> puede ser representado mediante una o más <strong>columnas geométricas</strong>. Si consideramos la variedad de formas posibles, el panorama puede parecer complejo. Afortunadamente, el <strong>Open Geospatial Consortium (OGC)</strong> ha definido un conjunto de <strong>tipos geométricos abstractos</strong>, formalizados en la especificación <strong>ISO 19125-1</strong>, también conocida como la especificación de <strong>“simple features”</strong>.</p>
+<p>Esta norma establece relaciones formales entre los distintos tipos geométricos:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Point</span></code></strong>: ubicación puntual en dos dimensiones (x, y).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LineString</span></code></strong>: camino formado por una secuencia de puntos conectados.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></strong>: superficie cerrada delimitada por al menos un <code class="docutils literal notranslate"><span class="pre">LineString</span></code>.</p></li>
+</ul>
+<p>También existen variantes como <strong><code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code></strong> o <strong><code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code></strong>, que permiten representar <strong>conjuntos de geometrías del mismo tipo</strong>. Por ejemplo, <strong>Bolivia</strong> puede representarse como un único <strong>polígono</strong> en la columna de geometr</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ADMIN == &quot;Bolivia&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ADMIN</th>
+      <th>geometry</th>
+      <th>centroid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Bolivia</td>
+      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
+      <td>POINT (-7.2e+06 -1.89e+06)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ADMIN == &quot;Bolivia&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6ffc5462ea9adadd558a6bc2946aa8317e4bdfe97340a1d1ea0748874bae21c6.png" src="_images/6ffc5462ea9adadd558a6bc2946aa8317e4bdfe97340a1d1ea0748874bae21c6.png" />
+</div>
+</div>
+<p>Mientras que Indonesia es un <code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code> que contiene muchos <code class="docutils literal notranslate"><span class="pre">Polygons</span></code> para cada isla individual del país:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ADMIN == &quot;Indonesia&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ADMIN</th>
+      <th>geometry</th>
+      <th>centroid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Indonesia</td>
+      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+      <td>POINT (1.31e+07 -2.49e+05)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_polygons</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ADMIN == &quot;Indonesia&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8ad20b9c3a27c9df0692f6bd0b849394e1b847bb322761e1f282d9fde88ed82a.png" src="_images/8ad20b9c3a27c9df0692f6bd0b849394e1b847bb322761e1f282d9fde88ed82a.png" />
+</div>
+</div>
+<p>En muchos casos, las <strong>tablas geográficas</strong> contienen <strong>geometrías de un único tipo</strong>; por ejemplo, todos los registros pueden ser del tipo <strong><code class="docutils literal notranslate"><span class="pre">Point</span></code></strong> o <strong><code class="docutils literal notranslate"><span class="pre">LineString</span></code></strong>. Sin embargo, <strong>no existe un requisito formal</strong> que obligue a que todas las geometrías de una tabla sean del mismo tipo.</p>
+<p>A lo largo de este documento utilizaremos ampliamente las <strong>tablas geográficas</strong>, almacenando principalmente <strong>polígonos</strong>, pero también <strong>puntos</strong> y <strong>líneas</strong>. Exploraremos las líneas con más detalle en la segunda parte del capítulo, pero por ahora nos detendremos brevemente en los puntos.</p>
+<p>Como se mencionó anteriormente, los <strong>puntos</strong> son el tipo de entidad más simple, ya que <strong>no poseen dimensión</strong>, sino únicamente un <strong>par de coordenadas</strong>. Por esta razón, en algunos casos, los puntos pueden almacenarse incluso en una <strong>tabla no geográfica</strong>, utilizando simplemente una columna para cada coordenada.</p>
+<p>Un ejemplo de esto se encuentra en el conjunto de datos de <strong>Tokio</strong>, que utilizaremos más adelante. En este caso, los datos están almacenados en un archivo de texto separado por comas, es decir, un archivo <strong><code class="docutils literal notranslate"><span class="pre">.csv</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/refs/heads/master/SpatialData/tokyo_clean.csv&quot;</span>
+<span class="n">gt_points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como lo hemos leído con <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, la tabla se carga como un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, sin ninguna dimensión espacial explícita:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">gt_points</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si inspeccionamos la tabla, encontramos que no hay una columna de <code class="docutils literal notranslate"><span class="pre">geometry</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_points</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_id</th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>date_taken</th>
+      <th>photo/video_page_url</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10727420@N00</td>
+      <td>139.700499</td>
+      <td>35.674000</td>
+      <td>2010-04-09 17:26:25.0</td>
+      <td>http://www.flickr.com/photos/10727420@N00/4545...</td>
+      <td>1.555139e+07</td>
+      <td>4.255856e+06</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8819274@N04</td>
+      <td>139.766521</td>
+      <td>35.709095</td>
+      <td>2007-02-10 16:08:40.0</td>
+      <td>http://www.flickr.com/photos/8819274@N04/26503...</td>
+      <td>1.555874e+07</td>
+      <td>4.260667e+06</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>62068690@N00</td>
+      <td>139.765632</td>
+      <td>35.694482</td>
+      <td>2008-12-21 15:45:31.0</td>
+      <td>http://www.flickr.com/photos/62068690@N00/3125...</td>
+      <td>1.555864e+07</td>
+      <td>4.258664e+06</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>49503094041@N01</td>
+      <td>139.784391</td>
+      <td>35.548589</td>
+      <td>2011-11-11 05:48:54.0</td>
+      <td>http://www.flickr.com/photos/49503094041@N01/6...</td>
+      <td>1.556073e+07</td>
+      <td>4.238684e+06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40443199@N00</td>
+      <td>139.768753</td>
+      <td>35.671521</td>
+      <td>2006-04-06 16:42:49.0</td>
+      <td>http://www.flickr.com/photos/40443199@N00/2482...</td>
+      <td>1.555899e+07</td>
+      <td>4.255517e+06</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Muchos conjuntos de datos basados en <strong>puntos</strong> se distribuyen en formato <strong>CSV</strong>, es decir, como tablas con columnas que contienen coordenadas. Para poder aprovechar al máximo este tipo de datos, es recomendable <strong>convertirlos en tablas <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code></strong>.</p>
+<p>Este proceso implica dos pasos principales:</p>
+<ol class="arabic simple">
+<li><p><strong>Transformar las coordenadas crudas en objetos geométricos</strong>, convirtiendo los valores de latitud y longitud en puntos espaciales reconocidos por <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="n">pt_geoms</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">gt_points</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">gt_points</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span>
+    <span class="c1"># x,y are Earth longitude &amp; latitude</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>A continuación, se crea un <strong>objeto <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code></strong> utilizando las geometrías generadas en el paso anterior. Este objeto combina la <strong>estructura tabular</strong> de un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> tradicional con una columna especial que almac</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">gt_points</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">pt_geoms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, el objeto <strong><code class="docutils literal notranslate"><span class="pre">gt_points</span></code></strong> se comporta de manera muy similar al que utilizamos anteriormente para representar países. La diferencia principal es que, en este caso, la <strong>columna <code class="docutils literal notranslate"><span class="pre">geometry</span></code> almacena geometrías de tipo <code class="docutils literal notranslate"><span class="pre">POINT</span></code></strong>, en lugar de polígonos. Esto permite aplicar las mismas herramientas de análisis y visualización geográfica, pero sobre datos puntuales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_points</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user_id</th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>date_taken</th>
+      <th>photo/video_page_url</th>
+      <th>x</th>
+      <th>y</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10727420@N00</td>
+      <td>139.700499</td>
+      <td>35.674000</td>
+      <td>2010-04-09 17:26:25.0</td>
+      <td>http://www.flickr.com/photos/10727420@N00/4545...</td>
+      <td>1.555139e+07</td>
+      <td>4.255856e+06</td>
+      <td>POINT (139.7 35.674)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8819274@N04</td>
+      <td>139.766521</td>
+      <td>35.709095</td>
+      <td>2007-02-10 16:08:40.0</td>
+      <td>http://www.flickr.com/photos/8819274@N04/26503...</td>
+      <td>1.555874e+07</td>
+      <td>4.260667e+06</td>
+      <td>POINT (139.77 35.709)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>62068690@N00</td>
+      <td>139.765632</td>
+      <td>35.694482</td>
+      <td>2008-12-21 15:45:31.0</td>
+      <td>http://www.flickr.com/photos/62068690@N00/3125...</td>
+      <td>1.555864e+07</td>
+      <td>4.258664e+06</td>
+      <td>POINT (139.77 35.694)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>49503094041@N01</td>
+      <td>139.784391</td>
+      <td>35.548589</td>
+      <td>2011-11-11 05:48:54.0</td>
+      <td>http://www.flickr.com/photos/49503094041@N01/6...</td>
+      <td>1.556073e+07</td>
+      <td>4.238684e+06</td>
+      <td>POINT (139.78 35.549)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40443199@N00</td>
+      <td>139.768753</td>
+      <td>35.671521</td>
+      <td>2006-04-06 16:42:49.0</td>
+      <td>http://www.flickr.com/photos/40443199@N00/2482...</td>
+      <td>1.555899e+07</td>
+      <td>4.255517e+06</td>
+      <td>POINT (139.77 35.672)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="superficies">
+<h2><span class="section-number">7.2. </span>Superficies<a class="headerlink" href="#superficies" title="Permalink to this heading">#</a></h2>
+<p>Las <strong>superficies</strong> se utilizan para representar datos según el <strong>modelo de campo espacial</strong>. En teoría, un campo es una superficie continua, lo que implica que podría medirse en un <strong>número infinito de ubicaciones</strong>. Sin embargo, en la práctica, los campos se miden en un <strong>conjunto finito de puntos de muestreo</strong>, distribuidos de forma <strong>uniforme en el espacio</strong> para mantener la continuidad del modelo.</p>
+<p>Estas superficies se representan mediante <strong>rejillas o cuadrículas</strong>, donde <strong>cada celda contiene una observación</strong>. Una cuadrícula puede entenderse también como una <strong>tabla con filas y columnas</strong>, pero —a diferencia de las tablas geográficas convencionales— <strong>cada fila y columna está asociada directamente a una ubicación geográfica</strong>, no a una columna específica con geometría.</p>
+<p>Para ilustrar cómo Python maneja estas superficies, utilizaremos un extracto de un conjunto de datos globales de población para la ciudad brasileña de <strong>São Paulo</strong>. Este conjunto registra el número de habitantes en <strong>celdas de tamaño uniforme</strong> que cubren toda la superficie terrestre. El extracto se encuentra en formato <strong>GeoTIFF</strong>, una variante del formato TIF que incluye información geográfica embebida.</p>
+<p>Podemos leer este archivo utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">open_rasterio()</span></code></strong> del paquete <strong><code class="docutils literal notranslate"><span class="pre">rioxarray</span></code></strong>, que permite cargar y manipular datos espaciales en formato ráster de forma eficiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rioxarray</span> <span class="k">as</span> <span class="nn">rxr</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/ghsl_sao_paulo.tif&quot;</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">rxr</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este procedimiento carga los datos en un objeto del tipo <strong><code class="docutils literal notranslate"><span class="pre">DataArray</span></code></strong>, que es una estructura proporcionada por la librería <code class="docutils literal notranslate"><span class="pre">xarray</span></code> para trabajar con <strong>datos multidimensionales</strong>, comúnmente utilizada en análisis espaciales y climáticos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>xarray.core.dataarray.DataArray
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">xarray</span></code> es una biblioteca diseñada para trabajar con <strong>arreglos multidimensionales etiquetados</strong>. ¿Qué significa esto? A diferencia de las tablas tradicionales que tienen solo <strong>dos dimensiones</strong> (filas y columnas), <code class="docutils literal notranslate"><span class="pre">xarray</span></code> permite manejar estructuras con <strong>un número arbitrario de dimensiones</strong>, lo que resulta ideal para representar fenómenos complejos en el espacio y el tiempo.</p>
+<p>Cada dimensión está asociada a un <strong>índice o coordenada</strong>, lo que permite <strong>acceder, filtrar y operar los datos de forma eficiente y estructurada</strong>. En el caso de los objetos <code class="docutils literal notranslate"><span class="pre">DataArray</span></code>, estas <strong>coordenadas</strong> se almacenan en el atributo <strong><code class="docutils literal notranslate"><span class="pre">.coords</span></code></strong>, desde el cual pueden consultarse directamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">coords</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coordinates:
+  * band         (band) int64 1
+  * x            (x) float64 -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
+  * y            (y) float64 -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
+    spatial_ref  int64 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>De manera interesante, nuestra superficie cuenta con <strong>tres dimensiones</strong>: <strong><code class="docutils literal notranslate"><span class="pre">x</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">y</span></code></strong> y <strong><code class="docutils literal notranslate"><span class="pre">band</span></code></strong>. Las dos primeras representan la <strong>latitud y longitud</strong> que abarca cada celda de la cuadrícula poblacional. La tercera, <strong><code class="docutils literal notranslate"><span class="pre">band</span></code></strong>, contiene un único valor (1), por lo que en este caso <strong>no aporta información relevante</strong>.</p>
+<p>Sin embargo, es fácil imaginar <strong>contextos donde una tercera dimensión sí resulta útil</strong>. Por ejemplo, una imagen óptica a color puede tener <strong>tres bandas</strong>: <strong>rojo</strong>, <strong>verde</strong> y <strong>azul</strong>. Sensores más avanzados pueden capturar bandas adicionales, como el <strong>infrarrojo cercano (NIR)</strong> o incluso bandas de radio.</p>
+<p>Asimismo, si una superficie se mide a lo largo del tiempo —como los <strong>geocubos</strong> mencionados en el Capítulo 2—, cada <strong>banda</strong> podría representar un <strong>instante temporal</strong> distinto en el que se registró el campo. En resumen, una <strong>superficie geográfica</strong> suele tener <strong>dos dimensiones espaciales (<code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code>)</strong> para ubicar las celdas, y <strong>al menos una dimensión adicional (<code class="docutils literal notranslate"><span class="pre">band</span></code>)</strong> para registrar otras características del fenómeno observado.</p>
+<p>Un objeto de tipo <strong><code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></strong> contiene información adicional sobre los datos que almacena en el atributo <strong><code class="docutils literal notranslate"><span class="pre">.attrs</span></code></strong>. Este atributo funciona como un <strong>diccionario de metadatos</strong>, donde se pueden encontrar detalles relevantes sobre el origen, la unidad de medida, la resolución espacial, el sistema de coordenadas, entre otros aspectos que describen el contenido del arreglo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;AREA_OR_POINT&#39;: &#39;Area&#39;,
+ &#39;_FillValue&#39;: -200.0,
+ &#39;scale_factor&#39;: 1.0,
+ &#39;add_offset&#39;: 0.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, el atributo <strong><code class="docutils literal notranslate"><span class="pre">.attrs</span></code></strong> incluye información clave para convertir los <strong>píxeles del arreglo</strong> en <strong>ubicaciones geográficas reales</strong> sobre la superficie terrestre. Entre estos metadatos se encuentran, por ejemplo, el <strong>sistema de referencia espacial (<code class="docutils literal notranslate"><span class="pre">crs</span></code>)</strong> y el <strong>parámetro de transformación (<code class="docutils literal notranslate"><span class="pre">transform</span></code>)</strong>.</p>
+<p>Además, se especifica la <strong>resolución espacial</strong>, que en este conjunto de datos es de <strong>250 metros por 250 metros</strong>. Esta información, junto con otros metadatos adicionales, nos permite <strong>comprender mejor el origen de los datos, su estructura y cómo deben interpretarse en un contexto geográfico</strong>.</p>
+<p>Por lo tanto, nuestro objeto <strong><code class="docutils literal notranslate"><span class="pre">DataArray</span></code></strong> posee <strong>tres dimensiones</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 416, 468)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una operación común consiste en <strong>reducir el objeto <code class="docutils literal notranslate"><span class="pre">DataArray</span></code> a solo las dos dimensiones geográficas</strong> (<code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code>). Para ello, se puede utilizar el operador <strong><code class="docutils literal notranslate"><span class="pre">.sel</span></code></strong>, que permite <strong>seleccionar datos según el valor de sus coordenadas</strong>.</p>
+<p>Este método resulta útil cuando se desea trabajar únicamente con una banda específica u observar una porción del arreglo espacial en función de sus coordenadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (y: 416, x: 468)&gt;
+[194688 values with dtype=float32]
+Coordinates:
+    band         int64 1
+  * x            (x) float64 -4.482e+06 -4.482e+06 ... -4.365e+06 -4.365e+06
+  * y            (y) float64 -2.822e+06 -2.822e+06 ... -2.926e+06 -2.926e+06
+    spatial_ref  int64 0
+Attributes:
+    AREA_OR_POINT:  Area
+    _FillValue:     -200.0
+    scale_factor:   1.0
+    add_offset:     0.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>y</span>: 416</li><li><span class='xr-has-index'>x</span>: 468</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-f3e1458d-0f85-4070-98de-1f6632c7d989' class='xr-array-in' type='checkbox' checked><label for='section-f3e1458d-0f85-4070-98de-1f6632c7d989' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>...</span></div><div class='xr-array-data'><pre>[194688 values with dtype=float32]</pre></div></div></li><li class='xr-section-item'><input id='section-4d364ece-2039-47c9-b728-dee790a20740' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4d364ece-2039-47c9-b728-dee790a20740' class='xr-section-summary' >Coordinates: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>band</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1</div><input id='attrs-834ad604-1e6e-49e3-9b35-2e4415f2fad0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-834ad604-1e6e-49e3-9b35-2e4415f2fad0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9786ed9c-f9d4-406f-9404-f6c15367e092' class='xr-var-data-in' type='checkbox'><label for='data-9786ed9c-f9d4-406f-9404-f6c15367e092' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(1)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>x</span></div><div class='xr-var-dims'>(x)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-4.482e+06 ... -4.365e+06</div><input id='attrs-64b899f2-e054-4496-995f-aca9d35d9b8e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-64b899f2-e054-4496-995f-aca9d35d9b8e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b82ec33-9537-4701-bc15-c60b70dc02ba' class='xr-var-data-in' type='checkbox'><label for='data-1b82ec33-9537-4701-bc15-c60b70dc02ba' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-4481875., -4481625., -4481375., ..., -4365625., -4365375., -4365125.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>y</span></div><div class='xr-var-dims'>(y)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-2.822e+06 ... -2.926e+06</div><input id='attrs-2ce0771e-7fa4-4ab0-b307-2b025adb04b9' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2ce0771e-7fa4-4ab0-b307-2b025adb04b9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b7f75ef6-5b87-4e17-8b16-e6e9d139f650' class='xr-var-data-in' type='checkbox'><label for='data-b7f75ef6-5b87-4e17-8b16-e6e9d139f650' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-2822125., -2822375., -2822625., ..., -2925375., -2925625., -2925875.])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spatial_ref</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0</div><input id='attrs-ca173469-258c-449a-a0ba-ed4e39322ae8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ca173469-258c-449a-a0ba-ed4e39322ae8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-97e6842a-bbf5-40a4-bb74-dc0ace5935e9' class='xr-var-data-in' type='checkbox'><label for='data-97e6842a-bbf5-40a4-bb74-dc0ace5935e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>crs_wkt :</span></dt><dd>PROJCS[&quot;World_Mollweide&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.0174532925199433]],PROJECTION[&quot;Mollweide&quot;],PARAMETER[&quot;central_meridian&quot;,0],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;Meter&quot;,1],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd><dt><span>spatial_ref :</span></dt><dd>PROJCS[&quot;World_Mollweide&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0],UNIT[&quot;Degree&quot;,0.0174532925199433]],PROJECTION[&quot;Mollweide&quot;],PARAMETER[&quot;central_meridian&quot;,0],PARAMETER[&quot;false_easting&quot;,0],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;Meter&quot;,1],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH]]</dd><dt><span>GeoTransform :</span></dt><dd>-4482000.0 250.0 0.0 -2822000.0 0.0 -250.0</dd></dl></div><div class='xr-var-data'><pre>array(0)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-75bdde89-ac42-470a-b6b0-e961a90f015a' class='xr-section-summary-in' type='checkbox'  ><label for='section-75bdde89-ac42-470a-b6b0-e961a90f015a' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>x</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-86468769-ed2a-428b-8723-a021e718b059' class='xr-index-data-in' type='checkbox'/><label for='index-86468769-ed2a-428b-8723-a021e718b059' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-4481875.0, -4481625.0, -4481375.0, -4481125.0, -4480875.0, -4480625.0,
+       -4480375.0, -4480125.0, -4479875.0, -4479625.0,
+       ...
+       -4367375.0, -4367125.0, -4366875.0, -4366625.0, -4366375.0, -4366125.0,
+       -4365875.0, -4365625.0, -4365375.0, -4365125.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;x&#x27;, length=468))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>y</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-84c8b159-be52-4eaf-9df2-f29dd7b32081' class='xr-index-data-in' type='checkbox'/><label for='index-84c8b159-be52-4eaf-9df2-f29dd7b32081' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-2822125.0, -2822375.0, -2822625.0, -2822875.0, -2823125.0, -2823375.0,
+       -2823625.0, -2823875.0, -2824125.0, -2824375.0,
+       ...
+       -2923625.0, -2923875.0, -2924125.0, -2924375.0, -2924625.0, -2924875.0,
+       -2925125.0, -2925375.0, -2925625.0, -2925875.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;y&#x27;, length=416))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a78ae086-f50b-4495-929e-5ba6ed2e0a86' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a78ae086-f50b-4495-929e-5ba6ed2e0a86' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>AREA_OR_POINT :</span></dt><dd>Area</dd><dt><span>_FillValue :</span></dt><dd>-200.0</dd><dt><span>scale_factor :</span></dt><dd>1.0</dd><dt><span>add_offset :</span></dt><dd>0.0</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>El objeto resultante es, por tanto, un <strong>arreglo bidimensional</strong>. Al igual que ocurre con las <strong>tablas geográficas</strong>, podemos <strong>visualizar rápidamente los valores</strong> del conjunto de datos mediante un gráfico, lo que facilita la exploración visual del fenómeno representado en el espacio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8de011b9c8136e87dced94d4503dd1734013431d0c3931e723ac673fb94d0958.png" src="_images/8de011b9c8136e87dced94d4503dd1734013431d0c3931e723ac673fb94d0958.png" />
+</div>
+</div>
+<p>Esta visualización nos ofrece una <strong>primera aproximación a la distribución poblacional</strong> en la región de <strong>São Paulo</strong>. Sin embargo, al inspeccionar el mapa con mayor detalle, observamos que aparecen <strong>valores negativos en el conteo de población</strong>, lo cual resulta sorprendente.</p>
+<p>¿Por qué ocurre esto? En muchos conjuntos de datos espaciales, los <strong>valores perdidos no se representan como <code class="docutils literal notranslate"><span class="pre">NaN</span></code></strong>, sino mediante <strong>valores imposibles</strong>, como una <strong>constante negativa</strong>. Tal como se muestra en el atributo <strong><code class="docutils literal notranslate"><span class="pre">nodatavals</span></code></strong> del objeto, los <strong>datos faltantes se codifican con el valor <code class="docutils literal notranslate"><span class="pre">-200</span></code></strong>.</p>
+<p>Teniendo esto en cuenta, podemos utilizar el método <strong><code class="docutils literal notranslate"><span class="pre">.where()</span></code></strong> para <strong>filtrar únicamente los valores válidos</strong>, es decir, aquellos distintos de <code class="docutils literal notranslate"><span class="pre">-200</span></code>, y así evitar que los datos faltantes distorsionen el análisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pop</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdPu&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1a04991acb02250b1bbb610088999bcc33732652600f0ca7271ec810db69efda.png" src="_images/1a04991acb02250b1bbb610088999bcc33732652600f0ca7271ec810db69efda.png" />
+</div>
+</div>
+<p>Ahora, la <strong>barra de colores</strong> tiene un aspecto mucho más coherente, ya que <strong>refleja únicamente los valores reales de población</strong>, sin incluir los valores reservados para datos faltantes. Esto permite una <strong>interpretación más precisa y clara del mapa</strong>, centrada únicamente en la información válida.</p>
+</section>
+<section id="grafos-espaciales">
+<h2><span class="section-number">7.3. </span>Grafos espaciales<a class="headerlink" href="#grafos-espaciales" title="Permalink to this heading">#</a></h2>
+<p>Los <strong>grafos espaciales</strong> almacenan las <strong>conexiones entre objetos a través del espacio</strong>. Estas conexiones pueden derivarse de la <strong>topología geográfica</strong> (como la contigüidad), de la <strong>distancia</strong>, o de dimensiones más complejas como los <strong>flujos de interacción</strong> (por ejemplo, desplazamientos, comercio o comunicaciones).</p>
+<p>A diferencia de las <strong>tablas geográficas</strong> o las <strong>superficies espaciales</strong>, los grafos tienen una naturaleza distinta. En primer lugar, <strong>no registran directamente fenómenos medidos</strong>, sino que se centran en <strong>las relaciones</strong> entre objetos, facilitadas o limitadas por la distancia o el espacio. En segundo lugar, por su carácter relacional, los datos en los grafos <strong>no siguen una estructura rígida</strong>: mientras una entidad puede estar conectada a una sola, otra puede tener múltiples conexiones. Esto contrasta fuertemente con las estructuras de datos espaciales tradicionales, que son <strong>estructuradas y multidimensionales</strong>.</p>
+<p>Estas características requieren un <strong>conjunto distinto de estructuras de datos en Python</strong>. A diferencia de las anteriores, existen <strong>varios formatos para representar grafos espaciales</strong>, cada uno optimizado para distintos fines. Uno de los casos más comunes es el uso de <strong>matrices de pesos espaciales</strong> en métodos estadísticos como el análisis exploratorio o la regresión, tema que se abordará en el siguiente capítulo.</p>
+<p>En este capítulo, revisaremos brevemente otra forma de representar grafos espaciales, más cercana al <strong>concepto matemático de grafo</strong>. Un grafo está compuesto por <strong>nodos</strong> conectados entre sí mediante <strong>aristas</strong>. En un grafo espacial, los nodos pueden representar <strong>lugares geográficos con una ubicación definida</strong>, y las aristas pueden representar <strong>rutas o trayectorias entre ellos</strong>. Para poder analizar una red, es necesario contar con información sobre <strong>ambos elementos: nodos y aristas</strong>.</p>
+<p>Como ejemplo, utilizaremos la biblioteca <strong><code class="docutils literal notranslate"><span class="pre">osmnx</span></code></strong>, que permite consultar datos de <strong>OpenStreetMap</strong>. A modo ilustrativo, extraeremos el <strong>grafo de calles del parque Yoyogi</strong>, ubicado cerca del área de Tokio usada en ejemplos anteriores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="s2">&quot;Yoyogi Park, Shibuya, Tokyo, Japan&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El fragmento de código anterior <strong>envía una consulta al servidor de OpenStreetMap para obtener los datos del grafo</strong>. Es importante tener en cuenta que esta operación <strong>requiere conexión a internet</strong> para funcionar correctamente.</p>
+<p>Una vez que los datos son recuperados por <strong><code class="docutils literal notranslate"><span class="pre">osmnx</span></code></strong>, se <strong>procesan automáticamente y se convierten en una representación de grafo en Python</strong>. Esta estructura permite trabajar directamente con nodos y aristas, lo que facilita el análisis y visualización de redes espaciales utilizando herramientas del ecosistema <code class="docutils literal notranslate"><span class="pre">networkx</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>networkx.classes.multidigraph.MultiDiGraph
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos realizar una <strong>inspección rápida de la estructura del grafo</strong> utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">plot_graph()</span></code></strong>. Esta función genera una visualización básica del grafo, mostrando los <strong>nodos</strong> y las <strong>conexiones (aristas)</strong> entre ellos, lo que permite obtener una <strong>vista general de la red espacial</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/757b4b7a4e85e94baccb15bea2f2c209b2f759070e20b99c2d0829af12186849.png" src="_images/757b4b7a4e85e94baccb15bea2f2c209b2f759070e20b99c2d0829af12186849.png" />
+</div>
+</div>
+<p>El grafo resultante es en realidad un objeto del tipo <strong><code class="docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></strong> de la biblioteca <strong><code class="docutils literal notranslate"><span class="pre">networkx</span></code></strong>, especializada en el análisis de grafos en Python. En este caso, el grafo representa una <strong>colección de 113 nodos</strong>, que corresponden a <strong>intersecciones de calles</strong> dentro del área seleccionada.</p>
+<p>Este tipo de estructura permite representar <strong>múltiples conexiones dirigidas entre pares de nodos</strong>, lo que resulta útil para modelar redes viales, donde pueden existir <strong>varios caminos posibles entre dos ubicaciones</strong>, como calles de doble sentido o carriles separados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>113
+</pre></div>
+</div>
+</div>
+</div>
+<p>Además, el grafo contiene <strong>305 aristas</strong>, que representan las <strong>calles que conectan las intersecciones</strong> (nodos). Cada arista puede incluir información adicional como la longitud del tramo, el tipo de vía, o la velocidad permitida, lo que permite realizar análisis más detallados sobre la <strong>estructura y funcionalidad de la red vial</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>305
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cada uno de estos elementos puede ser <strong>consultado individualmente para obtener información adicional</strong>, como la <strong>ubicación geográfica</strong> y el <strong>identificador (ID)</strong> de un nodo. Esta capacidad de acceder a los atributos de nodos y aristas permite realizar análisis espaciales detallados y personalizar la representación de la red según distintas variables de interés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1520546819</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;y&#39;: 35.6711267, &#39;x&#39;: 139.6925951, &#39;street_count&#39;: 4}
+</pre></div>
+</div>
+</div>
+</div>
+<p>También es posible consultar las <strong>características de una arista</strong>, como su <strong>longitud</strong>, el <strong>tipo de vía</strong>, la <strong>velocidad permitida</strong>, el <strong>número de carriles</strong>, entre otros atributos. Esta información resulta clave para realizar análisis de accesibilidad, optimización de rutas o simulaciones de movilidad dentro de una red vial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">[(</span><span class="mi">1520546819</span><span class="p">,</span> <span class="mi">3010293622</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;osmid&#39;: 138670840,
+ &#39;highway&#39;: &#39;footway&#39;,
+ &#39;oneway&#39;: False,
+ &#39;reversed&#39;: False,
+ &#39;length&#39;: 59.113074370021955,
+ &#39;geometry&#39;: &lt;LINESTRING (140 35.7, 140 35.7, 140 35.7)&gt;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>También podemos explorar <strong>cómo se relacionan entre sí los distintos componentes del grafo</strong>. Por ejemplo, es posible consultar <strong>qué otros nodos están conectados directamente con un nodo específico</strong>, como el nodo <strong><code class="docutils literal notranslate"><span class="pre">1520546819</span></code></strong>. Esta funcionalidad permite analizar la <strong>estructura local de la red</strong>, identificar puntos críticos de conexión o estudiar patrones de conectividad dentro del sistema vial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">adj</span><span class="p">[</span><span class="mi">1520546819</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3010293622, 5764960322, 1913626649, 1520546959]
+</pre></div>
+</div>
+</div>
+</div>
+<p>En resumen, las <strong>redes espaciales</strong> son relativamente <strong>fáciles de representar en Python</strong> gracias a bibliotecas como <code class="docutils literal notranslate"><span class="pre">networkx</span></code> y <code class="docutils literal notranslate"><span class="pre">osmnx</span></code>. Además, constituyen <strong>una de las tres estructuras de datos fundamentales</strong> en la ciencia de datos geoespaciales, junto con las <strong>tablas geográficas</strong> y las <strong>superficies espaciales</strong>. Cada una de estas estructuras permite abordar diferentes tipos de preguntas y fenómenos en el análisis territorial.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Fundamentos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Fundamentos</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-geograficas">7.1. Tablas geográficas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#superficies">7.2. Superficies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafos-espaciales">7.3. Grafos espaciales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Víctor Morales Oñate
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
