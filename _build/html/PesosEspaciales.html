@@ -1,0 +1,1067 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Pesos Espaciales &#8212; Econometría Espacial con Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'PesosEspaciales';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Econometría Espacial con Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="IntroduccionPython.html">1. Python, una introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas.html">2. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizacion.html">3. Gráficos básicos: matplotlib &amp; seaborn</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Descriptiva.html">4. Estadística Descriptiva</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PruebasHipotesis.html">5. Pruebas de Hipótesis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos y Datos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Fundamentos.html">6. Fundamentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">7. Datos Espaciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython/issues/new?title=Issue%20on%20page%20%2FPesosEspaciales.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/PesosEspaciales.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pesos Espaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">Conectividad en el espacio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">Vecinos en el espacio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">Contiguidad espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">Contigüidad tipo Rook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contigüidad tipo Rook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">Pesos espaciales en datos geográficos reales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pesos-espaciales">
+<h1>Pesos Espaciales<a class="headerlink" href="#pesos-espaciales" title="Permalink to this heading">#</a></h1>
+<p>Los <strong>pesos espaciales</strong> capturan el conocimiento sobre cómo se relacionan espacialmente las unidades de observación. Preguntas comunes como:</p>
+<ul class="simple">
+<li><p>¿Qué barrios colindan con el mío?</p></li>
+<li><p>¿Cuántas gasolineras hay a menos de 5 km de mi auto averiado?</p></li>
+</ul>
+<p>son ejemplos de relaciones espaciales que dependen de la proximidad o adyacencia geográfica.</p>
+<p>Para incorporar estas relaciones en el análisis estadístico, es necesario calcularlas entre todos los pares de observaciones. Esto da lugar a una <strong>topología</strong>, es decir, una estructura matemática que describe la conectividad espacial entre unidades. Las <strong>matrices de pesos espaciales</strong> permiten representar esta topología, integrando todas las observaciones dentro de un mismo espacio de análisis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextily</span>
+<span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">cg</span> <span class="k">as</span> <span class="n">geometry</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los <strong>pesos espaciales</strong> son fundamentales en la ciencia de datos geográficos, ya que permiten representar relaciones espaciales entre observaciones.</p>
+<p>En este capítulo se abordan distintas formas de construir estos pesos, diferenciando entre:</p>
+<ul class="simple">
+<li><p>Pesos basados en <strong>adyacencia o contigüidad</strong>.</p></li>
+<li><p>Pesos basados en <strong>distancia</strong>.</p></li>
+<li><p>Pesos <strong>híbridos</strong>, que combinan varios criterios espaciales.</p></li>
+</ul>
+<p>Estos conceptos se ilustran usando la clase de pesos espaciales del paquete <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, disponible en su submódulo <code class="docutils literal notranslate"><span class="pre">weights</span></code>, que ofrece múltiples métodos para trabajar con estas estructuras.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>También se exploran las funcionalidades basadas en <strong>operaciones de conjuntos</strong>, que permiten construir pesos espaciales combinando relaciones.</p>
+<p>Además, se revisan los <strong>formatos comunes de archivo</strong> para almacenar estos pesos y se incluyen visualizaciones que ayudan a comprender de forma más intuitiva estas estructuras abstractas.</p>
+<section id="conectividad-en-el-espacio">
+<h2>Conectividad en el espacio<a class="headerlink" href="#conectividad-en-el-espacio" title="Permalink to this heading">#</a></h2>
+<p>En el caso de series de tiempo, la idea de una variable rezagada no es ambigua, en el espacio las cosas pueden complicarse.</p>
+<p>En lo siguiente se asumen que las observaciones están organizadas en <strong>unidades espaciales</strong>, que pueden ser puntos en un <em>grid</em> regular o irregular, o regiones en un mapa.</p>
+<section id="vecinos-en-el-espacio">
+<h3>Vecinos en el espacio<a class="headerlink" href="#vecinos-en-el-espacio" title="Permalink to this heading">#</a></h3>
+<p>El concepto de dependencia espacial implica la necesidad de determinar qué otras unidades en el sistema espacial tienen influencia en la unidad particular que se está considerando. Formalmente, esto se expresa en los conceptos de la topología como <a class="reference external" href="https://es.wikipedia.org/wiki/Entorno_(matem%C3%A1tica)">vecindad</a> y vecino más cercano.</p>
+<p>Consideremos un sistema <span class="math notranslate nohighlight">\(S\)</span> de <span class="math notranslate nohighlight">\(N\)</span> unidades espaciales, etiquetadas <span class="math notranslate nohighlight">\(i = 1,2,\ldots N\)</span>, y una variable <span class="math notranslate nohighlight">\(x\)</span> observada para cada una de estas unidades espaciales. El conjunto de vecinos <span class="math notranslate nohighlight">\(J\)</span> para la unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, para el cual:</p>
+<div class="math notranslate nohighlight">
+\[
+P[x_i|x] = P[x_i|x_J] 
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(x_J\)</span> es el vector de observaciones para <span class="math notranslate nohighlight">\(x_j \forall j \in J\)</span>, y <span class="math notranslate nohighlight">\(x\)</span> es el vector que tiene todos los valores del sistema. De forma menos estricta, el conjunto de vecinos <span class="math notranslate nohighlight">\(j\)</span> para la unidad espacial <span class="math notranslate nohighlight">\(i\)</span> puede ser:</p>
+<div class="math notranslate nohighlight">
+\[
+\{j|P[x_i] \neq P[x_i|x_j]\}
+\]</div>
+<p>es decir, como las posiciones para las que la probabilidad marginal condicional para <span class="math notranslate nohighlight">\(x_i\)</span> no es igual a la probabilidad marginal no condicional. Note que hasta el momento no se ha mencionado nada respecto a las posiciones relativas de las unidades espaciales, solo la influencia a través de probabilidades <a class="reference external" href="https://es.wikipedia.org/wiki/Probabilidad_condicionada">condicionales</a>.</p>
+<p>Para introducir el <strong>aspecto espacial</strong> en estas definiciones de vecinos, se tiene esta definición:</p>
+<div class="math notranslate nohighlight">
+\[
+\{j|P[x_i] \neq P[x_i|x_j],\quad d_{ij}&lt; \epsilon_i\}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(d_{ij}\)</span> es una medida de distancia entre <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span> en un espacio apropiadamente estructurado (espacios euclideanos, espacios métricos, etc), y <span class="math notranslate nohighlight">\(\epsilon_i\)</span> es un punto de corte crítico para cada unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, que puede ser el mismo para todas las unidades espaciales.</p>
+<p>Esta definción alternativa de vecindad introduce más estructura en el conjunto de datos espaciales, combinando una noción de dependencia estadística (relacionando magnitudes) con la noción de espacio (distancia y posición relativa).</p>
+<p>El conjunto de vecinos espaciales puede representarse en una estructura de grafo con una matriz de conectividad asociada.</p>
+</section>
+</section>
+<section id="contiguidad-espacial">
+<h2>Contiguidad espacial<a class="headerlink" href="#contiguidad-espacial" title="Permalink to this heading">#</a></h2>
+<p>Dos objetos espaciales son <strong>contiguos</strong> si comparten un borde común. Aunque esto parece simple, en la práctica puede ser más complejo, ya que existen distintas formas de definir esa “frontera compartida”.</p>
+<p>Por ejemplo, una cuadrícula de 3x3 permite ilustrar las distintas maneras en que las unidades pueden estar conectadas espacialmente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos las bibliotecas necesarias</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="c1"># Creamos una secuencia de 3 valores: [0, 1, 2]</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Generamos una malla de coordenadas (una cuadrícula de puntos) usando meshgrid</span>
+<span class="c1"># xs y ys serán matrices 3x3 con coordenadas X e Y respectivamente</span>
+<span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+
+<span class="c1"># Inicializamos una lista vacía donde se almacenarán los polígonos</span>
+<span class="n">polys</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iteramos sobre cada punto (x, y) de la cuadrícula</span>
+<span class="c1"># flatten() convierte las matrices 2D en arreglos 1D para que podamos iterar más fácilmente</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">ys</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="c1"># Creamos un polígono cuadrado unitario con vértices en sentido antihorario</span>
+    <span class="c1"># El polígono va desde (x, y) hasta (x+1, y+1), formando un cuadrado de 1x1</span>
+    <span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+    
+    <span class="c1"># Agregamos el polígono a la lista</span>
+    <span class="n">polys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+
+<span class="c1"># Convertimos la lista de polígonos en una GeoSeries de geopandas</span>
+<span class="n">polys</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">polys</span><span class="p">)</span>
+
+<span class="c1"># Creamos un GeoDataFrame con dos columnas:</span>
+<span class="c1"># - &quot;geometry&quot;: contiene los polígonos</span>
+<span class="c1"># - &quot;id&quot;: etiquetas con el formato &#39;P-00&#39;, &#39;P-01&#39;, ..., &#39;P-08&#39;</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">polys</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;P-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">polys</span><span class="p">))],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trazamos (plot) el GeoDataFrame `gdf`</span>
+<span class="c1"># Cada celda se dibuja con borde negro (edgecolor=&quot;k&quot;) y relleno blanco (facecolor=&quot;w&quot;)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+<span class="c1"># Iteramos sobre cada celda del grid para añadir texto dentro de ella</span>
+<span class="c1"># Usamos las coordenadas del centroide de cada polígono, ajustadas un poco (-0.25) para mejor alineación visual</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenada x del centroide, desplazada</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenada y del centroide, desplazada</span>
+    <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>                <span class="c1"># Identificador de cada celda, ej. &quot;P-00&quot;</span>
+<span class="p">):</span>
+    <span class="c1"># Dibujamos el texto `t` en la posición (x, y)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">t</span><span class="p">,</span>
+        <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>      <span class="c1"># Centra el texto verticalmente</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>    <span class="c1"># Centra el texto horizontalmente</span>
+    <span class="p">)</span>
+
+<span class="c1"># Ocultamos los ejes del gráfico para una presentación más limpia</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="c1"># Mostramos el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c9e2d81dc1a79c4cea7b10ac8976ff2d8f1cb60f75269876ee8690c4fb74d48b.png" src="_images/c9e2d81dc1a79c4cea7b10ac8976ff2d8f1cb60f75269876ee8690c4fb74d48b.png" />
+</div>
+</div>
+<section id="contiguidad-tipo-rook">
+<h3>Contigüidad tipo Rook<a class="headerlink" href="#contiguidad-tipo-rook" title="Permalink to this heading">#</a></h3>
+<p>Una forma común de definir la <strong>adyacencia espacial</strong> es mediante la analogía con los movimientos del ajedrez. En la <strong>contigüidad tipo Rook</strong>, dos polígonos son vecinos si comparten un <strong>borde</strong> (no solo un vértice).</p>
+<p>Aplicando esta regla en una cuadrícula, es posible identificar los vecinos de cada celda y construir una estructura que modele estas relaciones espaciales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construye una matriz de contigüidad tipo &quot;Rook&quot; (torre del ajedrez)</span>
+<span class="c1"># a partir de un GeoDataFrame (gdf) que contiene una cuadrícula regular de 3x3 celdas</span>
+
+<span class="n">wr</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">contiguity</span><span class="o">.</span><span class="n">Rook</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos que el objeto <code class="docutils literal notranslate"><span class="pre">w</span></code> se construye siguiendo un patrón común en la biblioteca: primero se define el tipo de vecindad deseado (por ejemplo, <code class="docutils literal notranslate"><span class="pre">weights.contiguity.Rook</span></code>), y luego se utiliza un método constructor como <code class="docutils literal notranslate"><span class="pre">from_dataframe()</span></code>.</p>
+<p>El resultado puede visualizarse sobre la misma cuadrícula de polígonos etiquetados, donde las líneas punteadas rojas indican las conexiones (aristas) entre centroides de polígonos vecinos, como se muestra en la siguiente figura.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configura una figura y un solo eje (ax), asegurando que tenga proporciones iguales</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">))</span>
+
+<span class="c1"># Dibuja la cuadrícula de polígonos sobre el eje definido</span>
+<span class="c1"># Cada celda se representa con borde negro (edgecolor=&quot;k&quot;) y relleno blanco (facecolor=&quot;w&quot;)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Recorre cada celda del grid para agregar su identificador como texto</span>
+<span class="c1"># Se usan las coordenadas del centroide de cada polígono, ligeramente desplazadas para centrado visual</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenadas x de los centroides desplazadas</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenadas y de los centroides desplazadas</span>
+    <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>                <span class="c1"># Identificadores de cada celda, ej. &quot;P-00&quot;</span>
+<span class="p">):</span>
+    <span class="c1"># Agrega el texto sobre la figura</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">t</span><span class="p">,</span>
+        <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>      <span class="c1"># Centra el texto verticalmente</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>    <span class="c1"># Centra el texto horizontalmente</span>
+    <span class="p">)</span>
+
+<span class="c1"># Dibuja la conectividad espacial definida por la matriz de pesos `wr`</span>
+<span class="c1"># Se visualiza como líneas punteadas rojas entre los centroides de polígonos vecinos</span>
+<span class="n">wr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">edge_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Oculta los ejes de la figura para una visualización más limpia</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1e1035bed6ad108e8d9d49106c8ddb94b9bf51339a099d073002700ea076d159.png" src="_images/1e1035bed6ad108e8d9d49106c8ddb94b9bf51339a099d073002700ea076d159.png" />
+</div>
+</div>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> en objetos de <code class="docutils literal notranslate"><span class="pre">pysal</span></code> guarda las relaciones de vecindad como un diccionario: la <strong>clave</strong> representa una observación, y su <strong>valor</strong> es la lista de vecinos.</p>
+<p>Este formato es eficiente computacionalmente, ya que aprovecha la <strong>sparsidad</strong> de las matrices de pesos espaciales, almacenando solo los valores distintos de cero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wr</span><span class="o">.</span><span class="n">neighbors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [1, 3],
+ 1: [0, 2, 4],
+ 2: [1, 5],
+ 3: [0, 4, 6],
+ 4: [1, 3, 5, 7],
+ 5: [8, 2, 4],
+ 6: [3, 7],
+ 7: [8, 4, 6],
+ 8: [5, 7]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Saber que el polígono 0 solo tiene como vecinos a los polígonos 1 y 3 implica que los demás (2, 4, 5, 6, 7 y 8) <strong>no son vecinos</strong> bajo la contigüidad tipo Rook.</p>
+<p>Por ello, no se almacena información sobre no-vecinos, lo que <strong>optimiza el uso de memoria</strong>. Si fuera necesario, aún es posible construir una <strong>matriz completa</strong> que incluya todas las relaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="o">*</span><span class="n">wr</span><span class="o">.</span><span class="n">full</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>En la matriz de contigüidad, la mayoría de las entradas son <strong>ceros</strong>. De los 81 posibles enlaces (9×9), solo <strong>24</strong> son valores diferentes de cero, lo que resalta su naturaleza <strong>dispersa</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wr</span><span class="o">.</span><span class="n">nonzero</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las <strong>representaciones dispersas</strong> de pesos espaciales permiten ahorrar memoria sin perder información, ya que solo almacenan los valores distintos de cero.</p>
+<p>En una cuadrícula 3x3, la matriz de pesos tendría 9 filas y 9 columnas. A diferencia del tiempo, donde las relaciones suelen ser unidireccionales, las relaciones espaciales son <strong>bidireccionales</strong> y el orden de las observaciones en la matriz es <strong>arbitrario</strong>.</p>
+<p>Las matrices de pesos espaciales son similares a las <strong>matrices de adyacencia</strong> en teoría de grafos, donde cada observación es un <strong>nodo</strong> y los pesos representan las conexiones (<strong>arcos</strong>) entre ellos. Este paralelismo permite aplicar conceptos de grafos en ciencia de datos geográficos, aunque también se requieren técnicas especializadas para tratar particularidades del espacio.</p>
+<p>Respecto a la <strong>contigüidad tipo Rook</strong>, aunque polígonos como el 0 y el 5 comparten un <strong>vértice</strong>, no son considerados vecinos porque no comparten un <strong>borde</strong>. Para incluir conexiones basadas en vértices, se puede usar la <strong>contigüidad tipo Queen</strong>, más flexible, que considera vecinos a los polígonos que comparten vértices o bordes.</p>
+</section>
+<section id="id1">
+<h3>Contigüidad tipo Rook<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construye una matriz de contigüidad tipo &quot;Queen&quot; (reina del ajedrez)</span>
+<span class="c1"># a partir de un GeoDataFrame (gdf) que contiene una cuadrícula regular de 3x3 celdas</span>
+
+<span class="n">wq</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">contiguity</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Visualiza la estructura de vecinos (neighbors) del objeto wq</span>
+<span class="c1"># Esto devuelve un diccionario donde:</span>
+<span class="c1"># - Las claves son los identificadores de las unidades espaciales</span>
+<span class="c1"># - Los valores son listas de los vecinos directos de cada unidad</span>
+<span class="n">wq</span><span class="o">.</span><span class="n">neighbors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [1, 3, 4],
+ 1: [0, 2, 3, 4, 5],
+ 2: [1, 4, 5],
+ 3: [0, 1, 4, 6, 7],
+ 4: [0, 1, 2, 3, 5, 6, 7, 8],
+ 5: [1, 2, 4, 7, 8],
+ 6: [3, 4, 7],
+ 7: [3, 4, 5, 6, 8],
+ 8: [4, 5, 7]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Además de expresar las relaciones de vecindad en forma de listas o matrices, también es posible <strong>visualizar el grafo</strong>, como se muestra en la siguiente figura.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configura la figura y un eje (ax) con proporciones iguales</span>
+<span class="c1"># Esto asegura que los polígonos no se deformen en el gráfico</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">))</span>
+
+<span class="c1"># Dibuja el GeoDataFrame (gdf) que contiene la cuadrícula de polígonos</span>
+<span class="c1"># Cada celda se muestra con borde negro (edgecolor=&quot;k&quot;) y fondo blanco (facecolor=&quot;w&quot;)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Itera sobre cada polígono para agregar una etiqueta de texto en el centro</span>
+<span class="c1"># Se usan las coordenadas de los centroides, desplazadas -0.25 unidades para mejor alineación</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenadas X de los centroides desplazadas</span>
+    <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polys</span><span class="p">],</span>  <span class="c1"># Coordenadas Y de los centroides desplazadas</span>
+    <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>                <span class="c1"># Etiquetas o IDs de cada polígono, como &#39;P-00&#39;, &#39;P-01&#39;, etc.</span>
+<span class="p">):</span>
+    <span class="c1"># Añade el texto (ID) en la posición (x, y)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">t</span><span class="p">,</span>
+        <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>      <span class="c1"># Centrado vertical</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>    <span class="c1"># Centrado horizontal</span>
+    <span class="p">)</span>
+
+<span class="c1"># Dibuja las relaciones de conectividad espacial basadas en la matriz Queen</span>
+<span class="c1"># Se trazan líneas punteadas rojas (color=&quot;r&quot;, linestyle=&quot;:&quot;) entre los polígonos que son vecinos</span>
+<span class="n">wq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">edge_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Oculta los ejes del gráfico para una visualización más limpia y estética</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a155d3bbf655cea58277e9bff1ff2e64578def441a7aa83ecb0ccfd0c5622d2a.png" src="_images/a155d3bbf655cea58277e9bff1ff2e64578def441a7aa83ecb0ccfd0c5622d2a.png" />
+</div>
+</div>
+<p>Usar <strong>Queen</strong> en lugar de <strong>Rook</strong> permite considerar como vecinos a los polígonos que comparten un <strong>vértice</strong>. Por ejemplo, el polígono 0 ahora también tiene como vecino al 4, además del 1 y el 3.</p>
+<p>Al igual que el diccionario <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> codifica las relaciones espaciales, el diccionario <code class="docutils literal notranslate"><span class="pre">weights</span></code> indica la <strong>fuerza del vínculo</strong> entre cada unidad y sus vecinos. En el caso de pesos por contigüidad, esta matriz suele ser <strong>binaria</strong>, indicando simplemente si hay o no una conexión.</p>
+<p>En objetos <code class="docutils literal notranslate"><span class="pre">W</span></code> de <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, los valores de los pesos se almacenan en el atributo <code class="docutils literal notranslate"><span class="pre">weights</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wq</span><span class="o">.</span><span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [1.0, 1.0, 1.0],
+ 1: [1.0, 1.0, 1.0, 1.0, 1.0],
+ 2: [1.0, 1.0, 1.0],
+ 3: [1.0, 1.0, 1.0, 1.0, 1.0],
+ 4: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+ 5: [1.0, 1.0, 1.0, 1.0, 1.0],
+ 6: [1.0, 1.0, 1.0],
+ 7: [1.0, 1.0, 1.0, 1.0, 1.0],
+ 8: [1.0, 1.0, 1.0]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">weights</span></code>, al igual que <code class="docutils literal notranslate"><span class="pre">neighbors</span></code>, es un <strong>diccionario</strong> que solo guarda los <strong>pesos distintos de cero</strong>. Aunque en pesos por contigüidad todos los vecinos suelen tener el mismo valor, es clave que los <strong>pesos y vecinos estén alineados</strong>: el primer vecino tiene asignado el primer peso, y así sucesivamente.</p>
+<p>Esto será especialmente relevante cuando trabajemos con <strong>pesos basados en distancia</strong>, donde los valores varían.</p>
+<p>Además, el objeto <code class="docutils literal notranslate"><span class="pre">W</span></code> de <code class="docutils literal notranslate"><span class="pre">pysal</span></code> incluye otros atributos útiles, como <code class="docutils literal notranslate"><span class="pre">cardinalities</span></code>, que indica cuántos vecinos tiene cada observación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wq</span><span class="o">.</span><span class="n">cardinalities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 3, 1: 5, 2: 3, 3: 5, 4: 8, 5: 5, 6: 3, 7: 5, 8: 3}
+</pre></div>
+</div>
+</div>
+</div>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">histogram</span></code> del objeto <code class="docutils literal notranslate"><span class="pre">W</span></code> muestra la <strong>distribución</strong> del número de vecinos por observación, ofreciendo una visión general de cómo se distribuyen las <strong>cardinalidades</strong> en el conjunto espacial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wq</span><span class="o">.</span><span class="n">histogram</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(3, 4), (4, 0), (5, 4), (6, 0), (7, 0), (8, 1)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos obtener una representación visual sencilla convirtiendo las <strong>cardinalidades</strong> en una <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> y generando un <strong>histograma</strong> para observar la frecuencia de vecinos por unidad espacial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">wq</span><span class="o">.</span><span class="n">cardinalities</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/76a6029d7f9eb5af7f3d423af757ab101f8ecc49499f7aa7195b7bca75f5ade8.png" src="_images/76a6029d7f9eb5af7f3d423af757ab101f8ecc49499f7aa7195b7bca75f5ade8.png" />
+</div>
+</div>
+<p>Los atributos <code class="docutils literal notranslate"><span class="pre">cardinalities</span></code> y <code class="docutils literal notranslate"><span class="pre">histogram</span></code> permiten identificar <strong>asimetrías</strong> en el número de vecinos por observación. Esto es importante en análisis espaciales como la <strong>autocorrelación</strong> o la <strong>regresión espacial</strong>.</p>
+<p>Por ejemplo, en una cuadrícula 3x3:</p>
+<ul class="simple">
+<li><p>Las esquinas tienen 3 vecinos,</p></li>
+<li><p>Los bordes, 5 vecinos,</p></li>
+<li><p>Y el centro, 8 vecinos.
+No hay unidades con 4, 6 o 7 vecinos.</p></li>
+</ul>
+<p>Por convención, cada par ordenado de vecinos se representa como un <strong>enlace</strong> con peso distinto de cero. El atributo <code class="docutils literal notranslate"><span class="pre">s0</span></code> indica el <strong>número total de enlaces</strong> en el objeto <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wq</span><span class="o">.</span><span class="n">s0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, los pesos tipo <strong>Queen</strong> casi duplican el número de enlaces comparados con los de tipo Rook.</p>
+<p>El atributo <code class="docutils literal notranslate"><span class="pre">pct_nonzero</span></code> indica la <strong>densidad</strong> de la matriz de pesos espaciales, es decir, el porcentaje de entradas diferentes de cero (si se almacenara la matriz completa).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wq</span><span class="o">.</span><span class="n">pct_nonzero</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.382716049382715
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pesos-espaciales-en-datos-geograficos-reales">
+<h2>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Permalink to this heading">#</a></h2>
+<p>Aunque los ejemplos con cuadrículas regulares ayudan a entender el funcionamiento de los pesos espaciales en <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, su aplicación real requiere trabajar con datos geográficos reales.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pysal</span></code> permite construir objetos de pesos espaciales a partir de formatos comunes como <strong>shapefiles</strong>, que no incluyen información explícita sobre vecindad. En estos casos, la relación entre vecinos debe <strong>construirse manualmente</strong>, y <code class="docutils literal notranslate"><span class="pre">pysal</span></code> lo hace de forma eficiente utilizando estructuras de <strong>indexación espacial</strong>.</p>
+<p>Un ejemplo práctico es la construcción de pesos espaciales para <strong>sectores censales en San Diego, California</strong>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">Conectividad en el espacio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">Vecinos en el espacio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">Contiguidad espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">Contigüidad tipo Rook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contigüidad tipo Rook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">Pesos espaciales en datos geográficos reales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Víctor Morales Oñate
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
