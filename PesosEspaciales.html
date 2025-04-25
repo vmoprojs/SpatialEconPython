@@ -965,7 +965,7 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 </div></blockquote>
 <p>Esta definición obviamente asume la existencia de un mapa del que los bordes pueden discernirse. Sin embargo, cuando se ubican en un <em>grid</em>, <strong>la contiguidad no es única</strong>.</p>
 <p>Por ejemplo, considere la siguiente figura con sus respectivos centroides:</p>
-<a class="reference internal image-reference" href="_images/Contiguidad.png"><img alt="_images/Contiguidad.png" src="_images/Contiguidad.png" style="width: 700px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/Contiguidad.png"><img alt="_images/Contiguidad.png" src="_images/Contiguidad.png" style="width: 700px; height: 700px;" /></a>
 <p>Un <em>borde común</em> entre la celda <span class="math notranslate nohighlight">\(a\)</span> y celdas aledañas puede considerarse de diferentes maneras. Por ejemplo:</p>
 <ul class="simple">
 <li><p>Si se toma el criterio del <strong>lado común</strong> (<em>common edge</em>), las celdas <span class="math notranslate nohighlight">\(b\)</span> son contiguas. Análogo al movimiento de la <strong>torre</strong> en ajedrez (<em>rook case</em>).</p></li>
@@ -980,7 +980,7 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 <p>En un grid cuadrado, esto es una serie de bandas concéntricas alrededor de la unidad espacial en consideración. Por ejemplo: las celdas <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguas de segundo orden a <span class="math notranslate nohighlight">\(a\)</span> de acuerdo al criterio de la torre, porque <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguos de primer orden a <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <p>La estructura espacial resultante se expresa formalmente en una matriz de contiguidad o conectividad. Esta matriz tiene tantas filas y columnas como unidades espaciales existan. En cada fila, una columna distinta de cero corresponde a unidades espaciales contiguas.</p>
 <p>Por ejemplo, las 9 celdas en el centro de la figura anterior (numeradas de izquierda a derecha y de arriba hacia abajo) se presenta en la siguiente tabla usando el criterio de la torre.</p>
-<a class="reference internal image-reference" href="_images/torreCont.png"><img alt="_images/torreCont.png" src="_images/torreCont.png" style="width: 700px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/torreCont.png"><img alt="_images/torreCont.png" src="_images/torreCont.png" style="width: 700px; height: 700px;" /></a>
 <p>Claramente, el tener varias formas de definir contiguidad no es una cualidad deseable:</p>
 <ul class="simple">
 <li><p>Es una representación limitada de las posibles interacciones espaciales que pueden formularse.</p></li>
@@ -991,7 +991,7 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 <!-- pagina 19 -->
 <p>La idea de contiguidad binaria fue extendida para incluir interacciones potenciales entre dos unidades espaciales. La determinación de una especificación apropiada para esta matriz, <span class="math notranslate nohighlight">\(w_{ij}\)</span>, es uno de los temas metodológicos más difíciles y controversiales en econometría espacial.</p>
 <p>La sugerencia original de Cliff y Ord consiste en usar una combinación medidas de distancia (distancia inversa, o exponenciales negativos de la distancia) y la longitud relativa del borde común entre dos unidades espaciales, en el sentido del <strong>porcentaje en el total de la longitud del borde que es ocupado por la otra unidad en consideración</strong>.</p>
-<a class="reference internal image-reference" href="_images/wijCO.png"><img alt="_images/wijCO.png" src="_images/wijCO.png" style="width: 700px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/wijCO.png"><img alt="_images/wijCO.png" src="_images/wijCO.png" style="width: 700px; height: 700px;" /></a>
 <p>Los pesos resultantes serán asimétricos, a menos que ambas unidades espaciales tengan la misma longitud de borde. Formalmente.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1025,7 +1025,7 @@ y_{t-k} = L^ky
 \]</div>
 <p>muestra la variable <span class="math notranslate nohighlight">\(y\)</span> rezagada <span class="math notranslate nohighlight">\(k\)</span> periodos desde <span class="math notranslate nohighlight">\(t\)</span>, como la potencia <span class="math notranslate nohighlight">\(k\)</span>-ésima del operador de rezagos <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <p>En el espacio, debido a las infinitas direcciones que se puede girar, las cosas se complican. Por ejemplo, considere la siguiente figura:</p>
-<a class="reference internal image-reference" href="_images/lag.png"><img alt="_images/lag.png" src="_images/lag.png" style="width: 700px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/lag.png"><img alt="_images/lag.png" src="_images/lag.png" style="width: 700px; height: 700px;" /></a>
 <p>La variable <span class="math notranslate nohighlight">\(x\)</span> observada en la posición <span class="math notranslate nohighlight">\(i,j\)</span> puede girarse de las siguientes maneras:</p>
 <ul class="simple">
 <li><p>usando el criterio de la torre:</p></li>
@@ -1066,7 +1066,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 <section id="ejercicio">
 <h2><span class="section-number">8.3. </span>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
 <p>Usando la siguiente figura, debes:</p>
-<a class="reference internal image-reference" href="_images/pesosTarea.png"><img alt="_images/pesosTarea.png" src="_images/pesosTarea.png" style="width: 700px; height: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/pesosTarea.png"><img alt="_images/pesosTarea.png" src="_images/pesosTarea.png" style="width: 700px; height: 700px;" /></a>
 <ol class="arabic simple">
 <li><p>Representar la matriz de pesos espaciales bajo el criterio de contiguidad.</p></li>
 <li><p>Estandarizar por filas la matriz de pesos espacilaes.</p></li>
