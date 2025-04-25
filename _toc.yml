@@ -20,4 +20,5 @@ parts:
   chapters:
   - file: Fundamentos
   - file: Datos
+  - file: PesosEspaciales
 

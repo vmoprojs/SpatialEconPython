@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Pesos Espaciales &#8212; Econometría Espacial con Python</title>
+    <title>8. Pesos Espaciales &#8212; Econometría Espacial con Python</title>
   
   
   
@@ -66,6 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'PesosEspaciales';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="7. Datos Espaciales" href="Datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,9 +169,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="PruebasHipotesis.html">5. Pruebas de Hipótesis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos y Datos</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Fundamentos.html">6. Fundamentos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Datos.html">7. Datos Espaciales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Pesos Espaciales</a></li>
 </ul>
 
     </div>
@@ -364,16 +366,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">Conectividad en el espacio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">Vecinos en el espacio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">8.1. Conectividad en el espacio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">8.1.1. Vecinos en el espacio</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">Contiguidad espacial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">Contigüidad tipo Rook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contigüidad tipo Rook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">8.2. Contiguidad espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">8.2.1. Contigüidad tipo Rook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.2.2. Contigüidad tipo Rook</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-pesos-espaciales">8.2.2.1. Matrices de pesos espaciales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-rezago-espacial">8.2.2.2. Operadores de rezago espacial</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">Pesos espaciales en datos geográficos reales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">8.3. Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">8.4. Pesos espaciales en datos geográficos reales</a></li>
 </ul>
             </nav>
         </div>
@@ -386,7 +393,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pesos-espaciales">
-<h1>Pesos Espaciales<a class="headerlink" href="#pesos-espaciales" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">8. </span>Pesos Espaciales<a class="headerlink" href="#pesos-espaciales" title="Permalink to this heading">#</a></h1>
 <p>Los <strong>pesos espaciales</strong> capturan el conocimiento sobre cómo se relacionan espacialmente las unidades de observación. Preguntas comunes como:</p>
 <ul class="simple">
 <li><p>¿Qué barrios colindan con el mío?</p></li>
@@ -427,11 +434,11 @@ document.write(`
 <p>También se exploran las funcionalidades basadas en <strong>operaciones de conjuntos</strong>, que permiten construir pesos espaciales combinando relaciones.</p>
 <p>Además, se revisan los <strong>formatos comunes de archivo</strong> para almacenar estos pesos y se incluyen visualizaciones que ayudan a comprender de forma más intuitiva estas estructuras abstractas.</p>
 <section id="conectividad-en-el-espacio">
-<h2>Conectividad en el espacio<a class="headerlink" href="#conectividad-en-el-espacio" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Conectividad en el espacio<a class="headerlink" href="#conectividad-en-el-espacio" title="Permalink to this heading">#</a></h2>
 <p>En el caso de series de tiempo, la idea de una variable rezagada no es ambigua, en el espacio las cosas pueden complicarse.</p>
 <p>En lo siguiente se asumen que las observaciones están organizadas en <strong>unidades espaciales</strong>, que pueden ser puntos en un <em>grid</em> regular o irregular, o regiones en un mapa.</p>
 <section id="vecinos-en-el-espacio">
-<h3>Vecinos en el espacio<a class="headerlink" href="#vecinos-en-el-espacio" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.1.1. </span>Vecinos en el espacio<a class="headerlink" href="#vecinos-en-el-espacio" title="Permalink to this heading">#</a></h3>
 <p>El concepto de dependencia espacial implica la necesidad de determinar qué otras unidades en el sistema espacial tienen influencia en la unidad particular que se está considerando. Formalmente, esto se expresa en los conceptos de la topología como <a class="reference external" href="https://es.wikipedia.org/wiki/Entorno_(matem%C3%A1tica)">vecindad</a> y vecino más cercano.</p>
 <p>Consideremos un sistema <span class="math notranslate nohighlight">\(S\)</span> de <span class="math notranslate nohighlight">\(N\)</span> unidades espaciales, etiquetadas <span class="math notranslate nohighlight">\(i = 1,2,\ldots N\)</span>, y una variable <span class="math notranslate nohighlight">\(x\)</span> observada para cada una de estas unidades espaciales. El conjunto de vecinos <span class="math notranslate nohighlight">\(J\)</span> para la unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, para el cual:</p>
 <div class="math notranslate nohighlight">
@@ -455,7 +462,7 @@ P[x_i|x] = P[x_i|x_J]
 </section>
 </section>
 <section id="contiguidad-espacial">
-<h2>Contiguidad espacial<a class="headerlink" href="#contiguidad-espacial" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Contiguidad espacial<a class="headerlink" href="#contiguidad-espacial" title="Permalink to this heading">#</a></h2>
 <p>Dos objetos espaciales son <strong>contiguos</strong> si comparten un borde común. Aunque esto parece simple, en la práctica puede ser más complejo, ya que existen distintas formas de definir esa “frontera compartida”.</p>
 <p>Por ejemplo, una cuadrícula de 3x3 permite ilustrar las distintas maneras en que las unidades pueden estar conectadas espacialmente.</p>
 <div class="cell docutils container">
@@ -536,7 +543,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <section id="contiguidad-tipo-rook">
-<h3>Contigüidad tipo Rook<a class="headerlink" href="#contiguidad-tipo-rook" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Contigüidad tipo Rook<a class="headerlink" href="#contiguidad-tipo-rook" title="Permalink to this heading">#</a></h3>
 <p>Una forma común de definir la <strong>adyacencia espacial</strong> es mediante la analogía con los movimientos del ajedrez. En la <strong>contigüidad tipo Rook</strong>, dos polígonos son vecinos si comparten un <strong>borde</strong> (no solo un vértice).</p>
 <p>Aplicando esta regla en una cuadrícula, es posible identificar los vecinos de cada celda y construir una estructura que modele estas relaciones espaciales.</p>
 <div class="cell docutils container">
@@ -781,7 +788,7 @@ P[x_i|x] = P[x_i|x_J]
 <p>Respecto a la <strong>contigüidad tipo Rook</strong>, aunque polígonos como el 0 y el 5 comparten un <strong>vértice</strong>, no son considerados vecinos porque no comparten un <strong>borde</strong>. Para incluir conexiones basadas en vértices, se puede usar la <strong>contigüidad tipo Queen</strong>, más flexible, que considera vecinos a los polígonos que comparten vértices o bordes.</p>
 </section>
 <section id="id1">
-<h3>Contigüidad tipo Rook<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.2. </span>Contigüidad tipo Rook<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construye una matriz de contigüidad tipo &quot;Queen&quot; (reina del ajedrez)</span>
@@ -948,10 +955,122 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 </div>
 </div>
 </div>
+<p>Las medidas originales de dependencia propuestas por Moran y Geary se basaban en contiguidad binaria entre unidades espaciales.</p>
+<blockquote>
+<div><p>Si dos unidades espaciales tienen un <em>borde común</em> de longitud no nula, se consideran contiguos, y se asigna el valor <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div></blockquote>
+<p>Esta definición obviamente asume la existencia de un mapa del que los bordes pueden discernirse. Sin embargo, cuando se ubican en un <em>grid</em>, <strong>la contiguidad no es única</strong>.</p>
+<p>Por ejemplo, considere la siguiente figura con sus respectivos centroides:</p>
+<a class="reference internal image-reference" href="_images/Contiguidad.png"><img alt="_images/Contiguidad.png" src="_images/Contiguidad.png" style="width: 700px; height: 200px;" /></a>
+<p>Un <em>borde común</em> entre la celda <span class="math notranslate nohighlight">\(a\)</span> y celdas aledañas puede considerarse de diferentes maneras. Por ejemplo:</p>
+<ul class="simple">
+<li><p>Si se toma el criterio del <strong>lado común</strong> (<em>common edge</em>), las celdas <span class="math notranslate nohighlight">\(b\)</span> son contiguas. Análogo al movimiento de la <strong>torre</strong> en ajedrez (<em>rook case</em>).</p></li>
+<li><p>Si se toma el criterio de <strong>vértice común</strong> (<em>common vertex</em>), entonces las celdas <span class="math notranslate nohighlight">\(c\)</span> son contiguas. Análogo al movimiento del <strong>alfil</strong> en ajedrez (<em>bishop case</em>).</p></li>
+<li><p>Una combinación de las dos, donde las celdas <span class="math notranslate nohighlight">\(b\)</span> y <span class="math notranslate nohighlight">\(c\)</span> resultan contiguas. Análogo al movimiento de la <strong>reina</strong> en ajedrez (<em>queen case</em>).</p></li>
+<li><p>Criterio del camino más corto como criterio de contigüidad  (<em>radius</em>). Los puntos se consideran vecinos si están dentro de un determinado radio o distancia uno de otro. Los puntos <span class="math notranslate nohighlight">\(B\)</span> están dentro del radio <span class="math notranslate nohighlight">\(d\)</span> del centroide <span class="math notranslate nohighlight">\(A\)</span> se pueden considerar vecinos de <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+<p>También se puede considerar <em>órdenes de contiguidad</em>. Esto se logra de manera recursiva:</p>
+<ul class="simple">
+<li><p>definiendo el orden de contigüidad <span class="math notranslate nohighlight">\(k\)</span>-ésimo cuando las unidades espaciales son contiguas de primer orden a la unidad espacial de orden <span class="math notranslate nohighlight">\((k-1)\)</span>-ésimo.</p></li>
+</ul>
+<p>En un grid cuadrado, esto es una serie de bandas concéntricas alrededor de la unidad espacial en consideración. Por ejemplo: las celdas <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguas de segundo orden a <span class="math notranslate nohighlight">\(a\)</span> de acuerdo al criterio de la torre, porque <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguos de primer orden a <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>La estructura espacial resultante se expresa formalmente en una matriz de contiguidad o conectividad. Esta matriz tiene tantas filas y columnas como unidades espaciales existan. En cada fila, una columna distinta de cero corresponde a unidades espaciales contiguas.</p>
+<p>Por ejemplo, las 9 celdas en el centro de la figura anterior (numeradas de izquierda a derecha y de arriba hacia abajo) se presenta en la siguiente tabla usando el criterio de la torre.</p>
+<a class="reference internal image-reference" href="_images/torreCont.png"><img alt="_images/torreCont.png" src="_images/torreCont.png" style="width: 700px; height: 200px;" /></a>
+<p>Claramente, el tener varias formas de definir contiguidad no es una cualidad deseable:</p>
+<ul class="simple">
+<li><p>Es una representación limitada de las posibles interacciones espaciales que pueden formularse.</p></li>
+<li><p>La misma matriz de contigüidad puede representar varios arreglos de unidades espaciales.</p></li>
+</ul>
+<section id="matrices-de-pesos-espaciales">
+<h4><span class="section-number">8.2.2.1. </span>Matrices de pesos espaciales<a class="headerlink" href="#matrices-de-pesos-espaciales" title="Permalink to this heading">#</a></h4>
+<!-- pagina 19 -->
+<p>La idea de contiguidad binaria fue extendida para incluir interacciones potenciales entre dos unidades espaciales. La determinación de una especificación apropiada para esta matriz, <span class="math notranslate nohighlight">\(w_{ij}\)</span>, es uno de los temas metodológicos más difíciles y controversiales en econometría espacial.</p>
+<p>La sugerencia original de Cliff y Ord consiste en usar una combinación medidas de distancia (distancia inversa, o exponenciales negativos de la distancia) y la longitud relativa del borde común entre dos unidades espaciales, en el sentido del <strong>porcentaje en el total de la longitud del borde que es ocupado por la otra unidad en consideración</strong>.</p>
+<a class="reference internal image-reference" href="_images/wijCO.png"><img alt="_images/wijCO.png" src="_images/wijCO.png" style="width: 700px; height: 200px;" /></a>
+<p>Los pesos resultantes serán asimétricos, a menos que ambas unidades espaciales tengan la misma longitud de borde. Formalmente.</p>
+<div class="math notranslate nohighlight">
+\[
+w_{ij} = [d_{ij}]^{-a}[\beta_{ij}]^{b}
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(d_{ij}\)</span> como la distancia entre la unidad espacial <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(\beta_{ij}\)</span> como la proporción del borde de la unidad <span class="math notranslate nohighlight">\(i\)</span> que está en contacto con la unidad <span class="math notranslate nohighlight">\(j\)</span>, y <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span> como parámetros.</p>
+<p>De manera similar, Dacey sugirió pesos que también toman en cuenta el área relativa de las unidades espaciales:</p>
+<div class="math notranslate nohighlight">
+\[
+w_{ij} = d_{ij}\alpha_{i}\beta_{ij}
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(d_{ij}\)</span> como un factor binario de contigüidad, <span class="math notranslate nohighlight">\(\alpha_i\)</span> como el porcentaje de la unidad espacial <span class="math notranslate nohighlight">\(i\)</span> sobre el <strong>total de todas las unidades espaciales</strong> en el sistema, y <span class="math notranslate nohighlight">\(\beta_{ij}\)</span> como la medida de borde usada antes.</p>
+<p>Ambos pesos están estrechamente vinculados a las características físicas de las unidades espaciales en un mapa. Al igual que con las medidas de contigüidad binaria, son <strong>menos útiles cuando las unidades espaciales consisten en puntos</strong>, ya que entonces las nociones de longitud y área del borde son en gran medida artificiales y están determinadas por un <a class="reference external" href="https://es.wikipedia.org/wiki/Teselaci%C3%B3n_(inform%C3%A1tica)">algoritmo de teselación</a> particular. También son menos significativos cuando el fenómeno de interacción espacial en consideración está determinado por factores tales como <strong>variables puramente económicas, que pueden tener poco que ver con la configuración espacial de los límites en un mapa físico</strong>.</p>
+<p>En este sendito, por ejemplo Bodson y Peeters proponen unos pesos de accesibilidad (calibrados entre 0 y 1), que combina en una función logística la influencia de varios canales de comunicación entre unidades espaciales, como carreteras, tren, y otros enlaces de comunicación. Formalmente,</p>
+<div class="math notranslate nohighlight">
+\[
+w_{ij} = \sum_jk_j\left(\frac{a}{1+be^{-c_jd_{ij}}}\right)
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(k_j\)</span> muestra la importancia relativa del medio de comunicación <span class="math notranslate nohighlight">\(j\)</span>. La suma es sobre los <span class="math notranslate nohighlight">\(j\)</span> medios de comunicación, que separan las unidades espaciales por una distancia <span class="math notranslate nohighlight">\(d_{ij}\)</span>. <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> y <span class="math notranslate nohighlight">\(c_j\)</span> son parámtros a estimarse.</p>
+<p>En la mayoría de las aplicaciones de la ciencia regional, la matriz de ponderaciones se basa en alguna <strong>combinación de relaciones de distancia y contigüidad simple</strong>. Las distancias involucradas son en el sentido más general y pueden basarse en el tiempo de viaje, o derivarse de un análisis de escala multidimensional. En la mayoría de las aplicaciones sociológicas del análisis espacial, la matriz de peso está determinada por <strong>conceptos de la teoría de redes sociales</strong>.</p>
+<p>Un problema importante resulta de la incorporación de <strong>parámetros en los pesos</strong>. Normalmente, estos pesos se consideran <strong>exógenos y los valores de los parámetros se determinan a priori, o en un paso separado del resto del análisis espacial</strong>. Esto crea problemas para la estimación e interpretación de los resultados. En particular, podría conducir potencialmente a la <strong>inferencia de relaciones espurias</strong>, ya que la validez de las estimaciones está condicionada previamente por la medida en que la estructura espacial se refleja correctamente en las ponderaciones. Más importante aún, <strong>podría resultar en un razonamiento circular</strong>, en el que la estructura espacial, que el analista puede desear descubrir en los datos, debe suponerse conocida antes de llevar a cabo el análisis de datos.
+En el contexto de <strong>pruebas de hipótesis</strong>, dado que la hipótesis nula es de independencia espacial, la matriz de ponderaciones debe relacionarse con la hipótesis alternativa relevante de dependencia espacial, con el fin de maximizar la potencia de la prueba. Sin embargo, incluso con una matriz de ponderación especificada incorrectamente, <strong>el rechazo de la hipótesis nula solo implicará una falta de independencia, y no un tipo particular de dependencia</strong>. Aunque la potencia de la prueba se verá afectada, la posibilidad de conclusiones falsas no es tan grande <strong>como en la especificación funcional de un modelo</strong>.</p>
 </section>
+<section id="operadores-de-rezago-espacial">
+<h4><span class="section-number">8.2.2.2. </span>Operadores de rezago espacial<a class="headerlink" href="#operadores-de-rezago-espacial" title="Permalink to this heading">#</a></h4>
+<p>El objetivo del uso de una matriz de ponderación espacial en la especificación de modelos econométricos espaciales es <strong>relacionar una variable en un punto del espacio con las observaciones de esa variable en otras unidades espaciales del sistema</strong>.</p>
+<p>En un contexto de series de tiempo, esto se logra mediante el uso de un operador de retardo o rezago, que desplaza la variable en uno o más períodos en el tiempo. Por ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{t-k} = L^ky
+\]</div>
+<p>muestra la variable <span class="math notranslate nohighlight">\(y\)</span> rezagada <span class="math notranslate nohighlight">\(k\)</span> periodos desde <span class="math notranslate nohighlight">\(t\)</span>, como la potencia <span class="math notranslate nohighlight">\(k\)</span>-ésima del operador de rezagos <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<p>En el espacio, debido a las infinitas direcciones que se puede girar, las cosas se complican. Por ejemplo, considere la siguiente figura:</p>
+<a class="reference internal image-reference" href="_images/lag.png"><img alt="_images/lag.png" src="_images/lag.png" style="width: 700px; height: 200px;" /></a>
+<p>La variable <span class="math notranslate nohighlight">\(x\)</span> observada en la posición <span class="math notranslate nohighlight">\(i,j\)</span> puede girarse de las siguientes maneras:</p>
+<ul class="simple">
+<li><p>usando el criterio de la torre:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x_{i-1,j};x_{i,j-1};x_{i+1,j};x_{i,j+1};
+\]</div>
+<ul class="simple">
+<li><p>usando el criterio del alfil:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x_{i-1,j-1};x_{i+1,j-1};x_{i+1,j+1};x_{i-1,j+1};
+\]</div>
+<p>Para el criterio de la reina se tiene 8 posibles movimientos.</p>
+<p>En las aplicaciones no suele existir una justificación apriori para guiar la elección de la dependencia. Además, si es un <em>grid</em> irregular las posibilidades son infinitas y el número de grados de libertad disponibles pueden ser insuficientes para tener estimaciones eficientes.</p>
+<p>Este problema se resuelve considerando una suma ponderada de todos los valores que pertenecen a una clase de contigüidad, en lugar de tomarlos de manera individual. Los términos de la suma se obtienen multiplicando las observaciones por el peso asociado de la matriz de pesos espaciales. Formalmente:</p>
+<div class="math notranslate nohighlight">
+\[
+L^sx_i = \sum_jw_{ij}x_{j} \quad \forall j \in J_i
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(L^s\)</span> es el operador de rezago asociado con la clase de contigüidad <span class="math notranslate nohighlight">\(s\)</span> para <span class="math notranslate nohighlight">\(i\)</span>, y <span class="math notranslate nohighlight">\(w_{ij}\)</span> son las ponderaciones espaciales. En notación matricial:</p>
+<div class="math notranslate nohighlight">
+\[
+L^sx = W_{s}x.
+\]</div>
+<p>Los pesos <span class="math notranslate nohighlight">\(w_{ij}\)</span> se consideran como dados, pero estimar los pesos y la asociación estadísitica en conjunto se vuelve un problema no lineal. Al fijarlos previamente el problema es lineal.</p>
+<p>Un rezago espacial menos restrictivo puede construirse de la noción de accesibilidad potencial, como:</p>
+<div class="math notranslate nohighlight">
+\[
+f_i = \sum_jq(d_{ij},\theta)x_j
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(f_i\)</span> es el potencial en <span class="math notranslate nohighlight">\(i\)</span>, y <span class="math notranslate nohighlight">\(q\)</span> es una función de distancia <span class="math notranslate nohighlight">\(d_{ij}\)</span> entre <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>, parametrizada en términos de un vector de coeficientes <span class="math notranslate nohighlight">\(\theta\)</span>. Dado que la expresión resultante es no lineal, la estimación y las pruebas de hipótesis pueden ser más complejas.</p>
+</section>
+</section>
+</section>
+<section id="ejercicio">
+<h2><span class="section-number">8.3. </span>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
+<p>Usando la siguiente figura, debes:</p>
+<a class="reference internal image-reference" href="_images/pesosTarea.png"><img alt="_images/pesosTarea.png" src="_images/pesosTarea.png" style="width: 700px; height: 200px;" /></a>
+<ol class="arabic simple">
+<li><p>Representar la matriz de pesos espaciales bajo el criterio de contiguidad.</p></li>
+<li><p>Estandarizar por filas la matriz de pesos espacilaes.</p></li>
+<li><p>Revisa y comenta la simetría de la matriz en el paso 1 y en el paso 2.</p></li>
+</ol>
 </section>
 <section id="pesos-espaciales-en-datos-geograficos-reales">
-<h2>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.4. </span>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Permalink to this heading">#</a></h2>
 <p>Aunque los ejemplos con cuadrículas regulares ayudan a entender el funcionamiento de los pesos espaciales en <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, su aplicación real requiere trabajar con datos geográficos reales.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pysal</span></code> permite construir objetos de pesos espaciales a partir de formatos comunes como <strong>shapefiles</strong>, que no incluyen información explícita sobre vecindad. En estos casos, la relación entre vecinos debe <strong>construirse manualmente</strong>, y <code class="docutils literal notranslate"><span class="pre">pysal</span></code> lo hace de forma eficiente utilizando estructuras de <strong>indexación espacial</strong>.</p>
 <p>Un ejemplo práctico es la construcción de pesos espaciales para <strong>sectores censales en San Diego, California</strong>.</p>
@@ -986,6 +1105,15 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
                 <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Datos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Datos Espaciales</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -1001,16 +1129,21 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">Conectividad en el espacio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">Vecinos en el espacio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conectividad-en-el-espacio">8.1. Conectividad en el espacio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vecinos-en-el-espacio">8.1.1. Vecinos en el espacio</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">Contiguidad espacial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">Contigüidad tipo Rook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contigüidad tipo Rook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-espacial">8.2. Contiguidad espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contiguidad-tipo-rook">8.2.1. Contigüidad tipo Rook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.2.2. Contigüidad tipo Rook</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-pesos-espaciales">8.2.2.1. Matrices de pesos espaciales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-rezago-espacial">8.2.2.2. Operadores de rezago espacial</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">Pesos espaciales en datos geográficos reales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">8.3. Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">8.4. Pesos espaciales en datos geográficos reales</a></li>
 </ul>
   </nav></div>
 
