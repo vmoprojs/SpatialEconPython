@@ -381,6 +381,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">8.3. Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">8.4. Pesos espaciales en datos geográficos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.5. Ejercicio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-basados-en-k-vecinos-mas-cercanos">8.5.1. Pesos espaciales basados en k vecinos más cercanos</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -1071,9 +1075,192 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </section>
 <section id="pesos-espaciales-en-datos-geograficos-reales">
 <h2><span class="section-number">8.4. </span>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Permalink to this heading">#</a></h2>
-<p>Aunque los ejemplos con cuadrículas regulares ayudan a entender el funcionamiento de los pesos espaciales en <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, su aplicación real requiere trabajar con datos geográficos reales.</p>
-<p><code class="docutils literal notranslate"><span class="pre">pysal</span></code> permite construir objetos de pesos espaciales a partir de formatos comunes como <strong>shapefiles</strong>, que no incluyen información explícita sobre vecindad. En estos casos, la relación entre vecinos debe <strong>construirse manualmente</strong>, y <code class="docutils literal notranslate"><span class="pre">pysal</span></code> lo hace de forma eficiente utilizando estructuras de <strong>indexación espacial</strong>.</p>
-<p>Un ejemplo práctico es la construcción de pesos espaciales para <strong>sectores censales en San Diego, California</strong>.</p>
+<p>Aunque los ejemplos con cuadrículas regulares ayudan a comprender la lógica de los pesos espaciales en <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, su aplicación real implica trabajar con datos geográficos concretos.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pysal</span></code> permite construir objetos de pesos espaciales a partir de formatos comunes como <strong>shapefiles</strong>, los cuales no incluyen explícitamente las relaciones de vecindad. Por ello, estas deben <strong>derivarse manualmente</strong>, y <code class="docutils literal notranslate"><span class="pre">pysal</span></code> facilita este proceso mediante estructuras de <strong>indexación espacial</strong> eficientes.</p>
+<p>En este caso, se demostrará cómo construir pesos espaciales usando las <strong>provincias del Ecuador</strong> como unidades geográficas de análisis. Fuente de datos: https://www.ecuadorencifras.gob.ec/documentos/web-inec/Geografia_Estadistica/Micrositio_geoportal/index.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="c1"># 1. Descargar shapefile directamente desde GitHub</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">zip_bytes</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># 2. Extraer y leer el shapefile</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_bytes</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+    <span class="n">shp_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;nxprovincias.shp&quot;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;tmp_shapefile&quot;</span><span class="p">)</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;tmp_shapefile/&quot;</span> <span class="o">+</span> <span class="n">shp_name</span><span class="p">)</span>
+
+<span class="c1"># 3. Reproyección a Web Mercator para usar contextily</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_queen</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">contiguity</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/victormorales/opt/anaconda3/lib/python3.9/site-packages/libpysal/weights/weights.py:224: UserWarning: The weights matrix is not fully connected: 
+ There are 2 disconnected components.
+ There is 1 island with id: 19.
+  warnings.warn(message)
+</pre></div>
+</div>
+</div>
+</div>
+<p>El warning nos advierte que tenemos una isla desconectada: Galápagos. Podemos omitirla de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtener la lista de IDs que no tienen vecinos (islas)</span>
+<span class="n">islas</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">islands</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Islas detectadas:&quot;</span><span class="p">,</span> <span class="n">islas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Islas detectadas: [19]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar el GeoDataFrame y excluir las islas</span>
+<span class="n">gdf_sin_islas</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="o">~</span><span class="n">gdf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">islas</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_queen_sin_islas</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">contiguity</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf_sin_islas</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crea una figura con 2 subgráficos (1 fila, 2 columnas)</span>
+<span class="c1"># figsize=(8, 4) define el tamaño total de la figura (ancho x alto en pulgadas)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Itera sobre los dos subgráficos (ax[0] y ax[1])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># Dibuja los polígonos del GeoDataFrame sin islas (gdf_sin_islas)</span>
+    <span class="c1"># edgecolor=&quot;k&quot;: bordes negros</span>
+    <span class="c1"># facecolor=&quot;w&quot;: relleno blanco</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">gdf_sin_islas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="c1"># Dibuja las conexiones de vecindad sobre el mismo gráfico</span>
+    <span class="c1"># edge_kws define el estilo de las líneas (rojas, punteadas, grosor 1)</span>
+    <span class="c1"># node_kws define la apariencia de los nodos; marker=&quot;&quot; implica que no se dibujan símbolos de nodo</span>
+    <span class="n">w_queen_sin_islas</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">gdf_sin_islas</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">edge_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">node_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Elimina los ejes (ticks, etiquetas, etc.) para una visualización más limpia</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+
+<span class="c1"># En el segundo subgráfico (axs[1]), fija manualmente los límites del área visible del gráfico</span>
+<span class="c1"># Esto puede ser útil si deseas hacer zoom o asegurar una escala fija (xmin, ymin, xmax, ymax )</span>
+
+<span class="c1"># Obtener límites espaciales automáticamente del GeoDataFrame</span>
+<span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">gdf_sin_islas</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-9026177.003082927, -8370004.833131398, -559048.7630201177, 164011.2960592641)
+</pre></div>
+</div>
+<img alt="_images/b760fec06e68dbad772dc01173e06a51eb4b6dd94bfd7ce1229a2a1b3d04aa33.png" src="_images/b760fec06e68dbad772dc01173e06a51eb4b6dd94bfd7ce1229a2a1b3d04aa33.png" />
+</div>
+</div>
+<p>El objeto de pesos espaciales construido para las <strong>provincias del Ecuador</strong> posee los mismos <strong>atributos y métodos</strong> que se observaron previamente con la cuadrícula artificial. Esto incluye información sobre vecinos, pesos, cardinalidades, densidad, entre otros, lo que permite aplicar técnicas de análisis espacial de forma consistente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">w_queen</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w_queen</span><span class="o">.</span><span class="n">pct_nonzero</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23
+20.793950850661627
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al trabajar con las <strong>provincias del Ecuador</strong>, se observa un <strong>mayor número de unidades espaciales</strong> en comparación con la cuadrícula de ejemplo. Esto da lugar a una <strong>matriz de pesos más dispersa</strong>.</p>
+<p>Además, la <strong>distribución de cardinalidades</strong> (número de vecinos por unidad) es significativamente distinta, reflejando la <strong>complejidad y heterogeneidad geográfica</strong> del territorio real.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">w_queen_sin_islas</span><span class="o">.</span><span class="n">cardinalities</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f88c3da0c43d225608541c60225b1d70223064387052a1e1b82dd30b5ac8df94.png" src="_images/f88c3da0c43d225608541c60225b1d70223064387052a1e1b82dd30b5ac8df94.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">8.5. </span>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Realiza el mismo ejercicio de provincias, pero ahora con los cantones de Ecuador.</p>
+<section id="pesos-espaciales-basados-en-k-vecinos-mas-cercanos">
+<h3><span class="section-number">8.5.1. </span>Pesos espaciales basados en k vecinos más cercanos<a class="headerlink" href="#pesos-espaciales-basados-en-k-vecinos-mas-cercanos" title="Permalink to this heading">#</a></h3>
+<p>Una forma de definir pesos espaciales basados en distancia es mediante los <strong>k vecinos más cercanos</strong>. Cada unidad se conecta con sus <strong>k observaciones más próximas</strong>, donde</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk4</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">KNN</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los <strong>centroides</strong> se obtienen a partir de la geometría almacenada en el <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>. En el caso de polígonos, <code class="docutils literal notranslate"><span class="pre">pysal</span></code> utiliza las <strong>distancias entre centroides</strong> para identificar los <strong>k vecinos más cercanos</strong>.</p>
+<p>Una ventaja de este método es que <strong>no existen unidades aisladas</strong>: cada observación tiene al menos un vecino garantizado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk4</span><span class="o">.</span><span class="n">islands</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al igual que con los pesos por contigüidad, los pesos de <strong>k vecinos más cercanos</strong> aseguran que todas las unidades tengan vecinos. Sin embargo, en este caso, eso se garantiza <strong>por construcción</strong>.</p>
+<p>Además, al observar el histograma de cardinalidades, se puede notar otra propiedad clave: <strong>todas las observaciones tienen exactamente k vecinos</strong>, lo que otorga uniformidad a la estructura de la matriz de pesos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk4</span><span class="o">.</span><span class="n">histogram</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(4, 23)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1144,6 +1331,10 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">8.3. Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-en-datos-geograficos-reales">8.4. Pesos espaciales en datos geográficos reales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.5. Ejercicio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pesos-espaciales-basados-en-k-vecinos-mas-cercanos">8.5.1. Pesos espaciales basados en k vecinos más cercanos</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
