@@ -21,4 +21,8 @@ parts:
   - file: Fundamentos
   - file: Datos
   - file: PesosEspaciales
+- caption: Análisis Exploratorio de Datos Espaciales
+  numbered: true
+  chapters:
+  - file: AutocorrelacionGlobal
 
