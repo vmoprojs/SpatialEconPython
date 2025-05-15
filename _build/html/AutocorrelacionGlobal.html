@@ -370,7 +370,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-de-autocorrelacion-una-forma-general">9.1.1. Estadístico de Autocorrelación: una forma general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.2. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -390,6 +394,35 @@ document.write(`
 <p><strong>La autocorrelación espacial significa que las observaciones geográficamente cercanas son más similares entre sí que las distantes</strong>. Esto hace posible predecir valores en un punto dado, conociendo los valores en otras ubicaciones.</p>
 <p>La medida de autocorrelación espacial se puede utilizar de varias formas: para <strong>probar la existencia de autocorrelación</strong> espacial y características de la población; para determinar el <strong>grado de autocorrelación</strong>, por ejemplo, la distancia por encima de la cual las observaciones son independientes; determinar el modelo teórico apropiado para la estructura espacial observada o concluir sobre el proceso espacial.</p>
 <p>Con base en las conclusiones de la ESDA, se puede <strong>rechazar la hipótesis de la aleatoriedad espacial</strong>, lo que abre el camino a la búsqueda de conglomerados espaciales (Anselin, 1999). Las conclusiones de la ESDA también son la base para la especificación espacial de los modelos.</p>
+<section id="estadistico-de-autocorrelacion-una-forma-general">
+<h3><span class="section-number">9.1.1. </span>Estadístico de Autocorrelación: una forma general<a class="headerlink" href="#estadistico-de-autocorrelacion-una-forma-general" title="Permalink to this heading">#</a></h3>
+<p><strong>Medida de similaridad</strong></p>
+<p>El producto vectorial: <span class="math notranslate nohighlight">\(y_iy_j\)</span></p>
+<ul class="simple">
+<li><p>Bajo aleatoriedad, el producto vectorial no es sistemáticamente grande o pequeño.</p></li>
+<li><p>Cuando valores altos están sistemáticamente juntos, el producto vectorial será grande y vice versa.</p></li>
+</ul>
+<p><strong>Medidas de DIsimilaridad</strong></p>
+<p>Dos medidas comunides de disimilaridad son:</p>
+<ol class="arabic simple">
+<li><p>diferencia al cuadrado <span class="math notranslate nohighlight">\((y_i-y_j)^2\)</span></p></li>
+<li><p>diferencia absoluta <span class="math notranslate nohighlight">\(|y_i-y_j|\)</span></p></li>
+</ol>
+<ul class="simple">
+<li><p>Bajo aleatoriedad, la medida de disimilitud no es sistemáticamente grande o pequeño.</p></li>
+<li><p>Cuando valores altos están sistemáticamente juntos, el producto vectorial será grande y vice versa.</p></li>
+</ul>
+<p><strong>Similaridad posicional</strong></p>
+<p>Los pesos espaciales <span class="math notranslate nohighlight">\(w_{ij}\)</span> formalizan la noción de vecinos (vecinos en algún sentido).</p>
+<p>Una forma en que se puede plantear un estadístico general de autocorrelación como</p>
+<blockquote>
+<div><p>suma de todas las parejas del producto de una <strong>medida de similaridad de la variable</strong> y un <strong>indicador de vecindad</strong> (peso espacial)</p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[
+Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(f(x_ix_j)\)</span> denota una forma funcional de la similaridad entre <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span> para la variable <span class="math notranslate nohighlight">\(x\)</span>. <span class="math notranslate nohighlight">\(w_{ij}\)</span> es el peso espacial entre <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>En estadística espacial se utilizan dos tipos de medidas: <strong>medidas globales</strong> y <strong>locales</strong>.</p>
 <p>Por un lado, las medidas globales se plasman en un indicador de autocorrelación espacial o similitud general de regiones. Su ventaja es que es un indicador sintética y su desventaja es promediar.</p>
 <p>Por otro lado, gracias a las estadísticas locales, que se determinan para cada región, se puede responder a la pregunta de <strong>si la región está rodeada de regiones con valores altos o bajos o si es similar/diferente a las regiones vecinas</strong>. Los valores de las estadísticas locales <strong>no se generalizan para toda el área</strong> analizada y se trabaja con información sobre la posición de cada región en relación con los vecinos.</p>
@@ -404,7 +437,7 @@ document.write(`
 <th class="head"><p>Tipo</p></th>
 <th class="head"><p>Tipo de medición</p></th>
 <th class="head"><p>Interpretación</p></th>
-<th class="head"><p>Funciones en <code class="docutils literal notranslate"><span class="pre">R</span></code></p></th>
+<th class="head"><p>Funciones en <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></th>
 </tr>
 </thead>
 <tbody>
@@ -412,7 +445,7 @@ document.write(`
 <td><p>Global</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(I&gt; 0\)</span>: autocorrelación   espacial positiva, los valores de observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son similares <br/> <span class="math notranslate nohighlight">\(I &lt;0\)</span>: autocorrelación espacial negativa, los valores de observación a la   distancia <span class="math notranslate nohighlight">\(d\)</span> son diferentes <br/> <span class="math notranslate nohighlight">\(I = 0\)</span>: los valores de observación a la distancia d se distribuyen   aleatoriamente</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">moran</span> <span class="pre">()</span></code><br/><code class="docutils literal notranslate"><span class="pre">moran.test</span> <span class="pre">()</span></code><br/><code class="docutils literal notranslate"><span class="pre">moran.mc</span> <span class="pre">()</span></code><br/><code class="docutils literal notranslate"><span class="pre">moran.plot</span> <span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pysal.explore</span> <span class="pre">import</span> <span class="pre">esda</span></code><br/><code class="docutils literal notranslate"><span class="pre">esda.moran.Moran</span></code><br/><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">splot.esda</span> <span class="pre">import</span> <span class="pre">plot_moran</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Geary’s C</p></td>
 <td><p>Global</p></td>
@@ -473,6 +506,201 @@ document.write(`
 <p>Cuando se utiliza la matriz de vecindad de primer orden para el cálculo según el criterio de contigüidad, el rezago espacial será el promedio de los valores en las regiones limítrofes con el área examinada. Si se adoptara la matriz de segundo orden, el rezago espacial se determinaría a partir de los valores de los vecinos de estos vecinos. Una interpretación análoga ocurre cuando se usa la matriz de distancia o la matriz <span class="math notranslate nohighlight">\(k\)</span> de los vecinos más cercanos.</p>
 <p>En las siguientes secciones usaremos datos de Valor agregado anual por cantones del Ecuador tomados del <a class="reference external" href="https://contenido.bce.fin.ec/docs.php?path=/documentos/Estadisticas/SectorReal/CuentasCantonales/Indice.htm">Banco Central del Ecuador</a> y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
 </section>
+<section id="una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">
+<h3><span class="section-number">9.1.2. </span>Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas<a class="headerlink" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas" title="Permalink to this heading">#</a></h3>
+<p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar shapefile: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">zip_bytes</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_bytes</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+        <span class="n">shp_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">nombre</span> <span class="o">+</span> <span class="s2">&quot;.shp&quot;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">shp_files</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se encontró </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">.shp en el zip&quot;</span><span class="p">)</span>
+        
+        <span class="n">shp_name</span> <span class="o">=</span> <span class="n">shp_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
+            <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">)</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">,</span> <span class="n">shp_name</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">gdf</span>
+
+<span class="c1"># Uso correcto</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora importamos el valor agregado anual por cantones del Ecuador tomados del Banco Central del Ecuador y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 1. Leo los datos del VAB no petrolero por cantones 2007-2019</span>
+<span class="n">url_vab</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/VABNoPetroleroCantones2007-2019.csv&quot;</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_vab</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Relleno con 0 los códigos de cantón que solo tienen 3 caracteres (para normalizar a 4 dígitos)</span>
+<span class="n">datos</span><span class="p">[</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">datos</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">datos</span><span class="p">[</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">datos</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">datos</span><span class="p">[</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;COD_CANT&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3. Filtrar los datos para el año 2019</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="n">datos</span><span class="p">[</span><span class="s1">&#39;YEAR&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2019</span><span class="p">]</span>
+
+<span class="c1"># 4. Leo los datos de población proyectada 2010–2020</span>
+<span class="n">url_poblacion</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/proyeccion_cantonal_total_2010-2020.csv&quot;</span>
+<span class="n">poblacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_poblacion</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+<span class="c1"># 5. Normalizo los códigos de cantón para que tengan 4 caracteres (agregando un 0 a los que tienen 3)</span>
+<span class="n">poblacion</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">poblacion</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">poblacion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">poblacion</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">poblacion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">poblacion</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span>
+
+<span class="c1"># 6. Leo los datos de Necesidades Básicas Insatisfechas (NBI)</span>
+<span class="n">url_nbi</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/NBI_PER_CANT.csv&quot;</span>
+<span class="n">nbi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_nbi</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+<span class="c1"># 7. Normalizo los códigos de cantón</span>
+<span class="n">nbi</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbi</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">nbi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nbi</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="n">nbi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">nbi</span><span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CODIGO&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># 8. Uno los datos de población a los datos económicos usando el código de cantón</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">poblacion</span><span class="p">[[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="s1">&#39;A_2019&#39;</span><span class="p">]],</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># 9. Uno los datos de pobreza (NBI) a los datos existentes</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">nbi</span><span class="p">[[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="s1">&#39;POBRES_P&#39;</span><span class="p">]],</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># 10. Calculo el VAB per cápita: VAB dividido por la población proyectada en 2019</span>
+<span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB_PC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;A_2019&#39;</span><span class="p">]</span>  <span class="c1"># miles de USD por persona</span>
+
+<span class="c1"># 11. Descargo y leo el shapefile con los polígonos cantonales</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/2012_nxcantones.zip&quot;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una vez extraida la información y el shapefile, quitamos a Galápagos y juntamos los datos a <code class="docutils literal notranslate"><span class="pre">poligonos</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Filtro para excluir la provincia &quot;90&quot;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;DPA_PROVIN&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;90&quot;</span><span class="p">]</span>
+
+<span class="c1"># 2. Filtro para excluir la provincia &quot;20&quot;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;DPA_PROVIN&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;20&quot;</span><span class="p">]</span>
+
+
+<span class="c1"># 3. Hacer el merge entre los polígonos y los datos económicos por cantón</span>
+<span class="c1"># Se usa la columna &#39;DPA_CANTON&#39; del shapefile y &#39;COD_CANT&#39; del DataFrame &#39;datos&#39;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;DPA_CANTON&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># 4. Eliminar las filas que tienen valores faltantes en la variable &#39;POBRES_P&#39;</span>
+<span class="c1"># Esto equivale a quedarse solo con los cantones que tienen datos de pobreza</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="o">~</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;POBRES_P&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+
+<span class="c1">#poligonos[&#39;POBRES_P&#39;].isna()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora construimos la lista de vecinos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">W</span>
+
+<span class="c1"># 1. Construir la lista de vecinos usando contigüidad tipo Reina (equivalente a poly2nb)</span>
+<span class="c1"># El parámetro silence_warnings=True es útil si hay geometrías sin vecinos</span>
+<span class="n">w_queen</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">poligonos</span><span class="p">,</span> <span class="n">silence_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Convertir la lista de vecinos a una matriz de pesos estilo &quot;W&quot; (filas normalizadas)</span>
+<span class="c1"># Esto equivale a nb2listw(..., style=&quot;W&quot;) en R</span>
+<span class="c1"># No hace falta especificar &quot;zero.policy = TRUE&quot; porque libpysal ignora por defecto las unidades sin vecinos</span>
+<span class="n">w_queen</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span>  <span class="c1"># &quot;R&quot; es row-standardized (igual que &quot;W&quot; en R/spdep)</span>
+
+<span class="c1"># Si deseas acceder directamente a la matriz de pesos como un diccionario:</span>
+<span class="n">weights_matrix</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>  <span class="c1"># O usar .neighbors y .weights para listas directas</span>
+
+<span class="c1"># También puedes verificar qué observaciones no tienen vecinos:</span>
+<span class="n">islands</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">islands</span>  <span class="c1"># Lista de índices (cantones) sin vecinos</span>
+<span class="n">islands</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[27, 61, 94, 100, 102, 106, 116, 117, 121, 133, 187, 188, 214]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poligonos</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DPA_VALOR&#39;, &#39;DPA_ANIO&#39;, &#39;DPA_CANTON&#39;, &#39;DPA_DESCAN&#39;, &#39;DPA_PROVIN&#39;,
+       &#39;DPA_DESPRO&#39;, &#39;geometry&#39;, &#39;NOM_PROV&#39;, &#39;COD_PROV&#39;, &#39;NOM_CANT&#39;,
+       &#39;COD_CANT&#39;, &#39;PRODUCCION&#39;, &#39;CONSUMO_INTERMEDIO&#39;, &#39;VAB&#39;, &#39;YEAR&#39;, &#39;TIPO&#39;,
+       &#39;CODIGO_x&#39;, &#39;A_2019&#39;, &#39;CODIGO_y&#39;, &#39;POBRES_P&#39;, &#39;VAB_PC&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="c1"># Reproyección a Web Mercator para usar contextily</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">poligonos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+    <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">legend_kwds</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/60fa29317ec17cbfe37d7dd096edb4f8e816b1a28dd233551961eaef979e3022.png" src="_images/60fa29317ec17cbfe37d7dd096edb4f8e816b1a28dd233551961eaef979e3022.png" />
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -527,7 +755,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-de-autocorrelacion-una-forma-general">9.1.1. Estadístico de Autocorrelación: una forma general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.2. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
