@@ -372,7 +372,17 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-de-autocorrelacion-una-forma-general">9.1.1. Estadístico de Autocorrelación: una forma general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.2. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ideas-centrales">9.1.2. Ideas centrales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprension-de-la-autocorrelacion-espacial">9.1.3. Comprensión de la Autocorrelación Espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.4. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-globales">9.2. Estadísticos Globales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retardo-espacial-spatial-lag">9.2.1. Retardo Espacial (Spatial Lag)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-i-de-moran">9.2.2. Estadístico global: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">9.2.2.1. Inferencia</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -402,7 +412,7 @@ document.write(`
 <li><p>Bajo aleatoriedad, el producto vectorial no es sistemáticamente grande o pequeño.</p></li>
 <li><p>Cuando valores altos están sistemáticamente juntos, el producto vectorial será grande y vice versa.</p></li>
 </ul>
-<p><strong>Medidas de DIsimilaridad</strong></p>
+<p><strong>Medidas de Disimilaridad</strong></p>
 <p>Dos medidas comunides de disimilaridad son:</p>
 <ol class="arabic simple">
 <li><p>diferencia al cuadrado <span class="math notranslate nohighlight">\((y_i-y_j)^2\)</span></p></li>
@@ -504,10 +514,35 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>También existen los llamados efectos de borde (Fortin, Dale y Ver Hoef, 2002). Este problema se revela durante las observaciones en el borde del área de estudio. Estas <strong>regiones tienen menos vecinos que los objetos ubicados en el medio</strong>. Como resultado de este efecto, pueden aparecer diferencias en las estimaciones dependiendo de la matriz de vecindad adoptada (por ejemplo, de primer o segundo orden) (Cressie, 1993b).</p>
 <p>Un elemento común en econometría espacial es el llamado retardo/rezago espacial, que se determina para la variable examinada. El operador de rezago espacial es un <strong>promedio ponderado del valor de la variable en las regiones vecinas, de acuerdo con la matriz de ponderaciones espaciales declarada</strong> <span class="math notranslate nohighlight">\(W\)</span>.</p>
 <p>Cuando se utiliza la matriz de vecindad de primer orden para el cálculo según el criterio de contigüidad, el rezago espacial será el promedio de los valores en las regiones limítrofes con el área examinada. Si se adoptara la matriz de segundo orden, el rezago espacial se determinaría a partir de los valores de los vecinos de estos vecinos. Una interpretación análoga ocurre cuando se usa la matriz de distancia o la matriz <span class="math notranslate nohighlight">\(k\)</span> de los vecinos más cercanos.</p>
+</section>
+<section id="ideas-centrales">
+<h3><span class="section-number">9.1.2. </span>Ideas centrales<a class="headerlink" href="#ideas-centrales" title="Permalink to this heading">#</a></h3>
+<p>La noción de autocorrelación espacial hace referencia a la existencia de una <em>relación funcional entre lo que sucede en un punto del espacio y lo que ocurre en otros lugares cercanos</em> (Anselin, 1988). En términos simples, se trata de analizar en qué medida la similitud de los valores entre observaciones está asociada con la cercanía geográfica entre esas observaciones.</p>
+<p>Este concepto se asemeja al de la correlación convencional entre dos variables, que nos indica cómo cambia una variable en función de otra. Sin embargo, en el caso espacial, la relación es entre los valores de una misma variable en diferentes ubicaciones. De forma análoga a la autocorrelación temporal —donde se relacionan valores de una variable en distintos momentos del tiempo—, la autocorrelación espacial relaciona valores en distintos puntos del espacio.</p>
+<p>Otra manera de interpretar este concepto es entender que la autocorrelación espacial mide cuánta información aporta el valor de una variable en una ubicación específica sobre los valores de esa misma variable en ubicaciones vecinas.</p>
+</section>
+<section id="comprension-de-la-autocorrelacion-espacial">
+<h3><span class="section-number">9.1.3. </span>Comprensión de la Autocorrelación Espacial<a class="headerlink" href="#comprension-de-la-autocorrelacion-espacial" title="Permalink to this heading">#</a></h3>
+<p>Para entender mejor la autocorrelación espacial, es útil comenzar por imaginar un mundo sin ella. En este contexto surge la idea de <strong>aleatoriedad espacial</strong>: una situación en la que la localización de una observación no proporciona ninguna información sobre su valor. Es decir, una variable es espacialmente aleatoria si no sigue un patrón geográfico discernible. De esta forma, la autocorrelación espacial puede definirse como la <em>ausencia de aleatoriedad espacial</em>.</p>
+<p>Sin embargo, esta definición sigue siendo general. Para especificarla mejor, la autocorrelación espacial suele clasificarse en dos dimensiones principales: <strong>signo</strong> y <strong>escala</strong>.</p>
+<ul class="simple">
+<li><p><strong>Signo</strong>:</p>
+<ul>
+<li><p><em>Positiva</em>: valores similares se encuentran cerca unos de otros. No importa si son valores altos o bajos; lo relevante es que hay una asociación positiva entre cercanía espacial y similitud. Por ejemplo, zonas con altos ingresos tienden a estar próximas a otras similares, y lo mismo ocurre con zonas de pobreza.</p></li>
+<li><p><em>Negativa</em>: valores similares se encuentran alejados entre sí. Este patrón puede observarse en fenómenos como la competencia espacial o en la planificación de infraestructura, donde se busca una cobertura geográfica eficiente (por ejemplo, hospitales o supermercados de distintas marcas).</p></li>
+</ul>
+</li>
+<li><p><strong>Escala</strong>:</p>
+<ul>
+<li><p><em>Global</em>: se refiere al patrón general de agrupamiento de valores en todo el conjunto de datos espaciales. Este capítulo se centra en este tipo de análisis.</p></li>
+<li><p><em>Local</em>: estudia las desviaciones de los patrones globales a escalas más pequeñas o zonas específicas. Este enfoque será tratado en el próximo capítulo.</p></li>
+</ul>
+</li>
+</ul>
 <p>En las siguientes secciones usaremos datos de Valor agregado anual por cantones del Ecuador tomados del <a class="reference external" href="https://contenido.bce.fin.ec/docs.php?path=/documentos/Estadisticas/SectorReal/CuentasCantonales/Indice.htm">Banco Central del Ecuador</a> y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
 </section>
 <section id="una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">
-<h3><span class="section-number">9.1.2. </span>Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas<a class="headerlink" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.4. </span>Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas<a class="headerlink" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas" title="Permalink to this heading">#</a></h3>
 <p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,37 +656,6 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </div>
 </div>
 </div>
-<p>Ahora construimos la lista de vecinos:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">W</span>
-
-<span class="c1"># 1. Construir la lista de vecinos usando contigüidad tipo Reina (equivalente a poly2nb)</span>
-<span class="c1"># El parámetro silence_warnings=True es útil si hay geometrías sin vecinos</span>
-<span class="n">w_queen</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">poligonos</span><span class="p">,</span> <span class="n">silence_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># 2. Convertir la lista de vecinos a una matriz de pesos estilo &quot;W&quot; (filas normalizadas)</span>
-<span class="c1"># Esto equivale a nb2listw(..., style=&quot;W&quot;) en R</span>
-<span class="c1"># No hace falta especificar &quot;zero.policy = TRUE&quot; porque libpysal ignora por defecto las unidades sin vecinos</span>
-<span class="n">w_queen</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span>  <span class="c1"># &quot;R&quot; es row-standardized (igual que &quot;W&quot; en R/spdep)</span>
-
-<span class="c1"># Si deseas acceder directamente a la matriz de pesos como un diccionario:</span>
-<span class="n">weights_matrix</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>  <span class="c1"># O usar .neighbors y .weights para listas directas</span>
-
-<span class="c1"># También puedes verificar qué observaciones no tienen vecinos:</span>
-<span class="n">islands</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">islands</span>  <span class="c1"># Lista de índices (cantones) sin vecinos</span>
-<span class="n">islands</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[27, 61, 94, 100, 102, 106, 116, 117, 121, 133, 187, 188, 214]
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poligonos</span><span class="o">.</span><span class="n">columns</span>
@@ -699,6 +703,240 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <img alt="_images/60fa29317ec17cbfe37d7dd096edb4f8e816b1a28dd233551961eaef979e3022.png" src="_images/60fa29317ec17cbfe37d7dd096edb4f8e816b1a28dd233551961eaef979e3022.png" />
 </div>
 </div>
+<p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>criterio de los ocho vecinos más cercanos</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">W</span>
+
+<span class="c1"># 1. Construir la lista de vecinos usando contigüidad tipo Reina (equivalente a poly2nb)</span>
+<span class="c1"># El parámetro silence_warnings=True es útil si hay geometrías sin vecinos</span>
+<span class="n">w_queen</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">poligonos</span><span class="p">,</span> <span class="n">silence_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Convertir la lista de vecinos a una matriz de pesos estilo &quot;W&quot; (filas normalizadas)</span>
+<span class="c1"># Esto equivale a nb2listw(..., style=&quot;W&quot;) en R</span>
+<span class="c1"># No hace falta especificar &quot;zero.policy = TRUE&quot; porque libpysal ignora por defecto las unidades sin vecinos</span>
+<span class="n">w_queen</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span>  <span class="c1"># &quot;R&quot; es row-standardized (igual que &quot;W&quot; en R/spdep)</span>
+
+<span class="c1"># Si deseas acceder directamente a la matriz de pesos como un diccionario:</span>
+<span class="n">weights_matrix</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>  <span class="c1"># O usar .neighbors y .weights para listas directas</span>
+
+<span class="c1"># También puedes verificar qué observaciones no tienen vecinos:</span>
+<span class="n">islands</span> <span class="o">=</span> <span class="n">w_queen</span><span class="o">.</span><span class="n">islands</span>  <span class="c1"># Lista de índices (cantones) sin vecinos</span>
+<span class="n">islands</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[27, 61, 94, 100, 102, 106, 116, 117, 121, 133, 187, 188, 214]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="estadisticos-globales">
+<h2><span class="section-number">9.2. </span>Estadísticos Globales<a class="headerlink" href="#estadisticos-globales" title="Permalink to this heading">#</a></h2>
+<p>Las medidas globales en estadística espacial permiten determinar la tendencia espacial general en la región. Su análisis permite una visión sintética de los datos. También proporcionan una buena base para una evaluación posterior más detallada del fenómeno.</p>
+<section id="retardo-espacial-spatial-lag">
+<h3><span class="section-number">9.2.1. </span>Retardo Espacial (Spatial Lag)<a class="headerlink" href="#retardo-espacial-spatial-lag" title="Permalink to this heading">#</a></h3>
+<p>El operador de retardo espacial es una de las aplicaciones más comunes y directas de las matrices de pesos espaciales (denotadas formalmente como <span class="math notranslate nohighlight">\(\textbf{W}\)</span>) en el análisis espacial. Matemáticamente, se define como el producto entre la matriz de pesos espaciales y el vector de una variable dada.</p>
+<p>Desde una perspectiva conceptual, el retardo espacial representa el comportamiento de una variable en el entorno inmediato de cada ubicación. En ese sentido, puede entenderse como un suavizador local, ya que resume el valor promedio del entorno.</p>
+<p>Podemos expresar esto formalmente en notación matricial como:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{sl} = \textbf{W} Y
+\]</div>
+<p>O, de manera individual:</p>
+<div class="math notranslate nohighlight">
+\[
+y_{sl-i} = \sum_j w_{ij} y_j
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(w_{ij}\)</span> es la celda en la fila <span class="math notranslate nohighlight">\(i\)</span> y columna <span class="math notranslate nohighlight">\(j\)</span> de la matriz <span class="math notranslate nohighlight">\(\textbf{W}\)</span>, representando la relación espacial entre las observaciones <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>. Así, <span class="math notranslate nohighlight">\(y_{sl-i}\)</span> captura el efecto de los valores vecinos ponderados por los pesos correspondientes.</p>
+<p>En los casos donde <span class="math notranslate nohighlight">\(\textbf{W}\)</span> es binaria, el retardo espacial es simplemente la suma de los valores de los vecinos. Si <span class="math notranslate nohighlight">\(\textbf{W}\)</span> está estandarizada por filas (una transformación común), los pesos <span class="math notranslate nohighlight">\(w_{ij}\)</span> estarán entre 0 y 1, y el retardo espacial se convierte en un <em>promedio local</em> del valor de <span class="math notranslate nohighlight">\(Y\)</span> para cada observación <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Este promedio local es precisamente el que se utilizará para el análisis de autocorrelación espacial en las siguientes secciones.</p>
+<p>Como veremos a lo largo del libro, el retardo espacial es un componente clave en muchas técnicas de análisis espacial, y está completamente implementado en la biblioteca <code class="docutils literal notranslate"><span class="pre">PySAL</span></code>.</p>
+<p>Por ejemplo, para calcular el retardo espacial de una variable como <code class="docutils literal notranslate"><span class="pre">VAB_PC</span></code>, se puede hacer mediante código como el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span>
+    <span class="n">w_queen</span><span class="p">,</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">w_queen</span><span class="p">,</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;weights&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos dos elementos de lo que hemos calculado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poligonos</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;DPA_DESCAN&quot;</span><span class="p">,</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">,</span> <span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DPA_DESCAN</th>
+      <th>VAB_PC</th>
+      <th>VAB_PC_lag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>GUARANDA</td>
+      <td>3.602965</td>
+      <td>2.671548</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CHILLANES</td>
+      <td>1.473314</td>
+      <td>2.266083</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Veamos la variable y su rezago en mapas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">axs</span>
+
+<span class="n">poligonos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+    <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;VAB PC&quot;</span><span class="p">)</span>
+
+
+<span class="n">poligonos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+    <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;% VAB PC - Rezago espacial&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/29915209fb4c8d82266d888e324d9029b96a576d4f4bbeeb85a9a00952a4188a.png" src="_images/29915209fb4c8d82266d888e324d9029b96a576d4f4bbeeb85a9a00952a4188a.png" />
+</div>
+</div>
+<p><strong>Mapa Izquierdo VAB PC (Valor Agregado Bruto per cápita)</strong></p>
+<p>Este mapa representa el nivel de desarrollo económico per cápita por cantón.</p>
+<ul class="simple">
+<li><p><strong>Colores</strong>:</p>
+<ul>
+<li><p>🟣 Morado oscuro: Valores bajos de VAB PC (0.82 - 1.56)</p></li>
+<li><p>🟢 Verde claro a 💛 Amarillo: Valores más altos (hasta 28.63)</p></li>
+</ul>
+</li>
+<li><p><strong>Interpretación</strong>:</p>
+<ul>
+<li><p>Existen <strong>diferencias regionales</strong> notables en el VAB per cápita.</p></li>
+<li><p>Los <strong>cantones con mayor desarrollo económico</strong> (amarillo) se concentran en algunas zonas de la Sierra Central y la Costa.</p></li>
+<li><p>Los <strong>cantones más rezagados</strong> (morado) se encuentran en varias regiones dispersas, especialmente al sur y este del país.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Mapa Derecho: % VAB PC - Rezago Espacial</strong></p>
+<p>Este mapa muestra el <strong>efecto del rezago espacial del VAB PC</strong>, es decir, cuánto influye el VAB PC de los cantones vecinos sobre un cantón dado.</p>
+<ul class="simple">
+<li><p><strong>Colores</strong>:</p>
+<ul>
+<li><p>🟣 Morado: Bajo rezago espacial (0.00 - 2.12)</p></li>
+<li><p>💛 Amarillo: Alto rezago espacial (3.77 - 11.48)</p></li>
+</ul>
+</li>
+<li><p><strong>Interpretación</strong>:</p>
+<ul>
+<li><p>Los <strong>cantones en amarillo</strong> están <strong>fuertemente influenciados</strong> por sus vecinos, lo que sugiere posibles efectos de <strong>contagio económico o spillover</strong>.</p></li>
+<li><p>Las zonas en morado muestran <strong>menor integración económica regional</strong>, lo que puede indicar <strong>aislamiento</strong> o <strong>autonomía económica</strong>.</p></li>
+<li><p>Hay <strong>rezagos espaciales altos</strong> en sectores de la Amazonía y la Costa.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Conclusiones Generales</strong></p>
+<ul class="simple">
+<li><p>Se evidencian <strong>desigualdades territoriales</strong> en el desarrollo económico.</p></li>
+<li><p>El rezago espacial permite identificar <strong>interdependencias regionales</strong>:</p>
+<ul>
+<li><p>Un cantón con bajo VAB PC puede beneficiarse de sus vecinos si estos tienen altos niveles de desarrollo.</p></li>
+</ul>
+</li>
+<li><p>Este análisis es clave para orientar <strong>políticas de desarrollo territorial y planificación regional</strong> más efectivas.</p></li>
+</ul>
+</section>
+<section id="estadistico-global-i-de-moran">
+<h3><span class="section-number">9.2.2. </span>Estadístico global: <span class="math notranslate nohighlight">\(I\)</span> de Moran<a class="headerlink" href="#estadistico-global-i-de-moran" title="Permalink to this heading">#</a></h3>
+<p>El estadístico global <span class="math notranslate nohighlight">\(I\)</span> de Moran es probablemente la medida espacial más antigua, introducida por Moran en 1950 (&#64;moran1950notes) y se usa para realizar pruebas de hipótesis de autocorrelación global.</p>
+<p>Es una prueba basada en la covarianza, similar a una prueba de Pearson y el estadístico tiene la siguiente fórmula:</p>
+<!-- $$ -->
+<!-- I = \frac{\sum_i\sum_jw_{ij}(x_i-\bar{x})(x_j-\bar{x})}{S^2\sum_i\sum_jw_{ij}} -->
+<!-- $$ -->
+<!-- y -->
+<!-- $$ -->
+<!-- S^2 = \frac{1}{n}\sum_i(x_i-\bar{x})^2 -->
+<!-- $$ -->
+<!-- donde $x_i$ es la observación en la unidad espacial $i$, $\bar{x}$ es el promedio de todas las unidades espaciales, $n$ es el total de unidades espaciales y $w_{ij}$ es un elemento  de la matriz de pesos espaciales $W$. La matriz de pesos espaciales $W$ se suele **estandarizar por fila**. -->
+<div class="math notranslate nohighlight">
+\[
+I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(z_i = x_i-\bar{x}\)</span>, <span class="math notranslate nohighlight">\(S_0=\sum_i\sum_jw_{ij}\)</span>. <span class="math notranslate nohighlight">\(x_i\)</span> es la observación en la unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\bar{x}\)</span> es el promedio de todas las unidades espaciales, <span class="math notranslate nohighlight">\(n\)</span> es el total de unidades espaciales y <span class="math notranslate nohighlight">\(w_{ij}\)</span> es un elemento  de la matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span>. La matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span> se suele <strong><a class="reference external" href="https://desktop.arcgis.com/es/arcmap/latest/tools/spatial-statistics-toolbox/spatial-weights.htm">estandarizar por fila</a></strong> (las filas suman <span class="math notranslate nohighlight">\(1\)</span>).</p>
+<section id="inferencia">
+<h4><span class="section-number">9.2.2.1. </span>Inferencia<a class="headerlink" href="#inferencia" title="Permalink to this heading">#</a></h4>
+<p>La significancia de estadístico <span class="math notranslate nohighlight">\(I\)</span> de Moran puede evaluarse desde un enfoque paramétrico o no paramétrico; en este texto se adopta el enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 10000 permutaciones.</p>
+<p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
+</section>
 </section>
 </section>
 </section>
@@ -757,7 +995,17 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-de-autocorrelacion-una-forma-general">9.1.1. Estadístico de Autocorrelación: una forma general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.2. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ideas-centrales">9.1.2. Ideas centrales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprension-de-la-autocorrelacion-espacial">9.1.3. Comprensión de la Autocorrelación Espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">9.1.4. Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-globales">9.2. Estadísticos Globales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retardo-espacial-spatial-lag">9.2.1. Retardo Espacial (Spatial Lag)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-i-de-moran">9.2.2. Estadístico global: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">9.2.2.1. Inferencia</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
