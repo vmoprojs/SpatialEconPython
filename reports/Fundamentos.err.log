@@ -1,0 +1,99 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import contextily as ctx
+import networkx as nx
+from shapely.geometry import Point
+import numpy as np
+from io import BytesIO
+import zipfile
+import requests
+from sklearn.neighbors import NearestNeighbors
+
+# 1. Descargar shapefile directamente desde GitHub
+url = "https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/2012_nxcantones.zip"
+response = requests.get(url)
+zip_bytes = BytesIO(response.content)
+
+# 2. Extraer y leer el shapefile
+with zipfile.ZipFile(zip_bytes, "r") as z:
+    shp_name = [f for f in z.namelist() if f.endswith(".shp")][0]
+    z.extractall("tmp_shapefile")
+    gdf = gpd.read_file("tmp_shapefile/" + shp_name)
+
+# 3. Reproyección a Web Mercator para usar contextily
+gdf = gdf.to_crs(epsg=3857)
+
+# ---------- 1. MODELO DE OBJETOS ----------
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf.plot(ax=ax, edgecolor='black', facecolor='lightblue')
+ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
+ax.set_title("Modelo de Objetos: Cantones de Ecuador")
+plt.axis('off')
+plt.show()
+
+# ---------- 2. MODELO DE CAMPOS ----------
+np.random.seed(0)
+gdf["densidad_sim"] = np.random.uniform(20, 300, size=len(gdf))
+
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf.plot(column="densidad_sim", cmap="OrRd", legend=True, ax=ax, edgecolor="black")
+ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
+ax.set_title("Modelo de Campos: Densidad simulada por cantón")
+plt.axis('off')
+plt.show()
+
+# ---------- 3. MODELO DE REDES ----------
+centroids = gdf.geometry.centroid
+points = [Point(xy) for xy in zip(centroids.x, centroids.y)]
+G = nx.Graph()
+
+coords = np.array([[p.x, p.y] for p in points])
+knn = NearestNeighbors(n_neighbors=4).fit(coords)
+distances, indices = knn.kneighbors(coords)
+
+for i, neighbors in enumerate(indices):
+    for j in neighbors[1:]:  # excluir a sí mismo
+        G.add_edge(i, j)
+
+fig, ax = plt.subplots(figsize=(10, 10))
+gdf.plot(ax=ax, facecolor="white", edgecolor="gray")
+pos = {i: (p.x, p.y) for i, p in enumerate(points)}
+nx.draw_networkx_edges(G, pos, ax=ax, alpha=0.5)
+nx.draw_networkx_nodes(G, pos, ax=ax, node_size=10, node_color="red")
+ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
+ax.set_title("Modelo de Redes: Conectividad entre cantones")
+plt.axis('off')
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mgeopandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgpd[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mcontextily[39;00m [38;5;28;01mas[39;00m [38;5;21;01mctx[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'geopandas'
+

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>9. Autocorrelación global &#8212; Econometría Espacial con Python</title>
   
@@ -15,52 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'AutocorrelacionGlobal';</script>
@@ -76,19 +72,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,12 +110,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -142,12 +154,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Econometría Espacial con Python - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Econometría Espacial con Python - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -192,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -201,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -330,26 +353,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -394,18 +419,18 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="autocorrelacion-global">
-<h1><span class="section-number">9. </span>Autocorrelación global<a class="headerlink" href="#autocorrelacion-global" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Autocorrelación global<a class="headerlink" href="#autocorrelacion-global" title="Link to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">9.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>Los métodos de estadística espacial también se denominan <strong>análisis exploratorio de datos espaciales (ESDA)</strong>. Las estadística espacial comprende métodos para probar la existencia de procesos de autocorrelación espacial. Las medidas de autocorrelación espacial se utilizan para evaluar la correlación de variables con respecto a la ubicación espacial.</p>
 <p><strong>La autocorrelación espacial significa que las observaciones geográficamente cercanas son más similares entre sí que las distantes</strong>. Esto hace posible predecir valores en un punto dado, conociendo los valores en otras ubicaciones.</p>
 <p>La medida de autocorrelación espacial se puede utilizar de varias formas: para <strong>probar la existencia de autocorrelación</strong> espacial y características de la población; para determinar el <strong>grado de autocorrelación</strong>, por ejemplo, la distancia por encima de la cual las observaciones son independientes; determinar el modelo teórico apropiado para la estructura espacial observada o concluir sobre el proceso espacial.</p>
 <p>Con base en las conclusiones de la ESDA, se puede <strong>rechazar la hipótesis de la aleatoriedad espacial</strong>, lo que abre el camino a la búsqueda de conglomerados espaciales (Anselin, 1999). Las conclusiones de la ESDA también son la base para la especificación espacial de los modelos.</p>
 <section id="estadistico-de-autocorrelacion-una-forma-general">
-<h3><span class="section-number">9.1.1. </span>Estadístico de Autocorrelación: una forma general<a class="headerlink" href="#estadistico-de-autocorrelacion-una-forma-general" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.1. </span>Estadístico de Autocorrelación: una forma general<a class="headerlink" href="#estadistico-de-autocorrelacion-una-forma-general" title="Link to this heading">#</a></h3>
 <p><strong>Medida de similaridad</strong></p>
 <p>El producto vectorial: <span class="math notranslate nohighlight">\(y_iy_j\)</span></p>
 <ul class="simple">
@@ -441,7 +466,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>Las medidas locales más utilizadas incluyen las estadísticas locales Moran’s II y las estadísticas locales Geary’s Ci, que forman parte del llamado <strong>indicador local de asociación espacial (LISA)</strong> (Anselin, 1995) y las estadísticas locales G Getis-Ord (Ord &amp; Getis, 1995).</p>
 <p>Las estadísticas globales pueden <strong>identificar conglomerados y relaciones espaciales solo para todo el sistema</strong>. Sin embargo, estas estadísticas se pueden desagregar en estadísticas locales, gracias a las cuales se pueden <strong>detectar patrones de relaciones espaciales locales entre las regiones y sus vecinos</strong>.</p>
 <p>El cálculo de LISA permite detectar cuál de las regiones influye fuertemente en la formación de conglomerados locales y examinar los conglomerados locales no aleatorios, los denominados puntos calientes/fríos (<em>hot spots</em> o <em>cold spots</em>), inestabilidad local (heterocedasticidad), observaciones atípicas significativas (Ministeri, 2003). La siguiente tabla resume algunas de las características listadas:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Estadístico</p></th>
 <th class="head"><p>Tipo</p></th>
@@ -507,6 +532,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>Supuestos:</strong></p>
 <p>La estadística espacial se basa en varios supuestos. El más importante de ellos es la <strong>estacionariedad</strong>, lo que significa que <strong>los datos analizados deben tener una distribución normal con promedio y varianza constantes</strong>.</p>
 <p>Sin embargo, las estructuras de autocorrelación espacial no siempre son constantes en toda el área de estudio, por lo que es suficiente satisfacer una <strong>estacionariedad débil, donde la media y la varianza son constantes, mientras que la autocorrelación depende solo de la distancia entre los objetos probados</strong>.</p>
@@ -516,13 +542,13 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>Cuando se utiliza la matriz de vecindad de primer orden para el cálculo según el criterio de contigüidad, el rezago espacial será el promedio de los valores en las regiones limítrofes con el área examinada. Si se adoptara la matriz de segundo orden, el rezago espacial se determinaría a partir de los valores de los vecinos de estos vecinos. Una interpretación análoga ocurre cuando se usa la matriz de distancia o la matriz <span class="math notranslate nohighlight">\(k\)</span> de los vecinos más cercanos.</p>
 </section>
 <section id="ideas-centrales">
-<h3><span class="section-number">9.1.2. </span>Ideas centrales<a class="headerlink" href="#ideas-centrales" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.2. </span>Ideas centrales<a class="headerlink" href="#ideas-centrales" title="Link to this heading">#</a></h3>
 <p>La noción de autocorrelación espacial hace referencia a la existencia de una <em>relación funcional entre lo que sucede en un punto del espacio y lo que ocurre en otros lugares cercanos</em> (Anselin, 1988). En términos simples, se trata de analizar en qué medida la similitud de los valores entre observaciones está asociada con la cercanía geográfica entre esas observaciones.</p>
 <p>Este concepto se asemeja al de la correlación convencional entre dos variables, que nos indica cómo cambia una variable en función de otra. Sin embargo, en el caso espacial, la relación es entre los valores de una misma variable en diferentes ubicaciones. De forma análoga a la autocorrelación temporal —donde se relacionan valores de una variable en distintos momentos del tiempo—, la autocorrelación espacial relaciona valores en distintos puntos del espacio.</p>
 <p>Otra manera de interpretar este concepto es entender que la autocorrelación espacial mide cuánta información aporta el valor de una variable en una ubicación específica sobre los valores de esa misma variable en ubicaciones vecinas.</p>
 </section>
 <section id="comprension-de-la-autocorrelacion-espacial">
-<h3><span class="section-number">9.1.3. </span>Comprensión de la Autocorrelación Espacial<a class="headerlink" href="#comprension-de-la-autocorrelacion-espacial" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.3. </span>Comprensión de la Autocorrelación Espacial<a class="headerlink" href="#comprension-de-la-autocorrelacion-espacial" title="Link to this heading">#</a></h3>
 <p>Para entender mejor la autocorrelación espacial, es útil comenzar por imaginar un mundo sin ella. En este contexto surge la idea de <strong>aleatoriedad espacial</strong>: una situación en la que la localización de una observación no proporciona ninguna información sobre su valor. Es decir, una variable es espacialmente aleatoria si no sigue un patrón geográfico discernible. De esta forma, la autocorrelación espacial puede definirse como la <em>ausencia de aleatoriedad espacial</em>.</p>
 <p>Sin embargo, esta definición sigue siendo general. Para especificarla mejor, la autocorrelación espacial suele clasificarse en dos dimensiones principales: <strong>signo</strong> y <strong>escala</strong>.</p>
 <ul class="simple">
@@ -542,7 +568,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>En las siguientes secciones usaremos datos de Valor agregado anual por cantones del Ecuador tomados del <a class="reference external" href="https://contenido.bce.fin.ec/docs.php?path=/documentos/Estadisticas/SectorReal/CuentasCantonales/Indice.htm">Banco Central del Ecuador</a> y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
 </section>
 <section id="una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas">
-<h3><span class="section-number">9.1.4. </span>Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas<a class="headerlink" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.1.4. </span>Una aplicación: el valor agregado bruto y la pobreza por necesidades insatisfechas<a class="headerlink" href="#una-aplicacion-el-valor-agregado-bruto-y-la-pobreza-por-necesidades-insatisfechas" title="Link to this heading">#</a></h3>
 <p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,6 +600,20 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <span class="c1"># Uso correcto</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">os</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;geopandas&#39;
 </pre></div>
 </div>
 </div>
@@ -737,10 +777,10 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </section>
 </section>
 <section id="estadisticos-globales">
-<h2><span class="section-number">9.2. </span>Estadísticos Globales<a class="headerlink" href="#estadisticos-globales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>Estadísticos Globales<a class="headerlink" href="#estadisticos-globales" title="Link to this heading">#</a></h2>
 <p>Las medidas globales en estadística espacial permiten determinar la tendencia espacial general en la región. Su análisis permite una visión sintética de los datos. También proporcionan una buena base para una evaluación posterior más detallada del fenómeno.</p>
 <section id="retardo-espacial-spatial-lag">
-<h3><span class="section-number">9.2.1. </span>Retardo Espacial (Spatial Lag)<a class="headerlink" href="#retardo-espacial-spatial-lag" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.2.1. </span>Retardo Espacial (Spatial Lag)<a class="headerlink" href="#retardo-espacial-spatial-lag" title="Link to this heading">#</a></h3>
 <p>El operador de retardo espacial es una de las aplicaciones más comunes y directas de las matrices de pesos espaciales (denotadas formalmente como <span class="math notranslate nohighlight">\(\textbf{W}\)</span>) en el análisis espacial. Matemáticamente, se define como el producto entre la matriz de pesos espaciales y el vector de una variable dada.</p>
 <p>Desde una perspectiva conceptual, el retardo espacial representa el comportamiento de una variable en el entorno inmediato de cada ubicación. En ese sentido, puede entenderse como un suavizador local, ya que resume el valor promedio del entorno.</p>
 <p>Podemos expresar esto formalmente en notación matricial como:</p>
@@ -763,18 +803,6 @@ y_{sl-i} = \sum_j w_{ij} y_j
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span>
     <span class="n">w_queen</span><span class="p">,</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">]</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">w_queen</span><span class="p">,</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;weights&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -916,7 +944,7 @@ y_{sl-i} = \sum_j w_{ij} y_j
 </ul>
 </section>
 <section id="estadistico-global-i-de-moran">
-<h3><span class="section-number">9.2.2. </span>Estadístico global: <span class="math notranslate nohighlight">\(I\)</span> de Moran<a class="headerlink" href="#estadistico-global-i-de-moran" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">9.2.2. </span>Estadístico global: <span class="math notranslate nohighlight">\(I\)</span> de Moran<a class="headerlink" href="#estadistico-global-i-de-moran" title="Link to this heading">#</a></h3>
 <p>El estadístico global <span class="math notranslate nohighlight">\(I\)</span> de Moran es probablemente la medida espacial más antigua, introducida por Moran en 1950 (&#64;moran1950notes) y se usa para realizar pruebas de hipótesis de autocorrelación global.</p>
 <p>Es una prueba basada en la covarianza, similar a una prueba de Pearson y el estadístico tiene la siguiente fórmula:</p>
 <!-- $$ -->
@@ -933,7 +961,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(z_i = x_i-\bar{x}\)</span>, <span class="math notranslate nohighlight">\(S_0=\sum_i\sum_jw_{ij}\)</span>. <span class="math notranslate nohighlight">\(x_i\)</span> es la observación en la unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(\bar{x}\)</span> es el promedio de todas las unidades espaciales, <span class="math notranslate nohighlight">\(n\)</span> es el total de unidades espaciales y <span class="math notranslate nohighlight">\(w_{ij}\)</span> es un elemento  de la matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span>. La matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span> se suele <strong><a class="reference external" href="https://desktop.arcgis.com/es/arcmap/latest/tools/spatial-statistics-toolbox/spatial-weights.htm">estandarizar por fila</a></strong> (las filas suman <span class="math notranslate nohighlight">\(1\)</span>).</p>
 <section id="inferencia">
-<h4><span class="section-number">9.2.2.1. </span>Inferencia<a class="headerlink" href="#inferencia" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">9.2.2.1. </span>Inferencia<a class="headerlink" href="#inferencia" title="Link to this heading">#</a></h4>
 <p>La significancia de estadístico <span class="math notranslate nohighlight">\(I\)</span> de Moran puede evaluarse desde un enfoque paramétrico o no paramétrico; en este texto se adopta el enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 10000 permutaciones.</p>
 <p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
 </section>
@@ -966,8 +994,10 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 
               
               
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="PesosEspaciales.html"
@@ -986,6 +1016,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1016,7 +1047,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1029,9 +1060,10 @@ By Víctor Morales Oñate
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1046,7 +1078,7 @@ By Víctor Morales Oñate
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1055,8 +1087,8 @@ By Víctor Morales Oñate
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

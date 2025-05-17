@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>8. Pesos Espaciales &#8212; Econometría Espacial con Python</title>
   
@@ -15,57 +14,55 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'PesosEspaciales';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Autocorrelación global" href="AutocorrelacionGlobal.html" />
     <link rel="prev" title="7. Datos Espaciales" href="Datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -76,19 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -142,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Econometría Espacial con Python - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Econometría Espacial con Python - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -174,6 +198,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Datos.html">7. Datos Espaciales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Pesos Espaciales</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -188,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -197,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -326,26 +354,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -394,10 +424,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pesos-espaciales">
-<h1><span class="section-number">8. </span>Pesos Espaciales<a class="headerlink" href="#pesos-espaciales" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">8. </span>Pesos Espaciales<a class="headerlink" href="#pesos-espaciales" title="Link to this heading">#</a></h1>
 <p>Los <strong>pesos espaciales</strong> capturan el conocimiento sobre cómo se relacionan espacialmente las unidades de observación. Preguntas comunes como:</p>
 <ul class="simple">
 <li><p>¿Qué barrios colindan con el mío?</p></li>
@@ -416,6 +446,18 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 <span class="kn">from</span> <span class="nn">pysal.lib</span> <span class="kn">import</span> <span class="n">cg</span> <span class="k">as</span> <span class="n">geometry</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">contextily</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">rioxarray</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;contextily&#39;
 </pre></div>
 </div>
 </div>
@@ -438,11 +480,11 @@ document.write(`
 <p>También se exploran las funcionalidades basadas en <strong>operaciones de conjuntos</strong>, que permiten construir pesos espaciales combinando relaciones.</p>
 <p>Además, se revisan los <strong>formatos comunes de archivo</strong> para almacenar estos pesos y se incluyen visualizaciones que ayudan a comprender de forma más intuitiva estas estructuras abstractas.</p>
 <section id="conectividad-en-el-espacio">
-<h2><span class="section-number">8.1. </span>Conectividad en el espacio<a class="headerlink" href="#conectividad-en-el-espacio" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Conectividad en el espacio<a class="headerlink" href="#conectividad-en-el-espacio" title="Link to this heading">#</a></h2>
 <p>En el caso de series de tiempo, la idea de una variable rezagada no es ambigua, en el espacio las cosas pueden complicarse.</p>
 <p>En lo siguiente se asumen que las observaciones están organizadas en <strong>unidades espaciales</strong>, que pueden ser puntos en un <em>grid</em> regular o irregular, o regiones en un mapa.</p>
 <section id="vecinos-en-el-espacio">
-<h3><span class="section-number">8.1.1. </span>Vecinos en el espacio<a class="headerlink" href="#vecinos-en-el-espacio" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.1.1. </span>Vecinos en el espacio<a class="headerlink" href="#vecinos-en-el-espacio" title="Link to this heading">#</a></h3>
 <p>El concepto de dependencia espacial implica la necesidad de determinar qué otras unidades en el sistema espacial tienen influencia en la unidad particular que se está considerando. Formalmente, esto se expresa en los conceptos de la topología como <a class="reference external" href="https://es.wikipedia.org/wiki/Entorno_(matem%C3%A1tica)">vecindad</a> y vecino más cercano.</p>
 <p>Consideremos un sistema <span class="math notranslate nohighlight">\(S\)</span> de <span class="math notranslate nohighlight">\(N\)</span> unidades espaciales, etiquetadas <span class="math notranslate nohighlight">\(i = 1,2,\ldots N\)</span>, y una variable <span class="math notranslate nohighlight">\(x\)</span> observada para cada una de estas unidades espaciales. El conjunto de vecinos <span class="math notranslate nohighlight">\(J\)</span> para la unidad espacial <span class="math notranslate nohighlight">\(i\)</span>, para el cual:</p>
 <div class="math notranslate nohighlight">
@@ -466,7 +508,7 @@ P[x_i|x] = P[x_i|x_J]
 </section>
 </section>
 <section id="contiguidad-espacial">
-<h2><span class="section-number">8.2. </span>Contiguidad espacial<a class="headerlink" href="#contiguidad-espacial" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Contiguidad espacial<a class="headerlink" href="#contiguidad-espacial" title="Link to this heading">#</a></h2>
 <p>Dos objetos espaciales son <strong>contiguos</strong> si comparten un borde común. Aunque esto parece simple, en la práctica puede ser más complejo, ya que existen distintas formas de definir esa “frontera compartida”.</p>
 <p>Por ejemplo, una cuadrícula de 3x3 permite ilustrar las distintas maneras en que las unidades pueden estar conectadas espacialmente.</p>
 <div class="cell docutils container">
@@ -547,7 +589,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <section id="contiguidad-tipo-rook">
-<h3><span class="section-number">8.2.1. </span>Contigüidad tipo Rook<a class="headerlink" href="#contiguidad-tipo-rook" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Contigüidad tipo Rook<a class="headerlink" href="#contiguidad-tipo-rook" title="Link to this heading">#</a></h3>
 <p>Una forma común de definir la <strong>adyacencia espacial</strong> es mediante la analogía con los movimientos del ajedrez. En la <strong>contigüidad tipo Rook</strong>, dos polígonos son vecinos si comparten un <strong>borde</strong> (no solo un vértice).</p>
 <p>Aplicando esta regla en una cuadrícula, es posible identificar los vecinos de cada celda y construir una estructura que modele estas relaciones espaciales.</p>
 <div class="cell docutils container">
@@ -792,7 +834,7 @@ P[x_i|x] = P[x_i|x_J]
 <p>Respecto a la <strong>contigüidad tipo Rook</strong>, aunque polígonos como el 0 y el 5 comparten un <strong>vértice</strong>, no son considerados vecinos porque no comparten un <strong>borde</strong>. Para incluir conexiones basadas en vértices, se puede usar la <strong>contigüidad tipo Queen</strong>, más flexible, que considera vecinos a los polígonos que comparten vértices o bordes.</p>
 </section>
 <section id="id1">
-<h3><span class="section-number">8.2.2. </span>Contigüidad tipo Rook<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.2. </span>Contigüidad tipo Rook<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construye una matriz de contigüidad tipo &quot;Queen&quot; (reina del ajedrez)</span>
@@ -965,7 +1007,8 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 </div></blockquote>
 <p>Esta definición obviamente asume la existencia de un mapa del que los bordes pueden discernirse. Sin embargo, cuando se ubican en un <em>grid</em>, <strong>la contiguidad no es única</strong>.</p>
 <p>Por ejemplo, considere la siguiente figura con sus respectivos centroides:</p>
-<a class="reference internal image-reference" href="_images/Contiguidad.png"><img alt="_images/Contiguidad.png" src="_images/Contiguidad.png" style="width: 700px; height: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/Contiguidad.png"><img alt="_images/Contiguidad.png" src="_images/Contiguidad.png" style="width: 700px; height: 700px;" />
+</a>
 <p>Un <em>borde común</em> entre la celda <span class="math notranslate nohighlight">\(a\)</span> y celdas aledañas puede considerarse de diferentes maneras. Por ejemplo:</p>
 <ul class="simple">
 <li><p>Si se toma el criterio del <strong>lado común</strong> (<em>common edge</em>), las celdas <span class="math notranslate nohighlight">\(b\)</span> son contiguas. Análogo al movimiento de la <strong>torre</strong> en ajedrez (<em>rook case</em>).</p></li>
@@ -980,18 +1023,20 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 <p>En un grid cuadrado, esto es una serie de bandas concéntricas alrededor de la unidad espacial en consideración. Por ejemplo: las celdas <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguas de segundo orden a <span class="math notranslate nohighlight">\(a\)</span> de acuerdo al criterio de la torre, porque <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(d\)</span> son contiguos de primer orden a <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <p>La estructura espacial resultante se expresa formalmente en una matriz de contiguidad o conectividad. Esta matriz tiene tantas filas y columnas como unidades espaciales existan. En cada fila, una columna distinta de cero corresponde a unidades espaciales contiguas.</p>
 <p>Por ejemplo, las 9 celdas en el centro de la figura anterior (numeradas de izquierda a derecha y de arriba hacia abajo) se presenta en la siguiente tabla usando el criterio de la torre.</p>
-<a class="reference internal image-reference" href="_images/torreCont.png"><img alt="_images/torreCont.png" src="_images/torreCont.png" style="width: 700px; height: 180px;" /></a>
+<a class="reference internal image-reference" href="_images/torreCont.png"><img alt="_images/torreCont.png" src="_images/torreCont.png" style="width: 700px; height: 180px;" />
+</a>
 <p>Claramente, el tener varias formas de definir contiguidad no es una cualidad deseable:</p>
 <ul class="simple">
 <li><p>Es una representación limitada de las posibles interacciones espaciales que pueden formularse.</p></li>
 <li><p>La misma matriz de contigüidad puede representar varios arreglos de unidades espaciales.</p></li>
 </ul>
 <section id="matrices-de-pesos-espaciales">
-<h4><span class="section-number">8.2.2.1. </span>Matrices de pesos espaciales<a class="headerlink" href="#matrices-de-pesos-espaciales" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">8.2.2.1. </span>Matrices de pesos espaciales<a class="headerlink" href="#matrices-de-pesos-espaciales" title="Link to this heading">#</a></h4>
 <!-- pagina 19 -->
 <p>La idea de contiguidad binaria fue extendida para incluir interacciones potenciales entre dos unidades espaciales. La determinación de una especificación apropiada para esta matriz, <span class="math notranslate nohighlight">\(w_{ij}\)</span>, es uno de los temas metodológicos más difíciles y controversiales en econometría espacial.</p>
 <p>La sugerencia original de Cliff y Ord consiste en usar una combinación medidas de distancia (distancia inversa, o exponenciales negativos de la distancia) y la longitud relativa del borde común entre dos unidades espaciales, en el sentido del <strong>porcentaje en el total de la longitud del borde que es ocupado por la otra unidad en consideración</strong>.</p>
-<a class="reference internal image-reference" href="_images/wijCO.png"><img alt="_images/wijCO.png" src="_images/wijCO.png" style="width: 700px; height: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/wijCO.png"><img alt="_images/wijCO.png" src="_images/wijCO.png" style="width: 700px; height: 700px;" />
+</a>
 <p>Los pesos resultantes serán asimétricos, a menos que ambas unidades espaciales tengan la misma longitud de borde. Formalmente.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1016,7 +1061,7 @@ w_{ij} = \sum_jk_j\left(\frac{a}{1+be^{-c_jd_{ij}}}\right)
 En el contexto de <strong>pruebas de hipótesis</strong>, dado que la hipótesis nula es de independencia espacial, la matriz de ponderaciones debe relacionarse con la hipótesis alternativa relevante de dependencia espacial, con el fin de maximizar la potencia de la prueba. Sin embargo, incluso con una matriz de ponderación especificada incorrectamente, <strong>el rechazo de la hipótesis nula solo implicará una falta de independencia, y no un tipo particular de dependencia</strong>. Aunque la potencia de la prueba se verá afectada, la posibilidad de conclusiones falsas no es tan grande <strong>como en la especificación funcional de un modelo</strong>.</p>
 </section>
 <section id="operadores-de-rezago-espacial">
-<h4><span class="section-number">8.2.2.2. </span>Operadores de rezago espacial<a class="headerlink" href="#operadores-de-rezago-espacial" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">8.2.2.2. </span>Operadores de rezago espacial<a class="headerlink" href="#operadores-de-rezago-espacial" title="Link to this heading">#</a></h4>
 <p>El objetivo del uso de una matriz de ponderación espacial en la especificación de modelos econométricos espaciales es <strong>relacionar una variable en un punto del espacio con las observaciones de esa variable en otras unidades espaciales del sistema</strong>.</p>
 <p>En un contexto de series de tiempo, esto se logra mediante el uso de un operador de retardo o rezago, que desplaza la variable en uno o más períodos en el tiempo. Por ejemplo:</p>
 <div class="math notranslate nohighlight">
@@ -1025,7 +1070,8 @@ y_{t-k} = L^ky
 \]</div>
 <p>muestra la variable <span class="math notranslate nohighlight">\(y\)</span> rezagada <span class="math notranslate nohighlight">\(k\)</span> periodos desde <span class="math notranslate nohighlight">\(t\)</span>, como la potencia <span class="math notranslate nohighlight">\(k\)</span>-ésima del operador de rezagos <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <p>En el espacio, debido a las infinitas direcciones que se puede girar, las cosas se complican. Por ejemplo, considere la siguiente figura:</p>
-<a class="reference internal image-reference" href="_images/lag.png"><img alt="_images/lag.png" src="_images/lag.png" style="width: 700px; height: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/lag.png"><img alt="_images/lag.png" src="_images/lag.png" style="width: 700px; height: 700px;" />
+</a>
 <p>La variable <span class="math notranslate nohighlight">\(x\)</span> observada en la posición <span class="math notranslate nohighlight">\(i,j\)</span> puede girarse de las siguientes maneras:</p>
 <ul class="simple">
 <li><p>usando el criterio de la torre:</p></li>
@@ -1064,9 +1110,10 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </section>
 </section>
 <section id="ejercicio">
-<h2><span class="section-number">8.3. </span>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.3. </span>Ejercicio<a class="headerlink" href="#ejercicio" title="Link to this heading">#</a></h2>
 <p>Usando la siguiente figura, debes:</p>
-<a class="reference internal image-reference" href="_images/pesosTarea.png"><img alt="_images/pesosTarea.png" src="_images/pesosTarea.png" style="width: 700px; height: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/pesosTarea.png"><img alt="_images/pesosTarea.png" src="_images/pesosTarea.png" style="width: 700px; height: 700px;" />
+</a>
 <ol class="arabic simple">
 <li><p>Representar la matriz de pesos espaciales bajo el criterio de contiguidad.</p></li>
 <li><p>Estandarizar por filas la matriz de pesos espacilaes.</p></li>
@@ -1074,7 +1121,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </ol>
 </section>
 <section id="pesos-espaciales-en-datos-geograficos-reales">
-<h2><span class="section-number">8.4. </span>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.4. </span>Pesos espaciales en datos geográficos reales<a class="headerlink" href="#pesos-espaciales-en-datos-geograficos-reales" title="Link to this heading">#</a></h2>
 <p>Aunque los ejemplos con cuadrículas regulares ayudan a comprender la lógica de los pesos espaciales en <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, su aplicación real implica trabajar con datos geográficos concretos.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pysal</span></code> permite construir objetos de pesos espaciales a partir de formatos comunes como <strong>shapefiles</strong>, los cuales no incluyen explícitamente las relaciones de vecindad. Por ello, estas deben <strong>derivarse manualmente</strong>, y <code class="docutils literal notranslate"><span class="pre">pysal</span></code> facilita este proceso mediante estructuras de <strong>indexación espacial</strong> eficientes.</p>
 <p>En este caso, se demostrará cómo construir pesos espaciales usando las <strong>provincias del Ecuador</strong> como unidades geográficas de análisis. Fuente de datos: https://www.ecuadorencifras.gob.ec/documentos/web-inec/Geografia_Estadistica/Micrositio_geoportal/index.html</p>
@@ -1220,10 +1267,10 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">8.5. </span>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.5. </span>Ejercicio<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Realiza el mismo ejercicio de provincias, pero ahora con los cantones de Ecuador.</p>
 <section id="pesos-espaciales-basados-en-k-vecinos-mas-cercanos">
-<h3><span class="section-number">8.5.1. </span>Pesos espaciales basados en k vecinos más cercanos<a class="headerlink" href="#pesos-espaciales-basados-en-k-vecinos-mas-cercanos" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.5.1. </span>Pesos espaciales basados en k vecinos más cercanos<a class="headerlink" href="#pesos-espaciales-basados-en-k-vecinos-mas-cercanos" title="Link to this heading">#</a></h3>
 <p>Una forma de definir pesos espaciales basados en distancia es mediante los <strong>k vecinos más cercanos</strong>. Cada unidad se conecta con sus <strong>k observaciones más próximas</strong>, donde</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1289,8 +1336,10 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 
               
               
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="Datos.html"
@@ -1301,6 +1350,15 @@ f_i = \sum_jq(d_{ij},\theta)x_j
         <p class="prev-next-title"><span class="section-number">7. </span>Datos Espaciales</p>
       </div>
     </a>
+    <a class="right-next"
+       href="AutocorrelacionGlobal.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Autocorrelación global</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1309,6 +1367,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1343,7 +1402,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1356,9 +1415,10 @@ By Víctor Morales Oñate
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1373,7 +1433,7 @@ By Víctor Morales Oñate
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1382,8 +1442,8 @@ By Víctor Morales Oñate
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
