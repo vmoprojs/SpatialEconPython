@@ -2,7 +2,7 @@
 
 # Notas de clase
 
-**Actualización**: abril 2025
+**Actualización**: mayo 2025
 
 Este documento está en construcción. Tiene por objetivo recoger material necesario para impartir un curso aplicado en econometría espacial.
 

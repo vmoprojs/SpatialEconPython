@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. Gráficos básicos: matplotlib &amp; seaborn &#8212; Econometría Espacial con Python</title>
   
@@ -15,52 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Visualizacion';</script>
@@ -77,19 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -143,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Econometría Espacial con Python - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Econometría Espacial con Python - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -175,6 +198,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Datos.html">7. Datos Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PesosEspaciales.html">8. Pesos Espaciales</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -189,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -198,14 +225,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -327,26 +354,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -395,10 +424,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="graficos-basicos-matplotlib-seaborn">
-<h1><span class="section-number">3. </span>Gráficos básicos: matplotlib &amp; seaborn<a class="headerlink" href="#graficos-basicos-matplotlib-seaborn" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Gráficos básicos: matplotlib &amp; seaborn<a class="headerlink" href="#graficos-basicos-matplotlib-seaborn" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -429,10 +458,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceeaeab070&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bde5b20&gt;]
 </pre></div>
 </div>
-<img alt="_images/59082810f7c486ec954569c09bab8a55a514c0f788a546f3ee1eecb8a65dbf6b.png" src="_images/59082810f7c486ec954569c09bab8a55a514c0f788a546f3ee1eecb8a65dbf6b.png" />
+<img alt="_images/b00a1923ce701ae07ac86428a4f9aed1cdf103e0d994b7ae78a98cc9435c9d06.png" src="_images/b00a1923ce701ae07ac86428a4f9aed1cdf103e0d994b7ae78a98cc9435c9d06.png" />
 </div>
 </div>
 <p>Podemos pasarle ‘.’ a <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> para indicar que queremos el punto <span class="math notranslate nohighlight">\((3,2)\)</span> tal que sea puesto como un <em>marker</em></p>
@@ -443,10 +472,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceeafc33a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11beae000&gt;]
 </pre></div>
 </div>
-<img alt="_images/f77a2e49512f4097d20d8d4c3a24609680c82d788616a0c8cb0eac9a099ce791.png" src="_images/f77a2e49512f4097d20d8d4c3a24609680c82d788616a0c8cb0eac9a099ce791.png" />
+<img alt="_images/9a59759be72a637d868b4fb40ed43fe098a7b8890aba813eef053d021c41ca36.png" src="_images/9a59759be72a637d868b4fb40ed43fe098a7b8890aba813eef053d021c41ca36.png" />
 </div>
 </div>
 <p>Veamos como hacer un plot usando la capa <em>scripting</em>.</p>
@@ -474,7 +503,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceebb12a00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bf38e30&gt;]
 </pre></div>
 </div>
 </div>
@@ -499,7 +528,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 6.0, 0.0, 10.0)
 </pre></div>
 </div>
-<img alt="_images/75166371689e95af89e9a2dd52816f0ef853a8ef49d0e89116b748f37880b975.png" src="_images/75166371689e95af89e9a2dd52816f0ef853a8ef49d0e89116b748f37880b975.png" />
+<img alt="_images/bfc18d2616618a6965f8e009c8b724f62f14f8a032d3e7fefd1011434a1f8a92.png" src="_images/bfc18d2616618a6965f8e009c8b724f62f14f8a032d3e7fefd1011434a1f8a92.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -517,10 +546,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceebccf0d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11bfe0bc0&gt;]
 </pre></div>
 </div>
-<img alt="_images/374e732a1e66a570d1b188c520c459be9483c70e7d92e5c88c0cb6148e1fa3a4.png" src="_images/374e732a1e66a570d1b188c520c459be9483c70e7d92e5c88c0cb6148e1fa3a4.png" />
+<img alt="_images/fec02c58737211399c3b3b5860ad4df5c714117b3b509a1be729724d8b8f2656.png" src="_images/fec02c58737211399c3b3b5860ad4df5c714117b3b509a1be729724d8b8f2656.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -533,23 +562,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.spines.Spine at 0x7fceebd06760&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceebd06850&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceebd06940&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceebd06a30&gt;,
- &lt;matplotlib.axis.XAxis at 0x7fceebd06790&gt;,
- &lt;matplotlib.axis.YAxis at 0x7fceebd06e80&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.spines.Spine at 0x11c003a70&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c0021e0&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c002150&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c001b20&gt;,
+ &lt;matplotlib.axis.XAxis at 0x11c000950&gt;,
+ &lt;matplotlib.axis.YAxis at 0x11c0000e0&gt;,
  Text(0.5, 1.0, &#39;&#39;),
  Text(0.0, 1.0, &#39;&#39;),
  Text(1.0, 1.0, &#39;&#39;),
- &lt;matplotlib.patches.Rectangle at 0x7fceebd19910&gt;]
+ &lt;matplotlib.patches.Rectangle at 0x11c015cd0&gt;]
 </pre></div>
 </div>
-<img alt="_images/e90d8f2c9f70eecb88a02eac39b631f0c6b659a1fe7234099703577c13a60cca.png" src="_images/e90d8f2c9f70eecb88a02eac39b631f0c6b659a1fe7234099703577c13a60cca.png" />
+<img alt="_images/f9de3a2f25fab931256dc5710a13c289845f7e47971d82474149f03b5eddb4c3.png" src="_images/f9de3a2f25fab931256dc5710a13c289845f7e47971d82474149f03b5eddb4c3.png" />
 </div>
 </div>
 <section id="scatterplots">
-<h2><span class="section-number">3.1. </span>Scatterplots<a class="headerlink" href="#scatterplots" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Scatterplots<a class="headerlink" href="#scatterplots" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -563,10 +592,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fceec07cd60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x11bef3290&gt;
 </pre></div>
 </div>
-<img alt="_images/53cc101df2db8b11b299333b077d0b3ef278bb1941d01d1952befd897c4e9482.png" src="_images/53cc101df2db8b11b299333b077d0b3ef278bb1941d01d1952befd897c4e9482.png" />
+<img alt="_images/c55b50a3a599058d0ec87d211adab8ee5d1033e1d0bd6cc19225e9133698b257.png" src="_images/c55b50a3a599058d0ec87d211adab8ee5d1033e1d0bd6cc19225e9133698b257.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -589,10 +618,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fceebcdf550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x11be45130&gt;
 </pre></div>
 </div>
-<img alt="_images/2e96eacafcea37daf26ed622bc63ca56434cdcd9a650c5dde3158143158a1ee8.png" src="_images/2e96eacafcea37daf26ed622bc63ca56434cdcd9a650c5dde3158143158a1ee8.png" />
+<img alt="_images/d02e200e886df4fbb3e0091a4e5198b351e7f98dee317b28fb44090f9e31a556.png" src="_images/d02e200e886df4fbb3e0091a4e5198b351e7f98dee317b28fb44090f9e31a556.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -657,10 +686,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fceec106f40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x11c1615e0&gt;
 </pre></div>
 </div>
-<img alt="_images/53176aa2268f1af00a824bfa6713dae0fe808d42397e8d21659c4a19a9dcb70d.png" src="_images/53176aa2268f1af00a824bfa6713dae0fe808d42397e8d21659c4a19a9dcb70d.png" />
+<img alt="_images/f2db88cec8439bda17f119992b3d3b0b143e3ca7b4eab20eab8206b64df49312.png" src="_images/f2db88cec8439bda17f119992b3d3b0b143e3ca7b4eab20eab8206b64df49312.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -678,7 +707,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Relación entre patear la pelota y notas&#39;)
 </pre></div>
 </div>
-<img alt="_images/0da3ccf1040e328af2c27b02d378d49fa7235671ad35e7e21ca14dab39c74c88.png" src="_images/0da3ccf1040e328af2c27b02d378d49fa7235671ad35e7e21ca14dab39c74c88.png" />
+<img alt="_images/629f25594bf888d8774a8f4306329c00a0581beac79e31e29b6249501b96a264.png" src="_images/629f25594bf888d8774a8f4306329c00a0581beac79e31e29b6249501b96a264.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -689,13 +718,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_43581/2467656890.py:2: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend()
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fceec42e250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11c0f52e0&gt;
 </pre></div>
 </div>
-<img alt="_images/e01ff64d10ffc2275ed7b3831244b22a9222649122b67dd5c14325fa89245f16.png" src="_images/e01ff64d10ffc2275ed7b3831244b22a9222649122b67dd5c14325fa89245f16.png" />
+<img alt="_images/7532cded35d7c8b01b754f983a4b330e31ae51596937cc010cd45609296b8655.png" src="_images/7532cded35d7c8b01b754f983a4b330e31ae51596937cc010cd45609296b8655.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -706,13 +736,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_43581/4087772879.py:2: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc=4, frameon=False, title=&#39;Legenda&#39;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fceec7c2460&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11c286120&gt;
 </pre></div>
 </div>
-<img alt="_images/26b55d820f3dcb7eec5b9558a532b67bc7b4cba955563e1d33b690b284eda484.png" src="_images/26b55d820f3dcb7eec5b9558a532b67bc7b4cba955563e1d33b690b284eda484.png" />
+<img alt="_images/c3eeb6bb99b0601b03b963bc6fce697e290c48f097ff7f3dcc654a683c942d94.png" src="_images/c3eeb6bb99b0601b03b963bc6fce697e290c48f097ff7f3dcc654a683c942d94.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -723,24 +754,24 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.spines.Spine at 0x7fceec8188b0&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceec8189a0&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceec818a90&gt;,
- &lt;matplotlib.spines.Spine at 0x7fceec818b80&gt;,
- &lt;matplotlib.axis.XAxis at 0x7fceec8188e0&gt;,
- &lt;matplotlib.axis.YAxis at 0x7fceec818fd0&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.spines.Spine at 0x11c2f0260&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c2f3230&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c2f0170&gt;,
+ &lt;matplotlib.spines.Spine at 0x11c2f24e0&gt;,
+ &lt;matplotlib.axis.XAxis at 0x11c2f2570&gt;,
+ &lt;matplotlib.axis.YAxis at 0x11c2f3590&gt;,
  Text(0.5, 1.0, &#39;&#39;),
  Text(0.0, 1.0, &#39;&#39;),
  Text(1.0, 1.0, &#39;&#39;),
- &lt;matplotlib.patches.Rectangle at 0x7fceec8322b0&gt;]
+ &lt;matplotlib.patches.Rectangle at 0x11c4114c0&gt;]
 </pre></div>
 </div>
-<img alt="_images/e90d8f2c9f70eecb88a02eac39b631f0c6b659a1fe7234099703577c13a60cca.png" src="_images/e90d8f2c9f70eecb88a02eac39b631f0c6b659a1fe7234099703577c13a60cca.png" />
+<img alt="_images/f9de3a2f25fab931256dc5710a13c289845f7e47971d82474149f03b5eddb4c3.png" src="_images/f9de3a2f25fab931256dc5710a13c289845f7e47971d82474149f03b5eddb4c3.png" />
 </div>
 </div>
 </section>
 <section id="graficos-de-linea">
-<h2><span class="section-number">3.2. </span>Gráficos de linea<a class="headerlink" href="#graficos-de-linea" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Gráficos de linea<a class="headerlink" href="#graficos-de-linea" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -755,11 +786,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceec9b8430&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fceec9b84c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11c47d430&gt;,
+ &lt;matplotlib.lines.Line2D at 0x11c47d340&gt;]
 </pre></div>
 </div>
-<img alt="_images/280580b1b13fceac4c97acffff5d69e356b855d17595707294805a22a0d1bcaa.png" src="_images/280580b1b13fceac4c97acffff5d69e356b855d17595707294805a22a0d1bcaa.png" />
+<img alt="_images/5fadde9d7482ee9b9495c4902f69686aa5552d191a26df2882d77a84848ba30c.png" src="_images/5fadde9d7482ee9b9495c4902f69686aa5552d191a26df2882d77a84848ba30c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -770,10 +801,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceecaf2b50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11c161490&gt;]
 </pre></div>
 </div>
-<img alt="_images/b40c3433588925abd143feed410b79661de1a42f88c16af4f0e4b48ebb3b92eb.png" src="_images/b40c3433588925abd143feed410b79661de1a42f88c16af4f0e4b48ebb3b92eb.png" />
+<img alt="_images/0f692f4c7d741a4b55a18a5ed78c022f2293e6d0d5d0816ea453c624b1ace996.png" src="_images/0f692f4c7d741a4b55a18a5ed78c022f2293e6d0d5d0816ea453c624b1ace996.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -787,10 +818,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fceecb855e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11c0f6c60&gt;
 </pre></div>
 </div>
-<img alt="_images/8c3ae7019d8d5039278b3449c2d1b38d4d98a91d10a385bcafbd768306424806.png" src="_images/8c3ae7019d8d5039278b3449c2d1b38d4d98a91d10a385bcafbd768306424806.png" />
+<img alt="_images/a4cf2588735ddd12326226ce988e65d3e168418a6af0fe282045fedb3b2076a1.png" src="_images/a4cf2588735ddd12326226ce988e65d3e168418a6af0fe282045fedb3b2076a1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -804,10 +835,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x7fceecf6d220&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x11c59fc80&gt;
 </pre></div>
 </div>
-<img alt="_images/a48fd36568fda5e4336094666d697af597634d7f4803c22494902a26f2b05cbe.png" src="_images/a48fd36568fda5e4336094666d697af597634d7f4803c22494902a26f2b05cbe.png" />
+<img alt="_images/3fc4fb12955d08048134190f34faae10a0718736e8037aab44991fe92e4f29f9.png" src="_images/3fc4fb12955d08048134190f34faae10a0718736e8037aab44991fe92e4f29f9.png" />
 </div>
 </div>
 <p>¡Intentemos trabajar con fechas!</p>
@@ -822,11 +853,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceecfbf670&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fceecfeabe0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11be20830&gt;,
+ &lt;matplotlib.lines.Line2D at 0x11c534080&gt;]
 </pre></div>
 </div>
-<img alt="_images/d4b320b2bd6d4b5ec9b6f34e681af4a74a7809dff3ba9abfeee89498b846f289.png" src="_images/d4b320b2bd6d4b5ec9b6f34e681af4a74a7809dff3ba9abfeee89498b846f289.png" />
+<img alt="_images/d2446c15084b435ab5b3fc8a82bbfa7f8b6772d8fcbafc10abbe538bff1712c5.png" src="_images/d2446c15084b435ab5b3fc8a82bbfa7f8b6772d8fcbafc10abbe538bff1712c5.png" />
 </div>
 </div>
 <p>Intentemos usar pandas</p>
@@ -841,11 +872,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceee0fc250&gt;,
- &lt;matplotlib.lines.Line2D at 0x7fceee12d850&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11c1e8830&gt;,
+ &lt;matplotlib.lines.Line2D at 0x3433b9ee0&gt;]
 </pre></div>
 </div>
-<img alt="_images/d4b320b2bd6d4b5ec9b6f34e681af4a74a7809dff3ba9abfeee89498b846f289.png" src="_images/d4b320b2bd6d4b5ec9b6f34e681af4a74a7809dff3ba9abfeee89498b846f289.png" />
+<img alt="_images/d2446c15084b435ab5b3fc8a82bbfa7f8b6772d8fcbafc10abbe538bff1712c5.png" src="_images/d2446c15084b435ab5b3fc8a82bbfa7f8b6772d8fcbafc10abbe538bff1712c5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -859,7 +890,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ec30f3d75eb8fccd2ed45957a8693d6e62a9271683e9dbf541bcedf4667ad680.png" src="_images/ec30f3d75eb8fccd2ed45957a8693d6e62a9271683e9dbf541bcedf4667ad680.png" />
+<img alt="_images/0c203b900b7f2357081ff556e5fe79d00709d8897e17ae8002b2183e653c2217.png" src="_images/0c203b900b7f2357081ff556e5fe79d00709d8897e17ae8002b2183e653c2217.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -888,7 +919,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Rendimiento Exponencial vs. Lineal&#39;)
 </pre></div>
 </div>
-<img alt="_images/cfaa14e3b87dfd9245f37a110c54a86dee247dde9881c60c1d1fc34c9f9e51aa.png" src="_images/cfaa14e3b87dfd9245f37a110c54a86dee247dde9881c60c1d1fc34c9f9e51aa.png" />
+<img alt="_images/aef29ca12c0ea7ed8959423c6f61a167ac285400a67c57e7e82757fc6bd6c1d3.png" src="_images/aef29ca12c0ea7ed8959423c6f61a167ac285400a67c57e7e82757fc6bd6c1d3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -906,7 +937,7 @@ document.write(`
 </div>
 </section>
 <section id="graficos-de-barras">
-<h2><span class="section-number">3.3. </span>Gráficos de barras<a class="headerlink" href="#graficos-de-barras" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Gráficos de barras<a class="headerlink" href="#graficos-de-barras" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -919,7 +950,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/5e33109eec49bb24e39a33f2e55354edf1db85cc31facae8db60e6f78b73fa31.png" src="_images/5e33109eec49bb24e39a33f2e55354edf1db85cc31facae8db60e6f78b73fa31.png" />
+<img alt="_images/3b98088314044345ceb81238fa8045c0773c8a24813b220d9b0c5eeed1adbda5.png" src="_images/3b98088314044345ceb81238fa8045c0773c8a24813b220d9b0c5eeed1adbda5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -938,7 +969,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/13a931de7cc15a50cc9913c4c2da7d1bc0e586d9e63f804c0cbae9037a8a2d19.png" src="_images/13a931de7cc15a50cc9913c4c2da7d1bc0e586d9e63f804c0cbae9037a8a2d19.png" />
+<img alt="_images/0667a365a57583b29d17e519f676c65d9dad1eadc8b1f61a04b34f3894d63e14.png" src="_images/0667a365a57583b29d17e519f676c65d9dad1eadc8b1f61a04b34f3894d63e14.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -955,7 +986,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/7f2c5ee163451063dc324dfb82134b665e6d136ae6f7c2f4681a4ac0b5de9693.png" src="_images/7f2c5ee163451063dc324dfb82134b665e6d136ae6f7c2f4681a4ac0b5de9693.png" />
+<img alt="_images/b5343bfad0af691d4b0a5adf6b7b8f187b048f30322c57a4709608091ebfdf5d.png" src="_images/b5343bfad0af691d4b0a5adf6b7b8f187b048f30322c57a4709608091ebfdf5d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -972,7 +1003,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/97164f59c15fa689b7db85818ca82f8bec4d55024318c7c492eb5af17d98aae8.png" src="_images/97164f59c15fa689b7db85818ca82f8bec4d55024318c7c492eb5af17d98aae8.png" />
+<img alt="_images/2d70a6beb8aba60cd8ee179db23336e158aa6620097385903c01a666b5ed8b70.png" src="_images/2d70a6beb8aba60cd8ee179db23336e158aa6620097385903c01a666b5ed8b70.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -989,12 +1020,12 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/fc68ba8858df83194a3ee67254586dc87c6f70958a984ae21c37927590dba58d.png" src="_images/fc68ba8858df83194a3ee67254586dc87c6f70958a984ae21c37927590dba58d.png" />
+<img alt="_images/c577dfdb530514ce1a814f194cf1de0cc8de71895e54ee2a187fdf55a37dd2ce.png" src="_images/c577dfdb530514ce1a814f194cf1de0cc8de71895e54ee2a187fdf55a37dd2ce.png" />
 </div>
 </div>
 </section>
 <section id="subplots">
-<h2><span class="section-number">3.4. </span>Subplots<a class="headerlink" href="#subplots" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Subplots<a class="headerlink" href="#subplots" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1018,10 +1049,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceef4b1c70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x3437acfb0&gt;]
 </pre></div>
 </div>
-<img alt="_images/96dc2ac5c4fe0a9b76be977324f5c96c7ff19f351b7e2de5c62513e7b19a426b.png" src="_images/96dc2ac5c4fe0a9b76be977324f5c96c7ff19f351b7e2de5c62513e7b19a426b.png" />
+<img alt="_images/568162f75178f86aa3c6f7317f908395f4e2d78bc6f3bd62f053fa732ca3d526.png" src="_images/568162f75178f86aa3c6f7317f908395f4e2d78bc6f3bd62f053fa732ca3d526.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1035,10 +1066,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceef61ecd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x343761a90&gt;]
 </pre></div>
 </div>
-<img alt="_images/88bca04c52ea0d7511b0e36deb36b4a4a6c9340ce0eaf1ce915cd225aefcd16b.png" src="_images/88bca04c52ea0d7511b0e36deb36b4a4a6c9340ce0eaf1ce915cd225aefcd16b.png" />
+<img alt="_images/6afc504090be7d700417eb6e28399c13bc685aab80c752d2280b66907a1ccf8e.png" src="_images/6afc504090be7d700417eb6e28399c13bc685aab80c752d2280b66907a1ccf8e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1050,10 +1081,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceef6e06a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x343868890&gt;]
 </pre></div>
 </div>
-<img alt="_images/9317f2edacc850bb42854d1c59ee9c3f06da9e29b3d2d646874564cfa7cb5032.png" src="_images/9317f2edacc850bb42854d1c59ee9c3f06da9e29b3d2d646874564cfa7cb5032.png" />
+<img alt="_images/b31c0b01fd9d460d4ec9b19b975b902aa861953505e5e3b6c230dc2bc21c359d.png" src="_images/b31c0b01fd9d460d4ec9b19b975b902aa861953505e5e3b6c230dc2bc21c359d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1068,10 +1099,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceef891a90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x3438e3ec0&gt;]
 </pre></div>
 </div>
-<img alt="_images/a47a9abe9882165835bbd8b0d7b75456053387535d25836afd8b504db18d7780.png" src="_images/a47a9abe9882165835bbd8b0d7b75456053387535d25836afd8b504db18d7780.png" />
+<img alt="_images/8db11d0cfb2b43b806e44d261102c06fa303cb7948138cba2d6b688c9c537556.png" src="_images/8db11d0cfb2b43b806e44d261102c06fa303cb7948138cba2d6b688c9c537556.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1086,7 +1117,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
-<img alt="_images/e6dab32129f517c38eaabee126b782203ad35aa1e9c276101415aea8093e179a.png" src="_images/e6dab32129f517c38eaabee126b782203ad35aa1e9c276101415aea8093e179a.png" />
+<img alt="_images/229994b1774913a0d35852850bf139681d883eed8e40546c8b37f653c175203d.png" src="_images/229994b1774913a0d35852850bf139681d883eed8e40546c8b37f653c175203d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1099,15 +1130,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fceef5dc4f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x343b3fda0&gt;]
 </pre></div>
 </div>
-<img alt="_images/bbbf752c28d5e615b79ec2dc267e0cc20b1edb960664ffa4dea0ee2d889cf01d.png" src="_images/bbbf752c28d5e615b79ec2dc267e0cc20b1edb960664ffa4dea0ee2d889cf01d.png" />
+<img alt="_images/ad2b3c90d57b7f525ea04870a6acad63151fe68711d39c5cc1b547b155220d5c.png" src="_images/ad2b3c90d57b7f525ea04870a6acad63151fe68711d39c5cc1b547b155220d5c.png" />
 </div>
 </div>
 </section>
 <section id="histogramas">
-<h2><span class="section-number">3.5. </span>Histogramas<a class="headerlink" href="#histogramas" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Histogramas<a class="headerlink" href="#histogramas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># creamos un grid 2x2 de subplots</span>
@@ -1125,7 +1156,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/889f2fb49d6a7248994ad1ba944511582e99934dc099c5f2fa6021c0593b1938.png" src="_images/889f2fb49d6a7248994ad1ba944511582e99934dc099c5f2fa6021c0593b1938.png" />
+<img alt="_images/29dd73c4235c0bce442df040b6c3700a957d3b5f98f8a16748e90ff804e5db00.png" src="_images/29dd73c4235c0bce442df040b6c3700a957d3b5f98f8a16748e90ff804e5db00.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1143,7 +1174,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d52bd490126def1b9762fa7bc68be4f12015a3fa4244e8c73962719b9fced4c1.png" src="_images/d52bd490126def1b9762fa7bc68be4f12015a3fa4244e8c73962719b9fced4c1.png" />
+<img alt="_images/17584b9107319867a7c746a9e688c746f590c43c3d66d06485f4e06d2e42a626.png" src="_images/17584b9107319867a7c746a9e688c746f590c43c3d66d06485f4e06d2e42a626.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1156,10 +1187,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fcef197ba60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x3440f6ba0&gt;
 </pre></div>
 </div>
-<img alt="_images/faff47ae6ac4b8a692d989dcd5adc3f41425f1dce8c9633e72e4bb3b3b20730e.png" src="_images/faff47ae6ac4b8a692d989dcd5adc3f41425f1dce8c9633e72e4bb3b3b20730e.png" />
+<img alt="_images/5e4e16852b047fce2083b7f2dda51108651b883bec6ec7d2b6f6d5a3d545e09c.png" src="_images/5e4e16852b047fce2083b7f2dda51108651b883bec6ec7d2b6f6d5a3d545e09c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1177,7 +1208,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f214e4f5fb6526ef9ad7d93c9a370f0b65de6582e83cf54445fb579aceaae09d.png" src="_images/f214e4f5fb6526ef9ad7d93c9a370f0b65de6582e83cf54445fb579aceaae09d.png" />
+<img alt="_images/a600a622319f7605f3a8610c50bc676bef97e32873ce5293750800db7ad6b617.png" src="_images/a600a622319f7605f3a8610c50bc676bef97e32873ce5293750800db7ad6b617.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1206,7 +1237,7 @@ document.write(`
 </div>
 </section>
 <section id="boxplots">
-<h2><span class="section-number">3.6. </span>Boxplots<a class="headerlink" href="#boxplots" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.6. </span>Boxplots<a class="headerlink" href="#boxplots" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1260,45 +1291,45 @@ document.write(`
     </tr>
     <tr>
       <th>mean</th>
-      <td>-0.005841</td>
-      <td>0.500168</td>
-      <td>2.020202</td>
+      <td>0.012124</td>
+      <td>0.499905</td>
+      <td>2.009598</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>1.003615</td>
-      <td>0.288122</td>
-      <td>1.419254</td>
+      <td>0.999127</td>
+      <td>0.287714</td>
+      <td>1.419077</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>-3.602944</td>
-      <td>0.000019</td>
-      <td>0.018756</td>
+      <td>-3.910364</td>
+      <td>0.000124</td>
+      <td>0.022970</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>-0.668602</td>
-      <td>0.249875</td>
-      <td>0.973529</td>
+      <td>-0.671709</td>
+      <td>0.255046</td>
+      <td>0.975211</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0.007692</td>
-      <td>0.501625</td>
-      <td>1.698691</td>
+      <td>0.014783</td>
+      <td>0.506611</td>
+      <td>1.688411</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0.673392</td>
-      <td>0.749600</td>
-      <td>2.709795</td>
+      <td>0.689801</td>
+      <td>0.746162</td>
+      <td>2.720763</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>3.481225</td>
-      <td>0.999982</td>
-      <td>11.466371</td>
+      <td>3.874168</td>
+      <td>0.999727</td>
+      <td>11.772044</td>
     </tr>
   </tbody>
 </table>
@@ -1313,7 +1344,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fd9eee73c87b330b64b5a99faea98d1311a2fb3928ced01017542a8286a74c8e.png" src="_images/fd9eee73c87b330b64b5a99faea98d1311a2fb3928ced01017542a8286a74c8e.png" />
+<img alt="_images/7c811bd90ff84794d03611af9c751b37622beb2a8bdd80760558d1ac60234747.png" src="_images/7c811bd90ff84794d03611af9c751b37622beb2a8bdd80760558d1ac60234747.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1326,7 +1357,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4529a5efc80b8b1ec1734ca0127c31625bc0fe547741f3d5dff789bd4bcc7812.png" src="_images/4529a5efc80b8b1ec1734ca0127c31625bc0fe547741f3d5dff789bd4bcc7812.png" />
+<img alt="_images/13868bac6e30e2b2c0ed1b3a989aec0c0e497e661c46d41f81ab0169d6b112f3.png" src="_images/13868bac6e30e2b2c0ed1b3a989aec0c0e497e661c46d41f81ab0169d6b112f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1337,7 +1368,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/36c1990b93aa7c75aaa5874ae73cd39e276c69d93092fb7c0c4e004251c98b75.png" src="_images/36c1990b93aa7c75aaa5874ae73cd39e276c69d93092fb7c0c4e004251c98b75.png" />
+<img alt="_images/675a802f2696cc608cb50ef8ece75e4a2318214cd165d22d0ef98714d9962b42.png" src="_images/675a802f2696cc608cb50ef8ece75e4a2318214cd165d22d0ef98714d9962b42.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1354,7 +1385,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/beb4f0545a176389f413e7ab6d83c39fa21407dd0a3a3c1be38ce9cc5c3ce014.png" src="_images/beb4f0545a176389f413e7ab6d83c39fa21407dd0a3a3c1be38ce9cc5c3ce014.png" />
+<img alt="_images/850ed17720397385087ef4b6ffecad40eb2d21f23a1ea2a2862cd2c444d4f2fd.png" src="_images/850ed17720397385087ef4b6ffecad40eb2d21f23a1ea2a2862cd2c444d4f2fd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1374,12 +1405,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4529a5efc80b8b1ec1734ca0127c31625bc0fe547741f3d5dff789bd4bcc7812.png" src="_images/4529a5efc80b8b1ec1734ca0127c31625bc0fe547741f3d5dff789bd4bcc7812.png" />
+<img alt="_images/13868bac6e30e2b2c0ed1b3a989aec0c0e497e661c46d41f81ab0169d6b112f3.png" src="_images/13868bac6e30e2b2c0ed1b3a989aec0c0e497e661c46d41f81ab0169d6b112f3.png" />
 </div>
 </div>
 </section>
 <section id="heatmaps">
-<h2><span class="section-number">3.7. </span>Heatmaps<a class="headerlink" href="#heatmaps" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.7. </span>Heatmaps<a class="headerlink" href="#heatmaps" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1391,7 +1422,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2927ea2b05f7912b5046cc62c53ae31c23b23c523a54f8bd55ac578287113fc4.png" src="_images/2927ea2b05f7912b5046cc62c53ae31c23b23c523a54f8bd55ac578287113fc4.png" />
+<img alt="_images/bb7513885d9348f5b61eeb47d2bf0133f860963052e3108a4a2f05392b82f222.png" src="_images/bb7513885d9348f5b61eeb47d2bf0133f860963052e3108a4a2f05392b82f222.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1402,7 +1433,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d6aef677737a9f44c8bbda071c01e6016d5a13c1134a5668e8b2f3ad508e9b0f.png" src="_images/d6aef677737a9f44c8bbda071c01e6016d5a13c1134a5668e8b2f3ad508e9b0f.png" />
+<img alt="_images/30c414ac4839b5292785eb96d28d176b45f2d227aaee6c6550ff077892f0c1b1.png" src="_images/30c414ac4839b5292785eb96d28d176b45f2d227aaee6c6550ff077892f0c1b1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1415,7 +1446,7 @@ document.write(`
 </div>
 </section>
 <section id="visualizacion-con-pandas">
-<h2><span class="section-number">3.8. </span>Visualización con Pandas<a class="headerlink" href="#visualizacion-con-pandas" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.8. </span>Visualización con Pandas<a class="headerlink" href="#visualizacion-con-pandas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1475,25 +1506,25 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">File ~/opt/anaconda3/lib/python3.9/site-packages/matplotlib/style/core.py:137,</span> in <span class="ni">use</span><span class="nt">(style)</span>
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/matplotlib/style/core.py:137,</span> in <span class="ni">use</span><span class="nt">(style)</span>
 <span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">try</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">137</span>     <span class="n">style</span> <span class="o">=</span> <span class="n">_rc_params_in_file</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-<span class="nn">File ~/opt/anaconda3/lib/python3.9/site-packages/matplotlib/__init__.py:866,</span> in <span class="ni">_rc_params_in_file</span><span class="nt">(fname, transform, fail_on_error)</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span> <span class="n">rc_temp</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">--&gt; </span><span class="mi">866</span> <span class="k">with</span> <span class="n">_open_file_or_url</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>     <span class="k">try</span><span class="p">:</span>
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/matplotlib/__init__.py:870,</span> in <span class="ni">_rc_params_in_file</span><span class="nt">(fname, transform, fail_on_error)</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span> <span class="n">rc_temp</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">870</span> <span class="k">with</span> <span class="n">_open_file_or_url</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">try</span><span class="p">:</span>
 
-<span class="nn">File ~/opt/anaconda3/lib/python3.9/contextlib.py:119,</span> in <span class="ni">_GeneratorContextManager.__enter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="nn">File /opt/anaconda3/lib/python3.12/contextlib.py:137,</span> in <span class="ni">_GeneratorContextManager.__enter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">137</span>     <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
 
-<span class="nn">File ~/opt/anaconda3/lib/python3.9/site-packages/matplotlib/__init__.py:843,</span> in <span class="ni">_open_file_or_url</span><span class="nt">(fname)</span>
-<span class="g g-Whitespace">    </span><span class="mi">842</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">843</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">844</span>     <span class="k">yield</span> <span class="n">f</span>
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/matplotlib/__init__.py:847,</span> in <span class="ni">_open_file_or_url</span><span class="nt">(fname)</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">847</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">848</span>     <span class="k">yield</span> <span class="n">f</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;seaborn-colorblind&#39;
 
@@ -1504,7 +1535,7 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># usamos el estilo &#39;seaborn-colorblind&#39;</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-colorblind&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/opt/anaconda3/lib/python3.9/site-packages/matplotlib/style/core.py:139,</span> in <span class="ni">use</span><span class="nt">(style)</span>
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/matplotlib/style/core.py:139,</span> in <span class="ni">use</span><span class="nt">(style)</span>
 <span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="n">style</span> <span class="o">=</span> <span class="n">_rc_params_in_file</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">139</span>         <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
@@ -1520,7 +1551,7 @@ document.write(`
 </div>
 </div>
 <section id="dataframe-plot">
-<h3><span class="section-number">3.8.1. </span>DataFrame.plot<a class="headerlink" href="#dataframe-plot" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.8.1. </span>DataFrame.plot<a class="headerlink" href="#dataframe-plot" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
@@ -7391,7 +7422,7 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </section>
 <section id="pandas-tools-plotting">
-<h3><span class="section-number">3.8.2. </span>pandas.tools.plotting<a class="headerlink" href="#pandas-tools-plotting" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.8.2. </span>pandas.tools.plotting<a class="headerlink" href="#pandas-tools-plotting" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import os as os</span>
@@ -9403,7 +9434,7 @@ if (IPython.notebook.kernel !== null) {
 </section>
 </section>
 <section id="seaborn">
-<h2><span class="section-number">3.9. </span>Seaborn<a class="headerlink" href="#seaborn" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.9. </span>Seaborn<a class="headerlink" href="#seaborn" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -19151,11 +19182,11 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </section>
 <section id="tips">
-<h2><span class="section-number">3.10. </span>Tips<a class="headerlink" href="#tips" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.10. </span>Tips<a class="headerlink" href="#tips" title="Link to this heading">#</a></h2>
 <section id="creando-graficos">
-<h3><span class="section-number">3.10.1. </span>Creando gráficos<a class="headerlink" href="#creando-graficos" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.10.1. </span>Creando gráficos<a class="headerlink" href="#creando-graficos" title="Link to this heading">#</a></h3>
 <p><em>Figure</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19167,8 +19198,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Axes</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19189,11 +19221,12 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="graficando">
-<h3><span class="section-number">3.10.2. </span>Graficando<a class="headerlink" href="#graficando" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.10.2. </span>Graficando<a class="headerlink" href="#graficando" title="Link to this heading">#</a></h3>
 <p><em>Datos 1D</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19229,8 +19262,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Datos 2D</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19245,8 +19279,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Guardando gráficos</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19261,11 +19296,12 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="personalizacion">
-<h3><span class="section-number">3.10.3. </span>Personalización<a class="headerlink" href="#personalizacion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.10.3. </span>Personalización<a class="headerlink" href="#personalizacion" title="Link to this heading">#</a></h3>
 <p><em>Color</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19286,8 +19322,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Markers</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19302,8 +19339,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Líneas</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19327,8 +19365,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Texto</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19349,8 +19388,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Límites</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19380,8 +19420,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Leyendas/etiquetas</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19405,8 +19446,9 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 <p><em>Ticks</em></p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operador</strong></p></th>
 <th class="head"><p><strong>Descripción</strong></p></th>
@@ -19424,6 +19466,7 @@ if (IPython.notebook.kernel !== null) {
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 </section>
 </section>
@@ -19453,8 +19496,10 @@ if (IPython.notebook.kernel !== null) {
 
               
               
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="Pandas.html"
@@ -19482,6 +19527,7 @@ if (IPython.notebook.kernel !== null) {
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -19516,7 +19562,7 @@ if (IPython.notebook.kernel !== null) {
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -19529,9 +19575,10 @@ By Víctor Morales Oñate
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -19546,7 +19593,7 @@ By Víctor Morales Oñate
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -19555,8 +19602,8 @@ By Víctor Morales Oñate
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
