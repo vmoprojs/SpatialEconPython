@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'AutocorrelacionGlobal';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. Autocorrelación local" href="AutocorrelacionLocal.html" />
     <link rel="prev" title="8. Pesos Espaciales" href="PesosEspaciales.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -200,6 +201,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Autocorrelación global</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionLocal.html">10. Autocorrelación local</a></li>
 </ul>
 
     </div>
@@ -408,10 +410,14 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">9.2.2.1. Inferencia</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.2.3. Interpretación de MI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.2.4. Comparando MI’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.2.5. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.2.5.1. Inferencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-para-contraste-estadistico">9.3. Z-score para contraste estadístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia">9.4. Referencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.1. Interpretación de MI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.2. Comparando MI’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.3. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.3.1. Inferencia</a></li>
 </ul>
 </li>
 </ul>
@@ -1024,12 +1030,68 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
 P-value (simulado): 0.0001
-Z-score (simulado): 6.076694616992153
+Z-score (simulado): 6.096148564920348
 </pre></div>
 </div>
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
+<p><strong>Media y varianza de la I de Moran bajo normalidad</strong></p>
+<p>La <strong>I de Moran</strong> es una estadística para medir la autocorrelación espacial de una variable. Bajo el supuesto de <strong>normalidad</strong> y considerando una variable ( y \in \mathbb{R}^n ), se pueden derivar teóricamente la media y varianza bajo la hipótesis nula de <strong>no autocorrelación espacial</strong>.</p>
+<p><strong>Supuestos</strong></p>
+<ul class="simple">
+<li><p>( y \sim N(\mu, \sigma^2 I_n) )</p></li>
+<li><p>Matriz de pesos espaciales ( W ) conocida y fija</p></li>
+<li><p>Se asume que ( \text{tr}(W) = 0 ) (sin pesos en la diagonal)</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Media de la I de Moran (esperanza bajo <span class="math notranslate nohighlight">\(H_0\)</span>)</strong></p>
+<div class="math notranslate nohighlight">
+\[
+E[I] = -\frac{1}{n - 1}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\( n \)</span> es el número de observaciones (unidades espaciales).</p>
+<hr class="docutils" />
+<p><strong>Varianza de la I de Moran (bajo normalidad)</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}[I] = \frac{n^2 S_1 - n S_2 + 3 S_0^2}{(n-1)(n+1)S_0^2} - \left( \frac{1}{n-1} \right)^2
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( S_0 = \sum_{i}\sum_{j} w_{ij} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( S_1 = \frac{1}{2} \sum_i \sum_j (w_{ij} + w_{ji})^2 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( S_2 = \sum_i \left( \sum_j (w_{ij} + w_{ji}) \right)^2 \)</span></p></li>
+</ul>
+<p><strong>Si <span class="math notranslate nohighlight">\(W\)</span> es simétrica:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( w_{ij} = w_{ji} \)</span></p></li>
+<li><p>Entonces:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(S_1 = \sum_{i,j} w_{ij}^2 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_2 = \sum_i \left( \sum_j w_{ij} \right)^2 \)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="z-score-para-contraste-estadistico">
+<h2><span class="section-number">9.3. </span>Z-score para contraste estadístico<a class="headerlink" href="#z-score-para-contraste-estadistico" title="Link to this heading">#</a></h2>
+<p>Se puede estandarizar la I de Moran para realizar un contraste de hipótesis:</p>
+<div class="math notranslate nohighlight">
+\[
+Z = \frac{I - E[I]}{\sqrt{\text{Var}[I]}}
+\]</div>
+<p>El valor <span class="math notranslate nohighlight">\( Z \)</span> se compara con la distribución normal estándar <span class="math notranslate nohighlight">\( \mathcal{N}(0,1) \)</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="referencia">
+<h2><span class="section-number">9.4. </span>Referencia<a class="headerlink" href="#referencia" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cliff, A. D. &amp; Ord, J. K. (1981). <em>Spatial Processes: Models &amp; Applications</em>. Pion Ltd.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar resultados</span>
@@ -1055,16 +1117,16 @@ Z-score (normal approximation): 6.078680932048825
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar resultados</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moran&#39;s I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">I</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected I under null: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">EI</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (normal approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (normal approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">z_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (random approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (random approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">z_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
-P-value (normal approximation): 1.1648456706191047e-09
-Z-score (normal approximation): 6.085009274948058
+P-value (random approximation): 1.1648456706191047e-09
+Z-score (random approximation): 6.085009274948058
 </pre></div>
 </div>
 </div>
@@ -1078,16 +1140,14 @@ Z-score (normal approximation): 6.085009274948058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a29d20077ea6c002ac21547b1d8e3f470e34c33bd48856873e68196762fb75f8.png" src="_images/a29d20077ea6c002ac21547b1d8e3f470e34c33bd48856873e68196762fb75f8.png" />
+<img alt="_images/f9a01fff41d4c575f0e70cfb614bbc1f99ece1d4db04a0a1df954021e90a0608.png" src="_images/f9a01fff41d4c575f0e70cfb614bbc1f99ece1d4db04a0a1df954021e90a0608.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
 <p>Por otro lado, la línea roja indica el valor observado de Moran’s I utilizando la distribución geográfica real de los datos. Se puede notar claramente que este valor observado es considerablemente mayor que lo esperado por azar, lo que sugiere una autocorrelación espacial significativa.</p>
 <p>Este hallazgo se refuerza en el panel derecho, donde se presenta un gráfico similar al diagrama de dispersión de Moran, en el que se evidencia la relación entre <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> y su rezago espacial, confirmando la presencia de un patrón espacial no aleatorio.</p>
-</section>
-</section>
 <section id="interpretacion-de-mi">
-<h3><span class="section-number">9.2.3. </span>Interpretación de MI<a class="headerlink" href="#interpretacion-de-mi" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.1. </span>Interpretación de MI<a class="headerlink" href="#interpretacion-de-mi" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Su media teórica es <span class="math notranslate nohighlight">\(\bar{I} = \frac{-1}{(n-1)}\)</span> y tiende a <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 <li><p>Signo positivo y significativo: conglomerados de <strong>valores similares</strong>. Es decir, puede ser valores altos, bajos, o ambos.</p></li>
@@ -1095,7 +1155,7 @@ Z-score (normal approximation): 6.085009274948058
 </ul>
 </section>
 <section id="comparando-mi-s">
-<h3><span class="section-number">9.2.4. </span>Comparando MI’s<a class="headerlink" href="#comparando-mi-s" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.2. </span>Comparando MI’s<a class="headerlink" href="#comparando-mi-s" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El estadístico de moran depende de la matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span>.</p></li>
 <li><p>Se puede comparar variables con la misma matriz de pesos espaciales, pero no se puede comprar variables (incluso la misma variable) con distintas matrices de pesos espaciales.</p></li>
@@ -1178,7 +1238,7 @@ Z-score (normal approximation): 6.085009274948058
 </div>
 </section>
 <section id="estadistico-global-de-geary">
-<h3><span class="section-number">9.2.5. </span>Estadístico Global de Geary<a class="headerlink" href="#estadistico-global-de-geary" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.3. </span>Estadístico Global de Geary<a class="headerlink" href="#estadistico-global-de-geary" title="Link to this heading">#</a></h3>
 <p>Propuesto por Geary en 1954, se basa en la noción de <strong>disimilaridad</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1193,7 +1253,7 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <li><p>El estadístico <span class="math notranslate nohighlight">\(C\)</span> asume una matriz de pesos espaciales simétrica, en el caso de asimetría (como en el caso de los vecinos más cercanos), el estadísitico puede no ser de utilidad.</p></li>
 </ul>
 <section id="id1">
-<h4><span class="section-number">9.2.5.1. </span>Inferencia<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.4.3.1. </span>Inferencia<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>La significancia de estadístico <span class="math notranslate nohighlight">\(C\)</span> de Geary puede evaluarse desde un enfoque paramétrico o no paramétrico; en este texto se adopta principalemente el enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 10000 permutaciones.</p>
 <p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
 <div class="cell docutils container">
@@ -1223,8 +1283,8 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
-P-value (simulado): 0.0005
-Z-score (simulado): -3.388330065979438
+P-value (simulado): 0.0003
+Z-score (simulado): -3.464434535448632
 </pre></div>
 </div>
 </div>
@@ -1243,7 +1303,7 @@ Z-score (simulado): -3.388330065979438
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
 P-value (simulado): 0.00017664485722673794
-Z-score (simulado): -3.388330065979438
+Z-score (simulado): -3.464434535448632
 </pre></div>
 </div>
 </div>
@@ -1311,6 +1371,15 @@ Z-score (simulado): -3.4582180872023005
         <p class="prev-next-title"><span class="section-number">8. </span>Pesos Espaciales</p>
       </div>
     </a>
+    <a class="right-next"
+       href="AutocorrelacionLocal.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Autocorrelación local</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1340,10 +1409,14 @@ Z-score (simulado): -3.4582180872023005
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia">9.2.2.1. Inferencia</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.2.3. Interpretación de MI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.2.4. Comparando MI’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.2.5. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.2.5.1. Inferencia</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-para-contraste-estadistico">9.3. Z-score para contraste estadístico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia">9.4. Referencia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.1. Interpretación de MI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.2. Comparando MI’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.3. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.3.1. Inferencia</a></li>
 </ul>
 </li>
 </ul>
