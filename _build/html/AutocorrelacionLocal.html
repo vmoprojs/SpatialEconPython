@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Autocorrelación local &#8212; Econometría Espacial con Python</title>
+    <title>10. Autocorrelación local &#8212; Econometría Espacial con Python</title>
   
   
   
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'AutocorrelacionLocal';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="9. Autocorrelación global" href="AutocorrelacionGlobal.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +124,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -199,8 +198,9 @@
 <li class="toctree-l1"><a class="reference internal" href="PesosEspaciales.html">8. Pesos Espaciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Autocorrelación local</a></li>
 </ul>
 
     </div>
@@ -396,8 +396,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-local-i-de-moran">Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">Una aplicación: la pobreza por necesidades básica insatisfechas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-local-i-de-moran">10.1. Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">10.2. Una aplicación: la pobreza por necesidades básica insatisfechas</a></li>
 </ul>
             </nav>
         </div>
@@ -410,7 +410,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="autocorrelacion-local">
-<h1>Autocorrelación local<a class="headerlink" href="#autocorrelacion-local" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">10. </span>Autocorrelación local<a class="headerlink" href="#autocorrelacion-local" title="Link to this heading">#</a></h1>
 <p>Anselin (1995) propuso indicadores locales de relaciones espaciales (<em>local indicators of spatial association</em> - LISA). LISA incluye estadísticos locales: <span class="math notranslate nohighlight">\(I_i\)</span> de Moran y  <span class="math notranslate nohighlight">\(C_i\)</span> de Geary.</p>
 <p>El estadístico de Moran local permite la identificación de efectos de <strong>aglomeración espacial</strong> (similar al estadístico <span class="math notranslate nohighlight">\(G\)</span> Getis-Ord), mientras que el Geary local muestra <strong>similitudes y diferencias espaciales</strong>.</p>
 <p>Las estadísticas locales de Moran brindan <strong>información sobre grupos de valor bajo o alto</strong>, mientras que los estadísticos locales de Geary muestran <strong>diferencias promedio entre el objeto y los vecinos</strong>, lo que ayuda a encontrar <strong>valores atípicos y patrones de similitud/diferencia</strong>.</p>
@@ -422,7 +422,7 @@ document.write(`
 <li><p>cuantifica la relación entre el estadístico global y el local: la suma de los estadísticos locales es proporcional al estadístico global.</p></li>
 </ul>
 <section id="estadistico-local-i-de-moran">
-<h2>Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran<a class="headerlink" href="#estadistico-local-i-de-moran" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.1. </span>Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran<a class="headerlink" href="#estadistico-local-i-de-moran" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 I_i = \frac{(x_i-\bar{x})\sum_{j=1}^{n}w_{ij}(x_j-\bar{x})}{\sum_{i=1}^{n}(x_i-\bar{x})^2/n}
@@ -440,7 +440,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 <p>donde <span class="math notranslate nohighlight">\(m_2\)</span> es el segundo momento (varianza) de la distribución, <span class="math notranslate nohighlight">\(z_i = x_i-\bar{x}\)</span>, <span class="math notranslate nohighlight">\(w_{ij}\)</span> es el peso espacial para el par de observaciones <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>, y <span class="math notranslate nohighlight">\(n\)</span> es el número de observaciones.</p>
 </section>
 <section id="una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">
-<h2>Una aplicación: la pobreza por necesidades básica insatisfechas<a class="headerlink" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.2. </span>Una aplicación: la pobreza por necesidades básica insatisfechas<a class="headerlink" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas" title="Link to this heading">#</a></h2>
 <p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -797,7 +797,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a18c67e60614ef3ebf178eafdff3cd5295e56e0bd3a16c153b90a5bcd2d9c509.png" src="_images/a18c67e60614ef3ebf178eafdff3cd5295e56e0bd3a16c153b90a5bcd2d9c509.png" />
+<img alt="_images/e6bb75749ce3accc2e650d96ceaac7a10391ac5c17693883bda2188c284f50d3.png" src="_images/e6bb75749ce3accc2e650d96ceaac7a10391ac5c17693883bda2188c284f50d3.png" />
 </div>
 </div>
 <p>Las zonas marcadas en púrpura y amarillo en el mapa (esquina superior izquierda) presentan los valores de mayor magnitud, tanto positivos como negativos, del estadístico local <span class="math notranslate nohighlight">\(I_i\)</span>.</p>
@@ -919,27 +919,27 @@ Name: count, dtype: int64
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>0.270</td>
+      <td>0.275</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>0.224</td>
+      <td>0.222</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0</td>
-      <td>0.419</td>
+      <td>0.435</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>0.411</td>
+      <td>0.423</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>0.264</td>
+      <td>0.276</td>
     </tr>
   </tbody>
 </table>
@@ -978,7 +978,7 @@ Name: count, dtype: int64
     <tr>
       <th>213</th>
       <td>0</td>
-      <td>0.482</td>
+      <td>0.477</td>
     </tr>
     <tr>
       <th>214</th>
@@ -988,17 +988,17 @@ Name: count, dtype: int64
     <tr>
       <th>215</th>
       <td>0</td>
-      <td>0.319</td>
+      <td>0.314</td>
     </tr>
     <tr>
       <th>216</th>
       <td>1</td>
-      <td>0.011</td>
+      <td>0.019</td>
     </tr>
     <tr>
       <th>217</th>
       <td>0</td>
-      <td>0.361</td>
+      <td>0.363</td>
     </tr>
   </tbody>
 </table>
@@ -1071,8 +1071,8 @@ Name: labels, dtype: object
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>labels
 Non-Significant    150
-LL                  33
-HH                  15
+LL                  30
+HH                  18
 HL                  11
 LH                   6
 Name: count, dtype: int64
@@ -1125,6 +1125,15 @@ Name: count, dtype: int64
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="AutocorrelacionGlobal.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Autocorrelación global</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -1141,8 +1150,8 @@ Name: count, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-local-i-de-moran">Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">Una aplicación: la pobreza por necesidades básica insatisfechas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-local-i-de-moran">10.1. Estadístico local: <span class="math notranslate nohighlight">\(I\)</span> de Moran</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">10.2. Una aplicación: la pobreza por necesidades básica insatisfechas</a></li>
 </ul>
   </nav></div>
 
