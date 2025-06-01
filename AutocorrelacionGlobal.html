@@ -1030,19 +1030,19 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
 P-value (simulado): 0.0001
-Z-score (simulado): 6.096148564920348
+Z-score (simulado): 6.223829926706209
 </pre></div>
 </div>
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
 <p><strong>Media y varianza de la I de Moran bajo normalidad</strong></p>
-<p>La <strong>I de Moran</strong> es una estadística para medir la autocorrelación espacial de una variable. Bajo el supuesto de <strong>normalidad</strong> y considerando una variable ( y \in \mathbb{R}^n ), se pueden derivar teóricamente la media y varianza bajo la hipótesis nula de <strong>no autocorrelación espacial</strong>.</p>
+<p>La <strong>I de Moran</strong> es una estadística para medir la autocorrelación espacial de una variable. Bajo el supuesto de <strong>normalidad</strong> y considerando una variable <span class="math notranslate nohighlight">\( y \in \mathbb{R}^n \)</span>, se pueden derivar teóricamente la media y varianza bajo la hipótesis nula de <strong>no autocorrelación espacial</strong>.</p>
 <p><strong>Supuestos</strong></p>
 <ul class="simple">
-<li><p>( y \sim N(\mu, \sigma^2 I_n) )</p></li>
-<li><p>Matriz de pesos espaciales ( W ) conocida y fija</p></li>
-<li><p>Se asume que ( \text{tr}(W) = 0 ) (sin pesos en la diagonal)</p></li>
+<li><p><span class="math notranslate nohighlight">\( y \sim N(\mu, \sigma^2 I_n) \)</span></p></li>
+<li><p>Matriz de pesos espaciales <span class="math notranslate nohighlight">\( W \)</span> conocida y fija</p></li>
+<li><p>Se asume que <span class="math notranslate nohighlight">\( \text{tr}(W) = 0 \)</span> (sin pesos en la diagonal)</p></li>
 </ul>
 <hr class="docutils" />
 <p><strong>Media de la I de Moran (esperanza bajo <span class="math notranslate nohighlight">\(H_0\)</span>)</strong></p>
@@ -1140,7 +1140,7 @@ Z-score (random approximation): 6.085009274948058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f9a01fff41d4c575f0e70cfb614bbc1f99ece1d4db04a0a1df954021e90a0608.png" src="_images/f9a01fff41d4c575f0e70cfb614bbc1f99ece1d4db04a0a1df954021e90a0608.png" />
+<img alt="_images/012df9989ba9d46751fc10b71b873592e187a15ff9e7c11cccadc2b9f269f863.png" src="_images/012df9989ba9d46751fc10b71b873592e187a15ff9e7c11cccadc2b9f269f863.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1283,8 +1283,8 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
-P-value (simulado): 0.0003
-Z-score (simulado): -3.464434535448632
+P-value (simulado): 0.0002
+Z-score (simulado): -3.4764023069576764
 </pre></div>
 </div>
 </div>
@@ -1303,7 +1303,7 @@ Z-score (simulado): -3.464434535448632
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
 P-value (simulado): 0.00017664485722673794
-Z-score (simulado): -3.464434535448632
+Z-score (simulado): -3.4764023069576764
 </pre></div>
 </div>
 </div>
