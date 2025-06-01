@@ -25,4 +25,5 @@ parts:
   numbered: true
   chapters:
   - file: AutocorrelacionGlobal
+  - file: AutocorrelacionLocal
 

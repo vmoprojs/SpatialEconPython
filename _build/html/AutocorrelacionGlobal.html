@@ -735,7 +735,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <img alt="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" src="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" />
 </div>
 </div>
-<p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>criterio de los ocho vecinos más cercanos</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
+<p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>contiguidad por criterio de reina</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
@@ -1024,7 +1024,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
 P-value (simulado): 0.0001
-Z-score (simulado): 6.057446101323725
+Z-score (simulado): 6.076694616992153
 </pre></div>
 </div>
 </div>
@@ -1078,7 +1078,7 @@ Z-score (normal approximation): 6.085009274948058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d16d9433ebe6c04f4694a4deaf98439beaedded9d60bccd131b4c42f55ee8a09.png" src="_images/d16d9433ebe6c04f4694a4deaf98439beaedded9d60bccd131b4c42f55ee8a09.png" />
+<img alt="_images/a29d20077ea6c002ac21547b1d8e3f470e34c33bd48856873e68196762fb75f8.png" src="_images/a29d20077ea6c002ac21547b1d8e3f470e34c33bd48856873e68196762fb75f8.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1223,8 +1223,8 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
-P-value (simulado): 0.0007
-Z-score (simulado): -3.476129318011971
+P-value (simulado): 0.0005
+Z-score (simulado): -3.388330065979438
 </pre></div>
 </div>
 </div>
@@ -1243,7 +1243,7 @@ Z-score (simulado): -3.476129318011971
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
 P-value (simulado): 0.00017664485722673794
-Z-score (simulado): -3.476129318011971
+Z-score (simulado): -3.388330065979438
 </pre></div>
 </div>
 </div>
