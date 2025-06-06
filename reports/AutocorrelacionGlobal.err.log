@@ -18,46 +18,87 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import requests
-from io import BytesIO
-import zipfile
-import geopandas as gpd
-import tempfile
-import os
 
-def read_git_shp(nombre, url):
-    response = requests.get(url)
-    if response.status_code != 200:
-        raise Exception(f"Error al descargar shapefile: {response.status_code}")
-    
-    zip_bytes = BytesIO(response.content)
+# 1. Filtro para excluir la provincia "90"
+poligonos = poligonos[poligonos['DPA_PROVIN'] != "90"]
 
-    with zipfile.ZipFile(zip_bytes, "r") as z:
-        shp_files = [f for f in z.namelist() if f.endswith(nombre + ".shp")]
-        if not shp_files:
-            raise FileNotFoundError(f"No se encontró {nombre}.shp en el zip")
-        
-        shp_name = shp_files[0]
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            z.extractall(tmpdirname)
-            gdf = gpd.read_file(os.path.join(tmpdirname, shp_name))
-    return gdf
+# 2. Filtro para excluir la provincia "20"
+poligonos = poligonos[poligonos['DPA_PROVIN'] != "20"]
 
-# Uso correcto
-url = "https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip"
-df = read_git_shp("nxprovincias", url)
 
+# 3. Hacer el merge entre los polígonos y los datos económicos por cantón
+# Se usa la columna 'DPA_CANTON' del shapefile y 'COD_CANT' del DataFrame 'datos'
+poligonos = poligonos.merge(datos, left_on='DPA_CANTON', right_on='COD_CANT', how='left')
+
+# 4. Eliminar las filas que tienen valores faltantes en la variable 'POBRES_P'
+# Esto equivale a quedarse solo con los cantones que tienen datos de pobreza
+poligonos = poligonos[~poligonos['POBRES_P'].isna()]
+
+#poligonos['POBRES_P'].isna()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 4[0m
-[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mio[39;00m [38;5;28;01mimport[39;00m BytesIO
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mzipfile[39;00m
-[0;32m----> 4[0m [38;5;28;01mimport[39;00m [38;5;21;01mgeopandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgpd[39;00m
-[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mtempfile[39;00m
-[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_9810/2740083164.py[0m in [0;36m?[0;34m()[0m
+[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0;34m[0m[0m
+[1;32m      8[0m [0;31m# 3. Hacer el merge entre los polígonos y los datos económicos por cantón[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;31m# Se usa la columna 'DPA_CANTON' del shapefile y 'COD_CANT' del DataFrame 'datos'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0mpoligonos[0m [0;34m=[0m [0mpoligonos[0m[0;34m.[0m[0mmerge[0m[0;34m([0m[0mdatos[0m[0;34m,[0m [0mleft_on[0m[0;34m=[0m[0;34m'DPA_CANTON'[0m[0;34m,[0m [0mright_on[0m[0;34m=[0m[0;34m'COD_CANT'[0m[0;34m,[0m [0mhow[0m[0;34m=[0m[0;34m'left'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0;34m[0m[0m
+[1;32m     12[0m [0;31m# 4. Eliminar las filas que tienen valores faltantes en la variable 'POBRES_P'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;31m# Esto equivale a quedarse solo con los cantones que tienen datos de pobreza[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'geopandas'
+[0;32m/opt/anaconda3/lib/python3.12/site-packages/pandas/core/frame.py[0m in [0;36m?[0;34m(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)[0m
+[1;32m  10828[0m         [0mvalidate[0m[0;34m:[0m [0mMergeValidate[0m [0;34m|[0m [0;32mNone[0m [0;34m=[0m [0;32mNone[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m  10829[0m     [0;34m)[0m [0;34m->[0m [0mDataFrame[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m  10830[0m         [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mreshape[0m[0;34m.[0m[0mmerge[0m [0;32mimport[0m [0mmerge[0m[0;34m[0m[0;34m[0m[0m
+[1;32m  10831[0m [0;34m[0m[0m
+[0;32m> 10832[0;31m         return merge(
+[0m[1;32m  10833[0m             [0mself[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m  10834[0m             [0mright[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m  10835[0m             [0mhow[0m[0;34m=[0m[0mhow[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py[0m in [0;36m?[0;34m(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)[0m
+[1;32m    166[0m             [0mvalidate[0m[0;34m=[0m[0mvalidate[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    167[0m             [0mcopy[0m[0;34m=[0m[0mcopy[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    168[0m         [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    169[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 170[0;31m         op = _MergeOperation(
+[0m[1;32m    171[0m             [0mleft_df[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    172[0m             [0mright_df[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    173[0m             [0mhow[0m[0;34m=[0m[0mhow[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py[0m in [0;36m?[0;34m(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)[0m
+[1;32m    790[0m             [0mself[0m[0;34m.[0m[0mright_join_keys[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    791[0m             [0mself[0m[0;34m.[0m[0mjoin_names[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    792[0m             [0mleft_drop[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    793[0m             [0mright_drop[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 794[0;31m         [0;34m)[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_get_merge_keys[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    795[0m [0;34m[0m[0m
+[1;32m    796[0m         [0;32mif[0m [0mleft_drop[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    797[0m             [0mself[0m[0;34m.[0m[0mleft[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mleft[0m[0;34m.[0m[0m_drop_labels_or_levels[0m[0;34m([0m[0mleft_drop[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py[0m in [0;36m?[0;34m(self)[0m
+[1;32m   1306[0m                     [0;32mif[0m [0mlk[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1307[0m                         [0;31m# Then we're either Hashable or a wrong-length arraylike,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1308[0m                         [0;31m#  the latter of which will raise[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1309[0m                         [0mlk[0m [0;34m=[0m [0mcast[0m[0;34m([0m[0mHashable[0m[0;34m,[0m [0mlk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1310[0;31m                         [0mleft_keys[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mleft[0m[0;34m.[0m[0m_get_label_or_level_values[0m[0;34m([0m[0mlk[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1311[0m                         [0mjoin_names[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mlk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1312[0m                     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1313[0m                         [0;31m# work-around for merge_asof(left_index=True)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/anaconda3/lib/python3.12/site-packages/pandas/core/generic.py[0m in [0;36m?[0;34m(self, key, axis)[0m
+[1;32m   1907[0m             [0mvalues[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mxs[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0maxis[0m[0;34m=[0m[0mother_axes[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0m_values[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1908[0m         [0;32melif[0m [0mself[0m[0;34m.[0m[0m_is_level_reference[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0maxis[0m[0;34m=[0m[0maxis[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1909[0m             [0mvalues[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0maxes[0m[0;34m[[0m[0maxis[0m[0;34m][0m[0;34m.[0m[0mget_level_values[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m.[0m[0m_values[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1910[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1911[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1912[0m [0;34m[0m[0m
+[1;32m   1913[0m         [0;31m# Check for duplicates[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1914[0m         [0;32mif[0m [0mvalues[0m[0;34m.[0m[0mndim[0m [0;34m>[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mKeyError[0m: 'DPA_CANTON'
 

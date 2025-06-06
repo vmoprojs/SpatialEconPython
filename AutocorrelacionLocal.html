@@ -427,17 +427,41 @@ document.write(`
 \[
 I_i = \frac{(x_i-\bar{x})\sum_{j=1}^{n}w_{ij}(x_j-\bar{x})}{\sum_{i=1}^{n}(x_i-\bar{x})^2/n}
 \]</div>
-<p>Para evaluar la significancia se evalúa los valores</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(p-\text{valor}&lt;\alpha\)</span>: las unidades espaciales que cumplen con esta condición indican tienen un índice local de Moran positivo y significativo. Esto significa que éstas unidades están rodeadas de valores altos de la variable analizada.</p></li>
-<li><p><span class="math notranslate nohighlight">\(p-\text{valor}&gt;1-\alpha\)</span>: las unidades espaciales que cumplen con esta condición indican tienen un índice local de Moran negativo y significativo. Esto significa que éstas unidades están rodeadas de valores bajos de la variable analizada.</p></li>
-</ul>
 <p>Otra forma de expresar la I de Moran Local es:</p>
 <div class="math notranslate nohighlight">
 \[
 I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2}}{n}
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(m_2\)</span> es el segundo momento (varianza) de la distribución, <span class="math notranslate nohighlight">\(z_i = x_i-\bar{x}\)</span>, <span class="math notranslate nohighlight">\(w_{ij}\)</span> es el peso espacial para el par de observaciones <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>, y <span class="math notranslate nohighlight">\(n\)</span> es el número de observaciones.</p>
+<p><strong>Inferencia</strong></p>
+<ul class="simple">
+<li><p>Basado en comparar la estadística observada con una distribución empírica de referencia (bajo la hipótesis nula).</p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span> = número de valores en la distribución de referencia que son <strong>iguales o mayores (más extremos)</strong> que el valor observado.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r\)</span> = número de réplicas o permutaciones realizadas.</p></li>
+<li><p>La fórmula del pseudo valor-p es:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p = \frac{(m + 1)}{(r + 1)}
+\]</div>
+<p><strong>Valor-p Pseudo - Interpretación</strong></p>
+<ul class="simple">
+<li><p>Los valores-p no son directamente comparables.</p>
+<ul>
+<li><p><strong>NO</strong> son lo mismo que un valor-p analítico.</p></li>
+</ul>
+</li>
+<li><p>El valor depende del número de permutaciones.</p></li>
+</ul>
+<p><strong>Comparación:</strong></p>
+<p>Nota que en los siguientes casos (ambos) no se tiene observaciones de la distribución de referencia que sea mayor o igual que el valor observado.</p>
+<p>Si el valor de las permutaciones aumenta de 99 a 999 se tiene una mejor aproximación de la distribución de referencia, pero igual se tiene 0 casos estos valores sean mayores al observado:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((0 + 1) / (99 + 1) = 0.01\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0 + 1) / (999 + 1) = 0.001\)</span></p></li>
+</ul>
+<p>Pero en ambos casos, el valor observado es el más extremo, no hay valores mayores en la de referencia. En este caso estaríamos tentados a decir que el segungo pvalor es más siginificativo, pero no es cierto. Ambos tienen <strong>igual evidencia que el estadísitico I de Moran local es extermo</strong> en relación a la distribución de referencia.</p>
+<p>Esta es una gran diferencia entre un pseudo pvalor y un pvalor analítico basado en un marco de probabilidad formal. El pseudo pvalor es computacional. Más sobre este tema en: https://hastie.su.domains/CASI/</p>
 </section>
 <section id="una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas">
 <h2><span class="section-number">10.2. </span>Una aplicación: la pobreza por necesidades básica insatisfechas<a class="headerlink" href="#una-aplicacion-la-pobreza-por-necesidades-basica-insatisfechas" title="Link to this heading">#</a></h2>
@@ -470,8 +494,8 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
     <span class="k">return</span> <span class="n">gdf</span>
 
 <span class="c1"># Uso correcto</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="c1">#url = &quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="c1">#df = read_git_shp(&quot;nxprovincias&quot;, url)</span>
 </pre></div>
 </div>
 </div>
@@ -525,8 +549,8 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB_PC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;A_2019&#39;</span><span class="p">]</span>  <span class="c1"># miles de USD por persona</span>
 
 <span class="c1"># 11. Descargo y leo el shapefile con los polígonos cantonales</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/2012_nxcantones.zip&quot;</span>
-<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span><span class="n">url</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -535,7 +559,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Filtro para excluir la provincia &quot;90&quot;</span>
-<span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;DPA_PROVIN&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;90&quot;</span><span class="p">]</span>
+<span class="c1">#poligonos = poligonos[poligonos[&#39;DPA_PROVIN&#39;] != &quot;90&quot;]</span>
 
 <span class="c1"># 2. Filtro para excluir la provincia &quot;20&quot;</span>
 <span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;DPA_PROVIN&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;20&quot;</span><span class="p">]</span>
@@ -561,10 +585,10 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DPA_VALOR&#39;, &#39;DPA_ANIO&#39;, &#39;DPA_CANTON&#39;, &#39;DPA_DESCAN&#39;, &#39;DPA_PROVIN&#39;,
-       &#39;DPA_DESPRO&#39;, &#39;geometry&#39;, &#39;NOM_PROV&#39;, &#39;COD_PROV&#39;, &#39;NOM_CANT&#39;,
-       &#39;COD_CANT&#39;, &#39;PRODUCCION&#39;, &#39;CONSUMO_INTERMEDIO&#39;, &#39;VAB&#39;, &#39;YEAR&#39;, &#39;TIPO&#39;,
-       &#39;CODIGO_x&#39;, &#39;A_2019&#39;, &#39;CODIGO_y&#39;, &#39;POBRES_P&#39;, &#39;VAB_PC&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DPA_CANTON&#39;, &#39;DPA_DESCAN&#39;, &#39;DPA_VALOR&#39;, &#39;DPA_ANIO&#39;, &#39;DPA_PROVIN&#39;,
+       &#39;DPA_DESPRO&#39;, &#39;SUPERFICIE&#39;, &#39;geometry&#39;, &#39;NOM_PROV&#39;, &#39;COD_PROV&#39;,
+       &#39;NOM_CANT&#39;, &#39;COD_CANT&#39;, &#39;PRODUCCION&#39;, &#39;CONSUMO_INTERMEDIO&#39;, &#39;VAB&#39;,
+       &#39;YEAR&#39;, &#39;TIPO&#39;, &#39;CODIGO_x&#39;, &#39;A_2019&#39;, &#39;CODIGO_y&#39;, &#39;POBRES_P&#39;, &#39;VAB_PC&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -598,7 +622,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" src="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" />
+<img alt="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" src="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" />
 </div>
 </div>
 <p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>criterio reina</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
@@ -626,7 +650,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[27, 61, 94, 100, 102, 106, 116, 117, 121, 133, 187, 188, 214]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -637,12 +661,6 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">esda</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
 <span class="n">lisa</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran_Local</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.12/site-packages/esda/moran.py:1059: RuntimeWarning: invalid value encountered in divide
-  self.z_sim = (self.Is - self.EI_sim) / self.seI_sim
 </pre></div>
 </div>
 </div>
@@ -662,7 +680,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f92a280f0eef4ebef2aebaa039dd431c0241116b7d09052a229bd8eada08ea50.png" src="_images/f92a280f0eef4ebef2aebaa039dd431c0241116b7d09052a229bd8eada08ea50.png" />
+<img alt="_images/9538739a1cad1ef90c5cbe6e76faecab8183dd6989f0bc68800c18aed9234650.png" src="_images/9538739a1cad1ef90c5cbe6e76faecab8183dd6989f0bc68800c18aed9234650.png" />
 </div>
 </div>
 <p>La figura muestra que la distribución de los valores del estadístico local de Moran (<span class="math notranslate nohighlight">\(I_i\)</span>) está ligeramente sesgada hacia la derecha, es decir, predominan los valores positivos.</p>
@@ -797,7 +815,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e6bb75749ce3accc2e650d96ceaac7a10391ac5c17693883bda2188c284f50d3.png" src="_images/e6bb75749ce3accc2e650d96ceaac7a10391ac5c17693883bda2188c284f50d3.png" />
+<img alt="_images/6955f12be503a67ee93298f359ca5f1753fa3c56d48ae8b60d51a40f9b82bf43.png" src="_images/6955f12be503a67ee93298f359ca5f1753fa3c56d48ae8b60d51a40f9b82bf43.png" />
 </div>
 </div>
 <p>Las zonas marcadas en púrpura y amarillo en el mapa (esquina superior izquierda) presentan los valores de mayor magnitud, tanto positivos como negativos, del estadístico local <span class="math notranslate nohighlight">\(I_i\)</span>.</p>
@@ -814,7 +832,7 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 1, 3, 3, 2, 3, 1, 3, 4, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 3, 3, 1, 3, 4, 3, 3, 4, 1])
 </pre></div>
 </div>
 </div>
@@ -835,9 +853,9 @@ I_i = \frac{z_i}{m_2}\sum_{j=1}^{n}w_{ij}z_j; m_2 = \frac{\sum_{i=1}^{n}z_{i}^{2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3    82
-1    65
-4    44
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3    78
+1    64
+4    41
 2    24
 Name: count, dtype: int64
 </pre></div>
@@ -863,12 +881,12 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30.232558139534884
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30.917874396135264
 </pre></div>
 </div>
 </div>
 </div>
-<p>El análisis muestra que un poco más del <strong>30% de las autoridades locales</strong> forman parte de un clúster espacial significativo.</p>
+<p>El análisis muestra que un poco más del <strong>27% de las autoridades locales</strong> forman parte de un clúster espacial significativo.</p>
 <p>Antes de pasar a otro tema, es útil comprender cómo <strong>exportar la información de significancia y cuadrantes</strong> contenida en el objeto <code class="docutils literal notranslate"><span class="pre">lisa</span></code>.</p>
 <ul class="simple">
 <li><p>Aunque <code class="docutils literal notranslate"><span class="pre">splot</span></code> se encarga de crear automáticamente los mapas de clústeres, <strong>internamente se procesan muchos datos</strong>.</p></li>
@@ -918,28 +936,28 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>0.275</td>
+      <td>1</td>
+      <td>0.042</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>0.222</td>
+      <td>1</td>
+      <td>0.042</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
-      <td>0.435</td>
+      <td>1</td>
+      <td>0.017</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>0.423</td>
+      <td>0.465</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
-      <td>0.276</td>
+      <td>1</td>
+      <td>0.006</td>
     </tr>
   </tbody>
 </table>
@@ -976,29 +994,29 @@ Name: count, dtype: int64
   </thead>
   <tbody>
     <tr>
-      <th>213</th>
-      <td>0</td>
-      <td>0.477</td>
-    </tr>
-    <tr>
-      <th>214</th>
+      <th>208</th>
       <td>1</td>
-      <td>0.001</td>
+      <td>0.022</td>
     </tr>
     <tr>
-      <th>215</th>
-      <td>0</td>
-      <td>0.314</td>
-    </tr>
-    <tr>
-      <th>216</th>
+      <th>209</th>
       <td>1</td>
-      <td>0.019</td>
+      <td>0.023</td>
     </tr>
     <tr>
-      <th>217</th>
+      <th>210</th>
+      <td>1</td>
+      <td>0.021</td>
+    </tr>
+    <tr>
+      <th>211</th>
       <td>0</td>
-      <td>0.363</td>
+      <td>0.100</td>
+    </tr>
+    <tr>
+      <th>212</th>
+      <td>0</td>
+      <td>0.447</td>
     </tr>
   </tbody>
 </table>
@@ -1040,11 +1058,11 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    Non-Significant
-1    Non-Significant
-2    Non-Significant
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                 LL
+1                 LL
+2                 LL
 3    Non-Significant
-4    Non-Significant
+4                 LL
 Name: labels, dtype: object
 </pre></div>
 </div>
@@ -1070,11 +1088,11 @@ Name: labels, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>labels
-Non-Significant    150
-LL                  30
-HH                  18
-HL                  11
-LH                   6
+Non-Significant    143
+LL                  28
+HH                  22
+HL                   9
+LH                   5
 Name: count, dtype: int64
 </pre></div>
 </div>

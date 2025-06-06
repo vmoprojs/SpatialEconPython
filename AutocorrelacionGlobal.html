@@ -414,10 +414,12 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-para-contraste-estadistico">9.3. Z-score para contraste estadístico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia">9.4. Referencia</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.1. Interpretación de MI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.2. Comparando MI’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.3. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.3.1. Inferencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas">9.4.1. Fórmulas:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#donde">9.4.2. Donde:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.3. Interpretación de MI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.4. Comparando MI’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.5. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.5.1. Inferencia</a></li>
 </ul>
 </li>
 </ul>
@@ -610,8 +612,8 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
     <span class="k">return</span> <span class="n">gdf</span>
 
 <span class="c1"># Uso correcto</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="c1">#url = &quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="c1">#df = read_git_shp(&quot;nxprovincias&quot;, url)</span>
 </pre></div>
 </div>
 </div>
@@ -665,8 +667,8 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB_PC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;VAB&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">datos</span><span class="p">[</span><span class="s1">&#39;A_2019&#39;</span><span class="p">]</span>  <span class="c1"># miles de USD por persona</span>
 
 <span class="c1"># 11. Descargo y leo el shapefile con los polígonos cantonales</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/2012_nxcantones.zip&quot;</span>
-<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span><span class="n">url</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -690,6 +692,73 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="o">~</span><span class="n">poligonos</span><span class="p">[</span><span class="s1">&#39;POBRES_P&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
 
 <span class="c1">#poligonos[&#39;POBRES_P&#39;].isna()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_9810/2740083164.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># 3. Hacer el merge entre los polígonos y los datos económicos por cantón</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Se usa la columna &#39;DPA_CANTON&#39; del shapefile y &#39;COD_CANT&#39; del DataFrame &#39;datos&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;DPA_CANTON&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># 4. Eliminar las filas que tienen valores faltantes en la variable &#39;POBRES_P&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Esto equivale a quedarse solo con los cantones que tienen datos de pobreza</span>
+
+<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/frame.py</span> in <span class="ni">?</span><span class="nt">(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">  </span><span class="mi">10828</span>         <span class="n">validate</span><span class="p">:</span> <span class="n">MergeValidate</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">10829</span>     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">10830</span>         <span class="kn">from</span> <span class="nn">pandas.core.reshape.merge</span> <span class="kn">import</span> <span class="n">merge</span>
+<span class="g g-Whitespace">  </span><span class="mi">10831</span> 
+<span class="ne">&gt; </span><span class="mi">10832</span>         <span class="k">return</span> <span class="n">merge</span><span class="p">(</span>
+<span class="g g-Whitespace">  </span><span class="mi">10833</span>             <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">10834</span>             <span class="n">right</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">10835</span>             <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
+
+<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>             <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">170</span>         <span class="n">op</span> <span class="o">=</span> <span class="n">_MergeOperation</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span>             <span class="n">left_df</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>             <span class="n">right_df</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span>             <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
+
+<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="bp">self</span><span class="o">.</span><span class="n">right_join_keys</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="bp">self</span><span class="o">.</span><span class="n">join_names</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">left_drop</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">right_drop</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">794</span>         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_merge_keys</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span> 
+<span class="g g-Whitespace">    </span><span class="mi">796</span>         <span class="k">if</span> <span class="n">left_drop</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">797</span>             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">_drop_labels_or_levels</span><span class="p">(</span><span class="n">left_drop</span><span class="p">)</span>
+
+<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1306</span>                     <span class="k">if</span> <span class="n">lk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1307</span>                         <span class="c1"># Then we&#39;re either Hashable or a wrong-length arraylike,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span>                         <span class="c1">#  the latter of which will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">1309</span>                         <span class="n">lk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">lk</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1310</span>                         <span class="n">left_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">lk</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1311</span>                         <span class="n">join_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1312</span>                     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1313</span>                         <span class="c1"># work-around for merge_asof(left_index=True)</span>
+
+<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1907</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">other_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1908</span>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_level_reference</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1909</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1911</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1912</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1913</span>         <span class="c1"># Check for duplicates</span>
+<span class="g g-Whitespace">   </span><span class="mi">1914</span>         <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+<span class="ne">KeyError</span>: &#39;DPA_CANTON&#39;
 </pre></div>
 </div>
 </div>
@@ -1012,7 +1081,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 </div>
 <section id="inferencia">
 <h4><span class="section-number">9.2.2.1. </span>Inferencia<a class="headerlink" href="#inferencia" title="Link to this heading">#</a></h4>
-<p>La significancia de estadístico <span class="math notranslate nohighlight">\(I\)</span> de Moran puede evaluarse desde un enfoque paramétrico o no paramétrico; en este material se adopta principalmente un enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 10000 permutaciones.</p>
+<p>La significancia de estadístico <span class="math notranslate nohighlight">\(I\)</span> de Moran puede evaluarse desde un enfoque paramétrico o no paramétrico; en este material se adopta principalmente un enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 9999 permutaciones.</p>
 <p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1030,9 +1099,89 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
 P-value (simulado): 0.0001
-Z-score (simulado): 6.223829926706209
+Z-score (simulado): 6.109722910747629
 </pre></div>
 </div>
+</div>
+</div>
+<p>Veamos ahora la la intuición de cómo funciona el estadístico basado en permutaciones:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">libpysal</span>
+<span class="kn">import</span> <span class="nn">esda</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 1: Crear datos espaciales ficticios</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="k">def</span> <span class="nf">crear_cuadrantes</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">geometries</span> <span class="o">=</span> <span class="p">[</span><span class="n">Polygon</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">valores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Tendencia creciente</span>
+    <span class="k">return</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s1">&#39;valor&#39;</span><span class="p">:</span> <span class="n">valores</span><span class="p">},</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometries</span><span class="p">)</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">crear_cuadrantes</span><span class="p">()</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 2: Visualizar cuadrantes</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;valor&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribución espacial de los valores (cuadrantes 1D)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 3: Calcular pesos espaciales</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">libpysal</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="n">use_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 4: Calcular Moran&#39;s I observado</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;valor&#39;</span><span class="p">]</span>
+<span class="n">mi</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Moran’s I observado:&quot;</span><span class="p">,</span> <span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 5: Permutaciones</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="n">n_permutaciones</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="n">I_simulados</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_permutaciones</span><span class="p">):</span>
+    <span class="n">y_perm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">mi_perm</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">y_perm</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="n">I_simulados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mi_perm</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+
+<span class="c1"># ---------------------------</span>
+<span class="c1"># Paso 6: Visualizar distribución de referencia</span>
+<span class="c1"># ---------------------------</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">I_simulados</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;I observado = </span><span class="si">{</span><span class="n">mi</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de referencia de Moran&#39;s I (por permutación)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Moran&#39;s I simulado&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Densidad&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21da5d7c4d674e02cc691e45543362c0272c877c33262f6d7d5f5e499a0b1c9a.png" src="_images/21da5d7c4d674e02cc691e45543362c0272c877c33262f6d7d5f5e499a0b1c9a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
+</pre></div>
+</div>
+<img alt="_images/d83787087a029457490e8ab32ff77394b4b091dedfe2d6c83c4a9ed527948137.png" src="_images/d83787087a029457490e8ab32ff77394b4b091dedfe2d6c83c4a9ed527948137.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1112,6 +1261,34 @@ Z-score (normal approximation): 6.078680932048825
 </div>
 </div>
 <p>Ahora con <strong>randomización</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_rand</span></code> y <code class="docutils literal notranslate"><span class="pre">z_rand</span></code></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">p_rand</span></code> (P-valor Basado en la Suposición de Aleatorización)</strong></p>
+<p>Similar a <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> en que es un <strong>cálculo analítico</strong>, pero difiere en la suposición subyacente. En lugar de asumir normalidad en los datos, asume que la variable <code class="docutils literal notranslate"><span class="pre">y</span></code> está distribuida aleatoriamente entre las ubicaciones, pero que la <strong>varianza</strong> de la distribución del I de Moran puede ser calculada bajo esta suposición de aleatorización. Este p-valor es una aproximación basada en la idea de que los valores de <code class="docutils literal notranslate"><span class="pre">y</span></code> son fijos, pero sus ubicaciones son aleatorias.</p>
+<ul class="simple">
+<li><p><strong>Uso</strong>: Ofrece una alternativa analítica que no requiere la suposición estricta de normalidad de los datos como <code class="docutils literal notranslate"><span class="pre">p_norm</span></code>, pero sigue siendo una aproximación teórica. Puede ser útil en ciertas situaciones, pero <code class="docutils literal notranslate"><span class="pre">p_sim</span></code> es generalmente más fiable si se dispone de un número suficiente de permutaciones.</p></li>
+</ul>
+<section id="formulas">
+<h3><span class="section-number">9.4.1. </span>Fórmulas:<a class="headerlink" href="#formulas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Esperanza</strong> <span class="math notranslate nohighlight">\( E[I] \)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E[I] = -\frac{1}{N - 1}
+\]</div>
+<ul class="simple">
+<li><p><strong>Varianza</strong> ( Var[I] ):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+Var[I] = \frac{N[(N^2 - 3N + 3)S_1 - NS_2 + 3S_0^2] - K[(N^2 - N)S_1 - 2NS_2 + 6S_0^2]}{(N - 1)(N - 2)(N - 3)S_0^2} - (E[I])^2
+\]</div>
+</section>
+<section id="donde">
+<h3><span class="section-number">9.4.2. </span>Donde:<a class="headerlink" href="#donde" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( K = \frac{N \sum_{i=1}^{N}(y_i - \bar{y})^4}{(\sum_{i=1}^{N}(y_i - \bar{y})^2)^2} \)</span> es el coeficiente de curtosis de la variable <span class="math notranslate nohighlight">\( y \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( S_0, S_1 \)</span> y <span class="math notranslate nohighlight">\( S_2 \)</span> son los mismos que en el caso de <code class="docutils literal notranslate"><span class="pre">p_norm</span></code>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar resultados</span>
@@ -1125,8 +1302,281 @@ Z-score (normal approximation): 6.078680932048825
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
 Expected I under null: -0.004672897196261682
-P-value (random approximation): 1.1648456706191047e-09
-Z-score (random approximation): 6.085009274948058
+P-value (normal approximation): 1.1648456706191047e-09
+Z-score (normal approximation): 6.085009274948058
+</pre></div>
+</div>
+</div>
+</div>
+<p>El código que ilustra los 3 enfoques de inferencia se muestra a continuación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">libpysal</span> <span class="k">as</span> <span class="nn">lps</span>
+<span class="kn">import</span> <span class="nn">esda</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span> <span class="c1"># Para el cálculo del p-valor analítico p_norm</span>
+
+<span class="c1"># --- 1. Generar datos de ejemplo (Puntos en una cuadrícula) ---</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="n">rows</span> <span class="o">*</span> <span class="n">cols</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">)])</span>
+
+<span class="c1"># Generamos una variable &#39;y&#39; con algún patrón espacial (por ejemplo, gradiente)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># Añadimos un poco de ruido</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="c1"># Convertimos a 1D para el análisis espacial</span>
+
+<span class="c1"># --- 2. Crear una matriz de pesos espaciales adecuada para PUNTOS (KNN) ---</span>
+<span class="c1"># Usamos K-Vecinos más Cercanos (KNN). Elegimos k=8 para una cuadrícula</span>
+<span class="c1"># para que cada punto tenga hasta 8 vecinos (similar a la lógica de Queen).</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">lps</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">KNN</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="c1"># Normalizamos por filas (row-standardization)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Cálculo con esda.moran.Moran (referencia) ---&quot;</span><span class="p">)</span>
+<span class="c1"># Calculamos el I de Moran con esda para obtener los valores de referencia</span>
+<span class="c1"># y la distribución de p_sim directamente.</span>
+<span class="n">num_permutations_esda</span> <span class="o">=</span> <span class="mi">9999</span>
+<span class="n">mi_esda</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="n">num_permutations_esda</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I de Moran Observado (esda): </span><span class="si">{</span><span class="n">mi_esda</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (normalidad, p_norm - esda): </span><span class="si">{</span><span class="n">mi_esda</span><span class="o">.</span><span class="n">p_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (simulaciones, p_sim - esda): </span><span class="si">{</span><span class="n">mi_esda</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (aleatorización, p_rand - esda): </span><span class="si">{</span><span class="n">mi_esda</span><span class="o">.</span><span class="n">p_rand</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- 3. Implementación Manual de Permutaciones para P_SIM ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Simulación Manual para P_SIM ---&quot;</span><span class="p">)</span>
+<span class="n">num_permutations_manual_sim</span> <span class="o">=</span> <span class="mi">9999</span>
+<span class="n">moran_values_sim</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Obtener la matriz de pesos densa</span>
+<span class="n">w_dense</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">s0</span> <span class="c1"># Suma de todos los pesos</span>
+
+<span class="c1"># Función para calcular el I de Moran</span>
+<span class="k">def</span> <span class="nf">calculate_moran_i</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">w_matrix_dense</span><span class="p">,</span> <span class="n">s0_val</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">):</span>
+    <span class="n">y_mean</span> <span class="o">=</span> <span class="n">y_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">y_centered</span> <span class="o">=</span> <span class="n">y_vals</span> <span class="o">-</span> <span class="n">y_mean</span>
+    
+    <span class="c1"># Numerador: Sum_i Sum_j w_ij * (yi - y_mean) * (yj - y_mean)</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w_matrix_dense</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">y_centered</span><span class="p">,</span> <span class="n">y_centered</span><span class="p">))</span>
+    
+    <span class="c1"># Denominador: Sum_i (yi - y_mean)^2</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_centered</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">denominator</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Evitar división por cero si todos los y son iguales</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">n_obs</span> <span class="o">/</span> <span class="n">s0_val</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span><span class="p">)</span>
+
+<span class="c1"># Calcular I de Moran para datos observados (manual)</span>
+<span class="n">I_obs_manual</span> <span class="o">=</span> <span class="n">calculate_moran_i</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_dense</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I de Moran Observado (manual): </span><span class="si">{</span><span class="n">I_obs_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_permutations_manual_sim</span><span class="p">):</span>
+    <span class="n">y_permuted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">moran_val</span> <span class="o">=</span> <span class="n">calculate_moran_i</span><span class="p">(</span><span class="n">y_permuted</span><span class="p">,</span> <span class="n">w_dense</span><span class="p">,</span> <span class="n">S0</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+    <span class="n">moran_values_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">moran_val</span><span class="p">)</span>
+
+<span class="n">moran_values_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">moran_values_sim</span><span class="p">)</span>
+
+<span class="c1"># Calcular p_sim manualmente</span>
+<span class="n">p_sim_manual</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">moran_values_sim</span> <span class="o">&gt;=</span> <span class="n">I_obs_manual</span><span class="p">)</span> <span class="o">+</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">moran_values_sim</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">I_obs_manual</span><span class="p">))</span> <span class="o">/</span> <span class="n">num_permutations_manual_sim</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (simulaciones, p_sim - manual): </span><span class="si">{</span><span class="n">p_sim_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- 4. Implementación Manual de P_NORM (Cálculo Analítico bajo Normalidad) ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Cálculo Analítico para P_NORM ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># Esperanza E[I] bajo normalidad (es la misma que bajo aleatorización)</span>
+<span class="n">EI_norm</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Varianza Var[I] bajo normalidad (fórmula de Cliff &amp; Ord para normalidad)</span>
+<span class="c1"># S0 = sum_i sum_j w_ij (ya calculado)</span>
+<span class="c1"># S1 = 0.5 * sum_i sum_j (w_ij + w_ji)^2</span>
+<span class="n">S1</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">w_dense</span> <span class="o">+</span> <span class="n">w_dense</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># S2 = sum_i (sum_j w_ij + sum_j w_ji)^2</span>
+<span class="n">row_sums_w</span> <span class="o">=</span> <span class="n">w_dense</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">col_sums_w</span> <span class="o">=</span> <span class="n">w_dense</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">S2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">row_sums_w</span> <span class="o">+</span> <span class="n">col_sums_w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Asegurarse de que el denominador no sea cero</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">n_points</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">VarI_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">VarI_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_points</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">S1</span> <span class="o">-</span> <span class="n">n_points</span> <span class="o">*</span> <span class="n">S2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">n_points</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">EI_norm</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Calcular el Z-score y el p-valor</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_norm</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">Z_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">I_obs_manual</span> <span class="o">-</span> <span class="n">EI_norm</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">)</span>
+    <span class="n">p_norm_manual</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Z_norm</span><span class="p">))</span> <span class="c1"># p-valor bilateral</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">Z_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">p_norm_manual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esperanza E[I] (normalidad, manual): </span><span class="si">{</span><span class="n">EI_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Varianza Var[I] (normalidad, manual): </span><span class="si">{</span><span class="n">VarI_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (normalidad, manual): </span><span class="si">{</span><span class="n">Z_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (normalidad, p_norm - manual): </span><span class="si">{</span><span class="n">p_norm_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- 5. Implementación Manual de P_RAND (Cálculo Analítico bajo Aleatorización) ---</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Cálculo Analítico para P_RAND ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># Esperanza E[I] bajo aleatorización (la misma)</span>
+<span class="n">EI_rand</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Curtosis K (ya calculada anteriormente)</span>
+<span class="n">y_centered</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">denominator_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_centered</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">denominator_k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y_centered</span><span class="o">**</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">denominator_k</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Varianza Var[I] bajo aleatorización (fórmula de Cliff &amp; Ord con curtosis)</span>
+<span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span> <span class="c1"># La fórmula es para N &gt;= 4</span>
+    <span class="n">VarI_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">term1_num</span> <span class="o">=</span> <span class="n">n_points</span> <span class="o">*</span> <span class="p">((</span><span class="n">n_points</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n_points</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S1</span> <span class="o">-</span> <span class="n">n_points</span> <span class="o">*</span> <span class="n">S2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">term2_num</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="p">((</span><span class="n">n_points</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">n_points</span><span class="p">)</span> <span class="o">*</span> <span class="n">S1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_points</span> <span class="o">*</span> <span class="n">S2</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">denominator_var_rand</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S0</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">denominator_var_rand</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">VarI_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">VarI_rand</span> <span class="o">=</span> <span class="p">(</span><span class="n">term1_num</span> <span class="o">-</span> <span class="n">term2_num</span><span class="p">)</span> <span class="o">/</span> <span class="n">denominator_var_rand</span> <span class="o">-</span> <span class="p">(</span><span class="n">EI_rand</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Calcular el Z-score y el p-valor</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_rand</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_rand</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">Z_rand</span> <span class="o">=</span> <span class="p">(</span><span class="n">I_obs_manual</span> <span class="o">-</span> <span class="n">EI_rand</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VarI_rand</span><span class="p">)</span>
+    <span class="n">p_rand_manual</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Z_rand</span><span class="p">))</span> <span class="c1"># p-valor bilateral</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">Z_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">p_rand_manual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esperanza E[I] (aleatorización, manual): </span><span class="si">{</span><span class="n">EI_rand</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Varianza Var[I] (aleatorización, manual): </span><span class="si">{</span><span class="n">VarI_rand</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (aleatorización, manual): </span><span class="si">{</span><span class="n">Z_rand</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-valor (aleatorización, p_rand - manual): </span><span class="si">{</span><span class="n">p_rand_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># --- 6. Visualización Comparativa de las Tres Distribuciones Nulas ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Rango para las curvas teóricas</span>
+<span class="n">min_val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">moran_values_sim</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">EI_norm</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">))</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_norm</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">moran_values_sim</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">EI_norm</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">))</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_norm</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">x_theoretical</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">bin_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">moran_values_sim</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">moran_values_sim</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="mi">50</span> <span class="c1"># Aproximación</span>
+
+<span class="c1"># 1. Distribución p_sim (Histograma empírico)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">moran_values_sim</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Distribución p_sim (Manual, </span><span class="si">{</span><span class="n">num_permutations_manual_sim</span><span class="si">}</span><span class="s1"> Permutaciones)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Distribución p_norm (Normal Teórica basada en Normalidad)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_norm</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">pdf_norm_theoretical</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_theoretical</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">EI_norm</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VarI_norm</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_theoretical</span><span class="p">,</span> <span class="n">pdf_norm_theoretical</span> <span class="o">*</span> <span class="n">num_permutations_manual_sim</span> <span class="o">*</span> <span class="n">bin_width</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Distribución p_norm (Normal Teórica)&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3. Distribución p_rand (Normal Teórica basada en Aleatorización)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">VarI_rand</span><span class="p">)</span> <span class="ow">and</span> <span class="n">VarI_rand</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">pdf_rand_theoretical</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_theoretical</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">EI_rand</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">VarI_rand</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_theoretical</span><span class="p">,</span> <span class="n">pdf_rand_theoretical</span> <span class="o">*</span> <span class="n">num_permutations_manual_sim</span> <span class="o">*</span> <span class="n">bin_width</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Distribución p_rand (Normal Teórica)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">I_obs_manual</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;I de Moran Observado: </span><span class="si">{</span><span class="n">I_obs_manual</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">EI_norm</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Esperanza E[I] Nula: </span><span class="si">{</span><span class="n">EI_norm</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparación de Distribuciones Nulas para P-valores P_NORM, P_SIM, P_RAND&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valor del Índice I de Moran&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia / Densidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Resumen Didáctico de las Diferencias ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**1. `p_sim` (Curva Morada - Empírica):**&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Método:** Se basa en **simulaciones directas** (permutaciones). Mezclamos los valores de `y` aleatoriamente entre las ubicaciones miles de veces y calculamos el I de Moran en cada mezcla.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Distribución Nula:** Es el **histograma empírico** de todos esos valores de I de Moran simulados. No asume ninguna forma de distribución teórica.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Robustez:** Es el más robusto porque no hace suposiciones sobre la distribución de los datos de entrada o la distribución del I de Moran. Es el **más recomendado** en la práctica.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - P-valor p_sim (manual): </span><span class="si">{</span><span class="n">p_sim_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**2. `p_norm` (Curva Naranja - Teórica por Normalidad):**&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Método:** Se basa en **fórmulas analíticas** para la esperanza y la varianza del I de Moran, bajo la **suposición de que los datos de entrada (`y`) provienen de una distribución normal**.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Distribución Nula:** Es una **curva normal teórica** (campana de Gauss) definida por la esperanza y varianza calculadas bajo esa suposición de normalidad. Se asume que el I de Moran también se distribuye normalmente.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Robustez:** Menos robusto que `p_sim`. Puede ser inexacto si tus datos `y` no son normales o si el tamaño de la muestra es pequeño.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - P-valor p_norm (manual): </span><span class="si">{</span><span class="n">p_norm_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**3. `p_rand` (Curva Azul - Teórica por Aleatorización):**&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Método:** También se basa en **fórmulas analíticas** para la esperanza y la varianza del I de Moran, pero bajo la **suposición de que los valores de `y` son fijos, pero sus ubicaciones espaciales son aleatorias**.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Distribución Nula:** Es también una **curva normal teórica**, pero su varianza incluye un término relacionado con la **curtosis** de tus datos (`y`). Esto la hace más robusta a la no-normalidad que `p_norm`, pero sigue siendo una aproximación normal.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   - **Robustez:** Más robusto que `p_norm` pero menos que `p_sim`. Útil cuando la aproximación normal es aceptable pero no se asume normalidad en los datos.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - P-valor p_rand (manual): </span><span class="si">{</span><span class="n">p_rand_manual</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**Conclusión Final:**&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observarás que las tres curvas de distribución nula (`p_sim` empírica, `p_norm` teórica, `p_rand` teórica) estarán centradas aproximadamente en la misma esperanza ($E[I] = -1/(N-1)$). La principal diferencia estará en sus **formas (especialmente el ancho o varianza)**.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-   `p_sim` es la &#39;verdadera&#39; distribución nula empírica para tus datos y matriz de pesos específica.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-   `p_rand` intenta aproximar esa &#39;verdad&#39; empírica con una fórmula que considera la forma (curtosis) de tus datos.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-   `p_norm` es la aproximación más básica, asumiendo normalidad en los datos, lo que a menudo lleva a una subestimación de la varianza si los datos no son normales.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera de estas distribuciones, indica una autocorrelación espacial significativa.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
+I de Moran Observado (esda): 0.5812
+P-valor (normalidad, p_norm - esda): 0.0000
+P-valor (simulaciones, p_sim - esda): 0.0001
+P-valor (aleatorización, p_rand - esda): 0.0000
+
+--- Simulación Manual para P_SIM ---
+I de Moran Observado (manual): 0.5812
+P-valor (simulaciones, p_sim - manual): 0.0000
+
+--- Cálculo Analítico para P_NORM ---
+Esperanza E[I] (normalidad, manual): -0.0417
+Varianza Var[I] (normalidad, manual): 0.0056
+Z-score (normalidad, manual): 8.2933
+P-valor (normalidad, p_norm - manual): 0.0000
+
+--- Cálculo Analítico para P_RAND ---
+Esperanza E[I] (aleatorización, manual): -0.0417
+Varianza Var[I] (aleatorización, manual): 0.0059
+Z-score (aleatorización, manual): 8.1034
+P-valor (aleatorización, p_rand - manual): 0.0000
+</pre></div>
+</div>
+<img alt="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" src="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
+Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
+
+**1. `p_sim` (Curva Morada - Empírica):**
+   - **Método:** Se basa en **simulaciones directas** (permutaciones). Mezclamos los valores de `y` aleatoriamente entre las ubicaciones miles de veces y calculamos el I de Moran en cada mezcla.
+   - **Distribución Nula:** Es el **histograma empírico** de todos esos valores de I de Moran simulados. No asume ninguna forma de distribución teórica.
+   - **Robustez:** Es el más robusto porque no hace suposiciones sobre la distribución de los datos de entrada o la distribución del I de Moran. Es el **más recomendado** en la práctica.
+   - P-valor p_sim (manual): 0.0000
+
+**2. `p_norm` (Curva Naranja - Teórica por Normalidad):**
+   - **Método:** Se basa en **fórmulas analíticas** para la esperanza y la varianza del I de Moran, bajo la **suposición de que los datos de entrada (`y`) provienen de una distribución normal**.
+   - **Distribución Nula:** Es una **curva normal teórica** (campana de Gauss) definida por la esperanza y varianza calculadas bajo esa suposición de normalidad. Se asume que el I de Moran también se distribuye normalmente.
+   - **Robustez:** Menos robusto que `p_sim`. Puede ser inexacto si tus datos `y` no son normales o si el tamaño de la muestra es pequeño.
+   - P-valor p_norm (manual): 0.0000
+
+**3. `p_rand` (Curva Azul - Teórica por Aleatorización):**
+   - **Método:** También se basa en **fórmulas analíticas** para la esperanza y la varianza del I de Moran, pero bajo la **suposición de que los valores de `y` son fijos, pero sus ubicaciones espaciales son aleatorias**.
+   - **Distribución Nula:** Es también una **curva normal teórica**, pero su varianza incluye un término relacionado con la **curtosis** de tus datos (`y`). Esto la hace más robusta a la no-normalidad que `p_norm`, pero sigue siendo una aproximación normal.
+   - **Robustez:** Más robusto que `p_norm` pero menos que `p_sim`. Útil cuando la aproximación normal es aceptable pero no se asume normalidad en los datos.
+   - P-valor p_rand (manual): 0.0000
+
+**Conclusión Final:**
+Observarás que las tres curvas de distribución nula (`p_sim` empírica, `p_norm` teórica, `p_rand` teórica) estarán centradas aproximadamente en la misma esperanza ($E[I] = -1/(N-1)$). La principal diferencia estará en sus **formas (especialmente el ancho o varianza)**.
+-   `p_sim` es la &#39;verdadera&#39; distribución nula empírica para tus datos y matriz de pesos específica.
+-   `p_rand` intenta aproximar esa &#39;verdad&#39; empírica con una fórmula que considera la forma (curtosis) de tus datos.
+-   `p_norm` es la aproximación más básica, asumiendo normalidad en los datos, lo que a menudo lleva a una subestimación de la varianza si los datos no son normales.
+Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera de estas distribuciones, indica una autocorrelación espacial significativa.
 </pre></div>
 </div>
 </div>
@@ -1140,14 +1590,15 @@ Z-score (random approximation): 6.085009274948058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/012df9989ba9d46751fc10b71b873592e187a15ff9e7c11cccadc2b9f269f863.png" src="_images/012df9989ba9d46751fc10b71b873592e187a15ff9e7c11cccadc2b9f269f863.png" />
+<img alt="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" src="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
 <p>Por otro lado, la línea roja indica el valor observado de Moran’s I utilizando la distribución geográfica real de los datos. Se puede notar claramente que este valor observado es considerablemente mayor que lo esperado por azar, lo que sugiere una autocorrelación espacial significativa.</p>
 <p>Este hallazgo se refuerza en el panel derecho, donde se presenta un gráfico similar al diagrama de dispersión de Moran, en el que se evidencia la relación entre <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> y su rezago espacial, confirmando la presencia de un patrón espacial no aleatorio.</p>
+</section>
 <section id="interpretacion-de-mi">
-<h3><span class="section-number">9.4.1. </span>Interpretación de MI<a class="headerlink" href="#interpretacion-de-mi" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.3. </span>Interpretación de MI<a class="headerlink" href="#interpretacion-de-mi" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Su media teórica es <span class="math notranslate nohighlight">\(\bar{I} = \frac{-1}{(n-1)}\)</span> y tiende a <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 <li><p>Signo positivo y significativo: conglomerados de <strong>valores similares</strong>. Es decir, puede ser valores altos, bajos, o ambos.</p></li>
@@ -1155,7 +1606,7 @@ Z-score (random approximation): 6.085009274948058
 </ul>
 </section>
 <section id="comparando-mi-s">
-<h3><span class="section-number">9.4.2. </span>Comparando MI’s<a class="headerlink" href="#comparando-mi-s" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.4. </span>Comparando MI’s<a class="headerlink" href="#comparando-mi-s" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El estadístico de moran depende de la matriz de pesos espaciales <span class="math notranslate nohighlight">\(W\)</span>.</p></li>
 <li><p>Se puede comparar variables con la misma matriz de pesos espaciales, pero no se puede comprar variables (incluso la misma variable) con distintas matrices de pesos espaciales.</p></li>
@@ -1238,7 +1689,7 @@ Z-score (random approximation): 6.085009274948058
 </div>
 </section>
 <section id="estadistico-global-de-geary">
-<h3><span class="section-number">9.4.3. </span>Estadístico Global de Geary<a class="headerlink" href="#estadistico-global-de-geary" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.4.5. </span>Estadístico Global de Geary<a class="headerlink" href="#estadistico-global-de-geary" title="Link to this heading">#</a></h3>
 <p>Propuesto por Geary en 1954, se basa en la noción de <strong>disimilaridad</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1253,7 +1704,7 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <li><p>El estadístico <span class="math notranslate nohighlight">\(C\)</span> asume una matriz de pesos espaciales simétrica, en el caso de asimetría (como en el caso de los vecinos más cercanos), el estadísitico puede no ser de utilidad.</p></li>
 </ul>
 <section id="id1">
-<h4><span class="section-number">9.4.3.1. </span>Inferencia<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.4.5.1. </span>Inferencia<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>La significancia de estadístico <span class="math notranslate nohighlight">\(C\)</span> de Geary puede evaluarse desde un enfoque paramétrico o no paramétrico; en este texto se adopta principalemente el enfoque no paramétrico. Para este objetivo se obtiene una distribución de la permutación del estadístico basado en una <strong>simulación de Monte Carlo</strong> de 10000 permutaciones.</p>
 <p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
 <div class="cell docutils container">
@@ -1283,8 +1734,8 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
-P-value (simulado): 0.0002
-Z-score (simulado): -3.4764023069576764
+P-value (simulado): 0.0005
+Z-score (simulado): -3.435288428380606
 </pre></div>
 </div>
 </div>
@@ -1303,7 +1754,7 @@ Z-score (simulado): -3.4764023069576764
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
 Expected C under null: 1.0
 P-value (simulado): 0.00017664485722673794
-Z-score (simulado): -3.4764023069576764
+Z-score (simulado): -3.435288428380606
 </pre></div>
 </div>
 </div>
@@ -1413,10 +1864,12 @@ Z-score (simulado): -3.4582180872023005
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#z-score-para-contraste-estadistico">9.3. Z-score para contraste estadístico</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencia">9.4. Referencia</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.1. Interpretación de MI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.2. Comparando MI’s</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.3. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.3.1. Inferencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulas">9.4.1. Fórmulas:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#donde">9.4.2. Donde:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-mi">9.4.3. Interpretación de MI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparando-mi-s">9.4.4. Comparando MI’s</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-global-de-geary">9.4.5. Estadístico Global de Geary</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.4.5.1. Inferencia</a></li>
 </ul>
 </li>
 </ul>
