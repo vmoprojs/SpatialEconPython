@@ -494,13 +494,13 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <td><p>Global</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(I&gt; 0\)</span>: autocorrelación   espacial positiva, los valores de observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son similares <br/> <span class="math notranslate nohighlight">\(I &lt;0\)</span>: autocorrelación espacial negativa, los valores de observación a la   distancia <span class="math notranslate nohighlight">\(d\)</span> son diferentes <br/> <span class="math notranslate nohighlight">\(I = 0\)</span>: los valores de observación a la distancia d se distribuyen   aleatoriamente</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pysal.explore</span> <span class="pre">import</span> <span class="pre">esda</span></code><br/><code class="docutils literal notranslate"><span class="pre">esda.moran.Moran</span></code><br/><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">splot.esda</span> <span class="pre">import</span> <span class="pre">plot_moran</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">esda.moran.Moran()</span></code> <br/> <br/><code class="docutils literal notranslate"><span class="pre">.I</span> <span class="pre">#</span> <span class="pre">Indice</span> <span class="pre">de</span> <span class="pre">Moran</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.EI</span> <span class="pre">#</span> <span class="pre">Esperanza</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.VI_sim</span> <span class="pre">#</span> <span class="pre">Varianza</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.z_sim</span> <span class="pre">#</span> <span class="pre">Valor</span> <span class="pre">Z</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.p_sim</span> <span class="pre">#</span> <span class="pre">p-valor</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Geary’s C</p></td>
 <td><p>Global</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(0 &lt;C &lt;1\)</span>: autocorrelación   espacial positiva, los valores de observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son   similares   <br/>   <span class="math notranslate nohighlight">\(1 &lt;C &lt;2\)</span>: autocorrelación espacial negativa, los valores de   observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son diferentes</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">geary</span> <span class="pre">()</span></code><br/>      <code class="docutils literal notranslate"><span class="pre">geary.test</span> <span class="pre">()</span></code>   <br/>   <code class="docutils literal notranslate"><span class="pre">geary.mc</span> <span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">esda.geary.Geary()</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Join-count</p></td>
 <td><p>Global en grupos</p></td>
@@ -668,7 +668,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 
 <span class="c1"># 11. Descargo y leo el shapefile con los polígonos cantonales</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
-<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxprovincias&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -695,73 +695,6 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_9810/2740083164.py</span> in <span class="ni">?</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># 3. Hacer el merge entre los polígonos y los datos económicos por cantón</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Se usa la columna &#39;DPA_CANTON&#39; del shapefile y &#39;COD_CANT&#39; del DataFrame &#39;datos&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">poligonos</span> <span class="o">=</span> <span class="n">poligonos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;DPA_CANTON&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;COD_CANT&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> 
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># 4. Eliminar las filas que tienen valores faltantes en la variable &#39;POBRES_P&#39;</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Esto equivale a quedarse solo con los cantones que tienen datos de pobreza</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/frame.py</span> in <span class="ni">?</span><span class="nt">(self, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
-<span class="g g-Whitespace">  </span><span class="mi">10828</span>         <span class="n">validate</span><span class="p">:</span> <span class="n">MergeValidate</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">10829</span>     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-<span class="g g-Whitespace">  </span><span class="mi">10830</span>         <span class="kn">from</span> <span class="nn">pandas.core.reshape.merge</span> <span class="kn">import</span> <span class="n">merge</span>
-<span class="g g-Whitespace">  </span><span class="mi">10831</span> 
-<span class="ne">&gt; </span><span class="mi">10832</span>         <span class="k">return</span> <span class="n">merge</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">10833</span>             <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">10834</span>             <span class="n">right</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">10835</span>             <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>             <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">170</span>         <span class="n">op</span> <span class="o">=</span> <span class="n">_MergeOperation</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span>             <span class="n">left_df</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>             <span class="n">right_df</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span>             <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="bp">self</span><span class="o">.</span><span class="n">right_join_keys</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="bp">self</span><span class="o">.</span><span class="n">join_names</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">left_drop</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">right_drop</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">794</span>         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_merge_keys</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span> 
-<span class="g g-Whitespace">    </span><span class="mi">796</span>         <span class="k">if</span> <span class="n">left_drop</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>             <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">_drop_labels_or_levels</span><span class="p">(</span><span class="n">left_drop</span><span class="p">)</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/reshape/merge.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1306</span>                     <span class="k">if</span> <span class="n">lk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1307</span>                         <span class="c1"># Then we&#39;re either Hashable or a wrong-length arraylike,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1308</span>                         <span class="c1">#  the latter of which will raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">1309</span>                         <span class="n">lk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">lk</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1310</span>                         <span class="n">left_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">lk</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1311</span>                         <span class="n">join_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1312</span>                     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1313</span>                         <span class="c1"># work-around for merge_asof(left_index=True)</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.12/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1907</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">other_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1908</span>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_level_reference</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1909</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1911</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1912</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1913</span>         <span class="c1"># Check for duplicates</span>
-<span class="g g-Whitespace">   </span><span class="mi">1914</span>         <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: &#39;DPA_CANTON&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,10 +703,10 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DPA_VALOR&#39;, &#39;DPA_ANIO&#39;, &#39;DPA_CANTON&#39;, &#39;DPA_DESCAN&#39;, &#39;DPA_PROVIN&#39;,
-       &#39;DPA_DESPRO&#39;, &#39;geometry&#39;, &#39;NOM_PROV&#39;, &#39;COD_PROV&#39;, &#39;NOM_CANT&#39;,
-       &#39;COD_CANT&#39;, &#39;PRODUCCION&#39;, &#39;CONSUMO_INTERMEDIO&#39;, &#39;VAB&#39;, &#39;YEAR&#39;, &#39;TIPO&#39;,
-       &#39;CODIGO_x&#39;, &#39;A_2019&#39;, &#39;CODIGO_y&#39;, &#39;POBRES_P&#39;, &#39;VAB_PC&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DPA_CANTON&#39;, &#39;DPA_DESCAN&#39;, &#39;DPA_VALOR&#39;, &#39;DPA_ANIO&#39;, &#39;DPA_PROVIN&#39;,
+       &#39;DPA_DESPRO&#39;, &#39;SUPERFICIE&#39;, &#39;geometry&#39;, &#39;NOM_PROV&#39;, &#39;COD_PROV&#39;,
+       &#39;NOM_CANT&#39;, &#39;COD_CANT&#39;, &#39;PRODUCCION&#39;, &#39;CONSUMO_INTERMEDIO&#39;, &#39;VAB&#39;,
+       &#39;YEAR&#39;, &#39;TIPO&#39;, &#39;CODIGO_x&#39;, &#39;A_2019&#39;, &#39;CODIGO_y&#39;, &#39;POBRES_P&#39;, &#39;VAB_PC&#39;],
       dtype=&#39;object&#39;)
 </pre></div>
 </div>
@@ -807,7 +740,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" src="_images/b81eca3af6a968cf9f8cd032a816095971bedcad26a4272cde7e9aead20429f8.png" />
+<img alt="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" src="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" />
 </div>
 </div>
 <p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>contiguidad por criterio de reina</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
@@ -835,7 +768,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[27, 61, 94, 100, 102, 106, 116, 117, 121, 133, 187, 188, 214]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -908,15 +841,15 @@ y_{sl-i} = \sum_j w_{ij} y_j
   <tbody>
     <tr>
       <th>0</th>
-      <td>GUARANDA</td>
-      <td>3.602965</td>
-      <td>2.671548</td>
+      <td>CUENCA</td>
+      <td>7.637112</td>
+      <td>2.475734</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>CHILLANES</td>
-      <td>1.473314</td>
-      <td>2.266083</td>
+      <td>GIRON</td>
+      <td>1.927632</td>
+      <td>2.985404</td>
     </tr>
   </tbody>
 </table>
@@ -962,7 +895,7 @@ y_{sl-i} = \sum_j w_{ij} y_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6fbcec41810338b7f890f98f75bedc1060b84d876a9a77fca5b6f1c867fbb28f.png" src="_images/6fbcec41810338b7f890f98f75bedc1060b84d876a9a77fca5b6f1c867fbb28f.png" />
+<img alt="_images/0943f6e2a8563cd1e406706834e1c7bcc5c8d732444d545f43addb93f46a3357.png" src="_images/0943f6e2a8563cd1e406706834e1c7bcc5c8d732444d545f43addb93f46a3357.png" />
 </div>
 </div>
 <p><strong>Mapa Izquierdo VAB PC (Valor Agregado Bruto per cápita)</strong></p>
@@ -1058,7 +991,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/13aaf1172a90309e3d07d95e049b263617be851049d699e20d7ad07f9e24ed53.png" src="_images/13aaf1172a90309e3d07d95e049b263617be851049d699e20d7ad07f9e24ed53.png" />
+<img alt="_images/1e7454c9bca076367b6378daa85679b1f3705eb8961876efc2d167da5300910f.png" src="_images/1e7454c9bca076367b6378daa85679b1f3705eb8961876efc2d167da5300910f.png" />
 </div>
 </div>
 <p>El gráfico de Moran para el porcentaje de pobreza por cantones en Ecuador muestra una autocorrelación espacial positiva significativa. Es decir, la pobreza no está distribuida aleatoriamente, sino que se concentra geográficamente: existen regiones donde varios cantones cercanos presentan niveles similares de pobreza, ya sea altos o bajos.</p>
@@ -1074,7 +1007,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31073809952005904
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.305601416888133
 </pre></div>
 </div>
 </div>
@@ -1090,16 +1023,18 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <span class="c1"># Mostrar resultados</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moran&#39;s I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">I</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected I under null: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">EI</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (simulado): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_sim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">VI_sim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (simulado): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">z_sim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (simulado): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_sim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
-Expected I under null: -0.004672897196261682
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
+Expected I under null: -0.0048543689320388345
+Variance: 0.0020042662829463944
+Z-score (simulado): 6.943730388371415
 P-value (simulado): 0.0001
-Z-score (simulado): 6.109722910747629
 </pre></div>
 </div>
 </div>
@@ -1181,7 +1116,7 @@ Z-score (simulado): 6.109722910747629
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/d83787087a029457490e8ab32ff77394b4b091dedfe2d6c83c4a9ed527948137.png" src="_images/d83787087a029457490e8ab32ff77394b4b091dedfe2d6c83c4a9ed527948137.png" />
+<img alt="_images/61bacb56cb24c4c1db156748b90865cf0a1582c8134980b0b79cee47691fe1c9.png" src="_images/61bacb56cb24c4c1db156748b90865cf0a1582c8134980b0b79cee47691fe1c9.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1246,16 +1181,18 @@ Z = \frac{I - E[I]}{\sqrt{\text{Var}[I]}}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar resultados</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moran&#39;s I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">I</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected I under null: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">EI</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (normal approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_norm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">VI_norm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (normal approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">z_norm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (normal approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_norm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
-Expected I under null: -0.004672897196261682
-P-value (normal approximation): 1.2117520187952664e-09
-Z-score (normal approximation): 6.078680932048825
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
+Expected I under null: -0.0048543689320388345
+Variance I: 0.002011439170113659
+Z-score (normal approximation): 6.922234482352583
+P-value (normal approximation): 4.445745531673026e-12
 </pre></div>
 </div>
 </div>
@@ -1294,16 +1231,18 @@ Var[I] = \frac{N[(N^2 - 3N + 3)S_1 - NS_2 + 3S_0^2] - K[(N^2 - N)S_1 - 2NS_2 + 6
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mostrar resultados</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moran&#39;s I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">I</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected I under null: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">EI</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (random approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance I: </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">VI_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score (random approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">z_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (random approximation): </span><span class="si">{</span><span class="n">mi_MC</span><span class="o">.</span><span class="n">p_rand</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.31073809952005904
-Expected I under null: -0.004672897196261682
-P-value (normal approximation): 1.1648456706191047e-09
-Z-score (normal approximation): 6.085009274948058
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
+Expected I under null: -0.0048543689320388345
+Variance I: 0.0020071271109587557
+Z-score (random approximation): 6.929666266283919
+P-value (random approximation): 4.218345780994407e-12
 </pre></div>
 </div>
 </div>
@@ -1527,29 +1466,29 @@ Z-score (normal approximation): 6.085009274948058
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5812
+I de Moran Observado (esda): 0.6114
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5812
+I de Moran Observado (manual): 0.6114
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 8.2933
+Z-score (normalidad, manual): 8.6945
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
 Varianza Var[I] (aleatorización, manual): 0.0059
-Z-score (aleatorización, manual): 8.1034
+Z-score (aleatorización, manual): 8.4792
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" src="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" />
+<img alt="_images/31fe032780223e0c09ef9cc52c0bcc48f9fa8014a7fa6d28dd0806f32af673d9.png" src="_images/31fe032780223e0c09ef9cc52c0bcc48f9fa8014a7fa6d28dd0806f32af673d9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1590,7 +1529,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" src="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" />
+<img alt="_images/69de432aadf20f0069ca88e502d062732eaa4eda84e8745b7b63e2a615b7e367.png" src="_images/69de432aadf20f0069ca88e502d062732eaa4eda84e8745b7b63e2a615b7e367.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1684,7 +1623,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f49f2eeed00a1f837ea8882ff948690ac50a64b8af7c05087bf8d2b5f0dfdbd6.png" src="_images/f49f2eeed00a1f837ea8882ff948690ac50a64b8af7c05087bf8d2b5f0dfdbd6.png" />
+<img alt="_images/2ccc191ef5cef232e38bbf1ee33cbb3cd990697d2b68b0535b0bf3ab30369501.png" src="_images/2ccc191ef5cef232e38bbf1ee33cbb3cd990697d2b68b0535b0bf3ab30369501.png" />
 </div>
 </div>
 </section>
@@ -1710,6 +1649,35 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.12/site-packages/esda/geary.py:180: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_rand = vc_rand ** (0.5)
+/opt/anaconda3/lib/python3.12/site-packages/esda/geary.py:181: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_norm = vc_norm ** (0.5)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/esda/geary.py:126,</span> in <span class="ni">Geary.__init__</span><span class="nt">(self, y, w, transformation, permutations)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="n">yss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">yd</span> <span class="o">*</span> <span class="n">yd</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">yss</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">s0</span> <span class="o">*</span> <span class="mf">2.0</span>
+<span class="ne">--&gt; </span><span class="mi">126</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calc</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="n">de</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">-</span> <span class="mf">1.0</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="bp">self</span><span class="o">.</span><span class="n">EC</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="nn">File /opt/anaconda3/lib/python3.12/site-packages/esda/geary.py:184,</span> in <span class="ni">Geary.__calc</span><span class="nt">(self, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">def</span> <span class="nf">__calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">184</span>     <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">*</span> <span class="p">((</span><span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_focal_ix</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_neighbor_ix</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">num</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
+
+<span class="ne">IndexError</span>: index 25 is out of bounds for axis 0 with size 25
 </pre></div>
 </div>
 </div>
