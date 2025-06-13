@@ -1,16 +1,20 @@
-import json
-from pathlib import Path
+import nbformat
+import os
 
-notebooks = Path(".").rglob("*.ipynb")
+nuevo_kernel = {
+    "name": "geo_env",  # cambia aquí si deseas otro, como "python-geo-env"
+    "display_name": "Python (geo_env)",  # este es el nombre visible
+    "language": "python"
+}
 
-for nb in notebooks:
-    with open(nb, "r", encoding="utf-8") as f:
-        data = json.load(f)
+for fname in os.listdir():
+    if fname.endswith(".ipynb"):
+        with open(fname, "r", encoding="utf-8") as f:
+            nb = nbformat.read(f, as_version=4)
 
-    if "kernelspec" in data.get("metadata", {}):
-        data["metadata"]["kernelspec"]["name"] = "geo_env"
-        data["metadata"]["kernelspec"]["display_name"] = "Python (geo_env)"
+        nb.metadata["kernelspec"] = nuevo_kernel
 
-        with open(nb, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=1)
-        print(f"✔ Kernel actualizado en: {nb}")
+        with open(fname, "w", encoding="utf-8") as f:
+            nbformat.write(nb, f)
+
+print("✅ Kernels actualizados a 'geo_env'.")
