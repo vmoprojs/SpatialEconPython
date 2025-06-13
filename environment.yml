@@ -10,3 +10,16 @@ dependencies:
   - matplotlib
   - seaborn
   - jupyterlab
+  - jupyter-book
+  - myst-nb
+  - sphinx
+  - notebook
+  - ipykernel
+  - spyder
+  - spyder-kernels=2.5  # Compatible con Spyder 5.x y Python 3.12
+  - pandas
+  - numpy
+  - click
+  - pip
+  - pip:
+      - ghp-import
