@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -199,6 +199,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionLocal.html">10. Autocorrelación local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PatronesPuntos.html">11. Patrones de Puntos</a></li>
 </ul>
 
     </div>
@@ -435,7 +437,7 @@ document.write(`
 <p>A continuación se realiza un <code class="docutils literal notranslate"><span class="pre">import</span></code> genérico del módulo math:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -450,7 +452,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importar una función</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 <span class="n">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="c1"># no se requiere tener una referencia al módulo</span>
 </pre></div>
 </div>
@@ -465,7 +467,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importar multiples funciones en una llamada</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">floor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">floor</span>
 </pre></div>
 </div>
 </div>
@@ -482,7 +484,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir un alias</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="c1"># show all functions in math module</span>
 <span class="n">content</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
 </pre></div>
@@ -757,7 +759,7 @@ document.write(`
 <p>Agrupa diferentes cosas. Las tuplas son <em>inmutables</em>, no pueden cambiar luego de crearse.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -810,7 +812,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(32)
 </pre></div>
 </div>
 </div>
@@ -967,7 +969,7 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
 <p><em>numpy</em> es el módulo de python que hace eficiente el trabajo con números. Comúnmente se importa como <code class="docutils literal notranslate"><span class="pre">np</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -1018,7 +1020,7 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -1060,8 +1062,8 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.37715373, -0.08848587,  1.10214502, -0.05232438,  0.84929918,
-       -0.35148999,  1.80529777,  0.61751241,  1.07892943, -0.57564462])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.29657916, -0.30624244, -0.7901178 ,  0.02063685,  1.06712309,
+        0.99535305, -0.56835814, -0.89919871, -0.60955234,  0.21220825])
 </pre></div>
 </div>
 </div>
@@ -1654,7 +1656,7 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
 <p>que se puede usar un bloque para cuando ninguna de las anteriores <code class="docutils literal notranslate"><span class="pre">elif</span></code> es verdadera. Definamos una función simple para evaluar condicionales</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">signo_de_a</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">signo_de_a</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
         <span class="n">signo</span> <span class="o">=</span> <span class="s1">&#39;negativo&#39;</span>
     <span class="k">elif</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="mf">0.0</span><span class="p">):</span>
@@ -1790,9 +1792,9 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="c1"># Importamos los paquetes</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">incomeAndExpenses</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">incomeAndExpenses</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Encuentre la suma de valores positivos, y la suma de valores negativos.&#39;&#39;&#39;</span>
     <span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">expenses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">])</span>
@@ -1876,16 +1878,16 @@ Los índices también pueden ser negativos (ini o fin) que indica que se cuenta 
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "geo_env"
         },
         kernelOptions: {
-            name: "python3",
+            name: "geo_env",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'geo_env'</script>
 
                 </article>
               

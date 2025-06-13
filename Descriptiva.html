@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -201,6 +201,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionLocal.html">10. Autocorrelación local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PatronesPuntos.html">11. Patrones de Puntos</a></li>
 </ul>
 
     </div>
@@ -460,7 +462,7 @@ document.write(`
 <p>Creamos 100 números aleatorios con distribución normal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">85</span><span class="p">)</span> <span class="c1"># genera una semilla para los números aleatorios</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">N</span><span class="p">)</span>
@@ -507,7 +509,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.07448679690601528
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.07448679690601528)
 </pre></div>
 </div>
 </div>
@@ -527,7 +529,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(nan)
 </pre></div>
 </div>
 </div>
@@ -539,7 +541,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.07448679690601528
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.07448679690601528)
 </pre></div>
 </div>
 </div>
@@ -551,7 +553,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0336795016636526
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0336795016636526)
 </pre></div>
 </div>
 </div>
@@ -563,7 +565,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0684933121596172
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0684933121596172)
 </pre></div>
 </div>
 </div>
@@ -575,7 +577,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.15334269473584183
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.15334269473584183)
 </pre></div>
 </div>
 </div>
@@ -605,7 +607,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.15334269473584183
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.15334269473584183)
 </pre></div>
 </div>
 </div>
@@ -630,7 +632,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 </pre></div>
 </div>
 </div>
@@ -649,7 +651,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModeResult(mode=7, count=3)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModeResult(mode=np.int64(7), count=np.int64(3))
 </pre></div>
 </div>
 </div>
@@ -663,7 +665,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 3)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.int64(7), np.int64(3))
 </pre></div>
 </div>
 </div>
@@ -702,7 +704,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.142508144337905
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(4.142508144337905)
 </pre></div>
 </div>
 </div>
@@ -731,7 +733,7 @@ s  = \sqrt{\frac{1}{n-1}\sum_{i = 1}^{n}(x_i-\bar{x})^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0336795016636526
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0336795016636526)
 </pre></div>
 </div>
 </div>
@@ -746,7 +748,7 @@ s  = \sqrt{\frac{1}{n-1}\sum_{i = 1}^{n}(x_i-\bar{x})^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0684933121596172
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0684933121596172)
 </pre></div>
 </div>
 </div>
@@ -767,7 +769,7 @@ s  = \sqrt{\frac{1}{n-1}\sum_{i = 1}^{n}(x_i-\bar{x})^2}
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 
 <span class="c1">#https://docs.scipy.org/doc/scipy/reference/stats.html</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">mstats</span><span class="o">.</span><span class="n">mquantiles</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -801,7 +803,7 @@ s  = \sqrt{\frac{1}{n-1}\sum_{i = 1}^{n}(x_i-\bar{x})^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DescribeResult(nobs=100, minmax=(-1.7647540193678475, 2.3777541249700573), mean=-0.07448679690601528, variance=1.0792861738986033, skewness=0.3655289306119107, kurtosis=-0.7791352022265521)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DescribeResult(nobs=100, minmax=(np.float64(-1.7647540193678475), np.float64(2.3777541249700573)), mean=np.float64(-0.07448679690601528), variance=np.float64(1.0792861738986033), skewness=np.float64(0.3655289306119107), kurtosis=np.float64(-0.7791352022265521))
 </pre></div>
 </div>
 </div>
@@ -888,7 +890,7 @@ f(x) = \left\{\begin{array}{ll}
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -898,10 +900,10 @@ f(x) = \left\{\begin{array}{ll}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x146be08c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15e52b440&gt;]
 </pre></div>
 </div>
-<img alt="_images/bb80e0d89c1e4b57e9251c44d3f5c9e9949399ae56b53b78b46771ee073b971b.png" src="_images/bb80e0d89c1e4b57e9251c44d3f5c9e9949399ae56b53b78b46771ee073b971b.png" />
+<img alt="_images/55b12218fac18ba8d9d1486702ac24372f05e21d5c58ed40ef644efa5c3a314c.png" src="_images/55b12218fac18ba8d9d1486702ac24372f05e21d5c58ed40ef644efa5c3a314c.png" />
 </div>
 </div>
 </section>
@@ -910,7 +912,7 @@ f(x) = \left\{\begin{array}{ll}
 <p>¿Cuál es la probabilidad de que se atienda el 75% o menos de las llamadas?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Datos para la línea</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>
@@ -930,15 +932,15 @@ f(x) = \left\{\begin{array}{ll}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.patches.Polygon at 0x146ba4c80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.patches.Polygon at 0x15e5ea870&gt;]
 </pre></div>
 </div>
-<img alt="_images/d7e63147eb74c7ffd3205f88964fbba6de46cce265af9eab3781d0bedd78ae23.png" src="_images/d7e63147eb74c7ffd3205f88964fbba6de46cce265af9eab3781d0bedd78ae23.png" />
+<img alt="_images/a6e38ba70dabb11937cb5e37b956fcddb112b9a9689874e3550b3d0982452bc4.png" src="_images/a6e38ba70dabb11937cb5e37b956fcddb112b9a9689874e3550b3d0982452bc4.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">beta</span>
 
 <span class="n">result_pbeta</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="mf">.75</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
@@ -1025,7 +1027,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_continuous_frozen at 0x146ce75c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_continuous_frozen at 0x15e5765d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1042,7 +1044,7 @@ Q(x) = F^{-1}(x)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">);</span>
@@ -1050,7 +1052,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a3750714897c7016e1842cf6e932588d1bbc7d09546e50263f7fe1e7bb73e976.png" src="_images/a3750714897c7016e1842cf6e932588d1bbc7d09546e50263f7fe1e7bb73e976.png" />
+<img alt="_images/747c0b61dea9f765e8f56832337066b59c837dc67693ccb36eb9f962948b295c.png" src="_images/747c0b61dea9f765e8f56832337066b59c837dc67693ccb36eb9f962948b295c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1061,7 +1063,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cf0c8abebf8ea02db333056ded2f5c1e8f68cdb1bb1031b5eb3ce2c65a2b0330.png" src="_images/cf0c8abebf8ea02db333056ded2f5c1e8f68cdb1bb1031b5eb3ce2c65a2b0330.png" />
+<img alt="_images/3af97a4d05c82a0d70c5d97415ebe9bf0826d6f0acc1e324648040187a494a6e.png" src="_images/3af97a4d05c82a0d70c5d97415ebe9bf0826d6f0acc1e324648040187a494a6e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1073,7 +1075,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/71e6afa20557d01006571fb33d6a6c2517169a959ebcbfbf23cf1875ffafed19.png" src="_images/71e6afa20557d01006571fb33d6a6c2517169a959ebcbfbf23cf1875ffafed19.png" />
+<img alt="_images/969ca76001b5d8bcdf7c9d26a6d9954f5517a0d13994e7218de3539df2173fdf.png" src="_images/969ca76001b5d8bcdf7c9d26a6d9954f5517a0d13994e7218de3539df2173fdf.png" />
 </div>
 </div>
 <p>Distribución acumulada empírica</p>
@@ -1100,12 +1102,12 @@ Q(x) = F^{-1}(x)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y&#39;)
 </pre></div>
 </div>
-<img alt="_images/c3e16c92b3c96a6e4a2e7cddcc41d7b1f9d694f0d3e63fb5dc9d860f0974643c.png" src="_images/c3e16c92b3c96a6e4a2e7cddcc41d7b1f9d694f0d3e63fb5dc9d860f0974643c.png" />
+<img alt="_images/6193e7e606863320d06a37a8350e82d200236750acf424bd112573106fb07585.png" src="_images/6193e7e606863320d06a37a8350e82d200236750acf424bd112573106fb07585.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.distributions.empirical_distribution</span> <span class="kn">import</span> <span class="n">ECDF</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.distributions.empirical_distribution</span><span class="w"> </span><span class="kn">import</span> <span class="n">ECDF</span>
 <span class="n">ecdf</span> <span class="o">=</span> <span class="n">ECDF</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1118,7 +1120,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9440000000000001
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.9440000000000001)
 </pre></div>
 </div>
 </div>
@@ -1142,7 +1144,7 @@ Q(x) = F^{-1}(x)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/00aa12debeec26e978d33625261935fb5e8286119ea616efa19f88653c506ac8.png" src="_images/00aa12debeec26e978d33625261935fb5e8286119ea616efa19f88653c506ac8.png" />
+<img alt="_images/e77fd5bd6e2835ce761e48f5690b7f7a42f50b839c7df84ce81b1fc7cef88f9c.png" src="_images/e77fd5bd6e2835ce761e48f5690b7f7a42f50b839c7df84ce81b1fc7cef88f9c.png" />
 </div>
 </div>
 </section>
@@ -1158,16 +1160,16 @@ Q(x) = F^{-1}(x)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "geo_env"
         },
         kernelOptions: {
-            name: "python3",
+            name: "geo_env",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'geo_env'</script>
 
                 </article>
               

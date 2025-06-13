@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -199,6 +199,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionLocal.html">10. Autocorrelación local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PatronesPuntos.html">11. Patrones de Puntos</a></li>
 </ul>
 
     </div>
@@ -445,23 +447,11 @@ document.write(`
 <p><strong>Ejemplo práctico: <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> en <code class="docutils literal notranslate"><span class="pre">geopandas</span></code></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 
 <span class="c1"># Leer archivo GeoPackage</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/countries_clean.gpkg&quot;</span>
 <span class="n">gt_polygons</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Leer archivo GeoPackage</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/countries_clean.gpkg&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;geopandas&#39;
 </pre></div>
 </div>
 </div>
@@ -500,27 +490,27 @@ document.write(`
     <tr>
       <th>0</th>
       <td>Indonesia</td>
-      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+      <td>MULTIPOLYGON (((13102705.696 463877.598, 13102...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Malaysia</td>
-      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
+      <td>MULTIPOLYGON (((13102705.696 463877.598, 13101...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Chile</td>
-      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.74e+06...</td>
+      <td>MULTIPOLYGON (((-7737827.685 -1979875.5, -7737...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Bolivia</td>
-      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
+      <td>POLYGON ((-7737827.685 -1979875.5, -7737828.21...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Peru</td>
-      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.75e+06...</td>
+      <td>MULTIPOLYGON (((-7737827.685 -1979875.5, -7752...</td>
     </tr>
   </tbody>
 </table>
@@ -550,7 +540,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/375288478a456fb55bcfe21812c188317b534662a6e222ac3955a58719312012.png" src="_images/375288478a456fb55bcfe21812c188317b534662a6e222ac3955a58719312012.png" />
+<img alt="_images/b98aa970da9bd60d62925d51907a8e3e3819a6303b679b5d8ed1ae361cdf48f9.png" src="_images/b98aa970da9bd60d62925d51907a8e3e3819a6303b679b5d8ed1ae361cdf48f9.png" />
 </div>
 </div>
 <p>Modificar la <strong>representación geométrica</strong> de una muestra debe realizarse con precaución. Dado que la columna <strong><code class="docutils literal notranslate"><span class="pre">geometry</span></code></strong> tiene un comportamiento especial, existen funciones específicas para ajustar su contenido.</p>
@@ -598,32 +588,32 @@ document.write(`
     <tr>
       <th>0</th>
       <td>Indonesia</td>
-      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
-      <td>POINT (1.31e+07 -2.49e+05)</td>
+      <td>MULTIPOLYGON (((13102705.696 463877.598, 13102...</td>
+      <td>POINT (13055431.81 -248921.141)</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Malaysia</td>
-      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
-      <td>POINT (1.22e+07 4.23e+05)</td>
+      <td>MULTIPOLYGON (((13102705.696 463877.598, 13101...</td>
+      <td>POINT (12211696.493 422897.505)</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Chile</td>
-      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.74e+06...</td>
-      <td>POINT (-7.96e+06 -4.92e+06)</td>
+      <td>MULTIPOLYGON (((-7737827.685 -1979875.5, -7737...</td>
+      <td>POINT (-7959811.948 -4915458.802)</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Bolivia</td>
-      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
-      <td>POINT (-7.2e+06 -1.89e+06)</td>
+      <td>POLYGON ((-7737827.685 -1979875.5, -7737828.21...</td>
+      <td>POINT (-7200010.945 -1894653.148)</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Peru</td>
-      <td>MULTIPOLYGON (((-7.74e+06 -1.98e+06, -7.75e+06...</td>
-      <td>POINT (-8.28e+06 -1.03e+06)</td>
+      <td>MULTIPOLYGON (((-7737827.685 -1979875.5, -7752...</td>
+      <td>POINT (-8277554.831 -1032942.536)</td>
     </tr>
   </tbody>
 </table>
@@ -644,7 +634,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf9e27ba1d68310c73fdcf771c31181a9fc43b1bdd5228d858f7905a9f5db6ac.png" src="_images/bf9e27ba1d68310c73fdcf771c31181a9fc43b1bdd5228d858f7905a9f5db6ac.png" />
+<img alt="_images/d36de2d029cc154365a47b5eed24abd0ac11dd528398a5fdcea39867d0e2fde5.png" src="_images/d36de2d029cc154365a47b5eed24abd0ac11dd528398a5fdcea39867d0e2fde5.png" />
 </div>
 </div>
 <p>Una vez más, es importante notar que podemos <strong>generar un mapa directamente</strong> al aplicar el método <strong><code class="docutils literal notranslate"><span class="pre">.plot()</span></code></strong> sobre un objeto <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>. Además, es posible <strong>asignar colores temáticos</strong> a cada entidad geográfica en función de los valores de una columna específica —por ejemplo, utilizando la columna <strong><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code></strong>—. En todos los casos, se utiliza la <strong>geometría activa</strong> para la visualización.</p>
@@ -690,8 +680,8 @@ document.write(`
     <tr>
       <th>3</th>
       <td>Bolivia</td>
-      <td>POLYGON ((-7.74e+06 -1.98e+06, -7.74e+06 -1.98...</td>
-      <td>POINT (-7.2e+06 -1.89e+06)</td>
+      <td>POLYGON ((-7737827.685 -1979875.5, -7737828.21...</td>
+      <td>POINT (-7200010.945 -1894653.148)</td>
     </tr>
   </tbody>
 </table>
@@ -704,7 +694,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ffc5462ea9adadd558a6bc2946aa8317e4bdfe97340a1d1ea0748874bae21c6.png" src="_images/6ffc5462ea9adadd558a6bc2946aa8317e4bdfe97340a1d1ea0748874bae21c6.png" />
+<img alt="_images/6af2a12e735596c507e56a35fdd8b64283bd1076728e1dacdd1997a774c01633.png" src="_images/6af2a12e735596c507e56a35fdd8b64283bd1076728e1dacdd1997a774c01633.png" />
 </div>
 </div>
 <p>Mientras que Indonesia es un <code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code> que contiene muchos <code class="docutils literal notranslate"><span class="pre">Polygons</span></code> para cada isla individual del país:</p>
@@ -742,8 +732,8 @@ document.write(`
     <tr>
       <th>0</th>
       <td>Indonesia</td>
-      <td>MULTIPOLYGON (((1.31e+07 4.64e+05, 1.31e+07 4....</td>
-      <td>POINT (1.31e+07 -2.49e+05)</td>
+      <td>MULTIPOLYGON (((13102705.696 463877.598, 13102...</td>
+      <td>POINT (13055431.81 -248921.141)</td>
     </tr>
   </tbody>
 </table>
@@ -756,7 +746,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8ad20b9c3a27c9df0692f6bd0b849394e1b847bb322761e1f282d9fde88ed82a.png" src="_images/8ad20b9c3a27c9df0692f6bd0b849394e1b847bb322761e1f282d9fde88ed82a.png" />
+<img alt="_images/7ac39369c74155f253f80463fd315087457c70d915fd8e5f554fd4d0f85720cc.png" src="_images/7ac39369c74155f253f80463fd315087457c70d915fd8e5f554fd4d0f85720cc.png" />
 </div>
 </div>
 <p>En muchos casos, las <strong>tablas geográficas</strong> contienen <strong>geometrías de un único tipo</strong>; por ejemplo, todos los registros pueden ser del tipo <strong><code class="docutils literal notranslate"><span class="pre">Point</span></code></strong> o <strong><code class="docutils literal notranslate"><span class="pre">LineString</span></code></strong>. Sin embargo, <strong>no existe un requisito formal</strong> que obligue a que todas las geometrías de una tabla sean del mismo tipo.</p>
@@ -765,7 +755,7 @@ document.write(`
 <p>Un ejemplo de esto se encuentra en el conjunto de datos de <strong>Tokio</strong>, que utilizaremos más adelante. En este caso, los datos están almacenados en un archivo de texto separado por comas, es decir, un archivo <strong><code class="docutils literal notranslate"><span class="pre">.csv</span></code></strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/refs/heads/master/SpatialData/tokyo_clean.csv&quot;</span>
 <span class="n">gt_points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
 </pre></div>
@@ -882,7 +872,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 <span class="n">pt_geoms</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="n">gt_points</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span>
     <span class="n">y</span><span class="o">=</span><span class="n">gt_points</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span>
@@ -949,7 +939,7 @@ document.write(`
       <td>http://www.flickr.com/photos/10727420@N00/4545...</td>
       <td>1.555139e+07</td>
       <td>4.255856e+06</td>
-      <td>POINT (139.7 35.674)</td>
+      <td>POINT (139.7005 35.674)</td>
     </tr>
     <tr>
       <th>1</th>
@@ -960,7 +950,7 @@ document.write(`
       <td>http://www.flickr.com/photos/8819274@N04/26503...</td>
       <td>1.555874e+07</td>
       <td>4.260667e+06</td>
-      <td>POINT (139.77 35.709)</td>
+      <td>POINT (139.76652 35.7091)</td>
     </tr>
     <tr>
       <th>2</th>
@@ -971,7 +961,7 @@ document.write(`
       <td>http://www.flickr.com/photos/62068690@N00/3125...</td>
       <td>1.555864e+07</td>
       <td>4.258664e+06</td>
-      <td>POINT (139.77 35.694)</td>
+      <td>POINT (139.76563 35.69448)</td>
     </tr>
     <tr>
       <th>3</th>
@@ -982,7 +972,7 @@ document.write(`
       <td>http://www.flickr.com/photos/49503094041@N01/6...</td>
       <td>1.556073e+07</td>
       <td>4.238684e+06</td>
-      <td>POINT (139.78 35.549)</td>
+      <td>POINT (139.78439 35.54859)</td>
     </tr>
     <tr>
       <th>4</th>
@@ -993,7 +983,7 @@ document.write(`
       <td>http://www.flickr.com/photos/40443199@N00/2482...</td>
       <td>1.555899e+07</td>
       <td>4.255517e+06</td>
-      <td>POINT (139.77 35.672)</td>
+      <td>POINT (139.76875 35.67152)</td>
     </tr>
   </tbody>
 </table>
@@ -1008,9 +998,21 @@ document.write(`
 <p>Podemos leer este archivo utilizando el método <strong><code class="docutils literal notranslate"><span class="pre">open_rasterio()</span></code></strong> del paquete <strong><code class="docutils literal notranslate"><span class="pre">rioxarray</span></code></strong>, que permite cargar y manipular datos espaciales en formato ráster de forma eficiente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rioxarray</span> <span class="k">as</span> <span class="nn">rxr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rioxarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rxr</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/ghsl_sao_paulo.tif&quot;</span>
 <span class="n">pop</span> <span class="o">=</span> <span class="n">rxr</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">rioxarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rxr</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/ghsl_sao_paulo.tif&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">pop</span> <span class="o">=</span> <span class="n">rxr</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;rioxarray&#39;
 </pre></div>
 </div>
 </div>
@@ -1510,7 +1512,7 @@ Attributes:
 <p>Como ejemplo, utilizaremos la biblioteca <strong><code class="docutils literal notranslate"><span class="pre">osmnx</span></code></strong>, que permite consultar datos de <strong>OpenStreetMap</strong>. A modo ilustrativo, extraeremos el <strong>grafo de calles del parque Yoyogi</strong>, ubicado cerca del área de Tokio usada en ejemplos anteriores.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">osmnx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ox</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="s2">&quot;Yoyogi Park, Shibuya, Tokyo, Japan&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1625,16 +1627,16 @@ Attributes:
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "geo_env"
         },
         kernelOptions: {
-            name: "python3",
+            name: "geo_env",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'geo_env'</script>
 
                 </article>
               
