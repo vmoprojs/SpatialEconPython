@@ -1,0 +1,1869 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Patrones de Puntos &#8212; Econometría Espacial con Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'PatronesPuntos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="10. Autocorrelación local" href="AutocorrelacionLocal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Econometría Espacial con Python - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Econometría Espacial con Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Econometría Espacial con Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="IntroduccionPython.html">1. Python, una introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pandas.html">2. Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizacion.html">3. Gráficos básicos: matplotlib &amp; seaborn</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Descriptiva.html">4. Estadística Descriptiva</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PruebasHipotesis.html">5. Pruebas de Hipótesis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentos y Datos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Fundamentos.html">6. Fundamentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datos.html">7. Datos Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PesosEspaciales.html">8. Pesos Espaciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis Exploratorio de Datos Espaciales</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AutocorrelacionLocal.html">10. Autocorrelación local</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Patrones de Puntos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmoprojs/SpatialEconPython/issues/new?title=Issue%20on%20page%20%2FPatronesPuntos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/PatronesPuntos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Patrones de Puntos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-patrones-de-puntos">11.1. Introducción al Análisis de Patrones de Puntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuevas-formas-de-datos-y-su-aplicacion-al-estudio-urbano">11.2. Nuevas Formas de Datos y su Aplicación al Estudio Urbano</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-patrones-de-puntos">11.2.1. Visualización de Patrones de Puntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-basica-con-puntos-en-un-mapa">11.2.1.1. Representación básica con puntos en un mapa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anadiendo-contexto-a-la-visualizacion">11.3. Añadiendo Contexto a la Visualización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporando-un-mapa-base">11.3.1. Incorporando un mapa base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-incluir-un-mapa-base">11.3.2. Ventajas de incluir un mapa base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representar-la-densidad-con-hexbinning">11.4. Representar la Densidad con Hexbinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-puntos-individuales-a-superficies">11.4.1. Solución: de puntos individuales a superficies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde">11.5. Otro Tipo de Densidad: Estimación de Densidad por Kernel (KDE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-estimacion-de-densidad-por-kernel-kde">11.5.1. Alternativa: Estimación de Densidad por Kernel (KDE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.5.2. Interpretación técnica y utilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrografia-medidas-de-centralidad-espacial">11.6. Centrografía: Medidas de Centralidad Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-que-sirve-la-centrografia">11.6.1. ¿Para qué sirve la centrografía?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones">11.6.2. Aplicaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tendencia-central-medidas-de-ubicacion-en-un-patron-de-puntos">11.6.3. Tendencia Central: Medidas de Ubicación en un Patrón de Puntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion-medida-de-extension-espacial">11.6.4. Dispersión: Medida de Extensión Espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-medidas-de-cobertura-espacial-en-centrografia">11.6.5. Extensión: Medidas de Cobertura Espacial en Centrografía</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-en-analisis-espacial">11.6.6. Utilidad en análisis espacial</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aleatoriedad-y-agrupamiento-espacial">11.7. Aleatoriedad y Agrupamiento Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tecnicas-para-detectar-agrupamiento">11.7.1. Técnicas para detectar agrupamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-de-cuadrantes-quadrat-statistics">11.7.1.1. 1. Estadísticos de cuadrantes (Quadrat Statistics)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-distancia-metodos-derivados-de-ripley-1988">11.7.1.2. 2. Funciones de distancia: Métodos derivados de Ripley (1988)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-en-analisis-urbano">11.7.2. Importancia en análisis urbano</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacion-de-aleatoriedad-espacial-proceso-de-poisson">11.8. Simulación de Aleatoriedad Espacial: Proceso de Poisson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.9. Estadísticos de Cuadrantes (Quadrat Statistics)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-resultado-distribucion-no-uniforme">11.10. Interpretación del Resultado: Distribución No Uniforme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion">11.10.1. Recomendación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-alfabeto-de-funciones-de-ripley">11.10.2. El Alfabeto de Funciones de Ripley</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-g-de-ripley-vecinos-mas-cercanos">11.10.2.1. Función G de Ripley: Vecinos más cercanos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion">11.10.3. Visualización</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">11.10.4. Interpretación</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="patrones-de-puntos">
+<h1><span class="section-number">11. </span>Patrones de Puntos<a class="headerlink" href="#patrones-de-puntos" title="Link to this heading">#</a></h1>
+<p>El análisis de patrones de puntos se basa en la interpretación espacial de eventos localizados. Existen dos formas principales de entender estos puntos:</p>
+<ol class="arabic simple">
+<li><p><strong>Puntos como ubicaciones fijas:</strong> En este enfoque, los puntos representan lugares donde se registra una medición y su posición es considerada exógena. El interés se centra en el valor medido, no en la ubicación. Por ejemplo, contar autos en una intersección fija.</p></li>
+<li><p><strong>Puntos como expresiones de un proceso geográfico:</strong> Aquí, tanto la ubicación como el valor medido son importantes. Los puntos reflejan un proceso continuo subyacente. Por ejemplo, medir alas de aves en distintos lugares permite inferir patrones ecológicos relacionados con su distribución y comportamiento.</p></li>
+</ol>
+<p>Cuando los puntos representan eventos que pueden ocurrir en múltiples ubicaciones pero solo se observan en algunas, hablamos de un <strong>patrón de puntos</strong>. Este patrón puede ser:</p>
+<ul class="simple">
+<li><p><strong>No marcado:</strong> Solo se conoce la ubicación del evento (por ejemplo, dónde se tomó una foto).</p></li>
+<li><p><strong>Marcado:</strong> Se dispone de información adicional asociada al punto, como hora, tipo de dispositivo, o calidad de la imagen.</p></li>
+</ul>
+<p>Estos patrones permiten estudiar la distribución espacial de los eventos y analizar su concentración, dispersión o relación con otros factores geográficos o contextuales.</p>
+<section id="introduccion-al-analisis-de-patrones-de-puntos">
+<h2><span class="section-number">11.1. </span>Introducción al Análisis de Patrones de Puntos<a class="headerlink" href="#introduccion-al-analisis-de-patrones-de-puntos" title="Link to this heading">#</a></h2>
+<p>El análisis de patrones de puntos se enfoca en visualizar, describir, caracterizar estadísticamente y modelizar la distribución espacial de eventos puntuales. Su objetivo es comprender el proceso generador que da origen a los datos observados. Entre las preguntas centrales que busca responder este enfoque se encuentran:</p>
+<ul class="simple">
+<li><p>¿Cómo se ve el patrón espacial?</p></li>
+<li><p>¿Cómo se distribuyen los puntos en el espacio?</p></li>
+<li><p>¿Existe alguna estructura en la forma en que se disponen las ubicaciones? ¿Hay concentración (agrupamiento) o dispersión?</p></li>
+<li><p>¿Por qué los eventos ocurren en ciertos lugares y no en otros?</p></li>
+</ul>
+<p>Es fundamental diferenciar entre <strong>proceso</strong> y <strong>patrón</strong>. El <strong>proceso</strong> hace referencia al mecanismo subyacente —no observable directamente— que genera los eventos. Por otro lado, el <strong>patrón</strong> es el resultado visible de dicho proceso. Aunque el patrón es lo que efectivamente observamos, el verdadero desafío analítico es <strong>inferir el proceso</strong> a partir de él.</p>
+<p>En este capítulo, se introduce el análisis de patrones de puntos utilizando como ejemplo delitos contra personas, propiedad y seguridad pública en Quito-Ecuador en el periodo 2013-2016. Estas datos son tratados como eventos espaciales: en teoría podrían haberse dado en cualquier lugar, pero en la práctica se concentran en ciertas ubicaciones. Esta perspectiva permite estudiar cómo se agrupan o dispersan los puntos y revelar estructuras espaciales significativas.</p>
+<p>Gracias a las herramientas del análisis espacial, es posible transformar una lista de coordenadas aparentemente caótica en una representación inteligible del comportamiento colectivo, permitiendo responder preguntas clave sobre centros de interés, dispersión y concentración de actividades en el espacio urbano.</p>
+</section>
+<section id="nuevas-formas-de-datos-y-su-aplicacion-al-estudio-urbano">
+<h2><span class="section-number">11.2. </span>Nuevas Formas de Datos y su Aplicación al Estudio Urbano<a class="headerlink" href="#nuevas-formas-de-datos-y-su-aplicacion-al-estudio-urbano" title="Link to this heading">#</a></h2>
+<p>El acceso a bases de datos georreferenciadas sobre delitos representa una valiosa oportunidad para analizar el comportamiento espacial de la criminalidad en las ciudades. Preguntas como: ¿dónde ocurren los delitos con mayor frecuencia?, ¿en qué momentos del año o del día son más comunes?, ¿por qué ciertos sectores concentran más incidentes que otros?, dejan de ser cuestiones abstractas cuando se dispone de registros espaciales detallados.</p>
+<p>En este capítulo se analiza un conjunto de datos sobre delitos contra las personas, la propiedad y la seguridad pública ocurridos en <strong>Quito, Ecuador, durante el periodo 2013–2016</strong>. Estos datos permiten estudiar los patrones espaciales de la delincuencia y comprender cómo varía su distribución a lo largo del territorio urbano.</p>
+<p>A partir de este ejemplo, se presentan herramientas y enfoques que permiten explorar y describir la distribución espacial de eventos delictivos, facilitando la identificación de zonas críticas, la evaluación de dispersiones o agrupamientos, y la formulación de hipótesis sobre los procesos sociales y urbanos que subyacen a estos patrones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/refs/heads/master/SpatialData/REQ_BASE_2013_2016.csv&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">datos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="p">)</span>
+
+
+<span class="n">datos</span><span class="o">.</span><span class="n">TIPO_DELITO</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">tipos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CONTRA LA PROPIEDAD&quot;</span><span class="p">,</span><span class="s2">&quot;CONTRA LAS PERSONAS&quot;</span><span class="p">,</span><span class="s2">&quot;CONTRA LA SEGURIDAD PUBLICA&quot;</span><span class="p">]</span>
+
+<span class="n">datos_clean</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="n">datos</span><span class="p">[</span><span class="s2">&quot;TIPO_DELITO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tipos</span><span class="p">)]</span>
+<span class="n">datos_clean</span><span class="o">.</span><span class="n">TIPO_DELITO</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+
+<span class="n">datos_clean</span> <span class="o">=</span> <span class="n">datos_clean</span><span class="p">[</span><span class="n">datos_clean</span><span class="p">[</span><span class="s2">&quot;cod_canton&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;1701&quot;</span><span class="p">]</span>
+
+<span class="n">datos_clean</span> <span class="o">=</span> <span class="n">datos_clean</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;EJE_X&#39;</span><span class="p">:</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;EJE_Y&#39;</span><span class="p">:</span> <span class="s1">&#39;latitude&#39;</span>
+    <span class="p">})</span>
+
+<span class="c1"># Bounding box de Quito (aproximada)</span>
+<span class="n">bbox_quito</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">78.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">78.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">datos_clean</span> <span class="o">=</span> <span class="n">datos_clean</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">datos_clean</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">bbox_quito</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> 
+    <span class="p">(</span><span class="n">datos_clean</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">bbox_quito</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&amp;</span> 
+    <span class="p">(</span><span class="n">datos_clean</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">bbox_quito</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> 
+    <span class="p">(</span><span class="n">datos_clean</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">bbox_quito</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> 
+    
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_13450/2426537885.py:5: DtypeWarning: Columns (20) have mixed types. Specify dtype option on import or set low_memory=False.
+  datos = pd.read_csv(uu,sep = &quot;;&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="nn">lps</span> <span class="c1"># pysal se dividio en submodulos especializados (libpysal, esda, mapclassify)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextily</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ctx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">DBSCAN</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pointpats</span><span class="w"> </span><span class="kn">import</span> <span class="n">centrography</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">datos_clean</span>
+<span class="k">del</span> <span class="n">datos</span><span class="p">,</span> <span class="n">datos_clean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La tabla utilizada contiene información detallada sobre una muestra de 10878 registros de delitos. Cada fila corresponde a un delito individual y presenta las siguientes variables:</p>
+<ul class="simple">
+<li><p><strong>TIPO_DELITO</strong>: Identificador de delito ‘CONTRA LAS PERSONAS’, ‘CONTRA LA PROPIEDAD’, ‘CONTRA LA SEGURIDAD PUBLICA’.</p></li>
+<li><p><strong>SUBTIPO_DE_DELITO</strong>: Categoría más específica del delito.</p></li>
+<li><p><strong>FECHA_DETENCION</strong>: Fecha y hora exacta en la que fue la detención.</p></li>
+<li><p><strong>Coordenadas proyectadas (x,y)</strong>: Versión transformada de la ubicación en el sistema de referencia Pseudo-Mercator, útil para análisis espaciales precisos.</p></li>
+<li><p><strong>Coordenadas (longitude,latitude)</strong>: Versión transformada de la ubicación en el sistema de referencia Pseudo-Mercator, útil para análisis espaciales precisos.</p></li>
+</ul>
+<p>Esta estructura de datos permite analizar tanto el comportamiento espacial como temporal de la actividad registrada, facilitando la identificación de patrones en el uso del espacio urbano.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="c1"># 1. Crear geometría en EPSG:4326</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span> <span class="n">db</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])],</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. Transformar a EPSG:3857</span>
+<span class="n">gdf_3857</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="c1"># 3. Extraer coordenadas transformadas y agregarlas al DataFrame original</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_3857</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span>
+<span class="n">db</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_3857</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 10878 entries, 75 to 73244
+Data columns (total 23 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   TIPO_DELITO              10878 non-null  object 
+ 1   SUBTIPO_DE_DELITO        10878 non-null  object 
+ 2   FECHA_DETENCION          10878 non-null  object 
+ 3   NUMERO_DE_DETENCIONES    9783 non-null   float64
+ 4   ZONA                     10878 non-null  object 
+ 5   PROVINCIA                10878 non-null  object 
+ 6   cod_provincia            10878 non-null  object 
+ 7   CANTON                   10878 non-null  object 
+ 8   cod_canton               10878 non-null  object 
+ 9   PARROQUIA                10878 non-null  object 
+ 10  cod_parroquia            10878 non-null  object 
+ 11  DISTRITO                 10878 non-null  object 
+ 12  cod_distrito             10878 non-null  object 
+ 13  CIRCUITO                 10878 non-null  object 
+ 14  cod_circuito             10878 non-null  object 
+ 15  NOM_SUBCIRC              10878 non-null  object 
+ 16  SUB_CIRCUIT              10878 non-null  object 
+ 17  DIRECCION_DETENCION      10876 non-null  object 
+ 18  latitude                 10878 non-null  float64
+ 19  longitude                10878 non-null  float64
+ 20  EDAD                     10818 non-null  object 
+ 21  SEXO                     10878 non-null  object 
+ 22  CALIFICACION_FLAGRANCIA  9844 non-null   object 
+dtypes: float64(3), object(20)
+memory usage: 2.0+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<section id="visualizacion-de-patrones-de-puntos">
+<h3><span class="section-number">11.2.1. </span>Visualización de Patrones de Puntos<a class="headerlink" href="#visualizacion-de-patrones-de-puntos" title="Link to this heading">#</a></h3>
+<p>Existen múltiples formas de visualizar patrones espaciales de puntos, y la elección del método depende del mensaje que se desea comunicar.</p>
+<section id="representacion-basica-con-puntos-en-un-mapa">
+<h4><span class="section-number">11.2.1.1. </span>Representación básica con puntos en un mapa<a class="headerlink" href="#representacion-basica-con-puntos-en-un-mapa" title="Link to this heading">#</a></h4>
+<p>El primer paso para explorar la dimensión espacial de un conjunto de datos es representarlo gráficamente. Una forma sencilla de hacerlo es mediante un <strong>diagrama de dispersión (scatterplot)</strong>, que permite observar cómo se distribuyen los eventos en el espacio.</p>
+<p>Este tipo de visualización consiste en graficar las coordenadas geográficas (por ejemplo, latitud y longitud) como puntos individuales sobre un mapa o plano de referencia. A pesar de su simplicidad, esta técnica es útil para identificar concentraciones, vacíos, o patrones iniciales de agrupamiento.</p>
+<p>En la siguiente Figura, se muestra un ejemplo de este tipo de visualización utilizando la biblioteca <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, una herramienta común en el análisis de datos geoespaciales con Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5e5949ce02bd3104352b14e9521d996a3208d489d960d7c53a2a81de3e874320.png" src="_images/5e5949ce02bd3104352b14e9521d996a3208d489d960d7c53a2a81de3e874320.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="anadiendo-contexto-a-la-visualizacion">
+<h2><span class="section-number">11.3. </span>Añadiendo Contexto a la Visualización<a class="headerlink" href="#anadiendo-contexto-a-la-visualizacion" title="Link to this heading">#</a></h2>
+<p>El diagrama de dispersión inicial ofrece un buen punto de partida: permite observar que los puntos tienden a concentrarse hacia el centro del área cubierta, siguiendo un patrón no aleatorio. Además, dentro de ese patrón general, se pueden distinguir agrupamientos más localizados.</p>
+<p>No obstante, esta visualización presenta dos limitaciones importantes:</p>
+<ol class="arabic simple">
+<li><p><strong>Falta de contexto geográfico</strong>: no hay referencia visual del entorno urbano en el que ocurren los eventos.</p></li>
+<li><p><strong>Alta densidad de puntos</strong>: en zonas con mucha concentración, los puntos se superponen tanto que resulta difícil distinguir detalles o interpretar patrones con claridad.</p></li>
+</ol>
+<section id="incorporando-un-mapa-base">
+<h3><span class="section-number">11.3.1. </span>Incorporando un mapa base<a class="headerlink" href="#incorporando-un-mapa-base" title="Link to this heading">#</a></h3>
+<p>Para superar estas limitaciones, el primer paso es proporcionar <strong>contexto geográfico</strong>. Una manera sencilla y eficaz de hacerlo es <strong>superponer un mapa base</strong> (tile map) proveniente de servicios en línea. Esto permite visualizar los puntos dentro del entorno urbano real, facilitando la interpretación espacial.</p>
+<p>En este caso, se utiliza la biblioteca <code class="docutils literal notranslate"><span class="pre">contextily</span></code>, que permite integrar mapas base fácilmente en gráficos de datos geográficos. Combinándola con <code class="docutils literal notranslate"><span class="pre">jointplot</span></code>, se genera la siguiente Figura, en la que los puntos se ubican sobre un fondo de mapa urbano, mejorando significativamente la legibilidad y comprensión de los patrones espaciales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate scatter plot</span>
+<span class="n">joint_axes</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">PositronNoLabels</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fe473f3d9709a2242eca9e8c4bb6d59b83c9477128015ca96512518cca981665.png" src="_images/fe473f3d9709a2242eca9e8c4bb6d59b83c9477128015ca96512518cca981665.png" />
+</div>
+</div>
+<p>Una mejora clave en la visualización consiste en <strong>extraer el eje donde se grafican los puntos</strong> y superponer allí un <strong>mapa base</strong>. Para ello, es importante especificar correctamente el sistema de referencia de coordenadas (CRS), en este caso <strong>WGS84</strong>, ya que se están utilizando coordenadas de latitud y longitud.</p>
+</section>
+<section id="ventajas-de-incluir-un-mapa-base">
+<h3><span class="section-number">11.3.2. </span>Ventajas de incluir un mapa base<a class="headerlink" href="#ventajas-de-incluir-un-mapa-base" title="Link to this heading">#</a></h3>
+<p>Comparado con el gráfico anterior, la adición de un fondo cartográfico mejora notablemente la interpretación espacial del patrón. En el caso original con datos de <strong>delitos</strong>, el uso del mapa permite:</p>
+<ul class="simple">
+<li><p>Entender mejor la relación entre la distribución de puntos y el entorno urbano.</p></li>
+<li><p>Visualizar con mayor precisión las zonas de alta concentración.</p></li>
+<li><p>Identificar calles, plazas o barrios específicos que coinciden con los agrupamientos observados.</p></li>
+</ul>
+<p>Este principio se puede aplicar igualmente a otros tipos de datos espaciales, como la localización de delitos en una ciudad, permitiendo analizar cómo se relacionan los eventos con el espacio construido y los elementos del entorno.</p>
+</section>
+</section>
+<section id="representar-la-densidad-con-hexbinning">
+<h2><span class="section-number">11.4. </span>Representar la Densidad con Hexbinning<a class="headerlink" href="#representar-la-densidad-con-hexbinning" title="Link to this heading">#</a></h2>
+<p>Un desafío común al visualizar grandes volúmenes de puntos geográficos es el <strong>exceso de superposición</strong>. Cuando muchos eventos se concentran en una misma área, como sucede con los delitos en ciertos sectores de la ciudad, el uso de puntos opacos uno sobre otro dificulta discernir patrones. Por ejemplo, en la siguiente Figura (al centro-izquierda del mapa), se observa una aparente gran concentración de delitos, pero no es posible determinar visualmente si toda esa zona tiene la misma intensidad o si existen focos específicos con mayor actividad.</p>
+<section id="solucion-de-puntos-individuales-a-superficies">
+<h3><span class="section-number">11.4.1. </span>Solución: de puntos individuales a superficies<a class="headerlink" href="#solucion-de-puntos-individuales-a-superficies" title="Link to this heading">#</a></h3>
+<p>Una manera efectiva de abordar este problema consiste en transformar la visualización de puntos en una <strong>superficie de densidad</strong>, lo que equivale a construir un <strong>histograma espacial bidimensional</strong>. El procedimiento consiste en:</p>
+<ul class="simple">
+<li><p>Dividir el espacio en una cuadrícula regular (de celdas cuadradas o hexagonales).</p></li>
+<li><p>Contar cuántos eventos caen dentro de cada celda.</p></li>
+<li><p>Representar los conteos mediante colores, al estilo de un mapa coroplético.</p></li>
+</ul>
+<p>Este enfoque es intuitivo, fácil de interpretar y elimina algunas distorsiones asociadas a otros métodos, especialmente cuando se usa una malla <strong>hexagonal</strong> (hexbin), la cual ofrece ventajas como una conectividad más uniforme entre celdas y menor distorsión visual que las cuadrículas cuadradas.</p>
+<p>La creación de este tipo de visualización es sencilla en Python utilizando la función <code class="docutils literal notranslate"><span class="pre">hexbin</span></code>, y permite identificar rápidamente zonas de alta y baja concentración de eventos dentro del área de estudio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="c1"># Generate and add hexbin with 50 hexagons in each</span>
+<span class="c1"># dimension, no borderlines, half transparency,</span>
+<span class="c1"># and the reverse viridis colormap</span>
+<span class="n">hb</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span>
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
+    <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis_r&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Add basemap</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="c1">#crs=&quot;EPSG:4326&quot;,</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">PositronNoLabels</span>
+<span class="p">)</span>
+<span class="c1"># Add colorbar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb</span><span class="p">)</span>
+<span class="c1"># Remove axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d95b5baafb024718405c36b97190ede7b417e0f8df9d87a60ea352b9baca4175.png" src="_images/d95b5baafb024718405c36b97190ede7b417e0f8df9d87a60ea352b9baca4175.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde">
+<h2><span class="section-number">11.5. </span>Otro Tipo de Densidad: Estimación de Densidad por Kernel (KDE)<a class="headerlink" href="#otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde" title="Link to this heading">#</a></h2>
+<p>El uso de cuadrículas regulares, como vimos con el <strong>hexbinning</strong>, es el equivalente espacial de un histograma: el usuario define el número de “celdas” o “recipientes” y se contabilizan cuántos eventos caen dentro de cada uno. Este método es rápido, eficiente y puede ofrecer mucho detalle si se usan suficientes divisiones. Sin embargo, implica una <strong>discretización</strong> de un fenómeno que, en esencia, es <strong>continuo</strong>, lo cual puede introducir distorsiones —como las derivadas del problema de la unidad espacial modificable (MAUP).</p>
+<section id="alternativa-estimacion-de-densidad-por-kernel-kde">
+<h3><span class="section-number">11.5.1. </span>Alternativa: Estimación de Densidad por Kernel (KDE)<a class="headerlink" href="#alternativa-estimacion-de-densidad-por-kernel-kde" title="Link to this heading">#</a></h3>
+<p>Una alternativa más flexible es la <strong>estimación de densidad por kernel (KDE)</strong>, que permite aproximar empíricamente una función de densidad de probabilidad. En lugar de usar celdas rígidas, la KDE coloca una malla de puntos sobre el espacio de análisis y aplica una <strong>función kernel</strong> sobre cada uno. Esta función asigna pesos a los eventos cercanos según la distancia: los eventos más cercanos contribuyen más, y los lejanos, menos.</p>
+<p>El resultado final es una <strong>superficie continua</strong> que representa la densidad estimada de eventos en cada punto del espacio.</p>
+<ul class="simple">
+<li><p>La función kernel más común es la <strong>gaussiana</strong>, que aplica una distribución normal como peso.</p></li>
+<li><p>Esta superficie puede interpretarse como una <strong>probabilidad suavizada de ocurrencia</strong> de eventos, evaluable en cualquier lugar del área de estudio.</p></li>
+</ul>
+<p>En Python, crear un mapa de densidad con kernel gaussiano es bastante sencillo utilizando la función <code class="docutils literal notranslate"><span class="pre">seaborn.kdeplot()</span></code>, como se muestra en la siguiente Figura. Esta técnica es especialmente útil para identificar <strong>zonas calientes</strong> (hotspots) y visualizar la concentración de fenómenos de forma continua y precisa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up figure and axis</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="c1"># Generate and add KDE with a shading of 50 gradients</span>
+<span class="c1"># coloured contours, 75% of transparency,</span>
+<span class="c1"># and the reverse viridis colormap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">,</span>
+    <span class="n">n_levels</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis_r&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Add basemap</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1">#crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="c1"># Remove axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1b334b0d0274a923728f1cc799f43559afa73738a904577e7877af3c343b7555.png" src="_images/1b334b0d0274a923728f1cc799f43559afa73738a904577e7877af3c343b7555.png" />
+</div>
+</div>
+<p>El resultado de aplicar una estimación de densidad por kernel (<strong>KDE</strong>) es una superficie <strong>más suave y continua</strong>, que conserva la estructura general observada en el hexbin, pero con <strong>transiciones más graduales</strong> entre áreas de distinta intensidad. Esta suavidad permite una <strong>mejor generalización</strong> de la distribución teórica de los eventos en el espacio.</p>
+</section>
+<section id="interpretacion-tecnica-y-utilidad">
+<h3><span class="section-number">11.5.2. </span>Interpretación técnica y utilidad<a class="headerlink" href="#interpretacion-tecnica-y-utilidad" title="Link to this heading">#</a></h3>
+<p>Desde el punto de vista técnico, la naturaleza continua de la función KDE implica que la <strong>probabilidad exacta de un evento en un punto específico es cero</strong>, ya que se trata de una función de densidad, no de una probabilidad puntual. Sin embargo, al considerar un área alrededor de ese punto, sí se puede calcular la <strong>probabilidad de que un evento ocurra dentro de esa región</strong>.</p>
+<p>Esto hace que la KDE sea especialmente útil en dos sentidos:</p>
+<ul class="simple">
+<li><p>Permite <strong>escapar de las limitaciones impuestas por las cuadrículas regulares</strong> (cuadradas o hexagonales).</p></li>
+<li><p>Ofrece una representación <strong>más realista de fenómenos espaciales continuos</strong>, como la concentración de delitos, la movilidad urbana o la propagación de enfermedades.</p></li>
+</ul>
+<p>En resumen, la KDE entrega una visualización más fluida y analíticamente potente para fenómenos que no se distribuyen de forma estrictamente discreta, facilitando la identificación de patrones espaciales relevantes.</p>
+</section>
+</section>
+<section id="centrografia-medidas-de-centralidad-espacial">
+<h2><span class="section-number">11.6. </span>Centrografía: Medidas de Centralidad Espacial<a class="headerlink" href="#centrografia-medidas-de-centralidad-espacial" title="Link to this heading">#</a></h2>
+<p>La <strong>centrografía</strong> es el estudio de la <strong>centralidad</strong> en un patrón de puntos. Este concepto se refiere tanto a la <strong>ubicación general</strong> como a la <strong>dispersión</strong> del conjunto de eventos en el espacio. Así como el hexbin puede interpretarse como un “histograma espacial”, la centrografía cumple una función similar a las medidas de <strong>tendencia central</strong> (como la media o la mediana) en estadística tradicional.</p>
+<section id="para-que-sirve-la-centrografia">
+<h3><span class="section-number">11.6.1. </span>¿Para qué sirve la centrografía?<a class="headerlink" href="#para-que-sirve-la-centrografia" title="Link to this heading">#</a></h3>
+<p>Las medidas centrográficas permiten <strong>resumir distribuciones espaciales</strong> de manera compacta, por ejemplo, mediante un único punto que representa el “centro” de la concentración de eventos.</p>
+<p>Estas medidas son útiles para:</p>
+<ul class="simple">
+<li><p>Determinar <strong>dónde</strong> se localiza el centro espacial de un fenómeno.</p></li>
+<li><p>Evaluar <strong>cuán dispersos</strong> están los eventos en torno a ese centro.</p></li>
+<li><p>Identificar si la <strong>forma del patrón</strong> es regular, alargada o irregular.</p></li>
+</ul>
+</section>
+<section id="aplicaciones">
+<h3><span class="section-number">11.6.2. </span>Aplicaciones<a class="headerlink" href="#aplicaciones" title="Link to this heading">#</a></h3>
+<p>En el contexto del análisis urbano, como el estudio de delitos en una ciudad, la centrografía permite:</p>
+<ul class="simple">
+<li><p>Detectar <strong>cambios en la localización de hotspots</strong> delictivos a lo largo del tiempo.</p></li>
+<li><p>Comparar la concentración espacial de distintos tipos de delitos.</p></li>
+<li><p>Estudiar la evolución del <strong>desplazamiento del centro de gravedad</strong> del crimen en relación con variables urbanas, sociales o económicas.</p></li>
+</ul>
+<p>En resumen, la centrografía ofrece herramientas cuantitativas para describir y comparar la estructura espacial de fenómenos distribuidos en forma de puntos.</p>
+</section>
+<section id="tendencia-central-medidas-de-ubicacion-en-un-patron-de-puntos">
+<h3><span class="section-number">11.6.3. </span>Tendencia Central: Medidas de Ubicación en un Patrón de Puntos<a class="headerlink" href="#tendencia-central-medidas-de-ubicacion-en-un-patron-de-puntos" title="Link to this heading">#</a></h3>
+<p>Una de las medidas más comunes de tendencia central en un patrón de puntos es el <strong>centro de masa</strong>. Este punto representa el centro geométrico del patrón, y su cálculo depende de si el patrón está <strong>marcado</strong> (con atributos adicionales) o <strong>no marcado</strong>.</p>
+<p><strong>Centro de masa y media espacial</strong></p>
+<ul class="simple">
+<li><p>En <strong>patrones no marcados</strong>, el centro de masa equivale al <strong>centro medio</strong>, es decir, el promedio de las coordenadas de todos los puntos. Es una medida sencilla que resume la ubicación general del fenómeno.</p></li>
+<li><p>En <strong>patrones marcados</strong>, el centro de masa toma en cuenta los valores de la marca (por ejemplo, intensidad, severidad, frecuencia), lo que desplaza el centro hacia las observaciones con valores más altos.</p></li>
+</ul>
+<p><strong>Centro mediano</strong></p>
+<p>Otra medida relevante es el <strong>centro mediano</strong>, que es análogo a la mediana tradicional. Se define como el punto que divide el conjunto de eventos de manera que:</p>
+<ul class="simple">
+<li><p>La mitad se ubica <strong>a la derecha</strong> y la otra mitad <strong>a la izquierda</strong>, y</p></li>
+<li><p>La mitad se ubica <strong>por encima</strong> y la otra <strong>por debajo</strong>.</p></li>
+</ul>
+<p>Este tipo de centro es más <strong>robusto ante valores extremos</strong> o distribuciones irregulares.</p>
+<p><strong>Aplicación práctica</strong></p>
+<p>En Python, se puede analizar el <strong>centro medio</strong> de un patrón de puntos utilizando el paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code>, que facilita el cálculo de diversas medidas centrográficas.</p>
+<p>Estas métricas permiten entender no solo <strong>dónde</strong> se concentran los eventos (como delitos, por ejemplo), sino también cómo se <strong>desplaza o cambia el centro</strong> del fenómeno a lo largo del tiempo o entre distintas categorías.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_center</span> <span class="o">=</span> <span class="n">centrography</span><span class="o">.</span><span class="n">mean_center</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]])</span>
+<span class="n">med_center</span> <span class="o">=</span> <span class="n">centrography</span><span class="o">.</span><span class="n">euclidean_median</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La forma más clara de interpretar el <strong>centro medio</strong> de un patrón de puntos es <strong>visualizarlo en conjunto con los propios eventos</strong>, superponiéndolos en un mismo gráfico. Esta representación permite observar de forma intuitiva cómo se relaciona la ubicación promedio con la distribución general del fenómeno.</p>
+<p><strong>Ejemplo gráfico</strong></p>
+<p>En la siguienten Figura se ilustra esta idea mostrando:</p>
+<ul class="simple">
+<li><p>El <strong>patrón de puntos</strong> completo (por ejemplo, ubicaciones de delitos).</p></li>
+<li><p>El <strong>centro medio</strong>, marcado como un punto distinto (generalmente en color y forma contrastantes).</p></li>
+</ul>
+<p>Esta comparación gráfica facilita:</p>
+<ul class="simple">
+<li><p>Evaluar si el centro refleja bien la distribución del conjunto.</p></li>
+<li><p>Detectar si existen <strong>asimetrías</strong> o <strong>agrupamientos</strong> que alejan el centro de lo que visualmente parecería más representativo.</p></li>
+<li><p>Comparar centros medios de distintos períodos o categorías de eventos.</p></li>
+</ul>
+<p>Este tipo de análisis visual es particularmente útil en contextos urbanos, como el estudio de delitos en Quito, donde el desplazamiento del centro puede estar asociado a dinámicas socioespaciales relevantes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate scatterplot</span>
+<span class="n">joint_axes</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">9</span>
+<span class="p">)</span>
+<span class="c1"># Add mean point and marginal lines</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">mean_center</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean Center&quot;</span>
+<span class="p">)</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_marg_x</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">mean_center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_marg_y</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mean_center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="c1"># Add median point and marginal lines</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">med_center</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Median Center&quot;</span>
+<span class="p">)</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_marg_x</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">med_center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">)</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_marg_y</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">med_center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">)</span>
+<span class="c1"># Legend</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># Add basemap</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span>
+    <span class="c1"># crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="c1"># Clean axes</span>
+<span class="n">joint_axes</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="c1"># Display</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6120e915fa6a339bcdf54c9653e9f1d20fe6c1fce56660196fa0de5d55d93f3f.png" src="_images/6120e915fa6a339bcdf54c9653e9f1d20fe6c1fce56660196fa0de5d55d93f3f.png" />
+</div>
+</div>
+<p>La <strong>diferencia entre el centro medio y el centro mediano</strong> refleja la <strong>asimetría</strong> en la distribución espacial del patrón de puntos. En el ejemplo original de los delitos enm Quito:</p>
+<ul class="simple">
+<li><p>Existen varios <strong>grupos dispersos de delitos</strong> en el oeste y sur de la ciudad.</p></li>
+<li><p>En contraste, el norte y este están <strong>densamente poblados de puntos</strong>, pero su extensión es más limitada.</p></li>
+</ul>
+<p>Esta <strong>distribución asimétrica</strong> genera un sesgo:</p>
+<ul class="simple">
+<li><p>El <strong>centro medio</strong> se ve <strong>arrastrado hacia las zonas más alejadas</strong> (oeste y sur), debido a la influencia de los puntos extremos.</p></li>
+<li><p>El <strong>centro mediano</strong>, al depender de la posición relativa de los puntos y no de sus valores extremos, <strong>permanece más cercano al núcleo denso</strong> de la distribución.</p></li>
+</ul>
+<p>Este fenómeno es relevante porque:</p>
+<ul class="simple">
+<li><p>El centro medio puede <strong>sobreestimar el desplazamiento espacial</strong> cuando hay valores atípicos o zonas remotas con poca densidad.</p></li>
+<li><p>El centro mediano ofrece una <strong>medida más robusta y resistente al sesgo</strong> generado por puntos extremos.</p></li>
+</ul>
+<p>En el análisis de fenómenos como la criminalidad urbana, esta diferencia puede ayudar a distinguir entre una <strong>distribución efectivamente dispersa</strong> y una que contiene <strong>agrupamientos puntuales atípicos</strong>, con implicaciones importantes para la toma de decisiones en políticas públicas o despliegue de recursos.</p>
+</section>
+<section id="dispersion-medida-de-extension-espacial">
+<h3><span class="section-number">11.6.4. </span>Dispersión: Medida de Extensión Espacial<a class="headerlink" href="#dispersion-medida-de-extension-espacial" title="Link to this heading">#</a></h3>
+<p>Una medida clásica de <strong>dispersión espacial</strong> en centrografía es la <strong>distancia estándar</strong>. Esta métrica cuantifica el <strong>promedio de las distancias de todos los puntos respecto al centro del patrón</strong>, típicamente el <strong>centro de masa</strong> (centro medio).</p>
+<p><strong>¿Qué nos dice la distancia estándar?</strong></p>
+<ul class="simple">
+<li><p>Permite estimar <strong>qué tan dispersos</strong> están los eventos alrededor del centro.</p></li>
+<li><p>Cuanto mayor sea esta distancia, <strong>más extendido</strong> es el patrón de puntos en el espacio.</p></li>
+<li><p>Una distancia baja sugiere una <strong>alta concentración</strong> o agrupamiento en torno al centro.</p></li>
+</ul>
+<p><strong>Cálculo en Python</strong></p>
+<p>La distancia estándar se puede calcular fácilmente con el paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code>, utilizando la función <code class="docutils literal notranslate"><span class="pre">std_distance()</span></code>, que automatiza el proceso:</p>
+<ol class="arabic simple">
+<li><p>Se calcula el centro medio del conjunto de puntos.</p></li>
+<li><p>Se obtiene la distancia de cada punto a ese centro.</p></li>
+<li><p>Se promedia dicha distancia para obtener la medida global de dispersión.</p></li>
+</ol>
+<p><strong>Aplicación</strong></p>
+<p>En contextos como el análisis delictivo en ciudades:</p>
+<ul class="simple">
+<li><p>Esta métrica ayuda a entender <strong>la extensión geográfica del fenómeno</strong>.</p></li>
+<li><p>Comparar la distancia estándar entre distintos años o tipos de delito permite observar <strong>cambios en la distribución espacial</strong>.</p></li>
+<li><p>También puede apoyar decisiones sobre <strong>cobertura territorial</strong> de intervenciones o vigilancia.</p></li>
+</ul>
+<p>En resumen, la distancia estándar resume en un solo valor cuán amplio o concentrado es un patrón de eventos en el territorio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centrography</span><span class="o">.</span><span class="n">std_distance</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9160.760525257383)
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el caso de nuestro ejemplo, una distancia estándar de aproximadamente <strong>8.800 metros</strong> indica que, en promedio, los delitos se dieron a esa distancia del <strong>centro medio</strong>. Este valor proporciona una idea general del <strong>radio de dispersión</strong> de los eventos en el espacio.</p>
+<p><strong>Elipse de desviación estándar</strong></p>
+<p>Una herramienta visual complementaria y muy útil en centrografía es la <strong>elipse de desviación estándar</strong> (o <strong>elipse estándar</strong>). Esta elipse se construye a partir de los datos espaciales y refleja:</p>
+<ul class="simple">
+<li><p>El <strong>centro</strong> del patrón.</p></li>
+<li><p>La <strong>dispersión</strong> en dos direcciones principales (ejes mayor y menor).</p></li>
+<li><p>La <strong>orientación</strong> espacial predominante del conjunto de puntos.</p></li>
+</ul>
+<p><strong>¿Qué muestra esta elipse?</strong></p>
+<ul class="simple">
+<li><p>La <strong>forma</strong> de la elipse indica si el patrón es más <strong>alargado</strong> o <strong>circular</strong>.</p></li>
+<li><p>Su <strong>inclinación</strong> sugiere la dirección principal en la que se distribuyen los eventos.</p></li>
+<li><p>Su <strong>tamaño</strong> se relaciona con la magnitud de la dispersión en cada eje.</p></li>
+</ul>
+<p><strong>Cálculo en Python</strong></p>
+<p>Para crear esta elipse en Python, se puede usar la función <code class="docutils literal notranslate"><span class="pre">ellipse()</span></code> del paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code>, que calcula automáticamente:</p>
+<ul class="simple">
+<li><p>La longitud de los ejes mayor y menor.</p></li>
+<li><p>El ángulo de rotación de la elipse respecto al eje horizontal.</p></li>
+<li><p>La ubicación del centro.</p></li>
+</ul>
+<p>Esta visualización es especialmente valiosa en análisis urbanos (como el estudio de delitos), ya que permite observar <strong>tendencias espaciales predominantes</strong>, <strong>zonas de elongación</strong> del fenómeno y <strong>posibles desplazamientos</strong> en su orientación a lo largo del tiempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="n">centrography</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">db</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ellipse</span>
+
+<span class="c1"># Set up figure and axis</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="c1"># Plot photograph points</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">mean_center</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean Center&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">med_center</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Median Center&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Construct the standard ellipse using matplotlib</span>
+<span class="n">ellipse</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span>
+    <span class="n">xy</span><span class="o">=</span><span class="n">mean_center</span><span class="p">,</span>  <span class="c1"># center the ellipse on our mean center</span>
+    <span class="n">width</span><span class="o">=</span><span class="n">major</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># centrography.ellipse only gives half the axis</span>
+    <span class="n">height</span><span class="o">=</span><span class="n">minor</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">angle</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span>
+        <span class="n">rotation</span>
+    <span class="p">),</span>  <span class="c1"># Angles for this are in degrees, not radians</span>
+    <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Std. Ellipse&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># Display</span>
+<span class="c1"># Add basemap</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="c1"># crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ea49a8de952d36ad341167d6cfb430f0395923dd030676def8a3b5fd23c3feb5.png" src="_images/ea49a8de952d36ad341167d6cfb430f0395923dd030676def8a3b5fd23c3feb5.png" />
+</div>
+</div>
+</section>
+<section id="extension-medidas-de-cobertura-espacial-en-centrografia">
+<h3><span class="section-number">11.6.5. </span>Extensión: Medidas de Cobertura Espacial en Centrografía<a class="headerlink" href="#extension-medidas-de-cobertura-espacial-en-centrografia" title="Link to this heading">#</a></h3>
+<p>La última categoría de medidas centrográficas que exploraremos se enfoca en la <strong>extensión</strong> del patrón de puntos, es decir, en <strong>cuánto espacio ocupa</strong> el conjunto de eventos. Para ello, se utilizan distintas formas geométricas que permiten representar, con distintos grados de ajuste, la <strong>envolvente</strong> del patrón.</p>
+<p><strong>Cuatro formas comunes para medir la extensión</strong></p>
+<p>Estas formas varían en <strong>qué tan estrictamente delimitan</strong> el patrón de puntos:</p>
+<ol class="arabic simple">
+<li><p><strong>Rectángulo delimitador (Bounding Box):</strong> la envolvente más simple, alineada a los ejes.</p></li>
+<li><p><strong>Convex Hull (Casco convexo):</strong> la forma convexa más ajustada que contiene todos los puntos.</p></li>
+<li><p><strong>Minimum Bounding Circle:</strong> el círculo más pequeño que encierra todos los eventos.</p></li>
+<li><p><strong>Alpha Shape (o envolvente cóncava):</strong> una forma más flexible que puede capturar huecos o concavidades del patrón.</p></li>
+</ol>
+<p><em>¿Qué nos dicen estas medidas?</em></p>
+<ul class="simple">
+<li><p>Ayudan a <strong>cuantificar el tamaño geográfico</strong> del patrón.</p></li>
+<li><p>Permiten comparar la <strong>forma y dispersión</strong> entre distintos conjuntos de puntos.</p></li>
+<li><p>Son útiles para estudios de <strong>concentración, dispersión o expansión territorial</strong> de fenómenos.</p></li>
+</ul>
+<p><strong>Ejemplo práctico</strong></p>
+<p>Para ilustrar las diferencias entre estas medidas, se puede aplicar el análisis a un subconjunto específico de datos. Por ejemplo, datos de delitos (cod_parroquia: 170184), se puede visualizar cómo varían estas formas al aplicarse al mismo grupo de puntos.</p>
+<p>Este tipo de visualización comparativa revela:</p>
+<ul class="simple">
+<li><p>Qué tan <strong>compacto o disperso</strong> es un subconjunto del fenómeno.</p></li>
+<li><p>Qué medidas de extensión son más representativas según la morfología del patrón.</p></li>
+<li><p>Qué forma es más adecuada dependiendo del objetivo analítico (resumen, modelación, delimitación, etc.).</p></li>
+</ul>
+<p>En el análisis de datos urbanos como delitos, estas medidas permiten evaluar la <strong>expansión geográfica de la criminalidad</strong> en ciertos grupos poblacionales, zonas o períodos específicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;cod_parroquia == &quot;170184&quot;&#39;</span><span class="p">)</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">user</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La primera medida de extensión que aplicaremos es el <strong>casco convexo</strong>, una forma geométrica que <strong>encierra todos los puntos del patrón</strong> mediante la <strong>envolvente convexa más ajustada posible</strong>.</p>
+<p><strong>¿Qué es una forma convexa?</strong></p>
+<p>Una forma convexa se caracteriza por:</p>
+<ul class="simple">
+<li><p>No tener <strong>reentrancias ni huecos</strong>.</p></li>
+<li><p>Todos sus ángulos internos son <strong>menores a 180 grados</strong>.</p></li>
+<li><p>Una línea recta trazada entre dos puntos dentro de la figura <strong>permanece completamente dentro de ella</strong>.</p></li>
+</ul>
+<p>En términos simples, el casco convexo <strong>no se repliega sobre sí mismo</strong>; es la envolvente exterior más simple que <strong>abarca todos los eventos</strong> del patrón.</p>
+<p><strong>Aplicación práctica</strong></p>
+<p>En nuestro ejemplo con los datos de la parroguia (cod_parroquia: 170184), el casco convexo nos da una <strong>primera aproximación al área total</strong> en la que se distribuyen los delitosconvex_hull_vertices = centrography.hull(coordinates).</p>
+<ul class="simple">
+<li><p>Este método se calcula fácilmente con la función <code class="docutils literal notranslate"><span class="pre">centrography.hull</span></code>.</p></li>
+<li><p>El resultado es una <strong>forma poligonal cerrada</strong>, que resume la <strong>extensión total del patrón de puntos</strong> de manera sencilla, aunque puede sobreestimar el área real si hay huecos internos.</p></li>
+</ul>
+</section>
+<section id="utilidad-en-analisis-espacial">
+<h3><span class="section-number">11.6.6. </span>Utilidad en análisis espacial<a class="headerlink" href="#utilidad-en-analisis-espacial" title="Link to this heading">#</a></h3>
+<p>En contextos como el estudio de delitos:</p>
+<ul class="simple">
+<li><p>El casco convexo permite identificar el <strong>área mínima de intervención o monitoreo</strong>.</p></li>
+<li><p>Sirve como base para comparar la <strong>extensión geográfica entre diferentes grupos o momentos</strong>.</p></li>
+<li><p>Es útil para detectar si un fenómeno se está <strong>expandiendo o contrayendo</strong> en el espacio urbano.</p></li>
+</ul>
+<p>En resumen, el casco convexo es una herramienta básica pero poderosa para resumir la distribución espacial de un conjunto de eventos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convex_hull_vertices</span> <span class="o">=</span> <span class="n">centrography</span><span class="o">.</span><span class="n">hull</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La segunda medida que exploramos es el <strong>alpha shape</strong>, una versión más ajustada y flexible del <strong>casco convexo</strong>.</p>
+<p><strong>¿Qué es un alpha shape?</strong></p>
+<p>Una forma intuitiva de entender el alpha shape es pensar en el siguiente experimento:</p>
+<ul class="simple">
+<li><p>Imagina que <strong>“ruedas una bola alrededor del conjunto de puntos”</strong>.</p></li>
+<li><p>Si la bola es <strong>muy grande</strong> (radio infinito), solo rozará los bordes exteriores, formando el <strong>casco convexo</strong>.</p></li>
+<li><p>Si la bola es <strong>más pequeña</strong>, podrá <strong>entrar en los huecos y depresiones</strong> del patrón, generando una <strong>envolvente más ajustada</strong>.</p></li>
+</ul>
+<p>A medida que se reduce el valor de <strong>alpha</strong> (el parámetro que regula el tamaño de la bola), la forma se adapta más a los contornos reales del patrón de puntos. Pero si alpha es demasiado pequeño, la bola <strong>puede colarse entre puntos dispersos</strong>, creando <strong>múltiples formas desconectadas</strong>.</p>
+<p><strong>Ventajas del alpha shape</strong></p>
+<ul class="simple">
+<li><p>Captura mejor la <strong>forma real</strong> del patrón, incluyendo huecos, valles y concavidades.</p></li>
+<li><p>Permite distinguir entre patrones <strong>densos y conectados</strong> y otros más <strong>dispersos y fracturados</strong>.</p></li>
+<li><p>Es especialmente útil cuando el patrón tiene <strong>estructura interna compleja</strong>.</p></li>
+</ul>
+<p><strong>Aplicación en Python</strong></p>
+<p>La librería <code class="docutils literal notranslate"><span class="pre">libpysal</span></code> proporciona la función <code class="docutils literal notranslate"><span class="pre">alpha_shape_auto</span></code>, que encuentra automáticamente el <strong>menor alpha</strong> posible que aún genere <strong>una sola forma envolvente</strong>. Esto evita el ensayo y error de tener que ajustar el parámetro manualmente.</p>
+<p><strong>Relevancia en análisis espacial</strong></p>
+<p>Para fenómenos como los delitos en ciudades:</p>
+<ul class="simple">
+<li><p>El alpha shape revela <strong>áreas de verdadera concentración delictiva</strong>, ignorando espacios vacíos dentro del casco convexo.</p></li>
+<li><p>Permite una delimitación más precisa de <strong>zonas de intervención prioritaria</strong>.</p></li>
+<li><p>Puede detectar la existencia de <strong>subgrupos</strong> de eventos o <strong>patrones de dispersión</strong> desconectados.</p></li>
+</ul>
+<p>En resumen, el alpha shape es una herramienta poderosa para representar la extensión espacial <strong>real</strong> de un fenómeno, más allá de la envoltura convexa básica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha_shape</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">circs</span> <span class="o">=</span> <span class="n">lps</span><span class="o">.</span><span class="n">cg</span><span class="o">.</span><span class="n">alpha_shape_auto</span><span class="p">(</span>
+    <span class="n">coordinates</span><span class="p">,</span> <span class="n">return_circles</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># Plot a green alpha shape</span>
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">alpha_shape</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+    <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tightest single alpha shape&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Include the points for our prolific user in black</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">coordinates</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Source Points&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># plot the circles forming the boundary of the alpha shape</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">circle</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circs</span><span class="p">):</span>
+    <span class="c1"># only label the first circle of its kind</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Bounding Circles&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+                <span class="n">circle</span><span class="p">,</span>
+                <span class="n">radius</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+                <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        
+<span class="c1"># add a blue convex hull</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+        <span class="n">convex_hull_vertices</span><span class="p">,</span>
+        <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+        <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Convex Hull&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Add basemap</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="c1"># crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_13450/1932403822.py:1: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
+  alpha_shape, alpha, circs = lps.cg.alpha_shape_auto(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_13450/1932403822.py:60: UserWarning: Legend does not support handles for PatchCollection instances.
+See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#implementing-a-custom-legend-handler
+  plt.legend();
+</pre></div>
+</div>
+<img alt="_images/2786cc567beec297978ddebc7947965dac00028967243667e283f6cac52ceb9e.png" src="_images/2786cc567beec297978ddebc7947965dac00028967243667e283f6cac52ceb9e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="aleatoriedad-y-agrupamiento-espacial">
+<h2><span class="section-number">11.7. </span>Aleatoriedad y Agrupamiento Espacial<a class="headerlink" href="#aleatoriedad-y-agrupamiento-espacial" title="Link to this heading">#</a></h2>
+<p>Más allá de la centralidad y la extensión, un objetivo fundamental en el análisis espacial de patrones de puntos es entender <strong>qué tan uniformemente distribuidos</strong> están los eventos en el espacio. En otras palabras, se busca identificar si los puntos tienden a <strong>agruparse</strong> (clustering) o si están <strong>dispersos</strong> de forma homogénea.</p>
+<p><strong>¿Qué se analiza?</strong></p>
+<p>Este tipo de preguntas se refiere a la <strong>intensidad</strong> o <strong>dispersión global</strong> del patrón. En términos de estadística espacial, se relaciona con conceptos como la <strong>autocorrelación espacial global</strong>, que mide si los eventos tienden a ocurrir cerca unos de otros.</p>
+<p><strong>Objetivo</strong></p>
+<p>El propósito es responder preguntas como:</p>
+<ul class="simple">
+<li><p>¿Hay evidencia de <strong>agrupamientos significativos</strong>?</p></li>
+<li><p>¿Es el patrón compatible con una distribución aleatoria?</p></li>
+<li><p>¿Dónde se concentran más intensamente los eventos?</p></li>
+</ul>
+<section id="tecnicas-para-detectar-agrupamiento">
+<h3><span class="section-number">11.7.1. </span>Técnicas para detectar agrupamiento<a class="headerlink" href="#tecnicas-para-detectar-agrupamiento" title="Link to this heading">#</a></h3>
+<section id="estadisticos-de-cuadrantes-quadrat-statistics">
+<h4><span class="section-number">11.7.1.1. </span>1. Estadísticos de cuadrantes (Quadrat Statistics)<a class="headerlink" href="#estadisticos-de-cuadrantes-quadrat-statistics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Dividen el área de estudio en <strong>pequeñas celdas regulares</strong> (cuadrantes).</p></li>
+<li><p>Se cuenta cuántos puntos caen en cada celda.</p></li>
+<li><p>Luego se analiza la <strong>uniformidad</strong> de los conteos entre celdas.</p></li>
+<li><p>Son útiles para detectar <strong>variaciones espaciales globales</strong>.</p></li>
+</ul>
+</section>
+<section id="funciones-de-distancia-metodos-derivados-de-ripley-1988">
+<h4><span class="section-number">11.7.1.2. </span>2. Funciones de distancia: Métodos derivados de Ripley (1988)<a class="headerlink" href="#funciones-de-distancia-metodos-derivados-de-ripley-1988" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Se basan en medir las <strong>distancias entre puntos</strong> dentro del patrón.</p></li>
+<li><p>Evalúan si los puntos están <strong>más cerca o más lejos entre sí</strong> que lo que se esperaría bajo una distribución aleatoria.</p></li>
+<li><p>Métodos como la <strong>función K de Ripley</strong> permiten analizar el <strong>agrupamiento a distintas escalas espaciales</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="importancia-en-analisis-urbano">
+<h3><span class="section-number">11.7.2. </span>Importancia en análisis urbano<a class="headerlink" href="#importancia-en-analisis-urbano" title="Link to this heading">#</a></h3>
+<p>Estas técnicas son fundamentales para estudiar fenómenos como la delincuencia, donde identificar <strong>zonas calientes</strong>, <strong>concentraciones no aleatorias</strong> o <strong>puntos críticos de intervención</strong> puede guiar acciones de política pública más efectivas.</p>
+<p>En resumen, los análisis de aleatoriedad y agrupamiento ayudan a distinguir entre una distribución espacial <strong>estructurada</strong> (por ejemplo, vinculada a factores urbanos o sociales) y una distribución <strong>aleatoria</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pointpats</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">distance_statistics</span><span class="p">,</span>
+    <span class="n">QStatistic</span><span class="p">,</span>
+    <span class="n">random</span><span class="p">,</span>
+    <span class="n">PointPattern</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="simulacion-de-aleatoriedad-espacial-proceso-de-poisson">
+<h2><span class="section-number">11.8. </span>Simulación de Aleatoriedad Espacial: Proceso de Poisson<a class="headerlink" href="#simulacion-de-aleatoriedad-espacial-proceso-de-poisson" title="Link to this heading">#</a></h2>
+<p>Para entender mejor cómo se comporta un patrón de puntos real, es útil compararlo con un patrón generado a partir de un proceso completamente aleatorio. En análisis espacial, este tipo de referencia se conoce como un <strong>proceso de puntos de Poisson</strong>.</p>
+<p><strong>¿Qué es un Proceso de Poisson?</strong></p>
+<ul class="simple">
+<li><p>Es un modelo que genera <strong>eventos distribuidos aleatoriamente en el espacio</strong>.</p></li>
+<li><p>No presenta <strong>agrupamiento ni repulsión</strong> entre puntos.</p></li>
+<li><p>Sirve como <strong>patrón de referencia nulo</strong>, contra el cual se puede contrastar la distribución observada.</p></li>
+</ul>
+<p>En otras palabras, bajo un proceso de Poisson:</p>
+<ul class="simple">
+<li><p>La <strong>ubicación</strong> y el <strong>número de puntos</strong> se generan al azar.</p></li>
+<li><p>No hay estructura, tendencia, ni dependencia espacial.</p></li>
+</ul>
+<p><strong>¿Para qué sirve esta comparación?</strong></p>
+<ul class="simple">
+<li><p>Permite evaluar si un patrón observado <strong>difiere significativamente de lo esperado por azar</strong>.</p></li>
+<li><p>Ayuda a identificar si existe evidencia de <strong>agrupamiento espacial</strong>, <strong>dispersión estructurada</strong> o <strong>zonas de concentración</strong>.</p></li>
+<li><p>Es fundamental para validar técnicas como la función K de Ripley o el análisis de cuadrantes.</p></li>
+</ul>
+<p><strong>Simulación en Python</strong></p>
+<p>El paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code> proporciona un módulo específico (<code class="docutils literal notranslate"><span class="pre">pointpats.random</span></code>) para simular patrones de Poisson a partir de un conjunto de datos.</p>
+<ul class="simple">
+<li><p>Se puede definir un área de estudio y generar un número aleatorio de puntos dentro de esa región.</p></li>
+<li><p>Este patrón simulado sirve como <strong>base de comparación estadística</strong> frente al patrón real.</p></li>
+</ul>
+<p><strong>Aplicación práctica</strong></p>
+<p>En el análisis de delitos urbanos, por ejemplo, generar un patrón aleatorio con la misma cantidad de eventos permite determinar si los delitos <strong>ocurren al azar</strong> o si existen <strong>zonas donde la concentración es estadísticamente significativa</strong>.</p>
+<p>En resumen, el proceso de Poisson actúa como <strong>modelo nulo espacial</strong> y es una herramienta clave en la detección de agrupamientos reales frente a distribuciones aleatorias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_pattern</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">coordinates</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Delitos observados&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">random_pattern</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random&quot;</span><span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span>
+    <span class="c1"># crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a6da12ea63350f7cee460761bf7ff6bdc3d4843f3047f3f9c87231092eaf31a8.png" src="_images/a6da12ea63350f7cee460761bf7ff6bdc3d4843f3047f3f9c87231092eaf31a8.png" />
+</div>
+</div>
+<p>Como se observa en la simulación básica, el generador de patrones aleatorios —por defecto— utiliza el <strong>rectángulo envolvente (bounding box)</strong> del patrón original como área de referencia. Sin embargo, este enfoque puede ser poco representativo si el patrón observado está concentrado en un espacio <strong>más restringido o con una forma compleja</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_pattern_ashape</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span>
+    <span class="n">alpha_shape</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">random_pattern_ashape</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random&quot;</span>
+<span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> 
+    <span class="c1"># crs=&quot;EPSG:4326&quot;, </span>
+    <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e0cdbd96b810f4bd443047a769cd35865accab4ac1857bdc2d13a4ea61438c66.png" src="_images/e0cdbd96b810f4bd443047a769cd35865accab4ac1857bdc2d13a4ea61438c66.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h2><span class="section-number">11.9. </span>Estadísticos de Cuadrantes (Quadrat Statistics)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Los <strong>estadísticos de cuadrantes</strong> son una técnica clásica para analizar la <strong>distribución espacial</strong> de eventos, mediante el conteo de puntos que caen dentro de <strong>celdas regulares</strong> (cuadrantes) que dividen el área de estudio.</p>
+<p><strong>¿Cómo funciona?</strong></p>
+<ul class="simple">
+<li><p>El área total se divide en una <strong>cuadrícula de celdas iguales</strong>.</p></li>
+<li><p>Se cuenta cuántos eventos caen dentro de cada celda.</p></li>
+<li><p>Se analiza si los conteos están <strong>uniformemente distribuidos</strong> o si se concentran en unas pocas celdas.</p></li>
+</ul>
+<p><strong>Objetivo</strong></p>
+<p>La idea principal es detectar si los puntos están:</p>
+<ul class="simple">
+<li><p><strong>Distribuidos homogéneamente</strong> (como en un proceso aleatorio), o</p></li>
+<li><p><strong>Agrupados en ciertas zonas</strong> (indicando clustering o patrones no aleatorios).</p></li>
+</ul>
+<p><strong>Fundamento estadístico</strong></p>
+<ul class="simple">
+<li><p>Este enfoque se basa en una <strong>prueba estadística</strong> similar a la utilizada en el análisis de <strong>tablas de contingencia</strong> (por ejemplo, la prueba de <strong>Chi-cuadrado</strong>).</p></li>
+<li><p>Compara la distribución observada de conteos con una distribución esperada bajo el supuesto de aleatoriedad espacial.</p></li>
+</ul>
+<p><strong>Visualización en Python</strong></p>
+<p>El paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code> permite aplicar este análisis y visualizarlo mediante el método <code class="docutils literal notranslate"><span class="pre">QStatistic.plot()</span></code>, que genera una figura (como la Figura 11) mostrando:</p>
+<ul class="simple">
+<li><p>La <strong>cuadrícula utilizada</strong> para el conteo.</p></li>
+<li><p>El <strong>patrón de puntos subyacente</strong>.</p></li>
+</ul>
+<p>Esto permite observar visualmente <strong>qué celdas concentran más eventos</strong> y si existe una distribución equitativa.</p>
+<p><strong>Aplicaciones</strong></p>
+<p>En análisis urbanos (como delitos en Quito), este método es útil para:</p>
+<ul class="simple">
+<li><p>Detectar <strong>zonas críticas</strong> donde se acumulan eventos.</p></li>
+<li><p>Evaluar si los incidentes están <strong>aleatoriamente distribuidos</strong> o siguen un patrón estructurado.</p></li>
+<li><p>Justificar la <strong>intervención focalizada</strong> en ciertos sectores del espacio urbano.</p></li>
+</ul>
+<p>En resumen, los cuadrantes ofrecen una forma intuitiva y estadísticamente sólida de explorar <strong>la regularidad o agrupamiento</strong> en patrones espaciales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat</span> <span class="o">=</span> <span class="n">QStatistic</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="n">qstat</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
+</pre></div>
+</div>
+<img alt="_images/9af3f5a2555bbc5f156fe488328f90bfce6b570801565622bef36855f8ffbbc6.png" src="_images/9af3f5a2555bbc5f156fe488328f90bfce6b570801565622bef36855f8ffbbc6.png" />
+</div>
+</div>
+</section>
+<section id="interpretacion-del-resultado-distribucion-no-uniforme">
+<h2><span class="section-number">11.10. </span>Interpretación del Resultado: Distribución No Uniforme<a class="headerlink" href="#interpretacion-del-resultado-distribucion-no-uniforme" title="Link to this heading">#</a></h2>
+<p>En este ejemplo, al aplicar una <strong>cuadrícula de 3x3</strong> sobre el patrón de puntos (como fotografías geolocalizadas en Flickr), observamos que:</p>
+<ul class="simple">
+<li><p>Las <strong>celdas periféricas</strong> tienen muchas menos observaciones.</p></li>
+</ul>
+<p><strong>¿Qué implica esto?</strong></p>
+<p>Esta distribución indica un <strong>agrupamiento evidente</strong> en el centro del área analizada, lo que <strong>rompe con la suposición de uniformidad</strong> que se esperaría bajo un proceso espacial completamente aleatorio.</p>
+<p><strong>Prueba de chi-cuadrado</strong></p>
+<p>La prueba de <strong>Chi-cuadrado</strong> compara los conteos observados en cada celda con los conteos esperados bajo el supuesto de una distribución uniforme. En este caso:</p>
+<ul class="simple">
+<li><p>La gran diferencia entre el conteo de la celda central y las demás genera un <strong>valor del estadístico chi-cuadrado alto</strong>.</p></li>
+<li><p>Esto se traduce en un <strong>p-valor muy bajo</strong>, lo que sugiere que la <strong>distribución observada no es aleatoria</strong>.</p></li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<p>El resultado es <strong>estadísticamente significativo</strong>, lo que implica que hay evidencia suficiente para rechazar la hipótesis nula de uniformidad espacial. En otras palabras, <strong>los puntos están agrupados</strong> en lugar de distribuidos de forma homogénea.</p>
+<p>Este tipo de análisis es clave para identificar <strong>zonas calientes</strong> o <strong>puntos críticos</strong> en estudios espaciales, como los relacionados con delitos, servicios urbanos o comportamiento humano en el territorio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat</span><span class="o">.</span><span class="n">chi2_pvalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.8598066523883764e-84)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat_null</span> <span class="o">=</span> <span class="n">QStatistic</span><span class="p">(</span><span class="n">random_pattern</span><span class="p">)</span>
+<span class="n">qstat_null</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
+</pre></div>
+</div>
+<img alt="_images/27911aa25204cdb0a02fc4ab1a00be664504793a80f554d2f9d45e763a03849b.png" src="_images/27911aa25204cdb0a02fc4ab1a00be664504793a80f554d2f9d45e763a03849b.png" />
+</div>
+</div>
+<p>En contraste con el patrón observado (agrupado), cuando generamos un patrón a partir de un <strong>proceso de puntos completamente aleatorio</strong> (como el <strong>proceso de Poisson</strong>), la distribución de eventos en la cuadrícula es <strong>mucho más uniforme</strong>.</p>
+<p>Tiene un pvalor alto y no significativo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat_null</span><span class="o">.</span><span class="n">chi2_pvalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.43434277998812587)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si bien los <strong>estadísticos de cuadrantes</strong> son una herramienta poderosa para detectar agrupamiento espacial, es importante tener en cuenta sus <strong>limitaciones</strong> y el contexto de aplicación.</p>
+<p><strong>Problema: Superposición regular sobre un patrón irregular</strong></p>
+<p>El método se basa en superponer una <strong>cuadrícula regular</strong> (rejilla) sobre el área de estudio, pero:</p>
+<ul class="simple">
+<li><p>Si el <strong>patrón de puntos tiene una forma irregular</strong> (como un <strong>alpha shape</strong>),</p></li>
+<li><p>Y la cuadrícula no se ajusta a esa forma (es decir, incluye áreas vacías o exteriores),</p></li>
+</ul>
+<p>Entonces, los resultados pueden ser <strong>engañosos</strong>.</p>
+<p><strong>Posible consecuencia</strong></p>
+<ul class="simple">
+<li><p>Un <strong>patrón aleatorio e irregular</strong> (simulado dentro de un alpha shape) puede ser clasificado erróneamente como <strong>agrupado</strong> si las celdas caen en áreas sin puntos simplemente por la forma del polígono.</p></li>
+<li><p>Esto puede generar un <strong>estadístico chi-cuadrado elevado</strong> y un <strong>p-valor bajo</strong>, sugiriendo falsamente agrupamiento.</p></li>
+</ul>
+<p><strong>Ejemplo en la Figura</strong></p>
+<p>En la <strong>Figura</strong>, se observa un patrón aleatorio generado dentro de un <strong>alpha shape</strong>. Al aplicar una cuadrícula regular por fuera, algunas celdas incluyen <strong>zonas sin puntos</strong> simplemente porque caen fuera del área válida, distorsionando así los conteos y el análisis.</p>
+<section id="recomendacion">
+<h3><span class="section-number">11.10.1. </span>Recomendación<a class="headerlink" href="#recomendacion" title="Link to this heading">#</a></h3>
+<p>Para evitar interpretaciones erróneas:</p>
+<ul class="simple">
+<li><p>Asegúrate de que la cuadrícula se <strong>ajuste adecuadamente al área real del patrón</strong>.</p></li>
+<li><p>Considera usar métodos alternativos o complementarios (como <strong>Ripley’s K</strong>, KDE, o alpha shapes) para validar los resultados.</p></li>
+<li><p>Siempre <strong>verifica visualmente</strong> el ajuste entre la cuadrícula y el área de estudio.</p></li>
+</ul>
+<p>En resumen, el análisis por cuadrantes es útil, pero debe aplicarse con cuidado cuando se trabaja con <strong>patrones espaciales de extensión irregular</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat_null_ashape</span> <span class="o">=</span> <span class="n">QStatistic</span><span class="p">(</span><span class="n">random_pattern_ashape</span><span class="p">)</span>
+<span class="n">qstat_null_ashape</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
+</pre></div>
+</div>
+<img alt="_images/84ed6004a2747193f2a563a52c244dbc60528b1997fd08ddf1fd86cad463d724.png" src="_images/84ed6004a2747193f2a563a52c244dbc60528b1997fd08ddf1fd86cad463d724.png" />
+</div>
+</div>
+<p>La prueba de cuadrantes determina que esto no es aleatorio desde el punto de vista estadístico, mientras que nuestro proceso de simulación garantizó que, dentro del área de estudio definida, el patrón corresponde a un proceso completamente aleatorio en el espacio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qstat_null_ashape</span><span class="o">.</span><span class="n">chi2_pvalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.0131423525768128e-18)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Limitaciones de los Estadísticos de Cuadrantes</strong></p>
+<p>Los <strong>estadísticos de cuadrantes</strong> pueden ser problemáticos cuando se aplican a áreas de estudio <strong>irregulares</strong>, ya que podrían <strong>identificar falsamente agrupamiento</strong>.</p>
+<p>Una forma más adecuada de interpretarlos es considerarlos como una prueba que evalúa tanto la <strong>uniformidad de los puntos</strong> como la <strong>forma del área analizada</strong>, dentro de una <strong>rejilla regular</strong>.</p>
+<p><strong>Conclusión</strong></p>
+<ul class="simple">
+<li><p>En algunos casos, esta técnica es <strong>útil y válida</strong>.</p></li>
+<li><p>En otros, debe aplicarse <strong>con precaución</strong> para evitar conclusiones erróneas sobre la existencia de agrupamiento.</p></li>
+</ul>
+</section>
+<section id="el-alfabeto-de-funciones-de-ripley">
+<h3><span class="section-number">11.10.2. </span>El Alfabeto de Funciones de Ripley<a class="headerlink" href="#el-alfabeto-de-funciones-de-ripley" title="Link to this heading">#</a></h3>
+<p>El segundo conjunto de estadísticas espaciales se enfoca en analizar dos aspectos clave en los patrones de puntos:</p>
+<ol class="arabic simple">
+<li><p>Las <strong>distancias al vecino más cercano</strong>, y</p></li>
+<li><p>Los <strong>“vacíos”</strong> o huecos dentro del patrón.</p></li>
+</ol>
+<p>Estas técnicas derivan del trabajo seminal de <strong>Ripley (1991)</strong>, cuyo objetivo fue <strong>caracterizar el grado de agrupamiento o co-ubicación</strong> en patrones espaciales, evaluando cómo cambian estas relaciones al <strong>aumentar progresivamente la distancia de análisis</strong> desde cada punto.</p>
+<section id="funcion-g-de-ripley-vecinos-mas-cercanos">
+<h4><span class="section-number">11.10.2.1. </span>Función G de Ripley: Vecinos más cercanos<a class="headerlink" href="#funcion-g-de-ripley-vecinos-mas-cercanos" title="Link to this heading">#</a></h4>
+<p>La primera función de este conjunto es la <strong>función G</strong>, que resume la distribución de las <strong>distancias al vecino más cercano</strong> para cada punto del patrón.</p>
+<ul class="simple">
+<li><p>Para cada punto, se calcula la distancia al <strong>punto más próximo</strong>.</p></li>
+<li><p>Luego, se construye una función acumulativa que indica la <strong>proporción de puntos que tienen un vecino a una distancia menor o igual a un valor dado</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="visualizacion">
+<h3><span class="section-number">11.10.3. </span>Visualización<a class="headerlink" href="#visualizacion" title="Link to this heading">#</a></h3>
+<p>En la **Figura **, esta lógica se representa de la siguiente manera:</p>
+<ul class="simple">
+<li><p>Los <strong>puntos rojos</strong> son una sección del patrón original.</p></li>
+<li><p>Las <strong>flechas negras</strong> muestran la conexión de cada punto con su <strong>vecino más cercano</strong>.</p></li>
+<li><p>Algunos puntos son <strong>vecinos mutuos</strong> (hay flechas en ambas direcciones), mientras que otros no.</p></li>
+</ul>
+</section>
+<section id="interpretacion">
+<h3><span class="section-number">11.10.4. </span>Interpretación<a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Si el patrón es <strong>agrupado</strong>, muchos puntos tendrán vecinos muy cercanos → la función G crecerá rápidamente.</p></li>
+<li><p>Si es <strong>disperso o uniforme</strong>, las distancias serán mayores → la función crecerá más lentamente.</p></li>
+<li><p>Comparar la función G observada con la esperada bajo un <strong>patrón aleatorio</strong> (como un proceso de Poisson) permite detectar <strong>agrupamiento o repulsión</strong>.</p></li>
+</ul>
+<p>Estas herramientas permiten un análisis más detallado de la <strong>estructura interna</strong> del patrón, más allá de la simple ubicación o conteo de eventos.</p>
+<p>Para hacer esto con el paquete <code class="docutils literal notranslate"><span class="pre">pointpats</span></code>, podemos usar la función <code class="docutils literal notranslate"><span class="pre">g_test</span></code>, la cual calcula tanto la función G para los datos empíricos como las réplicas hipotéticas bajo un proceso completamente aleatorio en el espacio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_test</span> <span class="o">=</span> <span class="n">distance_statistics</span><span class="o">.</span><span class="n">g_test</span><span class="p">(</span>
+    <span class="n">coordinates</span><span class="p">,</span> <span class="n">support</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">keep_simulations</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cuando analizamos la distribución de <strong>distancias al vecino más cercano</strong>, podemos clasificar el patrón de puntos de la siguiente manera:</p>
+<ul class="simple">
+<li><p>Un patrón <strong>agrupado (clustered)</strong> tendrá <strong>más puntos cercanos entre sí</strong> → la función <strong>G</strong> crecerá <strong>rápidamente</strong>.</p></li>
+<li><p>Un patrón <strong>disperso</strong> tendrá puntos <strong>más alejados</strong> → la función G crecerá <strong>lentamente</strong>.</p></li>
+<li><p>Un patrón <strong>aleatorio</strong> tendrá un crecimiento <strong>intermedio</strong>, sin tendencia clara.</p></li>
+</ul>
+<p><strong>Visualización (Figura)</strong></p>
+<p>En la <strong>Figura</strong>, se muestra cómo se interpreta gráficamente esta función:</p>
+<ul class="simple">
+<li><p>El eje horizontal representa la <strong>distancia al punto más cercano</strong> (d).</p></li>
+<li><p>El eje vertical representa la <strong>proporción acumulada</strong> de puntos que tienen un vecino a una distancia ≤ d.</p></li>
+<li><p>La <strong>línea roja</strong> muestra la <strong>función G empírica</strong> calculada a partir de los datos observados (por ejemplo, fotos de un usuario de Flickr).</p></li>
+<li><p>Las <strong>líneas azules</strong> representan múltiples simulaciones bajo un <strong>patrón completamente aleatorio</strong> (Poisson):</p>
+<ul>
+<li><p>La línea azul clara es el <strong>promedio</strong> de esas simulaciones.</p></li>
+<li><p>La banda azul oscura/negra indica el <strong>intervalo de confianza del 95%</strong> de los resultados simulados.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Conclusión del ejemplo</strong></p>
+<p>En este caso, la <strong>línea roja asciende más rápidamente</strong> que las simulaciones aleatorias, lo que indica que:</p>
+<ul class="simple">
+<li><p>Los puntos observados (fotografías) están <strong>más cerca entre sí</strong> de lo que cabría esperar por azar.</p></li>
+<li><p>Por lo tanto, el patrón es <strong>agrupado</strong>, mostrando <strong>evidencia clara de clustering</strong>.</p></li>
+</ul>
+<p>Este análisis es útil para confirmar, con base estadística, que un patrón espacial tiene <strong>estructura interna no aleatoria</strong>, lo que puede tener implicaciones importantes para estudios de comportamiento humano, movilidad, o fenómenos urbanos como el crimen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="c1"># plot all the simulations with very fine lines</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">g_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">g_test</span><span class="o">.</span><span class="n">simulations</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="p">)</span>
+<span class="c1"># and show the average of simulations</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">g_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">g_test</span><span class="o">.</span><span class="n">simulations</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;median simulation&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># and the observed pattern&#39;s G function</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">g_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">g_test</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># clean up labels and axes</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f nearest neighbor</span><span class="se">\n</span><span class="s2">distances shorter&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">g_test</span><span class="o">.</span><span class="n">support</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Ripley&#39;s $G(d)$ function&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the pattern itself on the next frame</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># and clean up labels and axes there, too</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pattern&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/182e0c5056bc73b1c2a986a5145c4295691a498dc7780d983011b7bbf790f0a7.png" src="_images/182e0c5056bc73b1c2a986a5145c4295691a498dc7780d983011b7bbf790f0a7.png" />
+</div>
+</div>
+<p>La segunda función que introducimos es la <strong>función F de Ripley</strong>, también conocida como la <strong>función del espacio vacío</strong>. A diferencia de la función G, que mide las distancias <strong>entre puntos del patrón</strong>, la función F analiza la distancia <strong>desde ubicaciones aleatorias en el espacio hacia el punto más cercano del patrón</strong>.</p>
+<p><strong>¿Qué mide la función F?</strong></p>
+<ul class="simple">
+<li><p>Evalúa la <strong>proximidad de puntos del patrón a ubicaciones aleatorias en el espacio</strong>.</p></li>
+<li><p>A medida que se incrementa la distancia ( d ), la función acumula el <strong>porcentaje de esos puntos aleatorios</strong> que caen a una distancia menor o igual a ( d ) de algún punto del patrón observado.</p></li>
+<li><p>Por eso se le llama la <strong>función del espacio vacío</strong>: mide cuánto “vacío” hay en el patrón.</p></li>
+</ul>
+<p><strong>Interpretación</strong></p>
+<ul class="simple">
+<li><p>Si el patrón tiene <strong>grandes vacíos o huecos</strong>, la función F crecerá <strong>lentamente</strong> → indica <strong>agrupamiento</strong>.</p></li>
+<li><p>Si el patrón está <strong>muy disperso</strong>, la función F crecerá <strong>rápidamente</strong>, ya que es más probable que cualquier punto aleatorio esté cerca de un evento.</p></li>
+</ul>
+<p><strong>Análisis gráfico</strong></p>
+<p>Al igual que con la función G, se compara la función F del patrón observado con:</p>
+<ul class="simple">
+<li><p>Una <strong>media</strong> de múltiples simulaciones aleatorias (línea azul clara).</p></li>
+<li><p>Un <strong>intervalo de confianza del 95%</strong> basado en simulaciones (banda azul oscuro o negra).</p></li>
+</ul>
+<p>Si la <strong>función F empírica (roja)</strong> crece <strong>más lentamente</strong> que la banda de simulaciones aleatorias, esto indica que:</p>
+<ul class="simple">
+<li><p>En el patrón hay <strong>mayor cantidad de espacio vacío</strong> del que esperaríamos por azar.</p></li>
+<li><p>El patrón es, por tanto, <strong>agrupado (clustered)</strong>.</p></li>
+</ul>
+<p><strong>Cálculo en Python</strong></p>
+<p>La función F se implementa en <code class="docutils literal notranslate"><span class="pre">pointpats</span></code> mediante la función <code class="docutils literal notranslate"><span class="pre">f_test()</span></code>, y su análisis gráfico es análogo al de la función G.</p>
+<p><strong>Conclusión</strong></p>
+<p>La función F ofrece una perspectiva complementaria sobre la <strong>estructura espacial</strong> del patrón, ayudando a detectar <strong>áreas sin eventos</strong> (gaps) y a confirmar la <strong>presencia de agrupamiento</strong> cuando los puntos están concentrados en ciertas regiones del espacio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_test</span> <span class="o">=</span> <span class="n">distance_statistics</span><span class="o">.</span><span class="n">f_test</span><span class="p">(</span>
+    <span class="n">coordinates</span><span class="p">,</span> <span class="n">support</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">keep_simulations</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width_ratios</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># plot all the simulations with very fine lines</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">f_test</span><span class="o">.</span><span class="n">simulations</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="p">)</span>
+<span class="c1"># and show the average of simulations</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">simulations</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;median simulation&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># and the observed pattern&#39;s F function</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">f_test</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observed&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># clean up labels and axes</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f nearest point in pattern</span><span class="se">\n</span><span class="s2">distances shorter&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f_test</span><span class="o">.</span><span class="n">support</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Ripley&#39;s $F(d)$ function&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the pattern itself on the next frame</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">coordinates</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># and clean up labels and axes there, too</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pattern&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/edf5ed352a94e38862a8f95e65fadb545cfb5c31b3df7b4cdec893f2ce685d7c.png" src="_images/edf5ed352a94e38862a8f95e65fadb545cfb5c31b3df7b4cdec893f2ce685d7c.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "geo_env"
+        },
+        kernelOptions: {
+            name: "geo_env",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'geo_env'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="AutocorrelacionLocal.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Autocorrelación local</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-al-analisis-de-patrones-de-puntos">11.1. Introducción al Análisis de Patrones de Puntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuevas-formas-de-datos-y-su-aplicacion-al-estudio-urbano">11.2. Nuevas Formas de Datos y su Aplicación al Estudio Urbano</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-patrones-de-puntos">11.2.1. Visualización de Patrones de Puntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-basica-con-puntos-en-un-mapa">11.2.1.1. Representación básica con puntos en un mapa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anadiendo-contexto-a-la-visualizacion">11.3. Añadiendo Contexto a la Visualización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incorporando-un-mapa-base">11.3.1. Incorporando un mapa base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-de-incluir-un-mapa-base">11.3.2. Ventajas de incluir un mapa base</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representar-la-densidad-con-hexbinning">11.4. Representar la Densidad con Hexbinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-puntos-individuales-a-superficies">11.4.1. Solución: de puntos individuales a superficies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde">11.5. Otro Tipo de Densidad: Estimación de Densidad por Kernel (KDE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-estimacion-de-densidad-por-kernel-kde">11.5.1. Alternativa: Estimación de Densidad por Kernel (KDE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.5.2. Interpretación técnica y utilidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrografia-medidas-de-centralidad-espacial">11.6. Centrografía: Medidas de Centralidad Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-que-sirve-la-centrografia">11.6.1. ¿Para qué sirve la centrografía?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones">11.6.2. Aplicaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tendencia-central-medidas-de-ubicacion-en-un-patron-de-puntos">11.6.3. Tendencia Central: Medidas de Ubicación en un Patrón de Puntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion-medida-de-extension-espacial">11.6.4. Dispersión: Medida de Extensión Espacial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-medidas-de-cobertura-espacial-en-centrografia">11.6.5. Extensión: Medidas de Cobertura Espacial en Centrografía</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilidad-en-analisis-espacial">11.6.6. Utilidad en análisis espacial</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aleatoriedad-y-agrupamiento-espacial">11.7. Aleatoriedad y Agrupamiento Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tecnicas-para-detectar-agrupamiento">11.7.1. Técnicas para detectar agrupamiento</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estadisticos-de-cuadrantes-quadrat-statistics">11.7.1.1. 1. Estadísticos de cuadrantes (Quadrat Statistics)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-distancia-metodos-derivados-de-ripley-1988">11.7.1.2. 2. Funciones de distancia: Métodos derivados de Ripley (1988)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-en-analisis-urbano">11.7.2. Importancia en análisis urbano</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacion-de-aleatoriedad-espacial-proceso-de-poisson">11.8. Simulación de Aleatoriedad Espacial: Proceso de Poisson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">11.9. Estadísticos de Cuadrantes (Quadrat Statistics)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-del-resultado-distribucion-no-uniforme">11.10. Interpretación del Resultado: Distribución No Uniforme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendacion">11.10.1. Recomendación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-alfabeto-de-funciones-de-ripley">11.10.2. El Alfabeto de Funciones de Ripley</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-g-de-ripley-vecinos-mas-cercanos">11.10.2.1. Función G de Ripley: Vecinos más cercanos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion">11.10.3. Visualización</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">11.10.4. Interpretación</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Víctor Morales Oñate
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

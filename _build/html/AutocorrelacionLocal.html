@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -52,7 +52,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'AutocorrelacionLocal';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. Patrones de Puntos" href="PatronesPuntos.html" />
     <link rel="prev" title="9. Autocorrelación global" href="AutocorrelacionGlobal.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -201,6 +202,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="AutocorrelacionGlobal.html">9. Autocorrelación global</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Autocorrelación local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PatronesPuntos.html">11. Patrones de Puntos</a></li>
 </ul>
 
     </div>
@@ -468,14 +470,14 @@ p = \frac{(m + 1)}{(r + 1)}
 <p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="k">def</span> <span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar shapefile: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -503,12 +505,12 @@ p = \frac{(m + 1)}{(r + 1)}
 <p>Ahora importamos el valor agregado anual por cantones del Ecuador tomados del Banco Central del Ecuador y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># 1. Leo los datos del VAB no petrolero por cantones 2007-2019</span>
 <span class="n">url_vab</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/VABNoPetroleroCantones2007-2019.csv&quot;</span>
@@ -596,7 +598,7 @@ p = \frac{(m + 1)}{(r + 1)}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 
 <span class="c1"># Reproyección a Web Mercator para usar contextily</span>
@@ -622,15 +624,15 @@ p = \frac{(m + 1)}{(r + 1)}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" src="_images/3fb8d69752990f33abaf9d311c99de0a11b6f90eee719ce409d49454a25bde7e.png" />
+<img alt="_images/0e960a4e770fbdd476f3988157b469360bfbb4b71ee4e742aa93b65a8a531045.png" src="_images/0e960a4e770fbdd476f3988157b469360bfbb4b71ee4e742aa93b65a8a531045.png" />
 </div>
 </div>
 <p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>criterio reina</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">W</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">W</span>
 
 <span class="c1"># 1. Construir la lista de vecinos usando contigüidad tipo Reina</span>
 <span class="c1"># El parámetro silence_warnings=True es útil si hay geometrías sin vecinos</span>
@@ -658,9 +660,21 @@ p = \frac{(m + 1)}{(r + 1)}
 <p><strong>Calculamos el estadístico local Moran I</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">esda</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
 <span class="n">lisa</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran_Local</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">lisa</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran_Local</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;esda&#39;
 </pre></div>
 </div>
 </div>
@@ -668,7 +682,7 @@ p = \frac{(m + 1)}{(r + 1)}
 <p>Necesitamos pasar la variable de interés —<code class="docutils literal notranslate"><span class="pre">POBRES_P</span></code>— y los pesos espaciales que describen las relaciones de vecindad entre las distintas áreas que conforman el conjunto de datos (<code class="docutils literal notranslate"><span class="pre">w_queen</span></code>). Esto crea un objeto LISA (<code class="docutils literal notranslate"><span class="pre">lisa</span></code>) que contiene varios atributos relevantes. Los indicadores locales propiamente tales se encuentran en el atributo <code class="docutils literal notranslate"><span class="pre">Is</span></code>, y podemos hacernos una idea de su distribución utilizando el siguiente gráfico:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="c1"># Dibujar la curva de densidad de kernel (KDE) para visualizar la distribución suavizada</span>
 <span class="c1"># de los valores del estadístico local de autocorrelación espacial (por ejemplo, I de Moran local)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">lisa</span><span class="o">.</span><span class="n">Is</span><span class="p">)</span>
@@ -725,7 +739,7 @@ p = \frac{(m + 1)}{(r + 1)}
 <p><strong>Paso 1:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">splot</span> <span class="kn">import</span> <span class="n">esda</span> <span class="k">as</span> <span class="n">esdaplot</span>  <span class="c1"># Importa el módulo de visualización &#39;esda&#39; desde el paquete splot, que se usa para graficar resultados LISA (análisis local de autocorrelación espacial), y lo renombra como &#39;esdaplot&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">splot</span><span class="w"> </span><span class="kn">import</span> <span class="n">esda</span> <span class="k">as</span> <span class="n">esdaplot</span>  <span class="c1"># Importa el módulo de visualización &#39;esda&#39; desde el paquete splot, que se usa para graficar resultados LISA (análisis local de autocorrelación espacial), y lo renombra como &#39;esdaplot&#39;</span>
 
 <span class="c1"># Configura la figura principal con una grilla de 2 filas y 2 columnas de subgráficos</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
@@ -815,7 +829,7 @@ p = \frac{(m + 1)}{(r + 1)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6955f12be503a67ee93298f359ca5f1753fa3c56d48ae8b60d51a40f9b82bf43.png" src="_images/6955f12be503a67ee93298f359ca5f1753fa3c56d48ae8b60d51a40f9b82bf43.png" />
+<img alt="_images/ad837324e518994471865ccd53ed29bfc42c29ea15fcd5b51d7c3ef2f2969c23.png" src="_images/ad837324e518994471865ccd53ed29bfc42c29ea15fcd5b51d7c3ef2f2969c23.png" />
 </div>
 </div>
 <p>Las zonas marcadas en púrpura y amarillo en el mapa (esquina superior izquierda) presentan los valores de mayor magnitud, tanto positivos como negativos, del estadístico local <span class="math notranslate nohighlight">\(I_i\)</span>.</p>
@@ -881,7 +895,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30.917874396135264
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27.053140096618357
 </pre></div>
 </div>
 </div>
@@ -936,28 +950,28 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>0.042</td>
+      <td>0</td>
+      <td>0.055</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>0.042</td>
+      <td>0</td>
+      <td>0.062</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
-      <td>0.017</td>
+      <td>0.031</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>0.465</td>
+      <td>0.451</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1</td>
-      <td>0.006</td>
+      <td>0.007</td>
     </tr>
   </tbody>
 </table>
@@ -996,27 +1010,27 @@ Name: count, dtype: int64
     <tr>
       <th>208</th>
       <td>1</td>
-      <td>0.022</td>
+      <td>0.013</td>
     </tr>
     <tr>
       <th>209</th>
       <td>1</td>
-      <td>0.023</td>
+      <td>0.020</td>
     </tr>
     <tr>
       <th>210</th>
       <td>1</td>
-      <td>0.021</td>
+      <td>0.015</td>
     </tr>
     <tr>
       <th>211</th>
       <td>0</td>
-      <td>0.100</td>
+      <td>0.104</td>
     </tr>
     <tr>
       <th>212</th>
       <td>0</td>
-      <td>0.447</td>
+      <td>0.452</td>
     </tr>
   </tbody>
 </table>
@@ -1058,8 +1072,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                 LL
-1                 LL
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    Non-Significant
+1    Non-Significant
 2                 LL
 3    Non-Significant
 4                 LL
@@ -1088,11 +1102,11 @@ Name: labels, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>labels
-Non-Significant    143
-LL                  28
-HH                  22
-HL                   9
-LH                   5
+Non-Significant    151
+LL                  24
+HH                  21
+LH                   6
+HL                   5
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -1122,16 +1136,16 @@ Name: count, dtype: int64
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-base-py"
+            mode: "geo_env"
         },
         kernelOptions: {
-            name: "conda-base-py",
+            name: "geo_env",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-base-py'</script>
+    <script>kernelName = 'geo_env'</script>
 
                 </article>
               
@@ -1151,6 +1165,15 @@ Name: count, dtype: int64
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><span class="section-number">9. </span>Autocorrelación global</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="PatronesPuntos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Patrones de Puntos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
