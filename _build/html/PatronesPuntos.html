@@ -415,9 +415,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde">11.4. Otro Tipo de Densidad: Estimación de Densidad por Kernel (KDE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-estimacion-de-densidad-por-kernel-kde">11.4.1. Alternativa: Estimación de Densidad por Kernel (KDE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#donde">11.4.2. Donde:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.4.3. Interpretación técnica y utilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.4.1. Interpretación técnica y utilidad</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrografia-medidas-de-centralidad-espacial">11.5. Centrografía: Medidas de Centralidad Espacial</a><ul class="nav section-nav flex-column">
@@ -758,8 +756,7 @@ memory usage: 2.0+ MB
 <li><p>Por ejemplo, si se redistribuyen los límites de las comunas manteniendo la cantidad de unidades, las estadísticas agregadas también pueden variar.</p></li>
 </ul>
 <p>Introducir sesgos o interpretaciones erróneas si se concluye que existe una relación estadística cuando en realidad depende de cómo se agruparon los datos espacialmente.</p>
-<section id="alternativa-estimacion-de-densidad-por-kernel-kde">
-<h3><span class="section-number">11.4.1. </span>Alternativa: Estimación de Densidad por Kernel (KDE)<a class="headerlink" href="#alternativa-estimacion-de-densidad-por-kernel-kde" title="Link to this heading">#</a></h3>
+<p><strong>Alternativa: Estimación de Densidad por Kernel (KDE)</strong></p>
 <p>Una alternativa más flexible es la <strong>estimación de densidad por kernel (KDE)</strong>, que permite aproximar empíricamente una función de densidad de probabilidad. En lugar de usar celdas rígidas, la KDE coloca una malla de puntos sobre el espacio de análisis y aplica una <strong>función kernel</strong> sobre cada uno. Esta función asigna pesos a los eventos cercanos según la distancia: los eventos más cercanos contribuyen más, y los lejanos, menos.</p>
 <p>El resultado final es una <strong>superficie continua</strong> que representa la densidad estimada de eventos en cada punto del espacio.</p>
 <ul class="simple">
@@ -771,16 +768,17 @@ memory usage: 2.0+ MB
 \[
 \hat{f}(x) = \frac{1}{n h} \sum_{i=1}^{n} K\left( \frac{x - x_i}{h} \right)
 \]</div>
-</section>
-<section id="donde">
-<h3><span class="section-number">11.4.2. </span>Donde:<a class="headerlink" href="#donde" title="Link to this heading">#</a></h3>
+<p><strong>Donde:</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( n \)</span>: número de observaciones.</p></li>
 <li><p><span class="math notranslate nohighlight">\( h \)</span>: <strong>bandwidth</strong> o ancho de banda (controla la suavidad).</p></li>
-<li><p><span class="math notranslate nohighlight">\( K(u) \)</span>: función núcleo (kernel), comúnmente una Gaussiana:
-$<span class="math notranslate nohighlight">\(
-K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}
-\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\( K(u) \)</span>: función núcleo (kernel), comúnmente una Gaussiana:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+  K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}
+\]</div>
+<ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( x_i \)</span>: valores observados.</p></li>
 <li><p><span class="math notranslate nohighlight">\( x \)</span>: punto donde se evalúa la densidad.</p></li>
 </ul>
@@ -839,44 +837,44 @@ K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}
 <tbody>
 <tr class="row-even"><td><p><strong>Gaussiano</strong></p></td>
 <td><p><span class="math notranslate nohighlight">\( K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2} \)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\( (-\infty, \infty) \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\((-\infty, \infty)\)</span></p></td>
 <td><p>Muy suave, simétrico, el más usado.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Uniforme (cuadrado)</strong></p></td>
-<td><p>$ K(u) = \frac{1}{2} \cdot \mathbb{1}_{</p></td>
+<td><p>$K(u)=\frac{1}{2}\cdot\mathbb{1}_{</p></td>
 <td><p>u</p></td>
-<td><p>\leq 1} $</p></td>
+<td><p>\leq 1}$</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Triangular</strong></p></td>
-<td><p>$ K(u) = (1 -</p></td>
+<td><p>$K(u) = (1 -</p></td>
 <td><p>u</p></td>
 <td><p>) \cdot \mathbb{1}_{</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Epanechnikov</strong></p></td>
-<td><p>$ K(u) = \frac{3}{4}(1 - u^2) \cdot \mathbb{1}_{</p></td>
+<td><p>$K(u) = \frac{3}{4}(1 - u^2) \cdot \mathbb{1}_{</p></td>
 <td><p>u</p></td>
-<td><p>\leq 1} $</p></td>
+<td><p>\leq 1}$</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Biweight (cuadrático)</strong></p></td>
-<td><p>$ K(u) = \frac{15}{16}(1 - u^2)^2 \cdot \mathbb{1}_{</p></td>
+<td><p>$K(u) = \frac{15}{16}(1 - u^2)^2 \cdot \mathbb{1}_{</p></td>
 <td><p>u</p></td>
-<td><p>\leq 1} $</p></td>
+<td><p>\leq 1}$</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Triweight</strong></p></td>
-<td><p>$ K(u) = \frac{35}{32}(1 - u^2)^3 \cdot \mathbb{1}_{</p></td>
+<td><p>$K(u) = \frac{35}{32}(1 - u^2)^3 \cdot \mathbb{1}_{</p></td>
 <td><p>u</p></td>
-<td><p>\leq 1} $</p></td>
+<td><p>\leq 1}$</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Coseno</strong></p></td>
-<td><p>$ K(u) = \frac{\pi}{4} \cos\left( \frac{\pi u}{2} \right) \cdot \mathbb{1}_{</p></td>
+<td><p>$K(u) = \frac{\pi}{4} \cos\left( \frac{\pi u}{2} \right) \cdot \mathbb{1}_{</p></td>
 <td><p>u</p></td>
-<td><p>\leq 1} $</p></td>
+<td><p>\leq 1}$</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <blockquote>
-<div><p><span class="math notranslate nohighlight">\( \mathbb{1}_{|u| \leq 1} \)</span>: función indicadora que vale 1 si <span class="math notranslate nohighlight">\(|u| \leq 1 \)</span>, y 0 en caso contrario.</p>
+<div><p><span class="math notranslate nohighlight">\(\mathbb{1}_{|u| \leq 1}\)</span>: función indicadora que vale 1 si <span class="math notranslate nohighlight">\(|u| \leq 1\)</span>, y 0 en caso contrario.</p>
 </div></blockquote>
 <p>En Python, crear un mapa de densidad con kernel gaussiano es bastante sencillo utilizando la función <code class="docutils literal notranslate"><span class="pre">seaborn.kdeplot()</span></code>, como se muestra en la siguiente Figura. Esta técnica es especialmente útil para identificar <strong>zonas calientes</strong> (hotspots) y visualizar la concentración de fenómenos de forma continua y precisa.</p>
 <div class="cell docutils container">
@@ -920,9 +918,8 @@ K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}
 </div>
 </div>
 <p>El resultado de aplicar una estimación de densidad por kernel (<strong>KDE</strong>) es una superficie <strong>más suave y continua</strong>, que conserva la estructura general observada en el hexbin, pero con <strong>transiciones más graduales</strong> entre áreas de distinta intensidad. Esta suavidad permite una <strong>mejor generalización</strong> de la distribución teórica de los eventos en el espacio.</p>
-</section>
 <section id="interpretacion-tecnica-y-utilidad">
-<h3><span class="section-number">11.4.3. </span>Interpretación técnica y utilidad<a class="headerlink" href="#interpretacion-tecnica-y-utilidad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">11.4.1. </span>Interpretación técnica y utilidad<a class="headerlink" href="#interpretacion-tecnica-y-utilidad" title="Link to this heading">#</a></h3>
 <p>Desde el punto de vista técnico, la naturaleza continua de la función KDE implica que la <strong>probabilidad exacta de un evento en un punto específico es cero</strong>, ya que se trata de una función de densidad, no de una probabilidad puntual. Sin embargo, al considerar un área alrededor de ese punto, sí se puede calcular la <strong>probabilidad de que un evento ocurra dentro de esa región</strong>.</p>
 <p>Esto hace que la KDE sea especialmente útil en dos sentidos:</p>
 <ul class="simple">
@@ -1445,11 +1442,11 @@ K(u) = \frac{1}{\sqrt{2\pi}} e^{-u^2/2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_24344/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_6313/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
   alpha_shape, alpha, circs = lps.cg.alpha_shape_auto(
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_24344/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_6313/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
 See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#implementing-a-custom-legend-handler
   plt.legend();
 </pre></div>
@@ -1576,7 +1573,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8a5f5ab4fce32977a55bd82a8af5688dcea33d1b95931de653fabf0285052c35.png" src="_images/8a5f5ab4fce32977a55bd82a8af5688dcea33d1b95931de653fabf0285052c35.png" />
+<img alt="_images/14d8ee565ea3bed66e14a30db320d3a5c77ef7196dac9d01c6d6850b12300dba.png" src="_images/14d8ee565ea3bed66e14a30db320d3a5c77ef7196dac9d01c6d6850b12300dba.png" />
 </div>
 </div>
 <p>Como se observa en la simulación básica, el generador de patrones aleatorios —por defecto— utiliza el <strong>rectángulo envolvente (bounding box)</strong> del patrón original como área de referencia. Sin embargo, este enfoque puede ser poco representativo si el patrón observado está concentrado en un espacio <strong>más restringido o con una forma compleja</strong>.</p>
@@ -1622,7 +1619,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/74d68e519614141cc2864ef2e4bfafbd6550599adac8a4a83c5205d076531cd6.png" src="_images/74d68e519614141cc2864ef2e4bfafbd6550599adac8a4a83c5205d076531cd6.png" />
+<img alt="_images/ca9b16282a81f1a34f562e70f46761173accff94fc781fdc6f2f1824a02bd96a.png" src="_images/ca9b16282a81f1a34f562e70f46761173accff94fc781fdc6f2f1824a02bd96a.png" />
 </div>
 </div>
 </section>
@@ -1712,7 +1709,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </ul>
 <p>Esta expresión mide la <strong>media cuadrática de los conteos por celda</strong>, lo que penaliza la concentración excesiva en pocas celdas.</p>
 <p><strong>Interpretación del Resultado: Distribución No Uniforme</strong></p>
-<p>En este ejemplo, al aplicar una <strong>cuadrícula de 3x3</strong> sobre el patrón de puntos (como fotografías geolocalizadas en Flickr), observamos que:</p>
+<p>En este ejemplo, al aplicar una <strong>cuadrícula de 3x3</strong> sobre el patrón de puntos (como delitos geolocalizados), observamos que:</p>
 <ul class="simple">
 <li><p>Las <strong>celdas periféricas</strong> tienen muchas menos observaciones.</p></li>
 </ul>
@@ -1751,7 +1748,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/2a9f1fcbcbba2edafe5828c9cd9ad8e23ae1073d21be76317b332a8b6ce6fcaa.png" src="_images/2a9f1fcbcbba2edafe5828c9cd9ad8e23ae1073d21be76317b332a8b6ce6fcaa.png" />
+<img alt="_images/bdce7d6dec9ca0ed658da48eb21be60863a977941308d20885a3ead069723f50.png" src="_images/bdce7d6dec9ca0ed658da48eb21be60863a977941308d20885a3ead069723f50.png" />
 </div>
 </div>
 <p>En contraste con el patrón observado (agrupado), cuando generamos un patrón a partir de un <strong>proceso de puntos completamente aleatorio</strong> (como el <strong>proceso de Poisson</strong>), la distribución de eventos en la cuadrícula es <strong>mucho más uniforme</strong>.</p>
@@ -1763,7 +1760,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.43434277998812587)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.388660573208523)
 </pre></div>
 </div>
 </div>
@@ -1804,7 +1801,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/02a6ff738357112006812fd3ef0c2695056f0c89427c2454630da5da222be7db.png" src="_images/02a6ff738357112006812fd3ef0c2695056f0c89427c2454630da5da222be7db.png" />
+<img alt="_images/33652dc6b8774c51f16e6691a677d7aac56fd651a99c11deb276c7f58dc9fe67.png" src="_images/33652dc6b8774c51f16e6691a677d7aac56fd651a99c11deb276c7f58dc9fe67.png" />
 </div>
 </div>
 <p>La prueba de cuadrantes determina que esto no es aleatorio desde el punto de vista estadístico, mientras que nuestro proceso de simulación garantizó que, dentro del área de estudio definida, el patrón corresponde a un proceso completamente aleatorio en el espacio.</p>
@@ -1815,7 +1812,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(4.6788664050926055e-12)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.033772876871798e-13)
 </pre></div>
 </div>
 </div>
@@ -1922,7 +1919,7 @@ G_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 <ul class="simple">
 <li><p>El eje horizontal representa la <strong>distancia al punto más cercano</strong> (d).</p></li>
 <li><p>El eje vertical representa la <strong>proporción acumulada</strong> de puntos que tienen un vecino a una distancia ≤ d.</p></li>
-<li><p>La <strong>línea roja</strong> muestra la <strong>función G empírica</strong> calculada a partir de los datos observados (por ejemplo, fotos de un usuario de Flickr).</p></li>
+<li><p>La <strong>línea roja</strong> muestra la <strong>función G empírica</strong> calculada a partir de los datos observados (por ejemplo, datos de la ubicación de delitos).</p></li>
 <li><p>Las <strong>líneas azules</strong> representan múltiples simulaciones bajo un <strong>patrón completamente aleatorio</strong> (Poisson):</p>
 <ul>
 <li><p>La línea azul clara es el <strong>promedio</strong> de esas simulaciones.</p></li>
@@ -1992,7 +1989,7 @@ G_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/838d66665bdb135b470d0361c10f465bee6b2a08491a123880c942e84157f56a.png" src="_images/838d66665bdb135b470d0361c10f465bee6b2a08491a123880c942e84157f56a.png" />
+<img alt="_images/0b7322008ccde527a85f863f27a81f67d4f3325bd2776020f20df71bb366d61e.png" src="_images/0b7322008ccde527a85f863f27a81f67d4f3325bd2776020f20df71bb366d61e.png" />
 </div>
 </div>
 <p>La segunda función que introducimos es la <strong>función F de Ripley</strong>, también conocida como la <strong>función del espacio vacío</strong>. A diferencia de la función G, que mide las distancias <strong>entre puntos del patrón</strong>, la función F analiza la distancia <strong>desde ubicaciones aleatorias en el espacio hacia el punto más cercano del patrón</strong>.</p>
@@ -2151,7 +2148,7 @@ F_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a4994eb23e7a69cb30e0016685543b904ceeddb0b27091792918798e0dc8c48.png" src="_images/0a4994eb23e7a69cb30e0016685543b904ceeddb0b27091792918798e0dc8c48.png" />
+<img alt="_images/b1ff7fd25e4cd44d14464c7cedec928d333e669a729fd349f560478ff9aaa08d.png" src="_images/b1ff7fd25e4cd44d14464c7cedec928d333e669a729fd349f560478ff9aaa08d.png" />
 </div>
 </div>
 </section>
@@ -2230,9 +2227,7 @@ F_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otro-tipo-de-densidad-estimacion-de-densidad-por-kernel-kde">11.4. Otro Tipo de Densidad: Estimación de Densidad por Kernel (KDE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternativa-estimacion-de-densidad-por-kernel-kde">11.4.1. Alternativa: Estimación de Densidad por Kernel (KDE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#donde">11.4.2. Donde:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.4.3. Interpretación técnica y utilidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-tecnica-y-utilidad">11.4.1. Interpretación técnica y utilidad</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrografia-medidas-de-centralidad-espacial">11.5. Centrografía: Medidas de Centralidad Espacial</a><ul class="nav section-nav flex-column">

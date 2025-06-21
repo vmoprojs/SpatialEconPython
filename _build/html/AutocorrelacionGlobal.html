@@ -1008,14 +1008,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">moran</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;esda&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.305601416888133)
 </pre></div>
 </div>
 </div>
@@ -1040,8 +1033,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.0020545202984723556
-Z-score (simulado): 6.857439566758206
+Variance: 0.0020156948396102877
+Z-score (simulado): 6.910831810934041
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1118,6 +1111,13 @@ P-value (simulado): 0.0001
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9e3a4bf4a18d68bf0c0e8f37d6ca629a8f489c362eaf76577eceb78ad2e760df.png" src="_images/9e3a4bf4a18d68bf0c0e8f37d6ca629a8f489c362eaf76577eceb78ad2e760df.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
+</pre></div>
+</div>
+<img alt="_images/3407df925f39300448b19260206a58fc18c212dce76747ad301fba7a5bf45a02.png" src="_images/3407df925f39300448b19260206a58fc18c212dce76747ad301fba7a5bf45a02.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1467,29 +1467,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5812
+I de Moran Observado (esda): 0.4980
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5812
+I de Moran Observado (manual): 0.4980
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 8.2933
+Z-score (normalidad, manual): 7.1853
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0059
-Z-score (aleatorización, manual): 8.1034
+Varianza Var[I] (aleatorización, manual): 0.0058
+Z-score (aleatorización, manual): 7.1024
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" src="_images/f3490406262793796d686d1ea10fa9b8361d163c7a700a8c52ade46b543ea2f9.png" />
+<img alt="_images/f9a7d4e148f256e20b2184a8b4b55602e4cf823f18c4e2675c39c181ae548678.png" src="_images/f9a7d4e148f256e20b2184a8b4b55602e4cf823f18c4e2675c39c181ae548678.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1530,7 +1530,15 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" src="_images/bf35e04159c53c6ea4e87adf3c09bf5a858d1ac134248f6706b02f295330d3a1.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">splot.esda</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_moran</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plot_moran</span><span class="p">(</span><span class="n">mi_MC</span><span class="p">);</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;splot&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
