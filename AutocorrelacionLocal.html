@@ -667,7 +667,42 @@ p = \frac{(m + 1)}{(r + 1)}
 </div>
 </div>
 </div>
-<p>Necesitamos pasar la variable de interés —<code class="docutils literal notranslate"><span class="pre">POBRES_P</span></code>— y los pesos espaciales que describen las relaciones de vecindad entre las distintas áreas que conforman el conjunto de datos (<code class="docutils literal notranslate"><span class="pre">w_queen</span></code>). Esto crea un objeto LISA (<code class="docutils literal notranslate"><span class="pre">lisa</span></code>) que contiene varios atributos relevantes. Los indicadores locales propiamente tales se encuentran en el atributo <code class="docutils literal notranslate"><span class="pre">Is</span></code>, y podemos hacernos una idea de su distribución utilizando el siguiente gráfico:</p>
+<p>Necesitamos pasar la variable de interés —<code class="docutils literal notranslate"><span class="pre">POBRES_P</span></code>— y los pesos espaciales que describen las relaciones de vecindad entre las distintas áreas que conforman el conjunto de datos (<code class="docutils literal notranslate"><span class="pre">w_queen</span></code>). Esto crea un objeto LISA (<code class="docutils literal notranslate"><span class="pre">lisa</span></code>) que contiene varios atributos relevantes:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Atributo</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.Is</span></code></p></td>
+<td><p>Vector con los valores del estadístico de Moran local para cada observación.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.p_sim</span></code></p></td>
+<td><p>P-values simulados por permutación; indican la significancia estadística.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.z_sim</span></code></p></td>
+<td><p>Puntajes Z simulados de los valores de Moran local.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.q</span></code></p></td>
+<td><p>Cuadrantes del diagrama de dispersión espacial de Moran (1: HH, 2: LH, 3: LL, 4: HL).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.local_autocov</span></code></p></td>
+<td><p>Covarianza local entre <code class="docutils literal notranslate"><span class="pre">y</span></code> y los valores vecinos ponderados.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.sim</span></code></p></td>
+<td><p>Matriz con los valores simulados de Moran local por permutación.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.n</span></code></p></td>
+<td><p>Número de observaciones en <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lisa.permutations</span></code></p></td>
+<td><p>Número de permutaciones realizadas para el test de significancia.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los indicadores locales propiamente tales se encuentran en el atributo <code class="docutils literal notranslate"><span class="pre">Is</span></code>, y podemos hacernos una idea de su distribución utilizando el siguiente gráfico:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -817,16 +852,7 @@ p = \frac{(m + 1)}{(r + 1)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">splot</span><span class="w"> </span><span class="kn">import</span> <span class="n">esda</span> <span class="k">as</span> <span class="n">esdaplot</span>  <span class="c1"># Importa el módulo de visualización &#39;esda&#39; desde el paquete splot, que se usa para graficar resultados LISA (análisis local de autocorrelación espacial), y lo renombra como &#39;esdaplot&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Configura la figura principal con una grilla de 2 filas y 2 columnas de subgráficos</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;splot&#39;
-</pre></div>
-</div>
+<img alt="_images/6b15af639f2d9eadb1db5ce5c75827d06291911e1f3679b00ea0cd609dcc3269.png" src="_images/6b15af639f2d9eadb1db5ce5c75827d06291911e1f3679b00ea0cd609dcc3269.png" />
 </div>
 </div>
 <p>Las zonas marcadas en púrpura y amarillo en el mapa (esquina superior izquierda) presentan los valores de mayor magnitud, tanto positivos como negativos, del estadístico local <span class="math notranslate nohighlight">\(I_i\)</span>.</p>
@@ -892,7 +918,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27.053140096618357
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(29.468599033816425)
 </pre></div>
 </div>
 </div>
@@ -947,28 +973,28 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>0.055</td>
+      <td>1</td>
+      <td>0.048</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
-      <td>0.062</td>
+      <td>0.050</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
-      <td>0.031</td>
+      <td>0.021</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>0.451</td>
+      <td>0.485</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1</td>
-      <td>0.007</td>
+      <td>0.004</td>
     </tr>
   </tbody>
 </table>
@@ -1007,27 +1033,27 @@ Name: count, dtype: int64
     <tr>
       <th>208</th>
       <td>1</td>
-      <td>0.013</td>
+      <td>0.016</td>
     </tr>
     <tr>
       <th>209</th>
       <td>1</td>
-      <td>0.020</td>
+      <td>0.019</td>
     </tr>
     <tr>
       <th>210</th>
       <td>1</td>
-      <td>0.015</td>
+      <td>0.017</td>
     </tr>
     <tr>
       <th>211</th>
       <td>0</td>
-      <td>0.104</td>
+      <td>0.084</td>
     </tr>
     <tr>
       <th>212</th>
       <td>0</td>
-      <td>0.452</td>
+      <td>0.446</td>
     </tr>
   </tbody>
 </table>
@@ -1069,7 +1095,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    Non-Significant
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                 LL
 1    Non-Significant
 2                 LL
 3    Non-Significant
@@ -1099,11 +1125,11 @@ Name: labels, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>labels
-Non-Significant    151
-LL                  24
+Non-Significant    146
+LL                  26
 HH                  21
+HL                   8
 LH                   6
-HL                   5
 Name: count, dtype: int64
 </pre></div>
 </div>
