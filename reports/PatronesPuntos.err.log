@@ -1,0 +1,159 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Se muestra información general del DataFrame 'db', como el número de filas, columnas, tipos de datos y uso de memoria.
+db.info()
+
+# 1. Crear geometría en EPSG:4326
+# Se crea un nuevo GeoDataFrame 'gdf' a partir de una copia del DataFrame original 'db'
+# La columna 'geometry' se genera combinando las columnas de longitud y latitud como objetos Point
+# Se asigna el sistema de referencia de coordenadas (CRS) EPSG:4326, que corresponde a coordenadas geográficas (lat/lon en WGS84)
+gdf = gpd.GeoDataFrame(
+    db.copy(),
+    geometry=[Point(xy) for xy in zip(db['longitude'], db['latitude'])],
+    crs="EPSG:4326"
+)
+
+# 2. Transformar a EPSG:3857
+# Se transforma el GeoDataFrame al sistema de coordenadas proyectadas EPSG:3857 (Web Mercator)
+# Este sistema es útil para cálculos de distancias y visualización en mapas base como OpenStreetMap o CartoDB
+gdf_3857 = gdf.to_crs(epsg=3857)
+
+# 3. Extraer coordenadas transformadas y agregarlas al DataFrame original
+# Se crean dos nuevas columnas en el DataFrame original 'db':
+# - 'x': corresponde a la coordenada este (este-oeste) en metros del sistema EPSG:3857
+# - 'y': corresponde a la coordenada norte (norte-sur) en metros del sistema EPSG:3857
+db['x'] = gdf_3857.geometry.x
+db['y'] = gdf_3857.geometry.y
+
+------------------
+
+----- stdout -----
+<class 'pandas.core.frame.DataFrame'>
+Index: 10878 entries, 75 to 73244
+Data columns (total 23 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   TIPO_DELITO              10878 non-null  object 
+ 1   SUBTIPO_DE_DELITO        10878 non-null  object 
+ 2   FECHA_DETENCION          10878 non-null  object 
+ 3   NUMERO_DE_DETENCIONES    9783 non-null   float64
+ 4   ZONA                     10878 non-null  object 
+ 5   PROVINCIA                10878 non-null  object 
+ 6   cod_provincia            10878 non-null  object 
+ 7   CANTON                   10878 non-null  object 
+ 8   cod_canton               10878 non-null  object 
+ 9   PARROQUIA                10878 non-null  object 
+ 10  cod_parroquia            10878 non-null  object 
+ 11  DISTRITO                 10878 non-null  object 
+ 12  cod_distrito             10878 non-null  object 
+ 13  CIRCUITO                 10878 non-null  object 
+ 14  cod_circuito             10878 non-null  object 
+ 15  NOM_SUBCIRC              10878 non-null  object 
+ 16  SUB_CIRCUIT              10878 non-null  object 
+ 17  DIRECCION_DETENCION      10876 non-null  object 
+ 18  latitude                 10878 non-null  float64
+ 19  longitude                10878 non-null  float64
+ 20  EDAD                     10818 non-null  object 
+ 21  SEXO                     10878 non-null  object 
+ 22  CALIFICACION_FLAGRANCIA  9844 non-null   object 
+dtypes: float64(3), object(20)
+memory usage: 2.0+ MB
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCRSError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[4], line 8[0m
+[1;32m      2[0m db[38;5;241m.[39minfo()
+[1;32m      4[0m [38;5;66;03m# 1. Crear geometría en EPSG:4326[39;00m
+[1;32m      5[0m [38;5;66;03m# Se crea un nuevo GeoDataFrame 'gdf' a partir de una copia del DataFrame original 'db'[39;00m
+[1;32m      6[0m [38;5;66;03m# La columna 'geometry' se genera combinando las columnas de longitud y latitud como objetos Point[39;00m
+[1;32m      7[0m [38;5;66;03m# Se asigna el sistema de referencia de coordenadas (CRS) EPSG:4326, que corresponde a coordenadas geográficas (lat/lon en WGS84)[39;00m
+[0;32m----> 8[0m gdf [38;5;241m=[39m [43mgpd[49m[38;5;241;43m.[39;49m[43mGeoDataFrame[49m[43m([49m
+[1;32m      9[0m [43m    [49m[43mdb[49m[38;5;241;43m.[39;49m[43mcopy[49m[43m([49m[43m)[49m[43m,[49m
+[1;32m     10[0m [43m    [49m[43mgeometry[49m[38;5;241;43m=[39;49m[43m[[49m[43mPoint[49m[43m([49m[43mxy[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mxy[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[38;5;28;43mzip[39;49m[43m([49m[43mdb[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mlongitude[39;49m[38;5;124;43m'[39;49m[43m][49m[43m,[49m[43m [49m[43mdb[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mlatitude[39;49m[38;5;124;43m'[39;49m[43m][49m[43m)[49m[43m][49m[43m,[49m
+[1;32m     11[0m [43m    [49m[43mcrs[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mEPSG:4326[39;49m[38;5;124;43m"[39;49m
+[1;32m     12[0m [43m)[49m
+[1;32m     14[0m [38;5;66;03m# 2. Transformar a EPSG:3857[39;00m
+[1;32m     15[0m [38;5;66;03m# Se transforma el GeoDataFrame al sistema de coordenadas proyectadas EPSG:3857 (Web Mercator)[39;00m
+[1;32m     16[0m [38;5;66;03m# Este sistema es útil para cálculos de distancias y visualización en mapas base como OpenStreetMap o CartoDB[39;00m
+[1;32m     17[0m gdf_3857 [38;5;241m=[39m gdf[38;5;241m.[39mto_crs(epsg[38;5;241m=[39m[38;5;241m3857[39m)
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:240[0m, in [0;36mGeoDataFrame.__init__[0;34m(self, data, geometry, crs, *args, **kwargs)[0m
+[1;32m    232[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(geometry, pd[38;5;241m.[39mSeries) [38;5;129;01mand[39;00m geometry[38;5;241m.[39mname [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m (
+[1;32m    233[0m         [38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m,
+[1;32m    234[0m         [38;5;28;01mNone[39;00m,
+[1;32m    235[0m     ):
+[1;32m    236[0m         [38;5;66;03m# __init__ always creates geometry col named "geometry"[39;00m
+[1;32m    237[0m         [38;5;66;03m# rename as `set_geometry` respects the given series name[39;00m
+[1;32m    238[0m         geometry [38;5;241m=[39m geometry[38;5;241m.[39mrename([38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m)
+[0;32m--> 240[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mset_geometry[49m[43m([49m[43mgeometry[49m[43m,[49m[43m [49m[43minplace[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    242[0m [38;5;28;01mif[39;00m geometry [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m crs:
+[1;32m    243[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    244[0m         [38;5;124m"[39m[38;5;124mAssigning CRS to a GeoDataFrame without a geometry column is not [39m[38;5;124m"[39m
+[1;32m    245[0m         [38;5;124m"[39m[38;5;124msupported. Supply geometry using the [39m[38;5;124m'[39m[38;5;124mgeometry=[39m[38;5;124m'[39m[38;5;124m keyword argument, [39m[38;5;124m"[39m
+[1;32m    246[0m         [38;5;124m"[39m[38;5;124mor by providing a DataFrame with column name [39m[38;5;124m'[39m[38;5;124mgeometry[39m[38;5;124m'[39m[38;5;124m"[39m,
+[1;32m    247[0m     )
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:459[0m, in [0;36mGeoDataFrame.set_geometry[0;34m(self, col, drop, inplace, crs)[0m
+[1;32m    456[0m     crs [38;5;241m=[39m [38;5;28mgetattr[39m(level, [38;5;124m"[39m[38;5;124mcrs[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
+[1;32m    458[0m [38;5;66;03m# Check that we are using a listlike of geometries[39;00m
+[0;32m--> 459[0m level [38;5;241m=[39m [43m_ensure_geometry[49m[43m([49m[43mlevel[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    460[0m [38;5;66;03m# ensure_geometry only sets crs on level if it has crs==None[39;00m
+[1;32m    461[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(level, GeoSeries):
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71[0m, in [0;36m_ensure_geometry[0;34m(data, crs)[0m
+[1;32m     69[0m     [38;5;28;01mreturn[39;00m GeoSeries(out, index[38;5;241m=[39mdata[38;5;241m.[39mindex, name[38;5;241m=[39mdata[38;5;241m.[39mname)
+[1;32m     70[0m [38;5;28;01melse[39;00m:
+[0;32m---> 71[0m     out [38;5;241m=[39m [43mfrom_shapely[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m     72[0m     [38;5;28;01mreturn[39;00m out
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:192[0m, in [0;36mfrom_shapely[0;34m(data, crs)[0m
+[1;32m    189[0m             [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInput must be valid geometry objects: [39m[38;5;132;01m{[39;00mgeom[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m    190[0m     arr [38;5;241m=[39m np[38;5;241m.[39marray(out, dtype[38;5;241m=[39m[38;5;28mobject[39m)
+[0;32m--> 192[0m [38;5;28;01mreturn[39;00m [43mGeometryArray[49m[43m([49m[43marr[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:348[0m, in [0;36mGeometryArray.__init__[0;34m(self, data, crs)[0m
+[1;32m    345[0m [38;5;28mself[39m[38;5;241m.[39m_data [38;5;241m=[39m data
+[1;32m    347[0m [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 348[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcrs[49m [38;5;241m=[39m crs
+[1;32m    349[0m [38;5;28mself[39m[38;5;241m.[39m_sindex [38;5;241m=[39m [38;5;28;01mNone[39;00m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:401[0m, in [0;36mGeometryArray.crs[0;34m(self, value)[0m
+[1;32m    398[0m [38;5;28;01mif[39;00m HAS_PYPROJ:
+[1;32m    399[0m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mpyproj[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m CRS
+[0;32m--> 401[0m     [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m value [38;5;28;01melse[39;00m [43mCRS[49m[38;5;241;43m.[39;49m[43mfrom_user_input[49m[43m([49m[43mvalue[49m[43m)[49m
+[1;32m    402[0m [38;5;28;01melse[39;00m:
+[1;32m    403[0m     [38;5;28;01mif[39;00m value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503[0m, in [0;36mCRS.from_user_input[0;34m(cls, value, **kwargs)[0m
+[1;32m    501[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(value, [38;5;28mcls[39m):
+[1;32m    502[0m     [38;5;28;01mreturn[39;00m value
+[0;32m--> 503[0m [38;5;28;01mreturn[39;00m [38;5;28;43mcls[39;49m[43m([49m[43mvalue[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:350[0m, in [0;36mCRS.__init__[0;34m(self, projparams, **kwargs)[0m
+[1;32m    348[0m     [38;5;28mself[39m[38;5;241m.[39m_local[38;5;241m.[39mcrs [38;5;241m=[39m projparams
+[1;32m    349[0m [38;5;28;01melse[39;00m:
+[0;32m--> 350[0m     [38;5;28mself[39m[38;5;241m.[39m_local[38;5;241m.[39mcrs [38;5;241m=[39m [43m_CRS[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msrs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/_crs.pyx:2364[0m, in [0;36mpyproj._crs._CRS.__init__[0;34m()[0m
+
+[0;31mCRSError[0m: Invalid projection: EPSG:4326: (Internal Proj Error: proj_create: no database context specified)
+

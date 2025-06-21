@@ -25,19 +25,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import esda
-y = poligonos["POBRES_P"]
-moran = esda.moran.Moran(y, w_queen)
-moran.I
+from splot.esda import plot_moran
+plot_moran(mi_MC);
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[12], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mesda[39;00m
-[1;32m      2[0m y [38;5;241m=[39m poligonos[[38;5;124m"[39m[38;5;124mPOBRES_P[39m[38;5;124m"[39m]
-[1;32m      3[0m moran [38;5;241m=[39m esda[38;5;241m.[39mmoran[38;5;241m.[39mMoran(y, w_queen)
+Cell [0;32mIn[18], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msplot[39;00m[38;5;21;01m.[39;00m[38;5;21;01mesda[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m plot_moran
+[1;32m      2[0m plot_moran(mi_MC);
 
-[0;31mModuleNotFoundError[0m: No module named 'esda'
+[0;31mModuleNotFoundError[0m: No module named 'splot'
 

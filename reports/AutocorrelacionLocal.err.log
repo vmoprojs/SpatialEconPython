@@ -25,18 +25,102 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import esda
-y = poligonos["POBRES_P"]
-lisa = esda.moran.Moran_Local(y, w_queen)
+from splot import esda as esdaplot  # Importa el módulo de visualización 'esda' desde el paquete splot, que se usa para graficar resultados LISA (análisis local de autocorrelación espacial), y lo renombra como 'esdaplot'
+
+# Configura la figura principal con una grilla de 2 filas y 2 columnas de subgráficos
+f, axs = plt.subplots(nrows=2, ncols=2, figsize=(12, 12))
+
+# Convierte la matriz 2x2 de ejes (axs) en una lista de 4 elementos para facilitar su acceso por índice
+axs = axs.flatten()
+
+# ---------- Subgráfico 1 ----------
+# Mapa de coropletas de los estadísticos locales de autocorrelación (I de Moran local)
+ax = axs[0]  # Selecciona el primer eje (arriba a la izquierda)
+
+# Crea una copia del GeoDataFrame 'poligonos' asignando una nueva columna 'Is' con los valores de autocorrelación local lisa.Is
+# Luego genera un mapa de coropletas usando esa columna
+poligonos.assign(
+    Is=lisa.Is  # Asignación temporal de los valores de I local como nueva columna
+).plot(
+    column="Is",             # La variable a representar en el mapa
+    cmap="plasma",           # Paleta de colores a usar (gradiente)
+    scheme="quantiles",      # Clasificación por cuantiles
+    k=5,                     # Número de clases/categorías (cuantiles)
+    edgecolor="white",       # Color del borde de los polígonos
+    linewidth=0.1,           # Grosor de las líneas de borde
+    alpha=0.75,              # Transparencia del relleno
+    legend=True,             # Mostrar la leyenda del mapa
+    ax=ax,                   # Eje donde se dibuja el gráfico
+)
+
+# ---------- Subgráfico 2 ----------
+# Mapa de cuadrantes del diagrama de dispersión de Moran
+ax = axs[1]  # Segundo eje (arriba a la derecha)
+
+# Dibuja un mapa con los cuadrantes (HH, LL, HL, LH) asignados a cada polígono
+# Aquí se fuerza p=1 para que todas las observaciones se consideren significativas (esto es útil para visualización exploratoria)
+esdaplot.lisa_cluster(lisa, poligonos, p=1, ax=ax)
+
+# ---------- Subgráfico 3 ----------
+# Mapa de significancia estadística (p < 0.05)
+ax = axs[2]  # Tercer eje (abajo a la izquierda)
+
+# Crea una serie de etiquetas binarias donde 1 indica significancia (p_sim < 0.05) y 0 no significancia
+labels = pd.Series(
+    1 * (lisa.p_sim < 0.05),  # Evaluación booleana convertida a 0/1
+    index=poligonos.index     # Asegura que los índices coincidan con el GeoDataFrame original
+).map({1: "Significant", 0: "Non-Significant"})  # Mapea 0 y 1 a etiquetas más legibles
+
+# Asigna la nueva variable de etiquetas ('cl') al GeoDataFrame y dibuja un mapa categórico de áreas significativas y no significativas
+poligonos.assign(
+    cl=labels
+).plot(
+    column="cl",              # La columna con las etiquetas categóricas
+    categorical=True,         # Se indica que es una variable categórica
+    k=2,                      # Dos clases: significativa y no significativa
+    cmap="Paired",            # Paleta de colores adecuada para categorías
+    linewidth=0.1,            # Líneas delgadas entre polígonos
+    edgecolor="white",        # Borde blanco
+    legend=True,              # Mostrar leyenda
+    ax=ax,                    # Dibujar en el tercer eje
+)
+
+# ---------- Subgráfico 4 ----------
+# Mapa de clústeres LISA reales (considerando significancia)
+ax = axs[3]  # Cuarto eje (abajo a la derecha)
+
+# Dibuja los clústeres espaciales LISA considerando solamente las observaciones significativas (p < 0.05)
+esdaplot.lisa_cluster(lisa, poligonos, p=0.05, ax=ax)
+
+# ---------- Estilización de la figura completa ----------
+# Asigna títulos a cada uno de los subgráficos y oculta los ejes para mejorar presentación
+for i, ax in enumerate(axs.flatten()):
+    ax.set_axis_off()  # Oculta los ejes (coordenadas, ticks)
+    ax.set_title(
+        [
+            "Estadísticos Locales",          # Título del subplot 1
+            "Cuadrantes de Dispersión",      # Título del subplot 2
+            "Significancia Estadística",     # Título del subplot 3
+            "Mapa de Clústeres de Moran",    # Título del subplot 4
+        ][i],
+        y=0,  # Posición vertical del título (alineado abajo)
+    )
+
+# Ajusta automáticamente el espaciado entre subgráficos para que no se sobrepongan
+f.tight_layout()
+
+# Muestra en pantalla la figura completa con los cuatro subgráficos
+plt.show()
+
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[7], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mesda[39;00m
-[1;32m      2[0m y [38;5;241m=[39m poligonos[[38;5;124m"[39m[38;5;124mPOBRES_P[39m[38;5;124m"[39m]
-[1;32m      3[0m lisa [38;5;241m=[39m esda[38;5;241m.[39mmoran[38;5;241m.[39mMoran_Local(y, w_queen)
+Cell [0;32mIn[9], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msplot[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m esda [38;5;28;01mas[39;00m esdaplot  [38;5;66;03m# Importa el módulo de visualización 'esda' desde el paquete splot, que se usa para graficar resultados LISA (análisis local de autocorrelación espacial), y lo renombra como 'esdaplot'[39;00m
+[1;32m      3[0m [38;5;66;03m# Configura la figura principal con una grilla de 2 filas y 2 columnas de subgráficos[39;00m
+[1;32m      4[0m f, axs [38;5;241m=[39m plt[38;5;241m.[39msubplots(nrows[38;5;241m=[39m[38;5;241m2[39m, ncols[38;5;241m=[39m[38;5;241m2[39m, figsize[38;5;241m=[39m([38;5;241m12[39m, [38;5;241m12[39m))
 
-[0;31mModuleNotFoundError[0m: No module named 'esda'
+[0;31mModuleNotFoundError[0m: No module named 'splot'
 
