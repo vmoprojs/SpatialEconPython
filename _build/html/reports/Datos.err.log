@@ -25,18 +25,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import rioxarray as rxr
-uu = "https://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/ghsl_sao_paulo.tif"
-pop = rxr.open_rasterio(uu)
+import osmnx as ox
+graph = ox.graph_from_place("Yoyogi Park, Shibuya, Tokyo, Japan")
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[18], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mrioxarray[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mrxr[39;00m
-[1;32m      2[0m uu [38;5;241m=[39m [38;5;124m"[39m[38;5;124mhttps://github.com/vmoprojs/DataLectures/raw/refs/heads/master/SpatialData/ghsl_sao_paulo.tif[39m[38;5;124m"[39m
-[1;32m      3[0m pop [38;5;241m=[39m rxr[38;5;241m.[39mopen_rasterio(uu)
+Cell [0;32mIn[26], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mosmnx[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mox[39;00m
+[1;32m      2[0m graph [38;5;241m=[39m ox[38;5;241m.[39mgraph_from_place([38;5;124m"[39m[38;5;124mYoyogi Park, Shibuya, Tokyo, Japan[39m[38;5;124m"[39m)
 
-[0;31mModuleNotFoundError[0m: No module named 'rioxarray'
+[0;31mModuleNotFoundError[0m: No module named 'osmnx'
 

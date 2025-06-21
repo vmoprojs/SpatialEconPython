@@ -1047,8 +1047,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.002058033869817025
-Z-score (simulado): 6.852289137372859
+Variance: 0.0020155828068165213
+Z-score (simulado): 6.916819678786996
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1131,7 +1131,7 @@ P-value (simulado): 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/2768c0beeed9ab08a959dde5530a8aee91868b6896886e10736b50790901f677.png" src="_images/2768c0beeed9ab08a959dde5530a8aee91868b6896886e10736b50790901f677.png" />
+<img alt="_images/af9efa4a0d2c0a8f980d3734c4ac5260731531b0cf7c3a0a38cefd24ae745196.png" src="_images/af9efa4a0d2c0a8f980d3734c4ac5260731531b0cf7c3a0a38cefd24ae745196.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1481,29 +1481,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5598
+I de Moran Observado (esda): 0.5339
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5598
+I de Moran Observado (manual): 0.5339
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 8.0080
+Z-score (normalidad, manual): 7.6633
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0059
-Z-score (aleatorización, manual): 7.8454
+Varianza Var[I] (aleatorización, manual): 0.0058
+Z-score (aleatorización, manual): 7.5569
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/4bb38bfa704ff5f641b647d0c9ca2a75e738d0cc373ee97bb89e174812409990.png" src="_images/4bb38bfa704ff5f641b647d0c9ca2a75e738d0cc373ee97bb89e174812409990.png" />
+<img alt="_images/e54139c3cd63ac729a7e90ed8f9e7330d1c7ea85236628403e5ea5fddb2438bc.png" src="_images/e54139c3cd63ac729a7e90ed8f9e7330d1c7ea85236628403e5ea5fddb2438bc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1544,7 +1544,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4761fb7b966f5b0cc3d03f6c864f349fa15c4e431c4d851b0e23b55048b94858.png" src="_images/4761fb7b966f5b0cc3d03f6c864f349fa15c4e431c4d851b0e23b55048b94858.png" />
+<img alt="_images/7a8889d621496b01a37f052bf7658e8f41c1b3e4e7611f935a9716a623f11a00.png" src="_images/7a8889d621496b01a37f052bf7658e8f41c1b3e4e7611f935a9716a623f11a00.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1663,36 +1663,8 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <p>La <strong>hipótesis nula</strong> asumida es la ausencia de autocorrelación, es decir, una distribución aleatoria de los valores.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:186: RuntimeWarning: invalid value encountered in scalar power
-  self.seC_rand = vc_rand ** (0.5)
-/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:187: RuntimeWarning: invalid value encountered in scalar power
-  self.seC_norm = vc_norm ** (0.5)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:133,</span> in <span class="ni">Geary.__init__</span><span class="nt">(self, y, w, transformation, permutations)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="n">s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">s0</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">W</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">s0</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">yss</span> <span class="o">*</span> <span class="n">s0</span> <span class="o">*</span> <span class="mf">2.0</span>
-<span class="ne">--&gt; </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calc</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="n">de</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">-</span> <span class="mf">1.0</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="bp">self</span><span class="o">.</span><span class="n">EC</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:190,</span> in <span class="ni">Geary.__calc</span><span class="nt">(self, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="k">def</span><span class="w"> </span><span class="nf">__calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">190</span>     <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">*</span> <span class="p">((</span><span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_focal_ix</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_neighbor_ix</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">num</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
-
-<span class="ne">IndexError</span>: index 25 is out of bounds for axis 0 with size 25
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
+<span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1715,10 +1687,10 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
-P-value (simulado): 0.0005
-Z-score (simulado): -3.435288428380606
+P-value (simulado): 0.0001
+Z-score (simulado): -4.464974947333855
 </pre></div>
 </div>
 </div>
@@ -1734,10 +1706,10 @@ Z-score (simulado): -3.435288428380606
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
-P-value (simulado): 0.00017664485722673794
-Z-score (simulado): -3.435288428380606
+P-value (simulado): 2.471799774826632e-06
+Z-score (simulado): -4.464974947333855
 </pre></div>
 </div>
 </div>
@@ -1753,10 +1725,10 @@ Z-score (simulado): -3.435288428380606
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7779842270514908
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
-P-value (simulado): 0.00027188051056133275
-Z-score (simulado): -3.4582180872023005
+P-value (simulado): 4.267588215802391e-06
+Z-score (simulado): -4.451300601473125
 </pre></div>
 </div>
 </div>
