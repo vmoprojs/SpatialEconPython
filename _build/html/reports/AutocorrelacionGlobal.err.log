@@ -25,16 +25,33 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from splot.esda import plot_moran
-plot_moran(mi_MC);
+geary_C = esda.geary.Geary(y, w_queen,permutations = 9999)
 ------------------
 
+----- stderr -----
+/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:186: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_rand = vc_rand ** (0.5)
+/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:187: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_norm = vc_norm ** (0.5)
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[18], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msplot[39;00m[38;5;21;01m.[39;00m[38;5;21;01mesda[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m plot_moran
-[1;32m      2[0m plot_moran(mi_MC);
+[0;31mIndexError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[21], line 1[0m
+[0;32m----> 1[0m geary_C [38;5;241m=[39m [43mesda[49m[38;5;241;43m.[39;49m[43mgeary[49m[38;5;241;43m.[39;49m[43mGeary[49m[43m([49m[43my[49m[43m,[49m[43m [49m[43mw_queen[49m[43m,[49m[43mpermutations[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;241;43m9999[39;49m[43m)[49m
 
-[0;31mModuleNotFoundError[0m: No module named 'splot'
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:133[0m, in [0;36mGeary.__init__[0;34m(self, y, w, transformation, permutations)[0m
+[1;32m    130[0m s0 [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mw[38;5;241m.[39ms0 [38;5;28;01mif[39;00m [38;5;28misinstance[39m([38;5;28mself[39m[38;5;241m.[39mw, weights[38;5;241m.[39mW) [38;5;28;01melse[39;00m [38;5;28mself[39m[38;5;241m.[39msummary[38;5;241m.[39ms0
+[1;32m    132[0m [38;5;28mself[39m[38;5;241m.[39mden [38;5;241m=[39m yss [38;5;241m*[39m s0 [38;5;241m*[39m [38;5;241m2.0[39m
+[0;32m--> 133[0m [38;5;28mself[39m[38;5;241m.[39mC [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m__calc[49m[43m([49m[43my[49m[43m)[49m
+[1;32m    134[0m de [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mC [38;5;241m-[39m [38;5;241m1.0[39m
+[1;32m    135[0m [38;5;28mself[39m[38;5;241m.[39mEC [38;5;241m=[39m [38;5;241m1.0[39m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:190[0m, in [0;36mGeary.__calc[0;34m(self, y)[0m
+[1;32m    189[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21m__calc[39m([38;5;28mself[39m, y):
+[0;32m--> 190[0m     num [38;5;241m=[39m ([38;5;28mself[39m[38;5;241m.[39m_weights [38;5;241m*[39m (([43my[49m[43m[[49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_focal_ix[49m[43m][49m [38;5;241m-[39m y[[38;5;28mself[39m[38;5;241m.[39m_neighbor_ix]) [38;5;241m*[39m[38;5;241m*[39m [38;5;241m2[39m))[38;5;241m.[39msum()
+[1;32m    191[0m     a [38;5;241m=[39m ([38;5;28mself[39m[38;5;241m.[39mn [38;5;241m-[39m [38;5;241m1[39m) [38;5;241m*[39m num
+[1;32m    192[0m     [38;5;28;01mreturn[39;00m a [38;5;241m/[39m [38;5;28mself[39m[38;5;241m.[39mden
+
+[0;31mIndexError[0m: index 25 is out of bounds for axis 0 with size 25
 

@@ -658,9 +658,295 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/99bd210df5b41cea119412f0c2a2c96e83b72265abee69709c5e38776f777c56.png" src="_images/99bd210df5b41cea119412f0c2a2c96e83b72265abee69709c5e38776f777c56.png" />
-<img alt="_images/1bbc5c95a6a55b63842339ce5b28653d7e4d9bead3dc7714a88aad28463c651f.png" src="_images/1bbc5c95a6a55b63842339ce5b28653d7e4d9bead3dc7714a88aad28463c651f.png" />
-<img alt="_images/e6436bc37d307b2c9f92433388d948fefb59e37dc4217551dd69df9656b06a0e.png" src="_images/e6436bc37d307b2c9f92433388d948fefb59e37dc4217551dd69df9656b06a0e.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">SSLEOFError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connectionpool.py:464,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">464</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span> <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connectionpool.py:1093,</span> in <span class="ni">HTTPSConnectionPool._validate_conn</span><span class="nt">(self, conn)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1092</span> <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">is_closed</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1093</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span> <span class="c1"># TODO revise this, see https://github.com/urllib3/urllib3/issues/2791</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connection.py:741,</span> in <span class="ni">HTTPSConnection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span> <span class="n">server_hostname_rm_dot</span> <span class="o">=</span> <span class="n">server_hostname</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">741</span> <span class="n">sock_and_verified</span> <span class="o">=</span> <span class="n">_ssl_wrap_socket_and_match_hostname</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">742</span>     <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>     <span class="n">cert_reqs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert_reqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span>     <span class="n">ssl_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">745</span>     <span class="n">ssl_minimum_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_minimum_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">746</span>     <span class="n">ssl_maximum_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_maximum_version</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">747</span>     <span class="n">ca_certs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_certs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span>     <span class="n">ca_cert_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_dir</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">749</span>     <span class="n">ca_cert_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">750</span>     <span class="n">cert_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">751</span>     <span class="n">key_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span>     <span class="n">key_password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_password</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">753</span>     <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname_rm_dot</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">754</span>     <span class="n">ssl_context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_context</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">755</span>     <span class="n">tls_in_tls</span><span class="o">=</span><span class="n">tls_in_tls</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span>     <span class="n">assert_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">assert_hostname</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">757</span>     <span class="n">assert_fingerprint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">assert_fingerprint</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">758</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">759</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">sock_and_verified</span><span class="o">.</span><span class="n">socket</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connection.py:920,</span> in <span class="ni">_ssl_wrap_socket_and_match_hostname</span><span class="nt">(sock, cert_reqs, ssl_version, ssl_minimum_version, ssl_maximum_version, cert_file, key_file, key_password, ca_certs, ca_cert_dir, ca_cert_data, assert_hostname, assert_fingerprint, server_hostname, ssl_context, tls_in_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">918</span>         <span class="n">server_hostname</span> <span class="o">=</span> <span class="n">normalized</span>
+<span class="ne">--&gt; </span><span class="mi">920</span> <span class="n">ssl_sock</span> <span class="o">=</span> <span class="n">ssl_wrap_socket</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">921</span>     <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>     <span class="n">keyfile</span><span class="o">=</span><span class="n">key_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>     <span class="n">certfile</span><span class="o">=</span><span class="n">cert_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">924</span>     <span class="n">key_password</span><span class="o">=</span><span class="n">key_password</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">925</span>     <span class="n">ca_certs</span><span class="o">=</span><span class="n">ca_certs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">926</span>     <span class="n">ca_cert_dir</span><span class="o">=</span><span class="n">ca_cert_dir</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">927</span>     <span class="n">ca_cert_data</span><span class="o">=</span><span class="n">ca_cert_data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">928</span>     <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">929</span>     <span class="n">ssl_context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="n">tls_in_tls</span><span class="o">=</span><span class="n">tls_in_tls</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">933</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/util/ssl_.py:480,</span> in <span class="ni">ssl_wrap_socket</span><span class="nt">(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">478</span> <span class="n">context</span><span class="o">.</span><span class="n">set_alpn_protocols</span><span class="p">(</span><span class="n">ALPN_PROTOCOLS</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">480</span> <span class="n">ssl_sock</span> <span class="o">=</span> <span class="n">_ssl_wrap_socket_impl</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">tls_in_tls</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span> <span class="k">return</span> <span class="n">ssl_sock</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/util/ssl_.py:524,</span> in <span class="ni">_ssl_wrap_socket_impl</span><span class="nt">(sock, ssl_context, tls_in_tls, server_hostname)</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="k">return</span> <span class="n">SSLTransport</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">ssl_context</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">524</span> <span class="k">return</span> <span class="n">ssl_context</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/ssl.py:455,</span> in <span class="ni">SSLContext.wrap_socket</span><span class="nt">(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>                 <span class="n">do_handshake_on_connect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>                 <span class="n">suppress_ragged_eofs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>                 <span class="n">server_hostname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>     <span class="c1"># SSLSocket class handles server_hostname encoding before it calls</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="c1"># ctx._wrap_socket()</span>
+<span class="ne">--&gt; </span><span class="mi">455</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sslsocket_class</span><span class="o">.</span><span class="n">_create</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>         <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>         <span class="n">server_side</span><span class="o">=</span><span class="n">server_side</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span>         <span class="n">do_handshake_on_connect</span><span class="o">=</span><span class="n">do_handshake_on_connect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>         <span class="n">suppress_ragged_eofs</span><span class="o">=</span><span class="n">suppress_ragged_eofs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span>         <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>         <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="n">session</span><span class="o">=</span><span class="n">session</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/ssl.py:1041,</span> in <span class="ni">SSLSocket._create</span><span class="nt">(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;do_handshake_on_connect should not be specified for non-blocking sockets&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1041</span>             <span class="bp">self</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span> <span class="k">except</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/ssl.py:1319,</span> in <span class="ni">SSLSocket.do_handshake</span><span class="nt">(self, block)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1318</span>         <span class="bp">self</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1319</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1320</span> <span class="k">finally</span><span class="p">:</span>
+
+<span class="nn">SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred</span> in <span class="ni">violation of protocol </span><span class="nt">(_ssl.c:1010)</span>
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="c1"># Make the request on the HTTPConnection object</span>
+<span class="ne">--&gt; </span><span class="mi">787</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">response_conn</span><span class="o">=</span><span class="n">response_conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">preload_content</span><span class="o">=</span><span class="n">preload_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">decode_content</span><span class="o">=</span><span class="n">decode_content</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="o">**</span><span class="n">response_kw</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">802</span> <span class="c1"># Everything went great!</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connectionpool.py:488,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="g g-Whitespace">    </span><span class="mi">487</span>         <span class="n">new_e</span> <span class="o">=</span> <span class="n">_wrap_proxy_error</span><span class="p">(</span><span class="n">new_e</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">488</span>     <span class="k">raise</span> <span class="n">new_e</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span> <span class="c1"># conn.request() calls http.client.*.request, not the method in</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span> <span class="c1"># urllib3.request. It also calls makefile (recv) on the socket.</span>
+
+<span class="nn">SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred</span> in <span class="ni">violation of protocol </span><span class="nt">(_ssl.c:1010)</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">MaxRetryError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/adapters.py:667,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/connectionpool.py:841,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="n">new_e</span> <span class="o">=</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Connection aborted.&quot;</span><span class="p">,</span> <span class="n">new_e</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">841</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">842</span>     <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">new_e</span><span class="p">,</span> <span class="n">_pool</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span> <span class="n">retries</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/urllib3/util/retry.py:519,</span> in <span class="ni">Retry.increment</span><span class="nt">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>     <span class="n">reason</span> <span class="o">=</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">ResponseError</span><span class="p">(</span><span class="n">cause</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">519</span>     <span class="k">raise</span> <span class="n">MaxRetryError</span><span class="p">(</span><span class="n">_pool</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">reason</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Incremented Retry for (url=&#39;</span><span class="si">%s</span><span class="s2">&#39;): </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">new_retry</span><span class="p">)</span>
+
+<span class="nn">MaxRetryError: HTTPSConnectionPool(host=&#39;a.basemaps.cartocdn.com&#39;, port=443): Max retries exceeded with url: /light_all/6/15/31.png (Caused by SSLError(SSLEOFError(8, &#39;[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred</span> in <span class="ni">violation of protocol </span><span class="nt">(_ssl.c:1010)&#39;)))</span>
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">SSLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Positron</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Modelo de Objetos: Cantones de Ecuador&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/contextily/plotting.py:134,</span> in <span class="ni">add_basemap</span><span class="nt">(ax, zoom, source, interpolation, attribution, attribution_size, reset_extent, crs, resampling, zoom_adjust, **extra_imshow_args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="n">_reproj_bb</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>         <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="s2">&quot;epsg:3857&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="c1"># Download image</span>
+<span class="ne">--&gt; </span><span class="mi">134</span> <span class="n">image</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">bounds2img</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="n">left</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="n">bottom</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="n">right</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="n">top</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="n">ll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>     <span class="n">zoom_adjust</span><span class="o">=</span><span class="n">zoom_adjust</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="c1"># Warping</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/contextily/tile.py:283,</span> in <span class="ni">bounds2img</span><span class="nt">(w, s, e, n, zoom, source, ll, wait, max_retries, n_connections, use_cache, zoom_adjust)</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span> <span class="n">preferred_backend</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="s2">&quot;threads&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">n_connections</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">use_cache</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;processes&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="n">fetch_tile_fn</span> <span class="o">=</span> <span class="n">memory</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">_fetch_tile</span><span class="p">)</span> <span class="k">if</span> <span class="n">use_cache</span> <span class="k">else</span> <span class="n">_fetch_tile</span>
+<span class="ne">--&gt; </span><span class="mi">283</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_connections</span><span class="p">,</span> <span class="n">prefer</span><span class="o">=</span><span class="n">preferred_backend</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">fetch_tile_fn</span><span class="p">)(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">)</span> <span class="k">for</span> <span class="n">tile_url</span> <span class="ow">in</span> <span class="n">tile_urls</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="c1"># merge downloaded tiles</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="n">merged</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">_merge_tiles</span><span class="p">(</span><span class="n">tiles</span><span class="p">,</span> <span class="n">arrays</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/joblib/parallel.py:1986,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1984</span>     <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sequential_output</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1985</span>     <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1986</span>     <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1988</span> <span class="c1"># Let&#39;s create an ID that uniquely identifies the current call. If the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1989</span> <span class="c1"># call is interrupted early and that the same instance is immediately</span>
+<span class="g g-Whitespace">   </span><span class="mi">1990</span> <span class="c1"># reused, this id will be used to prevent workers that were</span>
+<span class="g g-Whitespace">   </span><span class="mi">1991</span> <span class="c1"># concurrently finalizing a task from the previous call to run the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1992</span> <span class="c1"># callback.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1993</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/joblib/parallel.py:1914,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1912</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1913</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1914</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1915</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/joblib/memory.py:607,</span> in <span class="ni">MemorizedFunc.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span>     <span class="c1"># Return the output, without the metadata</span>
+<span class="ne">--&gt; </span><span class="mi">607</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_call</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">shelving</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/joblib/memory.py:562,</span> in <span class="ni">MemorizedFunc._cached_call</span><span class="nt">(self, args, kwargs, shelving)</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span>     <span class="bp">self</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span>         <span class="sa">f</span><span class="s2">&quot;Computing func </span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s2">, argument hash </span><span class="si">{</span><span class="n">args_id</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>         <span class="sa">f</span><span class="s2">&quot;in location </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="c1"># Returns the output but not the metadata</span>
+<span class="ne">--&gt; </span><span class="mi">562</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="n">call_id</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">shelving</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/joblib/memory.py:832,</span> in <span class="ni">MemorizedFunc._call</span><span class="nt">(self, call_id, args, kwargs, shelving)</span>
+<span class="g g-Whitespace">    </span><span class="mi">830</span> <span class="bp">self</span><span class="o">.</span><span class="n">_before_call</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">831</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">832</span> <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">833</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_after_call</span><span class="p">(</span><span class="n">call_id</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">shelving</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">start_time</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/contextily/tile.py:313,</span> in <span class="ni">_fetch_tile</span><span class="nt">(tile_url, wait, max_retries)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="k">def</span><span class="w"> </span><span class="nf">_fetch_tile</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">313</span>     <span class="n">array</span> <span class="o">=</span> <span class="n">_retryer</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">wait</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="k">return</span> <span class="n">array</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/contextily/tile.py:452,</span> in <span class="ni">_retryer</span><span class="nt">(tile_url, wait, max_retries)</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span><span class="sd"> Retry a url many times in attempt to get a tile and read the image</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span><span class="sd"> array of the tile</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">452</span>     <span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;user-agent&quot;</span><span class="p">:</span> <span class="n">USER_AGENT</span><span class="p">})</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>     <span class="n">request</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_stream</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request.</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="sd">     :rtype: requests.Response</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/api.py:59,</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/sessions.py:589,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span>     <span class="s2">&quot;allow_redirects&quot;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/sessions.py:703,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/requests/adapters.py:698,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span>         <span class="k">raise</span> <span class="n">ProxyError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span> <span class="n">_SSLError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>         <span class="c1"># This branch is for urllib3 v1.22 and later.</span>
+<span class="ne">--&gt; </span><span class="mi">698</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="k">except</span> <span class="n">ClosedPoolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">SSLError: HTTPSConnectionPool(host=&#39;a.basemaps.cartocdn.com&#39;, port=443): Max retries exceeded with url: /light_all/6/15/31.png (Caused by SSLError(SSLEOFError(8, &#39;[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred</span> in <span class="ni">violation of protocol </span><span class="nt">(_ssl.c:1010)&#39;)))</span>
+</pre></div>
+</div>
+<img alt="_images/6d0a4dce74d876738358f4c2895d9c25b8bc46461a88f9d1b9866466f18ecb0e.png" src="_images/6d0a4dce74d876738358f4c2895d9c25b8bc46461a88f9d1b9866466f18ecb0e.png" />
 </div>
 </div>
 </section>

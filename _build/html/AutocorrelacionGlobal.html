@@ -495,51 +495,51 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <td><p>Global</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(I&gt; 0\)</span>: autocorrelación   espacial positiva, los valores de observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son similares <br/> <span class="math notranslate nohighlight">\(I &lt;0\)</span>: autocorrelación espacial negativa, los valores de observación a la   distancia <span class="math notranslate nohighlight">\(d\)</span> son diferentes <br/> <span class="math notranslate nohighlight">\(I = 0\)</span>: los valores de observación a la distancia d se distribuyen   aleatoriamente</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">esda.moran.Moran()</span></code> <br/> <br/><code class="docutils literal notranslate"><span class="pre">.I</span> <span class="pre">#</span> <span class="pre">Indice</span> <span class="pre">de</span> <span class="pre">Moran</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.EI</span> <span class="pre">#</span> <span class="pre">Esperanza</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.VI_sim</span> <span class="pre">#</span> <span class="pre">Varianza</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.z_sim</span> <span class="pre">#</span> <span class="pre">Valor</span> <span class="pre">Z</span></code><br/> <br/><code class="docutils literal notranslate"><span class="pre">.p_sim</span> <span class="pre">#</span> <span class="pre">p-valor</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">moran</span> <span class="pre">=</span> <span class="pre">esda.moran.Moran()</span></code> <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.I</span></code>           Valor del estadístico de Moran’s I (autocorrelación espacial global).<br/> <br/>  <code class="docutils literal notranslate"><span class="pre">moran.EI</span></code>          Valor esperado de Moran’s I bajo la hipótesis nula (generalmente -1/(n-1)). <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.VI_norm</span></code>     Varianza de I bajo la suposición de normalidad.<br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.z_norm</span></code>      Estadístico Z basado en normalidad.  <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.p_norm</span></code>      P-value basado en la distribución normal.     <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.VI_rand</span></code>     Varianza de I basada en permutaciones aleatorias.   <br/> <br/>                <code class="docutils literal notranslate"><span class="pre">moran.z_rand</span></code>      Estadístico Z basado en permutaciones.   <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.p_rand</span></code>      P-value basado en permutaciones aleatorias.          <br/> <br/> <code class="docutils literal notranslate"><span class="pre">moran.sim</span></code>         Distribución simulada de I (array con los valores de cada permutación). <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">moran.z_sim</span></code>       Puntaje Z basado en la simulación empírica.                        <br/> <br/>          <code class="docutils literal notranslate"><span class="pre">moran.p_sim</span></code>       P-value basado en simulaciones (por defecto con 999 permutaciones).          <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.n</span></code>           Número de observaciones.                                                     <br/> <br/><code class="docutils literal notranslate"><span class="pre">moran.permutations</span></code>  Número de permutaciones realizadas.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Geary’s C</p></td>
 <td><p>Global</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(0 &lt;C &lt;1\)</span>: autocorrelación   espacial positiva, los valores de observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son   similares   <br/>   <span class="math notranslate nohighlight">\(1 &lt;C &lt;2\)</span>: autocorrelación espacial negativa, los valores de   observación a la distancia <span class="math notranslate nohighlight">\(d\)</span> son diferentes</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">esda.geary.Geary()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">geary</span> <span class="pre">=</span> <span class="pre">esda.geary.Geary()</span></code>  <br/> <br/>   <code class="docutils literal notranslate"><span class="pre">geary.C</span></code>           Valor del estadístico de Geary’s C (mide disimilitud espacial).     <br/> <br/>        <code class="docutils literal notranslate"><span class="pre">geary.EC</span></code>          Valor esperado del estadístico C bajo la hipótesis nula (usualmente 1).              <br/> <br/>       <code class="docutils literal notranslate"><span class="pre">geary.VC_norm</span></code>     Varianza del estadístico C bajo normalidad.     <br/> <br/> <code class="docutils literal notranslate"><span class="pre">geary.z_norm</span></code>      Estadístico Z basado en normalidad.   <br/> <br/> <code class="docutils literal notranslate"><span class="pre">geary.p_norm</span></code>      P-value basado en la distribución normal.  <br/> <br/><code class="docutils literal notranslate"><span class="pre">geary.VC_rand</span></code>     Varianza del estadístico C bajo permutaciones aleatorias. <br/> <br/> <code class="docutils literal notranslate"><span class="pre">geary.z_rand</span></code>      Estadístico Z basado en permutaciones. <br/> <br/><code class="docutils literal notranslate"><span class="pre">geary.p_rand</span></code>      P-value basado en permutaciones aleatorias. <br/> <br/><code class="docutils literal notranslate"><span class="pre">geary.sim</span></code>         Distribución simulada de Geary’s C bajo permutación (array de valores). <br/> <br/><code class="docutils literal notranslate"><span class="pre">geary.n</span></code>           Número de observaciones. <br/> <br/><code class="docutils literal notranslate"><span class="pre">geary.permutations</span></code>  Número de permutaciones realizadas para pruebas de significancia.</p></td>
 </tr>
 <tr class="row-even"><td><p>Join-count</p></td>
 <td><p>Global en grupos</p></td>
 <td><p>Una medida de autocorrelación espacial</p></td>
 <td><p><span class="math notranslate nohighlight">\(H_0\)</span> asume que no hay   autocorrelación espacial, el valor <span class="math notranslate nohighlight">\(p&gt;\alpha\)</span> confirma esta hipótesis   <br/>   <span class="math notranslate nohighlight">\(H_1\)</span> asume la existencia de autocorrelación espacial, valor <span class="math notranslate nohighlight">\(p &lt;\alpha\)</span>   confirma esta hipótesis</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">joincount.test</span> <span class="pre">()</span></code>   <br/>   <code class="docutils literal notranslate"><span class="pre">joincount.mc</span> <span class="pre">()</span></code>   <br/>   <code class="docutils literal notranslate"><span class="pre">joincount.multi</span> <span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jc</span> <span class="pre">=</span> <span class="pre">esda.join_counts.Join_Counts()</span></code> <br/> <br/><code class="docutils literal notranslate"><span class="pre">jc.bb</span></code>              Número de uniones (joins) entre vecinos donde ambos tienen valor 1 (black-black).    <br/> <br/> <code class="docutils literal notranslate"><span class="pre">jc.ww</span></code>              Número de uniones entre vecinos donde ambos tienen valor 0 (white-white).  <br/> <br/> <code class="docutils literal notranslate"><span class="pre">jc.bw</span></code>              Número de uniones entre vecinos con valores distintos (black-white).   <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">jc.mean_bb</span></code>         Valor esperado del número de uniones BB bajo la hipótesis de aleatoriedad. <br/> <br/> <code class="docutils literal notranslate"><span class="pre">jc.var_bb</span></code>          Varianza esperada del número de uniones BB.                            <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">jc.z_bb</span></code>            Estadístico Z para la unión BB.                                    <br/> <br/>         <code class="docutils literal notranslate"><span class="pre">jc.p_sim_bb</span></code>        P-value empírico para BB basado en permutaciones.  <br/> <br/>                         <code class="docutils literal notranslate"><span class="pre">jc.mean_bw</span></code>         Valor esperado del número de uniones BW bajo aleatoriedad.            <br/> <br/>      <code class="docutils literal notranslate"><span class="pre">jc.var_bw</span></code>          Varianza esperada del número de uniones BW.                           <br/> <br/>      <code class="docutils literal notranslate"><span class="pre">jc.z_bw</span></code>            Estadístico Z para la unión BW.                               <br/> <br/>              <code class="docutils literal notranslate"><span class="pre">jc.p_sim_bw</span></code>        P-value empírico para BW basado en permutaciones.                       <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">jc.n</span></code>               Número de observaciones.                  <br/> <br/>                                  <code class="docutils literal notranslate"><span class="pre">jc.permutations</span></code>    Número de permutaciones utilizadas en los tests de significancia.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Local   Moran’s <span class="math notranslate nohighlight">\(I_i\)</span></p></td>
 <td><p>Local</p></td>
 <td><p>Junto con Local Geary, crea LISA, una medida de relaciones   espaciales.</p></td>
 <td><p>valor <span class="math notranslate nohighlight">\(p &lt;\alpha\)</span>: rodeado por   valores relativamente altos, un grupo de valores altos  <br/>    valor <span class="math notranslate nohighlight">\(p&gt; (1-\alpha)\)</span>: un área rodeada por valores relativamente bajos, un grupo   de valores bajos</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">local.moran</span> <span class="pre">()</span></code> <br/>     <code class="docutils literal notranslate"><span class="pre">localmoran.sad</span> <span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lisa</span> <span class="pre">=</span> <span class="pre">esda.moran.Moran_Local()</span></code>     <br/> <br/>      <code class="docutils literal notranslate"><span class="pre">lisa.Is</span></code>            Vector con los valores del estadístico de Moran local para cada observación.  <br/> <br/><code class="docutils literal notranslate"><span class="pre">lisa.p_sim</span></code>         P-values simulados por permutación; indican la significancia estadística.    <br/> <br/> <code class="docutils literal notranslate"><span class="pre">lisa.z_sim</span></code>         Puntajes Z simulados de los valores de Moran local.         <br/> <br/>                  <code class="docutils literal notranslate"><span class="pre">lisa.q</span></code>             Cuadrantes del diagrama de dispersión espacial de Moran (1: HH, 2: LH, 3: LL, 4: HL).  <br/> <br/><code class="docutils literal notranslate"><span class="pre">lisa.local_autocov</span></code> Covarianza local entre <code class="docutils literal notranslate"><span class="pre">y</span></code> y los valores vecinos ponderados.        <br/> <br/>          <code class="docutils literal notranslate"><span class="pre">lisa.sim</span></code>           Matriz con los valores simulados de Moran local por permutación.           <br/> <br/>   <code class="docutils literal notranslate"><span class="pre">lisa.n</span></code>             Número de observaciones en <code class="docutils literal notranslate"><span class="pre">y</span></code>.                                             <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">lisa.permutations</span></code>  Número de permutaciones realizadas para el test de significancia.</p></td>
 </tr>
 <tr class="row-even"><td><p>Local   Geary’s <span class="math notranslate nohighlight">\(C_i\)</span></p></td>
 <td><p>Local</p></td>
 <td><p>Junto con Local Moran, crea LISA, una medida de diversidad   espacial</p></td>
 <td><p>valor <span class="math notranslate nohighlight">\(p&gt; (1-\alpha)\)</span>: positivo,   región rodeada de observaciones similares      valor <span class="math notranslate nohighlight">\(p &lt;\alpha\)</span>: negativo, región rodeada por diferentes observaciones</p></td>
-<td><p>Existe el comando <code class="docutils literal notranslate"><span class="pre">usdm::lisa()</span></code>       que permite al usuario calcular este estadístico, pero para rásteres.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gl</span> <span class="pre">=</span> <span class="pre">esda.geary.Geary_Local()</span></code> <br/> <br/><code class="docutils literal notranslate"><span class="pre">gl.Is</span></code>               Valores del estadístico Geary’s C local por observación.                <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">gl.local_c</span></code>          Sinónimo de <code class="docutils literal notranslate"><span class="pre">Is</span></code>; valores locales de Geary’s C para cada unidad espacial.<br/> <br/>   <code class="docutils literal notranslate"><span class="pre">gl.p_sim</span></code>            P-values simulados por permutación para cada observación.              <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">gl.z_sim</span></code>            Puntajes Z (Z-scores) de los valores locales simulados.         <br/> <br/>            <code class="docutils literal notranslate"><span class="pre">gl.sim</span></code>              Matriz de valores simulados para cada unidad en las permutaciones.     <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">gl.q</span></code>                Cuadrantes del diagrama de dispersión espacial (como en Moran_Local).   <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">gl.permutations</span></code>     Número de permutaciones utilizadas para los tests de significancia.      <br/> <br/>   <code class="docutils literal notranslate"><span class="pre">gl.n</span></code>                Número de observaciones.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Local <span class="math notranslate nohighlight">\(G_i\)</span>, <span class="math notranslate nohighlight">\(G^*\)</span></p></td>
 <td><p>Local</p></td>
 <td><p>Medida de relaciones espaciales</p></td>
 <td><p><span class="math notranslate nohighlight">\(G_i&gt; 0\)</span>: área rodeada por   valores relativamente altos, clúster de alto valor   <br/>   <span class="math notranslate nohighlight">\(G_i &lt;0\)</span>: área rodeada por valores relativamente bajos, clúster de valor   bajo</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">localG</span> <span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ol</span> <span class="pre">=</span> <span class="pre">esda.getisord.G_Local()</span></code>  <br/> <br/> <code class="docutils literal notranslate"><span class="pre">ol.Gs</span></code>             Valores de la estadística local G (Gi*) para cada observación.          <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">ol.z_sim</span></code>          Puntajes Z (Z-scores) basados en permutaciones aleatorias.  <br/> <br/>                 <code class="docutils literal notranslate"><span class="pre">ol.p_sim</span></code>          P-values empíricos por permutación.                          <br/> <br/>                <code class="docutils literal notranslate"><span class="pre">ol.sim</span></code>            Matriz de valores simulados de G en cada permutación.             <br/> <br/>           <code class="docutils literal notranslate"><span class="pre">ol.n</span></code>              Número de observaciones.                                                <br/> <br/>     <code class="docutils literal notranslate"><span class="pre">ol.permutations</span></code>   Número de permutaciones realizadas.</p></td>
 </tr>
 <tr class="row-even"><td><p>Local <span class="math notranslate nohighlight">\(H_i\)</span>,      LOSH</p></td>
 <td><p>Local</p></td>
 <td><p>Medida de relaciones espaciales</p></td>
 <td><p>Interpretado junto con las   estadísticas <span class="math notranslate nohighlight">\(G^*\)</span>. Valores altos indican un entorno heterogéneo; valores bajos   indican homogeneidad local.</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">LOSH()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">losh</span> <span class="pre">=</span> <span class="pre">esda.losh.LOSH()</span></code>   <br/> <br/> <code class="docutils literal notranslate"><span class="pre">losh.losh</span></code>         Valores del estadístico LOSH (heterocedasticidad espacial local) por unidad. <br/> <br/><code class="docutils literal notranslate"><span class="pre">losh.sim</span></code>          Matriz de valores simulados del estadístico LOSH en cada permutación.     <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">losh.z_sim</span></code>        Puntajes Z (Z-scores) de los valores simulados.                          <br/> <br/>   <code class="docutils literal notranslate"><span class="pre">losh.p_sim</span></code>        P-values empíricos por permutación (significancia local).               <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">losh.permutations</span></code> Número de permutaciones usadas para el test.                              <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">losh.n</span></code>            Número de observaciones.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Empirical      Bayes index</p></td>
 <td><p>Local</p></td>
 <td><p>Medida de relaciones espaciales</p></td>
-<td><p>Interpretado como las   estadísticas I de Moran, utilizadas por interés (por ejemplo, número de casos   / población)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">EBImoran.mc()</span></code></p></td>
+<td><p>Interpretado como las   estadísticas I de Moran, utilizadas por interés (por ejemplo, número de casos   / población). Ajusta tasas inestables (e.g., delitos, mortalidad) mediante suavizado bayesiano:<br> - Reduce sesgo en áreas con pocos casos.<br> - Proporciona estimaciones más estables.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ebi</span> <span class="pre">=</span> <span class="pre">esda.eb.Empirical_Bayes()</span></code>  <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">ebi.y</span></code>               Array con los conteos brutos (numerador de la tasa).   <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">ebi.n</span></code>               Array con las poblaciones en riesgo (denominador de la tasa).           <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">ebi.r</span></code>               Tasa cruda (raw rate), calculada como <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">/</span> <span class="pre">n</span></code>.                            <br/> <br/>  <code class="docutils literal notranslate"><span class="pre">ebi.mean</span></code>            Tasa promedio global ponderada (media bayesiana global).                <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">ebi.prior</span></code>           Varianza a priori estimada para la distribución Poisson-gamma.           <br/> <br/>   <code class="docutils literal notranslate"><span class="pre">ebi.s</span></code>               Tasa suavizada (smoothed rate) ajustada con el modelo bayesiano.        <br/> <br/>    <code class="docutils literal notranslate"><span class="pre">ebi.z</span></code>               Puntajes Z de los valores suavizados.</p></td>
 </tr>
-<tr class="row-even"><td><p>Table: Estadísticos espaciales globales y locales. Fuente: &#64;kopczewska2020applied. (<span class="math notranslate nohighlight">\(\alpha\)</span>: nivel de significancia).</p></td>
+<tr class="row-even"><td><p>Tabla: Estadísticos espaciales globales y locales. <br/> <br/> Fuente: &#64;kopczewska2020applied y documentación <code class="docutils literal notranslate"><span class="pre">esda</span></code>. <br/> <br/> (<span class="math notranslate nohighlight">\(\alpha\)</span>: nivel de significancia).</p></td>
 <td><p></p></td>
 <td><p></p></td>
 <td><p></p></td>
@@ -548,6 +548,20 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </tbody>
 </table>
 </div>
+<!--
+
+| **Estadístico**            | **Tipo**            | **Tipo de medición**                    | **Interpretación**                                                                                                                                                                                                                                          | **Funciones en `Python` (`esda`)** |
+|----------------------------|---------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| **Moran’s I**              | Global              | Autocorrelación espacial                | - $I > 0$: autocorrelación espacial positiva (valores similares entre vecinos).<br> - $I < 0$: autocorrelación negativa (valores diferentes entre vecinos).<br> - $I \approx 0$: distribución aleatoria.                                                    | `moran = esda.Moran(y, w)`<br>`moran.I`, `moran.EI`<br>`moran.VI_norm`, `moran.z_norm`, `moran.p_norm`<br>`moran.VI_rand`, `moran.z_rand`, `moran.p_rand`<br>`moran.sim`, `moran.z_sim`, `moran.p_sim`<br>`moran.n`, `moran.permutations` |
+| **Geary’s C**              | Global              | Disimilitud espacial                   | - $0 < C < 1$: autocorrelación positiva (valores similares entre vecinos).<br> - $1 < C < 2$: autocorrelación negativa (valores diferentes entre vecinos).                                                                                                  | `geary = esda.Geary(y, w)`<br>`geary.C`, `geary.EC`<br>`geary.VC_norm`, `geary.z_norm`, `geary.p_norm`<br>`geary.VC_rand`, `geary.z_rand`, `geary.p_rand`<br>`geary.sim`, `geary.n`, `geary.permutations` |
+| **Join-count**             | Global (binaria)    | Agrupamiento espacial de categorías     | - $H_0$: no autocorrelación espacial (p > α).<br> - $H_1$: presencia de autocorrelación (p < α).<br> Se aplica a variables categóricas binarias (e.g., 0/1).                                                                                                 | `jc = esda.Join_Counts(y_binary, w)`<br>`jc.bb`, `jc.ww`, `jc.bw`<br>`jc.mean_bb`, `jc.var_bb`, `jc.z_bb`, `jc.p_sim_bb`<br>`jc.mean_bw`, `jc.var_bw`, `jc.z_bw`, `jc.p_sim_bw`<br>`jc.n`, `jc.permutations` |
+| **Local Moran’s $I_i$**    | Local               | Asociación local (LISA)                 | - $p < \alpha$: clúster significativo (e.g., HH o LL).<br> - $p > 1 - \alpha$: valores atípicos espaciales (e.g., HL o LH).                                                                                                                                | `lisa = esda.Moran_Local(y, w)`<br>`lisa.Is`, `lisa.p_sim`, `lisa.z_sim`<br>`lisa.q`, `lisa.local_autocov`, `lisa.sim`<br>`lisa.n`, `lisa.permutations` |
+| **Local Geary’s $C_i$**    | Local               | Disimilitud local (LISA)                | - $p < \alpha$: diferencia significativa con vecinos.<br> - $p > 1 - \alpha$: similitud significativa con vecinos.                                                                                                                                        | `gl = esda.Geary_Local(y, w)`<br>`gl.Is` o `gl.local_c`<br>`gl.p_sim`, `gl.z_sim`<br>`gl.q`, `gl.sim`<br>`gl.n`, `gl.permutations` |
+| **Local $G_i$, $G^*_i$**   | Local               | Clústeres de alta/baja intensidad       | - $G_i > 0$: concentración de valores altos (hot spots).<br> - $G_i < 0$: concentración de valores bajos (cold spots).                                                                                                                                    | `ol = esda.G_Local(y, w)`<br>`ol.Gs`, `ol.z_sim`, `ol.p_sim`<br>`ol.sim`, `ol.n`, `ol.permutations` |
+| **LOSH ($H_i$)**           | Local               | Heterogeneidad espacial local           | - Valores altos: entorno heterogéneo.<br> - Valores bajos: entorno homogéneo.<br> Complementario a $G_i^*$.                                                                                                                                              | `losh = esda.LOSH(y, w)`<br>`losh.losh`, `losh.sim`, `losh.z_sim`, `losh.p_sim`<br>`losh.permutations`, `losh.n` |
+| **Empirical Bayes Index**  | Local (tasas)       | Autocorrelación suavizada               | Ajusta tasas inestables (e.g., delitos, mortalidad) mediante suavizado bayesiano:<br> - Reduce sesgo en áreas con pocos casos.<br> - Proporciona estimaciones más estables.                                                                              | `ebi = esda.Empirical_Bayes(y, n)`<br>`ebi.r`, `ebi.mean`, `ebi.prior`<br>`ebi.s` (tasa suavizada), `ebi.z` |
+
+-->
 <p><strong>Supuestos:</strong></p>
 <p>La estadística espacial se basa en varios supuestos. El más importante de ellos es la <strong>estacionariedad</strong>, lo que significa que <strong>los datos analizados deben tener una distribución normal con promedio y varianza constantes</strong>.</p>
 <p>Sin embargo, las estructuras de autocorrelación espacial no siempre son constantes en toda el área de estudio, por lo que es suficiente satisfacer una <strong>estacionariedad débil, donde la media y la varianza son constantes, mientras que la autocorrelación depende solo de la distancia entre los objetos probados</strong>.</p>
@@ -1033,8 +1047,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.0020156948396102877
-Z-score (simulado): 6.910831810934041
+Variance: 0.002058033869817025
+Z-score (simulado): 6.852289137372859
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1117,7 +1131,7 @@ P-value (simulado): 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/3407df925f39300448b19260206a58fc18c212dce76747ad301fba7a5bf45a02.png" src="_images/3407df925f39300448b19260206a58fc18c212dce76747ad301fba7a5bf45a02.png" />
+<img alt="_images/2768c0beeed9ab08a959dde5530a8aee91868b6896886e10736b50790901f677.png" src="_images/2768c0beeed9ab08a959dde5530a8aee91868b6896886e10736b50790901f677.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1467,29 +1481,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.4980
+I de Moran Observado (esda): 0.5598
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.4980
+I de Moran Observado (manual): 0.5598
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 7.1853
+Z-score (normalidad, manual): 8.0080
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0058
-Z-score (aleatorización, manual): 7.1024
+Varianza Var[I] (aleatorización, manual): 0.0059
+Z-score (aleatorización, manual): 7.8454
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/f9a7d4e148f256e20b2184a8b4b55602e4cf823f18c4e2675c39c181ae548678.png" src="_images/f9a7d4e148f256e20b2184a8b4b55602e4cf823f18c4e2675c39c181ae548678.png" />
+<img alt="_images/4bb38bfa704ff5f641b647d0c9ca2a75e738d0cc373ee97bb89e174812409990.png" src="_images/4bb38bfa704ff5f641b647d0c9ca2a75e738d0cc373ee97bb89e174812409990.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1530,15 +1544,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">splot.esda</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_moran</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plot_moran</span><span class="p">(</span><span class="n">mi_MC</span><span class="p">);</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;splot&#39;
-</pre></div>
-</div>
+<img alt="_images/4761fb7b966f5b0cc3d03f6c864f349fa15c4e431c4d851b0e23b55048b94858.png" src="_images/4761fb7b966f5b0cc3d03f6c864f349fa15c4e431c4d851b0e23b55048b94858.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1632,7 +1638,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f49f2eeed00a1f837ea8882ff948690ac50a64b8af7c05087bf8d2b5f0dfdbd6.png" src="_images/f49f2eeed00a1f837ea8882ff948690ac50a64b8af7c05087bf8d2b5f0dfdbd6.png" />
+<img alt="_images/8646d44863a11cabf34fbd140835b42df34238bdbe68b89f493d927d4c1886d7.png" src="_images/8646d44863a11cabf34fbd140835b42df34238bdbe68b89f493d927d4c1886d7.png" />
 </div>
 </div>
 </section>
@@ -1658,6 +1664,35 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:186: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_rand = vc_rand ** (0.5)
+/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:187: RuntimeWarning: invalid value encountered in scalar power
+  self.seC_norm = vc_norm ** (0.5)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">geary_C</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">geary</span><span class="o">.</span><span class="n">Geary</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">,</span><span class="n">permutations</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:133,</span> in <span class="ni">Geary.__init__</span><span class="nt">(self, y, w, transformation, permutations)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="n">s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">s0</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">W</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">s0</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span> <span class="o">=</span> <span class="n">yss</span> <span class="o">*</span> <span class="n">s0</span> <span class="o">*</span> <span class="mf">2.0</span>
+<span class="ne">--&gt; </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calc</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="n">de</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">-</span> <span class="mf">1.0</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="bp">self</span><span class="o">.</span><span class="n">EC</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/esda/geary.py:190,</span> in <span class="ni">Geary.__calc</span><span class="nt">(self, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="k">def</span><span class="w"> </span><span class="nf">__calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">190</span>     <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weights</span> <span class="o">*</span> <span class="p">((</span><span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_focal_ix</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_neighbor_ix</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">num</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span>
+
+<span class="ne">IndexError</span>: index 25 is out of bounds for axis 0 with size 25
 </pre></div>
 </div>
 </div>
