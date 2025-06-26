@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -605,14 +605,14 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>Para leer los datos de un archivo <code class="docutils literal notranslate"><span class="pre">shp</span></code> de github usaremos la función <code class="docutils literal notranslate"><span class="pre">read_git_shp</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="k">def</span> <span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar shapefile: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -636,22 +636,16 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
-  _set_context_ca_bundle_path(ca_bundle_path)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Ahora importamos el valor agregado anual por cantones del Ecuador tomados del Banco Central del Ecuador y el indicador de Necesidades Básicas Insatisfechas por personas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># 1. Leo los datos del VAB no petrolero por cantones 2007-2019</span>
 <span class="n">url_vab</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/VABNoPetroleroCantones2007-2019.csv&quot;</span>
@@ -697,110 +691,6 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: /opt/anaconda3/share/proj/proj.db contains DATABASE.LAYOUT.VERSION.MINOR = 2 whereas a number &gt;= 5 is expected. It comes from another PROJ installation.
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CRSError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">48</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="c1"># 11. Descargo y leo el shapefile con los polígonos cantonales</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">48</span> <span class="n">poligonos</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-
-<span class="nn">Cell In[1], line 23,</span> in <span class="ni">read_git_shp</span><span class="nt">(nombre, url)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>         <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">23</span>         <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">,</span> <span class="n">shp_name</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">return</span> <span class="n">gdf</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:317,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, columns, rows, engine, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>             <span class="n">filename</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span> <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;pyogrio&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">317</span>     <span class="k">return</span> <span class="n">_read_file_pyogrio</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="n">filename</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;fiona&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_file_like</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:577,</span> in <span class="ni">_read_file_pyogrio</span><span class="nt">(path_or_bytes, bbox, mask, rows, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span>         <span class="s2">&quot;The &#39;include_fields&#39; and &#39;ignore_fields&#39; keywords are deprecated, and &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="s2">&quot;will be removed in a future release. You can use the &#39;columns&#39; keyword &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;include_fields&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">577</span> <span class="k">return</span> <span class="n">pyogrio</span><span class="o">.</span><span class="n">read_dataframe</span><span class="p">(</span><span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyogrio/geopandas.py:371,</span> in <span class="ni">read_dataframe</span><span class="nt">(path_or_buffer, layer, encoding, columns, read_geometry, force_2d, skip_features, max_features, where, bbox, mask, fids, sql, sql_dialect, fid_as_index, use_arrow, on_invalid, arrow_to_pandas_kwargs, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="k">return</span> <span class="n">df</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span> <span class="n">geometry</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_wkb</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">on_invalid</span><span class="o">=</span><span class="n">on_invalid</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">371</span> <span class="k">return</span> <span class="n">gp</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">])</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:240,</span> in <span class="ni">GeoDataFrame.__init__</span><span class="nt">(self, data, geometry, crs, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="n">geometry</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>         <span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span>         <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="c1"># __init__ always creates geometry col named &quot;geometry&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span>         <span class="c1"># rename as `set_geometry` respects the given series name</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">240</span>     <span class="bp">self</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">242</span> <span class="k">if</span> <span class="n">geometry</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="s2">&quot;Assigning CRS to a GeoDataFrame without a geometry column is not &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">245</span>         <span class="s2">&quot;supported. Supply geometry using the &#39;geometry=&#39; keyword argument, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span>         <span class="s2">&quot;or by providing a DataFrame with column name &#39;geometry&#39;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:459,</span> in <span class="ni">GeoDataFrame.set_geometry</span><span class="nt">(self, col, drop, inplace, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="n">crs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="c1"># Check that we are using a listlike of geometries</span>
-<span class="ne">--&gt; </span><span class="mi">459</span> <span class="n">level</span> <span class="o">=</span> <span class="n">_ensure_geometry</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="c1"># ensure_geometry only sets crs on level if it has crs==None</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">GeoSeries</span><span class="p">):</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71,</span> in <span class="ni">_ensure_geometry</span><span class="nt">(data, crs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">return</span> <span class="n">GeoSeries</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">from_shapely</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">return</span> <span class="n">out</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:192,</span> in <span class="ni">from_shapely</span><span class="nt">(data, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">189</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input must be valid geometry objects: </span><span class="si">{</span><span class="n">geom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">192</span> <span class="k">return</span> <span class="n">GeometryArray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:348,</span> in <span class="ni">GeometryArray.__init__</span><span class="nt">(self, data, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">348</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span>
-<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:401,</span> in <span class="ni">GeometryArray.crs</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span> <span class="k">if</span> <span class="n">HAS_PYPROJ</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span>     <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
-<span class="ne">--&gt; </span><span class="mi">401</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="k">else</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_user_input</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503,</span> in <span class="ni">CRS.from_user_input</span><span class="nt">(cls, value, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">return</span> <span class="n">value</span>
-<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:350,</span> in <span class="ni">CRS.__init__</span><span class="nt">(self, projparams, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">projparams</span>
-<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">350</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">_CRS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/_crs.pyx:2364,</span> in <span class="ni">pyproj._crs._CRS.__init__</span><span class="nt">()</span>
-
-<span class="ne">CRSError</span>: Invalid projection: EPSG:32717: (Internal Proj Error: proj_create: no database context specified)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Una vez extraida la información y el shapefile, quitamos a Galápagos y juntamos los datos a <code class="docutils literal notranslate"><span class="pre">poligonos</span></code></p>
 <div class="cell docutils container">
@@ -843,7 +733,7 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 
 <span class="c1"># Reproyección a Web Mercator para usar contextily</span>
@@ -875,9 +765,9 @@ Estadístico = \sum_i\sum_jf(x_ix_j)w_{ij}
 <p>Antes de analizar la autocorrelación espacial, es fundamental definir la matriz de pesos espaciales. En este caso, se adopta el <strong>contiguidad por criterio de reina</strong> como referencia, aunque, como se mencionó anteriormente, existen múltiples formas válidas de construir esta matriz. Para garantizar la comparabilidad entre unidades, los pesos se estandarizan por filas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">W</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">W</span>
 
 <span class="c1"># 1. Construir la lista de vecinos usando contigüidad tipo Reina</span>
 <span class="c1"># El parámetro silence_warnings=True es útil si hay geometrías sin vecinos</span>
@@ -928,7 +818,7 @@ y_{sl-i} = \sum_j w_{ij} y_j
 <p>Por ejemplo, para calcular el retardo espacial de una variable como <code class="docutils literal notranslate"><span class="pre">VAB_PC</span></code>, se puede hacer mediante código como el siguiente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libpysal</span> <span class="kn">import</span> <span class="n">weights</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
 <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC_lag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">spatial_lag</span><span class="o">.</span><span class="n">lag_spatial</span><span class="p">(</span>
     <span class="n">w_queen</span><span class="p">,</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;VAB_PC&quot;</span><span class="p">]</span>
 <span class="p">)</span>
@@ -1103,7 +993,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <p>Ahora creamos el gráfico de dispersión:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span>
     <span class="n">x</span><span class="o">=</span><span class="s2">&quot;POBRES_P_std&quot;</span><span class="p">,</span>
@@ -1128,7 +1018,7 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <p>El cálculo de la I de Moran es el siguiente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">esda</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">poligonos</span><span class="p">[</span><span class="s2">&quot;POBRES_P&quot;</span><span class="p">]</span>
 <span class="n">moran</span> <span class="o">=</span> <span class="n">esda</span><span class="o">.</span><span class="n">moran</span><span class="o">.</span><span class="n">Moran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">w_queen</span><span class="p">)</span>
 <span class="n">moran</span><span class="o">.</span><span class="n">I</span>
@@ -1161,8 +1051,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.002055647899767578
-Z-score (simulado): 6.844398219915087
+Variance: 0.0020415874791061784
+Z-score (simulado): 6.871962485777131
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1171,18 +1061,18 @@ P-value (simulado): 0.0001
 <p>Veamos ahora la la intuición de cómo funciona el estadístico basado en permutaciones:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">libpysal</span>
-<span class="kn">import</span> <span class="nn">esda</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
 
 <span class="c1"># ---------------------------</span>
 <span class="c1"># Paso 1: Crear datos espaciales ficticios</span>
 <span class="c1"># ---------------------------</span>
 
-<span class="k">def</span> <span class="nf">crear_cuadrantes</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">crear_cuadrantes</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">geometries</span> <span class="o">=</span> <span class="p">[</span><span class="n">Polygon</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
     <span class="n">valores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Tendencia creciente</span>
     <span class="k">return</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s1">&#39;valor&#39;</span><span class="p">:</span> <span class="n">valores</span><span class="p">},</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometries</span><span class="p">)</span>
@@ -1245,7 +1135,7 @@ P-value (simulado): 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/09446aa187a189563775f18724e7a129037e7fc90cefad48c3bf3fadb36676d4.png" src="_images/09446aa187a189563775f18724e7a129037e7fc90cefad48c3bf3fadb36676d4.png" />
+<img alt="_images/7b8784b340d302d174a35539c5efadb4346a45f6b4bb1c59b4f713c0e97068da.png" src="_images/7b8784b340d302d174a35539c5efadb4346a45f6b4bb1c59b4f713c0e97068da.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1379,12 +1269,12 @@ P-value (random approximation): 4.218345780994407e-12
 <p>El código que ilustra los 3 enfoques de inferencia se muestra a continuación:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">libpysal</span> <span class="k">as</span> <span class="nn">lps</span>
-<span class="kn">import</span> <span class="nn">esda</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span> <span class="c1"># Para el cálculo del p-valor analítico p_norm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lps</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">esda</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span> <span class="c1"># Para el cálculo del p-valor analítico p_norm</span>
 
 <span class="c1"># --- 1. Generar datos de ejemplo (Puntos en una cuadrícula) ---</span>
 <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
@@ -1423,7 +1313,7 @@ P-value (random approximation): 4.218345780994407e-12
 <span class="n">S0</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">s0</span> <span class="c1"># Suma de todos los pesos</span>
 
 <span class="c1"># Función para calcular el I de Moran</span>
-<span class="k">def</span> <span class="nf">calculate_moran_i</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">w_matrix_dense</span><span class="p">,</span> <span class="n">s0_val</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_moran_i</span><span class="p">(</span><span class="n">y_vals</span><span class="p">,</span> <span class="n">w_matrix_dense</span><span class="p">,</span> <span class="n">s0_val</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">):</span>
     <span class="n">y_mean</span> <span class="o">=</span> <span class="n">y_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">y_centered</span> <span class="o">=</span> <span class="n">y_vals</span> <span class="o">-</span> <span class="n">y_mean</span>
     
@@ -1595,29 +1485,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5535
+I de Moran Observado (esda): 0.5546
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5535
+I de Moran Observado (manual): 0.5546
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 7.9243
+Z-score (normalidad, manual): 7.9385
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0060
-Z-score (aleatorización, manual): 7.7145
+Varianza Var[I] (aleatorización, manual): 0.0059
+Z-score (aleatorización, manual): 7.7725
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/1828181936c8e071317d4f780bff88adbeb1cdce79efc556e154ad39fe83f790.png" src="_images/1828181936c8e071317d4f780bff88adbeb1cdce79efc556e154ad39fe83f790.png" />
+<img alt="_images/495c34669104f142501eae470e757ad6ceb95a8e7461360baa0e91208e8c9a6a.png" src="_images/495c34669104f142501eae470e757ad6ceb95a8e7461360baa0e91208e8c9a6a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1652,13 +1542,13 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 <p>Ahora graficamos con el paquete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">splot.esda</span> <span class="kn">import</span> <span class="n">plot_moran</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">splot.esda</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_moran</span>
 <span class="n">plot_moran</span><span class="p">(</span><span class="n">mi_MC</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b61c04409b613434ce2f98678a012c15cf782dbb44d190448fc8d06824cf4598.png" src="_images/b61c04409b613434ce2f98678a012c15cf782dbb44d190448fc8d06824cf4598.png" />
+<img alt="_images/51c6353f073f1a6e7a0241bf4c7dfa0abbdb282e34ce37368f5d2b0963741ecb.png" src="_images/51c6353f073f1a6e7a0241bf4c7dfa0abbdb282e34ce37368f5d2b0963741ecb.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1696,7 +1586,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 <p><strong>Clasificar los cuadrantes del gráfico de Moran:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">moran_quadrant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">wx</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">moran_quadrant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">wx</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">wx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s1">&#39;High-High&#39;</span>
     <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">wx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -1718,7 +1608,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 <p><strong>Graficar con colores por cuadrante</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># Definir colores por cuadrante</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
@@ -1738,7 +1628,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 <span class="p">)</span>
 
 <span class="c1"># Añadir leyenda manual</span>
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
 <span class="n">legend_elements</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -1804,7 +1694,7 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 0.0001
-Z-score (simulado): -4.470318768961683
+Z-score (simulado): -4.4813339306501
 </pre></div>
 </div>
 </div>
@@ -1823,7 +1713,7 @@ Z-score (simulado): -4.470318768961683
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 2.471799774826632e-06
-Z-score (simulado): -4.470318768961683
+Z-score (simulado): -4.4813339306501
 </pre></div>
 </div>
 </div>
