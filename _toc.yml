@@ -27,6 +27,9 @@ parts:
   - file: AutocorrelacionGlobal
   - file: AutocorrelacionLocal
   - file: PatronesPuntos
+- caption: Tópicos Avanzados
+  numbered: true
+  chapters:
   - file: SpatialIneq
   
 

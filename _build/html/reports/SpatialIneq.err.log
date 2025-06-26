@@ -1,0 +1,178 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Define la URL de un archivo ZIP alojado en GitHub que contiene un shapefile (datos espaciales)
+url = "https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip"
+
+# Llama a la función personalizada 'read_git_shp' para leer el shapefile desde el ZIP en la URL
+# Se espera que 'read_git_shp' devuelva un GeoDataFrame, aquí llamado 'pci_df', con datos espaciales de cantones
+pci_df = read_git_shp("nxcantones", url)
+
+
+# (opcional, comentado): crea un DataFrame auxiliar sin la columna de geometría si se quiere trabajar con atributos no espaciales
+# df_aux = pci_df.drop("geometry", axis=1)
+
+# Crea una columna auxiliar 'DPA_CANTON_AUX' que copia los valores originales de 'DPA_CANTON'
+# Esto permite modificar 'DPA_CANTON' sin perder los valores originales
+pci_df["DPA_CANTON_AUX"] = pci_df["DPA_CANTON"]
+
+# Corrige los códigos cantonales que fueron reorganizados administrativamente:
+# Los cantones 0915, 0917 y 0926 ahora pertenecen a la nueva provincia 24 (Santa Elena)
+pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0915", "DPA_CANTON"] = "2403"
+pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0917", "DPA_CANTON"] = "2401"
+pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0926", "DPA_CANTON"] = "2402"
+
+# Los códigos cantonales 1706 y 9001 fueron reclasificados dentro de la provincia 23 (Santo Domingo)
+pci_df.loc[pci_df["DPA_CANTON_AUX"] == "1706", "DPA_CANTON"] = "2301"
+pci_df.loc[pci_df["DPA_CANTON_AUX"] == "9001", "DPA_CANTON"] = "2302"
+
+# Extrae los dos primeros dígitos de 'DPA_CANTON' para crear la columna de código provincial 'DPA_PROVIN'
+# Esto asume que los dos primeros dígitos del código cantonal representan la provincia
+pci_df["DPA_PROVIN"] = pci_df["DPA_CANTON"].str[:2]
+
+# Asigna manualmente el nombre de provincia para los cantones reclasificados:
+# Los códigos provinciales "24" corresponden a Santa Elena
+pci_df.loc[pci_df["DPA_PROVIN"] == "24", "DPA_DESPRO"] = "SANTA ELENA"
+
+# Los cantones con código "2301" y "2302" pertenecen a Santo Domingo de los Tsáchilas
+pci_df.loc[pci_df["DPA_CANTON"] == "2301", "DPA_DESPRO"] = "SANTO DOMINGO DE LOS TSÁCHILAS"
+pci_df.loc[pci_df["DPA_CANTON"] == "2302", "DPA_DESPRO"] = "SANTO DOMINGO DE LOS TSÁCHILAS"
+
+# Filtra y elimina los registros correspondientes a la provincia con código "20" (Galápagos)
+# Esto puede hacerse si se desea excluir datos que no pertenecen al continente o están incompletos
+pci_df = pci_df[pci_df['DPA_PROVIN'] != "20"]
+
+# Realiza una fusión (join) entre el GeoDataFrame 'pci_df' y el DataFrame 'df_pivot' (con datos de ventas por año)
+# Se hace la unión por el código cantonal ('DPA_CANTON' y 'DPA') usando una combinación externa por la izquierda
+# Esto asegura que todos los registros espaciales de 'pci_df' se mantengan, incluso si no hay datos en 'df_pivot'
+pci_df = pci_df.merge(df_pivot, left_on='DPA_CANTON', right_on='DPA', how='left')
+
+------------------
+
+----- stderr -----
+ERROR 1: PROJ: proj_create_from_database: /opt/anaconda3/share/proj/proj.db contains DATABASE.LAYOUT.VERSION.MINOR = 2 whereas a number >= 5 is expected. It comes from another PROJ installation.
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCRSError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[4], line 6[0m
+[1;32m      2[0m url [38;5;241m=[39m [38;5;124m"[39m[38;5;124mhttps://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip[39m[38;5;124m"[39m
+[1;32m      4[0m [38;5;66;03m# Llama a la función personalizada 'read_git_shp' para leer el shapefile desde el ZIP en la URL[39;00m
+[1;32m      5[0m [38;5;66;03m# Se espera que 'read_git_shp' devuelva un GeoDataFrame, aquí llamado 'pci_df', con datos espaciales de cantones[39;00m
+[0;32m----> 6[0m pci_df [38;5;241m=[39m [43mread_git_shp[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mnxcantones[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43murl[49m[43m)[49m
+[1;32m      9[0m [38;5;66;03m# (opcional, comentado): crea un DataFrame auxiliar sin la columna de geometría si se quiere trabajar con atributos no espaciales[39;00m
+[1;32m     10[0m [38;5;66;03m# df_aux = pci_df.drop("geometry", axis=1)[39;00m
+[1;32m     11[0m 
+[1;32m     12[0m [38;5;66;03m# Crea una columna auxiliar 'DPA_CANTON_AUX' que copia los valores originales de 'DPA_CANTON'[39;00m
+[1;32m     13[0m [38;5;66;03m# Esto permite modificar 'DPA_CANTON' sin perder los valores originales[39;00m
+[1;32m     14[0m pci_df[[38;5;124m"[39m[38;5;124mDPA_CANTON_AUX[39m[38;5;124m"[39m] [38;5;241m=[39m pci_df[[38;5;124m"[39m[38;5;124mDPA_CANTON[39m[38;5;124m"[39m]
+
+Cell [0;32mIn[3], line 37[0m, in [0;36mread_git_shp[0;34m(nombre, url)[0m
+[1;32m     34[0m         z[38;5;241m.[39mextractall(tmpdirname)
+[1;32m     36[0m         [38;5;66;03m# Lee el archivo shapefile desde el directorio temporal utilizando GeoPandas[39;00m
+[0;32m---> 37[0m         gdf [38;5;241m=[39m [43mgpd[49m[38;5;241;43m.[39;49m[43mread_file[49m[43m([49m[43mos[49m[38;5;241;43m.[39;49m[43mpath[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43mtmpdirname[49m[43m,[49m[43m [49m[43mshp_name[49m[43m)[49m[43m)[49m
+[1;32m     39[0m [38;5;66;03m# Devuelve el GeoDataFrame resultante[39;00m
+[1;32m     40[0m [38;5;28;01mreturn[39;00m gdf
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:317[0m, in [0;36m_read_file[0;34m(filename, bbox, mask, columns, rows, engine, **kwargs)[0m
+[1;32m    314[0m             filename [38;5;241m=[39m response[38;5;241m.[39mread()
+[1;32m    316[0m [38;5;28;01mif[39;00m engine [38;5;241m==[39m [38;5;124m"[39m[38;5;124mpyogrio[39m[38;5;124m"[39m:
+[0;32m--> 317[0m     [38;5;28;01mreturn[39;00m [43m_read_file_pyogrio[49m[43m([49m
+[1;32m    318[0m [43m        [49m[43mfilename[49m[43m,[49m[43m [49m[43mbbox[49m[38;5;241;43m=[39;49m[43mbbox[49m[43m,[49m[43m [49m[43mmask[49m[38;5;241;43m=[39;49m[43mmask[49m[43m,[49m[43m [49m[43mcolumns[49m[38;5;241;43m=[39;49m[43mcolumns[49m[43m,[49m[43m [49m[43mrows[49m[38;5;241;43m=[39;49m[43mrows[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m
+[1;32m    319[0m [43m    [49m[43m)[49m
+[1;32m    321[0m [38;5;28;01melif[39;00m engine [38;5;241m==[39m [38;5;124m"[39m[38;5;124mfiona[39m[38;5;124m"[39m:
+[1;32m    322[0m     [38;5;28;01mif[39;00m pd[38;5;241m.[39mapi[38;5;241m.[39mtypes[38;5;241m.[39mis_file_like(filename):
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:577[0m, in [0;36m_read_file_pyogrio[0;34m(path_or_bytes, bbox, mask, rows, **kwargs)[0m
+[1;32m    568[0m     warnings[38;5;241m.[39mwarn(
+[1;32m    569[0m         [38;5;124m"[39m[38;5;124mThe [39m[38;5;124m'[39m[38;5;124minclude_fields[39m[38;5;124m'[39m[38;5;124m and [39m[38;5;124m'[39m[38;5;124mignore_fields[39m[38;5;124m'[39m[38;5;124m keywords are deprecated, and [39m[38;5;124m"[39m
+[1;32m    570[0m         [38;5;124m"[39m[38;5;124mwill be removed in a future release. You can use the [39m[38;5;124m'[39m[38;5;124mcolumns[39m[38;5;124m'[39m[38;5;124m keyword [39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    573[0m         stacklevel[38;5;241m=[39m[38;5;241m3[39m,
+[1;32m    574[0m     )
+[1;32m    575[0m     kwargs[[38;5;124m"[39m[38;5;124mcolumns[39m[38;5;124m"[39m] [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124minclude_fields[39m[38;5;124m"[39m)
+[0;32m--> 577[0m [38;5;28;01mreturn[39;00m [43mpyogrio[49m[38;5;241;43m.[39;49m[43mread_dataframe[49m[43m([49m[43mpath_or_bytes[49m[43m,[49m[43m [49m[43mbbox[49m[38;5;241;43m=[39;49m[43mbbox[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyogrio/geopandas.py:371[0m, in [0;36mread_dataframe[0;34m(path_or_buffer, layer, encoding, columns, read_geometry, force_2d, skip_features, max_features, where, bbox, mask, fids, sql, sql_dialect, fid_as_index, use_arrow, on_invalid, arrow_to_pandas_kwargs, **kwargs)[0m
+[1;32m    367[0m     [38;5;28;01mreturn[39;00m df
+[1;32m    369[0m geometry [38;5;241m=[39m shapely[38;5;241m.[39mfrom_wkb(geometry, on_invalid[38;5;241m=[39mon_invalid)
+[0;32m--> 371[0m [38;5;28;01mreturn[39;00m [43mgp[49m[38;5;241;43m.[39;49m[43mGeoDataFrame[49m[43m([49m[43mdf[49m[43m,[49m[43m [49m[43mgeometry[49m[38;5;241;43m=[39;49m[43mgeometry[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mmeta[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mcrs[39;49m[38;5;124;43m"[39;49m[43m][49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:240[0m, in [0;36mGeoDataFrame.__init__[0;34m(self, data, geometry, crs, *args, **kwargs)[0m
+[1;32m    232[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(geometry, pd[38;5;241m.[39mSeries) [38;5;129;01mand[39;00m geometry[38;5;241m.[39mname [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m (
+[1;32m    233[0m         [38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m,
+[1;32m    234[0m         [38;5;28;01mNone[39;00m,
+[1;32m    235[0m     ):
+[1;32m    236[0m         [38;5;66;03m# __init__ always creates geometry col named "geometry"[39;00m
+[1;32m    237[0m         [38;5;66;03m# rename as `set_geometry` respects the given series name[39;00m
+[1;32m    238[0m         geometry [38;5;241m=[39m geometry[38;5;241m.[39mrename([38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m)
+[0;32m--> 240[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mset_geometry[49m[43m([49m[43mgeometry[49m[43m,[49m[43m [49m[43minplace[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    242[0m [38;5;28;01mif[39;00m geometry [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m crs:
+[1;32m    243[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    244[0m         [38;5;124m"[39m[38;5;124mAssigning CRS to a GeoDataFrame without a geometry column is not [39m[38;5;124m"[39m
+[1;32m    245[0m         [38;5;124m"[39m[38;5;124msupported. Supply geometry using the [39m[38;5;124m'[39m[38;5;124mgeometry=[39m[38;5;124m'[39m[38;5;124m keyword argument, [39m[38;5;124m"[39m
+[1;32m    246[0m         [38;5;124m"[39m[38;5;124mor by providing a DataFrame with column name [39m[38;5;124m'[39m[38;5;124mgeometry[39m[38;5;124m'[39m[38;5;124m"[39m,
+[1;32m    247[0m     )
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:459[0m, in [0;36mGeoDataFrame.set_geometry[0;34m(self, col, drop, inplace, crs)[0m
+[1;32m    456[0m     crs [38;5;241m=[39m [38;5;28mgetattr[39m(level, [38;5;124m"[39m[38;5;124mcrs[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
+[1;32m    458[0m [38;5;66;03m# Check that we are using a listlike of geometries[39;00m
+[0;32m--> 459[0m level [38;5;241m=[39m [43m_ensure_geometry[49m[43m([49m[43mlevel[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    460[0m [38;5;66;03m# ensure_geometry only sets crs on level if it has crs==None[39;00m
+[1;32m    461[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(level, GeoSeries):
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71[0m, in [0;36m_ensure_geometry[0;34m(data, crs)[0m
+[1;32m     69[0m     [38;5;28;01mreturn[39;00m GeoSeries(out, index[38;5;241m=[39mdata[38;5;241m.[39mindex, name[38;5;241m=[39mdata[38;5;241m.[39mname)
+[1;32m     70[0m [38;5;28;01melse[39;00m:
+[0;32m---> 71[0m     out [38;5;241m=[39m [43mfrom_shapely[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m     72[0m     [38;5;28;01mreturn[39;00m out
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:192[0m, in [0;36mfrom_shapely[0;34m(data, crs)[0m
+[1;32m    189[0m             [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInput must be valid geometry objects: [39m[38;5;132;01m{[39;00mgeom[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m    190[0m     arr [38;5;241m=[39m np[38;5;241m.[39marray(out, dtype[38;5;241m=[39m[38;5;28mobject[39m)
+[0;32m--> 192[0m [38;5;28;01mreturn[39;00m [43mGeometryArray[49m[43m([49m[43marr[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:348[0m, in [0;36mGeometryArray.__init__[0;34m(self, data, crs)[0m
+[1;32m    345[0m [38;5;28mself[39m[38;5;241m.[39m_data [38;5;241m=[39m data
+[1;32m    347[0m [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 348[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcrs[49m [38;5;241m=[39m crs
+[1;32m    349[0m [38;5;28mself[39m[38;5;241m.[39m_sindex [38;5;241m=[39m [38;5;28;01mNone[39;00m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:401[0m, in [0;36mGeometryArray.crs[0;34m(self, value)[0m
+[1;32m    398[0m [38;5;28;01mif[39;00m HAS_PYPROJ:
+[1;32m    399[0m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mpyproj[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m CRS
+[0;32m--> 401[0m     [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m value [38;5;28;01melse[39;00m [43mCRS[49m[38;5;241;43m.[39;49m[43mfrom_user_input[49m[43m([49m[43mvalue[49m[43m)[49m
+[1;32m    402[0m [38;5;28;01melse[39;00m:
+[1;32m    403[0m     [38;5;28;01mif[39;00m value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503[0m, in [0;36mCRS.from_user_input[0;34m(cls, value, **kwargs)[0m
+[1;32m    501[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(value, [38;5;28mcls[39m):
+[1;32m    502[0m     [38;5;28;01mreturn[39;00m value
+[0;32m--> 503[0m [38;5;28;01mreturn[39;00m [38;5;28;43mcls[39;49m[43m([49m[43mvalue[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:350[0m, in [0;36mCRS.__init__[0;34m(self, projparams, **kwargs)[0m
+[1;32m    348[0m     [38;5;28mself[39m[38;5;241m.[39m_local[38;5;241m.[39mcrs [38;5;241m=[39m projparams
+[1;32m    349[0m [38;5;28;01melse[39;00m:
+[0;32m--> 350[0m     [38;5;28mself[39m[38;5;241m.[39m_local[38;5;241m.[39mcrs [38;5;241m=[39m [43m_CRS[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msrs[49m[43m)[49m
+
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/_crs.pyx:2364[0m, in [0;36mpyproj._crs._CRS.__init__[0;34m()[0m
+
+[0;31mCRSError[0m: Invalid projection: EPSG:32717: (Internal Proj Error: proj_create: no database context specified)
+
