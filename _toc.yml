@@ -27,4 +27,6 @@ parts:
   - file: AutocorrelacionGlobal
   - file: AutocorrelacionLocal
   - file: PatronesPuntos
+  - file: SpatialIneq
+  
 

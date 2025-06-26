@@ -447,19 +447,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cg</span> <span class="k">as</span> <span class="n">geometry</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polygon</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cg</span> <span class="k">as</span> <span class="n">geometry</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pysal&#39;
+<span class="c1">#from pysal.lib import cg as geometry</span>
 </pre></div>
 </div>
 </div>
@@ -474,7 +462,7 @@ document.write(`
 <p>Estos conceptos se ilustran usando la clase de pesos espaciales del paquete <code class="docutils literal notranslate"><span class="pre">pysal</span></code>, disponible en su submódulo <code class="docutils literal notranslate"><span class="pre">weights</span></code>, que ofrece múltiples métodos para trabajar con estas estructuras.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pysal.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
 </pre></div>
 </div>
 </div>
@@ -587,7 +575,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c9e2d81dc1a79c4cea7b10ac8976ff2d8f1cb60f75269876ee8690c4fb74d48b.png" src="_images/c9e2d81dc1a79c4cea7b10ac8976ff2d8f1cb60f75269876ee8690c4fb74d48b.png" />
+<img alt="_images/f3cc68edff0c355bb12bd2e784f5a8cab7128258d3517253f3561046a0ccb3f6.png" src="_images/f3cc68edff0c355bb12bd2e784f5a8cab7128258d3517253f3561046a0ccb3f6.png" />
 </div>
 </div>
 <section id="contiguidad-tipo-rook">
@@ -641,7 +629,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1e1035bed6ad108e8d9d49106c8ddb94b9bf51339a099d073002700ea076d159.png" src="_images/1e1035bed6ad108e8d9d49106c8ddb94b9bf51339a099d073002700ea076d159.png" />
+<img alt="_images/735914255a489feb1f735ab47b0d68e6845da1db5227b478a91891d3db4fd491.png" src="_images/735914255a489feb1f735ab47b0d68e6845da1db5227b478a91891d3db4fd491.png" />
 </div>
 </div>
 <p>El atributo <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> en objetos de <code class="docutils literal notranslate"><span class="pre">pysal</span></code> guarda las relaciones de vecindad como un diccionario: la <strong>clave</strong> representa una observación, y su <strong>valor</strong> es la lista de vecinos.</p>
@@ -903,7 +891,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a155d3bbf655cea58277e9bff1ff2e64578def441a7aa83ecb0ccfd0c5622d2a.png" src="_images/a155d3bbf655cea58277e9bff1ff2e64578def441a7aa83ecb0ccfd0c5622d2a.png" />
+<img alt="_images/52e35681fffca778291db982e7f98bc25f0041f5a29302fb031318e7ce61e369.png" src="_images/52e35681fffca778291db982e7f98bc25f0041f5a29302fb031318e7ce61e369.png" />
 </div>
 </div>
 <p>Usar <strong>Queen</strong> en lugar de <strong>Rook</strong> permite considerar como vecinos a los polígonos que comparten un <strong>vértice</strong>. Por ejemplo, el polígono 0 ahora también tiene como vecino al 4, además del 1 y el 3.</p>
@@ -952,7 +940,12 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(3, 4), (4, 0), (5, 4), (6, 0), (7, 0), (8, 1)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(np.int64(3), np.int64(4)),
+ (np.int64(4), np.int64(0)),
+ (np.int64(5), np.int64(4)),
+ (np.int64(6), np.int64(0)),
+ (np.int64(7), np.int64(0)),
+ (np.int64(8), np.int64(1))]
 </pre></div>
 </div>
 </div>
@@ -965,7 +958,7 @@ P[x_i|x] = P[x_i|x_J]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/76a6029d7f9eb5af7f3d423af757ab101f8ecc49499f7aa7195b7bca75f5ade8.png" src="_images/76a6029d7f9eb5af7f3d423af757ab101f8ecc49499f7aa7195b7bca75f5ade8.png" />
+<img alt="_images/7e416711e36a7ec942ac4c55e6696dce18c9cb39afccfbf8b61deb6d862e4973.png" src="_images/7e416711e36a7ec942ac4c55e6696dce18c9cb39afccfbf8b61deb6d862e4973.png" />
 </div>
 </div>
 <p>Los atributos <code class="docutils literal notranslate"><span class="pre">cardinalities</span></code> y <code class="docutils literal notranslate"><span class="pre">histogram</span></code> permiten identificar <strong>asimetrías</strong> en el número de vecinos por observación. Esto es importante en análisis espaciales como la <strong>autocorrelación</strong> o la <strong>regresión espacial</strong>.</p>
@@ -984,7 +977,7 @@ No hay unidades con 4, 6 o 7 vecinos.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(40.0)
 </pre></div>
 </div>
 </div>
@@ -1158,10 +1151,10 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/victormorales/opt/anaconda3/lib/python3.9/site-packages/libpysal/weights/weights.py:224: UserWarning: The weights matrix is not fully connected: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/libpysal/weights/contiguity.py:347: UserWarning: The weights matrix is not fully connected: 
  There are 2 disconnected components.
  There is 1 island with id: 19.
-  warnings.warn(message)
+  W.__init__(self, neighbors, ids=ids, **kw)
 </pre></div>
 </div>
 </div>
@@ -1233,10 +1226,13 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-9026177.003082927, -8370004.833131398, -559048.7630201177, 164011.2960592641)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-9026177.003082927),
+ np.float64(-8370004.833131398),
+ np.float64(-559048.7630201177),
+ np.float64(164011.29605926413))
 </pre></div>
 </div>
-<img alt="_images/b760fec06e68dbad772dc01173e06a51eb4b6dd94bfd7ce1229a2a1b3d04aa33.png" src="_images/b760fec06e68dbad772dc01173e06a51eb4b6dd94bfd7ce1229a2a1b3d04aa33.png" />
+<img alt="_images/8862450f3e23bef9bb3ac50804f9a9dfdfe85ab8f103070092be5160c21cbb55.png" src="_images/8862450f3e23bef9bb3ac50804f9a9dfdfe85ab8f103070092be5160c21cbb55.png" />
 </div>
 </div>
 <p>El objeto de pesos espaciales construido para las <strong>provincias del Ecuador</strong> posee los mismos <strong>atributos y métodos</strong> que se observaron previamente con la cuadrícula artificial. Esto incluye información sobre vecinos, pesos, cardinalidades, densidad, entre otros, lo que permite aplicar técnicas de análisis espacial de forma consistente.</p>
@@ -1264,7 +1260,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f88c3da0c43d225608541c60225b1d70223064387052a1e1b82dd30b5ac8df94.png" src="_images/f88c3da0c43d225608541c60225b1d70223064387052a1e1b82dd30b5ac8df94.png" />
+<img alt="_images/0a367ab5d7958027fa3fadc5767a48a2933fb697417dbb9463405b49fcc42e92.png" src="_images/0a367ab5d7958027fa3fadc5767a48a2933fb697417dbb9463405b49fcc42e92.png" />
 </div>
 </div>
 </section>
@@ -1304,7 +1300,7 @@ f_i = \sum_jq(d_{ij},\theta)x_j
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(4, 23)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(np.int64(4), np.int64(23))]
 </pre></div>
 </div>
 </div>
