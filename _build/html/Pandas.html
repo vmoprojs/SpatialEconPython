@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -444,7 +444,7 @@ document.write(`
 <h2><span class="section-number">2.1. </span>Las Series<a class="headerlink" href="#las-series" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="c1">#pd.Series?</span>
 </pre></div>
 </div>
@@ -500,7 +500,7 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">==</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -659,7 +659,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/3172538273.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/3172538273.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   s[3]
 </pre></div>
 </div>
@@ -759,8 +759,8 @@ dtype: object
 <p>Empecemos creando un DataFrame con tres columnas <em>Time</em>, <em>x</em> y <em>y</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -1104,7 +1104,7 @@ Name: Time, Length: 100, dtype: float64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/gapminder.csv&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">uu</span><span class="p">)</span>
 </pre></div>
@@ -1546,8 +1546,8 @@ Name: 1703, dtype: object
 <p><em>pandas</em> ofrece funciones poderosas para manejar datos perdidos que suelen ser reemplazados por <em>nan</em> (<em>not a number</em>). También permite realizar manipilaciones más sofisticadas como <em>pivotaje</em>. Por ejemplo, se puede usar DataFrames para hacer grupos y su análisis estadístico de cada grupo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;Gender&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">],</span> 
@@ -1671,7 +1671,7 @@ Name: 1703, dtype: object
 10      m  4.3
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/2561619852.py:4: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/2561619852.py:4: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   grouped.apply(print)
 </pre></div>
 </div>
@@ -2288,7 +2288,7 @@ Name: country, dtype: int64
 <p>Para unir tablas se usa <code class="docutils literal notranslate"><span class="pre">merge</span></code>. Primero manejemos algunos atributos importantes de DataFrames:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;Nombre&#39;</span><span class="p">:</span> <span class="s1">&#39;Melani&#39;</span><span class="p">,</span> <span class="s1">&#39;Producto comprado&#39;</span><span class="p">:</span> <span class="s1">&#39;Esponja&#39;</span><span class="p">,</span> <span class="s1">&#39;Costo&#39;</span><span class="p">:</span> <span class="mf">22.50</span><span class="p">},</span>
                    <span class="p">{</span><span class="s1">&#39;Nombre&#39;</span><span class="p">:</span> <span class="s1">&#39;Carlos&#39;</span><span class="p">,</span> <span class="s1">&#39;Producto comprado&#39;</span><span class="p">:</span> <span class="s1">&#39;Arena para gatos&#39;</span><span class="p">,</span> <span class="s1">&#39;Costo&#39;</span><span class="p">:</span> <span class="mf">2.50</span><span class="p">},</span>
@@ -3460,7 +3460,7 @@ Categories (10, interval[float64, right]): [(-20990.756, 2506894.639] &lt; (2506
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/1915387499.py:1: FutureWarning: The provided callable &lt;function mean at 0x104dd72e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/1915387499.py:1: FutureWarning: The provided callable &lt;function mean at 0x111b47240&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=np.mean)
 </pre></div>
 </div>
@@ -3570,17 +3570,17 @@ Categories (10, interval[float64, right]): [(-20990.756, 2506894.639] &lt; (2506
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x104dd72e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x111b47240&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
-/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x104dd72e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x111b47240&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
-/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x104dd72e0&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function mean at 0x111b47240&gt; is currently using DataFrameGroupBy.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
-/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x104dd6a20&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x111b46980&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
-/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x104dd6a20&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x111b46980&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
-/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7276/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x104dd6a20&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_7450/488835074.py:1: FutureWarning: The provided callable &lt;function min at 0x111b46980&gt; is currently using DataFrameGroupBy.min. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;min&quot; instead.
   df.pivot_table(values=&#39;(kW)&#39;, index=&#39;YEAR&#39;, columns=&#39;Make&#39;, aggfunc=[np.mean,np.min], margins=True)
 </pre></div>
 </div>
@@ -3809,7 +3809,7 @@ Categories (10, interval[float64, right]): [(-20990.756, 2506894.639] &lt; (2506
 <p>Creamos una función simple llamada <code class="docutils literal notranslate"><span class="pre">cuad</span></code> que eleva los valores ingresados al cuadrado:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cuad</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cuad</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
 </pre></div>
@@ -3835,7 +3835,7 @@ Name: a, dtype: int64
 <p>Ahora creamos una función que tenga dos parámetros:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cuad_e</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cuad_e</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="p">):</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">e</span>
     <span class="k">return</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
 </pre></div>
