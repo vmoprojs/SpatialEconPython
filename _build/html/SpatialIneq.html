@@ -713,10 +713,7 @@ document.write(`
 </section>
 <section id="inequidad-global">
 <h2><span class="section-number">12.3. </span>Inequidad Global<a class="headerlink" href="#inequidad-global" title="Link to this heading">#</a></h2>
-<p>El análisis comienza con medidas globales que cuantifican la desigualdad general en las <strong>ventas</strong>, sin considerar la ubicación geográfica de empresas o personas naturales. Estas métricas se aplican a valores promedio o totales por unidad territorial (como cantones o regiones).
-variable = “2024”
-pci_df = pci_df[~pci_df[variable].isna()]</p>
-<p>sns.histplot(x=pci_df[variable], kde=True);</p>
+<p>El análisis comienza con medidas globales que cuantifican la desigualdad general en las <strong>ventas</strong>, sin considerar la ubicación geográfica de empresas o personas naturales. Estas métricas se aplican a valores promedio o totales por unidad territorial (como cantones o regiones).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="s2">&quot;2024&quot;</span>
@@ -730,7 +727,7 @@ pci_df = pci_df[~pci_df[variable].isna()]</p>
 <img alt="_images/696179ef68941c6dde7f41002635795e65485f5cd6f4f0ef45caf4385222c1d9.png" src="_images/696179ef68941c6dde7f41002635795e65485f5cd6f4f0ef45caf4385222c1d9.png" />
 </div>
 </div>
-<p>Veamos el histograma en escala logarítmica para tener una mejor apreciación de los datos:sns.histplot(x=pci_df[variable], kde=True, log_scale=True)</p>
+<p>Veamos el histograma en escala logarítmica para tener una mejor apreciación de los datos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pci_df</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -774,7 +771,8 @@ ax.set_axis_off()
 plt.show()</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pci_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dci_df[variable] = np.log(dci_df[variable])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">pci_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">column</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
     <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;Quantiles&quot;</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -803,7 +801,21 @@ plt.show()</p>
 </div>
 </div>
 </div>
-<p>Las variables <code class="docutils literal notranslate"><span class="pre">top20</span></code> y <code class="docutils literal notranslate"><span class="pre">bottom20</span></code> contienen los valtop20 / bottom20ores límite que separan el 20% superior e inferior de la distribución de ventas por cantón. A partir de estos valores, se calcula la <strong>razón 20:20</strong>, dividiendo el valor del percentil 80 entre el del percentil 20.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">top20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bottom20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>388.0221425260001
+18.563768192
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las variables <code class="docutils literal notranslate"><span class="pre">top20</span></code> y <code class="docutils literal notranslate"><span class="pre">bottom20</span></code> contienen los valtop20 / bottom20 (peores) límite que separan el 20% superior e inferior de la distribución de ventas por cantón. A partir de estos valores, se calcula la <strong>razón 20:20</strong>, dividiendo el valor del percentil 80 entre el del percentil 20.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top20</span> <span class="o">/</span> <span class="n">bottom20</span>
@@ -1131,6 +1143,11 @@ plt.show()</p>
 <h3><span class="section-number">12.3.3. </span>Índice de Theil<a class="headerlink" href="#indice-de-theil" title="Link to this heading">#</a></h3>
 <p>Otra medida común de desigualdad es el <strong>índice de Theil (T)</strong>, que se basa en la <strong>entropía</strong> de la distribución. Evalúa qué tan equitativamente se distribuyen las ventas entre cantones.</p>
 <p>Matemáticamente, compara las ventas de cada cantón con el total nacional, midiendo la distancia respecto a una distribución perfectamente igualitaria.</p>
+<div class="math notranslate nohighlight">
+\[
+T = \sum_{i=1}^{m} \left( \frac{y_i}{\sum_{i=1}^{m} y_i} \ln \left[ m \frac{y_i}{\sum_{i=1}^{m} y_i} \right] \right)
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(y_i\)</span> es la venta local por cantón en el área <span class="math notranslate nohighlight">\( i \)</span> entre un total de <span class="math notranslate nohighlight">\( m \)</span> áreas.</p>
 <p>Este índice también está disponible en el paquete <code class="docutils literal notranslate"><span class="pre">inequality</span></code> de <strong>libpysal</strong>, por lo que se puede calcular con un enfoque similar al del coeficiente de Gini.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1163,7 +1180,7 @@ plt.show()</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a3abc6cd341670720d48571e18a9b74484464585416099339f8c24f35b9a1cd0.png" src="_images/a3abc6cd341670720d48571e18a9b74484464585416099339f8c24f35b9a1cd0.png" />
+<img alt="_images/12cdfbbf1b40bc040de268ff5934d35007be62fd57046128b23da8f3496a41a8.png" src="_images/12cdfbbf1b40bc040de268ff5934d35007be62fd57046128b23da8f3496a41a8.png" />
 </div>
 </div>
 </section>
@@ -1286,12 +1303,12 @@ TSS = \sum_{i=1}^{m} N_i (y_i - \bar{y})^2
     <tr>
       <th>2021</th>
       <td>0.018315</td>
-      <td>0.054</td>
+      <td>0.056</td>
     </tr>
     <tr>
       <th>2022</th>
       <td>0.019037</td>
-      <td>0.046</td>
+      <td>0.043</td>
     </tr>
     <tr>
       <th>2023</th>
@@ -1301,7 +1318,7 @@ TSS = \sum_{i=1}^{m} N_i (y_i - \bar{y})^2
     <tr>
       <th>2024</th>
       <td>0.021660</td>
-      <td>0.042</td>
+      <td>0.035</td>
     </tr>
   </tbody>
 </table>
@@ -1315,21 +1332,7 @@ TSS = \sum_{i=1}^{m} N_i (y_i - \bar{y})^2
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Que</span> <span class="n">se</span> <span class="n">puede</span> <span class="n">visualizar</span><span class="p">:</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-    <span class="n">Que</span> <span class="n">se</span> <span class="n">puede</span> <span class="n">visualizar</span><span class="p">:</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
-</div>
+<p>Que se puede visualizar:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inequalities</span><span class="p">[[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;I-P value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1338,16 +1341,16 @@ TSS = \sum_{i=1}^{m} N_i (y_i - \bar{y})^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1987a78e3cefdc9894f6bd3423ea35c4f72a46bc2fb2b36f0735598e81d8d43a.png" src="_images/1987a78e3cefdc9894f6bd3423ea35c4f72a46bc2fb2b36f0735598e81d8d43a.png" />
+<img alt="_images/34c1b137c6d40b6c56d3c433f385c2bb400b972a7d7b3d8886b479e0590c213a.png" src="_images/34c1b137c6d40b6c56d3c433f385c2bb400b972a7d7b3d8886b479e0590c213a.png" />
 </div>
 </div>
-<p>Aunque los índices de Gini y Theil siguen trayectorias similares, <strong>Moran I muestra un patrón distinto</strong>: su valor ha disminuido de forma sostenida en el tiempo.</p>
-<p>Esto indica una <strong>reducción en la estructura espacial de la desigualdad</strong>, con dos implicaciones:</p>
+<p>Gini y Theil no siguen trayectorias similares, <strong>Moran I muestra un patrón distinto</strong>: su valor ha aumentado de forma sostenida en el tiempo.</p>
+<p>Esto indica un <strong>aumento en la estructura espacial de la desigualdad</strong>, con dos implicaciones:</p>
 <ul class="simple">
-<li><p>(a) Las ventas per cápita entre cantones vecinos son hoy menos parecidas.</p></li>
+<li><p>(a) Las ventas per cápita entre cantones vecinos son hoy más parecidas.</p></li>
 <li><p>(b) Esta tendencia ha sido constante, independientemente del nivel general de desigualdad.</p></li>
 </ul>
-<p>A pesar de esta caída, <strong>la autocorrelación espacial sigue siendo significativa</strong> todos los años, lo que evidencia una fuerte estructura geográfica en la distribución de ventas.</p>
+<p>Durante este aumento, <strong>la autocorrelación espacial sigue siendo significativa</strong> todos los años, lo que evidencia una fuerte estructura geográfica en la distribución de ventas.</p>
 </section>
 <section id="descomposicion-regional-de-la-desigualdad">
 <h3><span class="section-number">12.5.2. </span>Descomposición regional de la desigualdad<a class="headerlink" href="#descomposicion-regional-de-la-desigualdad" title="Link to this heading">#</a></h3>
@@ -1427,9 +1430,67 @@ TSS = \sum_{i=1}^{m} N_i (y_i - \bar{y})^2
         <span class="c1"># Calculate mean by region and save only year columns</span>
     <span class="p">)[</span><span class="n">years</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="p">)</span>
+<span class="n">rmeans</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+    </tr>
+    <tr>
+      <th>Region_Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Costa</th>
+      <td>938.871580</td>
+      <td>1075.356479</td>
+      <td>1128.324392</td>
+      <td>1138.322542</td>
+    </tr>
+    <tr>
+      <th>Oriente</th>
+      <td>73.637551</td>
+      <td>86.835610</td>
+      <td>97.403837</td>
+      <td>108.034951</td>
+    </tr>
+    <tr>
+      <th>Sierra</th>
+      <td>997.523664</td>
+      <td>1133.872753</td>
+      <td>1185.869525</td>
+      <td>1167.949290</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>La tabla resultante tiene <strong>una fila por región</strong> y <strong>una columna por año</strong>, con los promedios correspondientes. Al graficarla, podemos visualizar la <strong>trayectoria temporal</strong> de las regiones.</p>
 <div class="cell docutils container">
@@ -1512,11 +1573,83 @@ T = B + W
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inequalities</span><span class="p">[</span>
     <span class="p">[</span><span class="s2">&quot;theil_between&quot;</span><span class="p">,</span> <span class="s2">&quot;theil_within&quot;</span><span class="p">,</span> <span class="s2">&quot;theil_between_share&quot;</span><span class="p">]</span>
 <span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span>
+
+<span class="n">inequalities</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae21c6bf821732c542852b3fe1b27a7104b091b3d874ad505dd7f8e22e6e52f1.png" src="_images/ae21c6bf821732c542852b3fe1b27a7104b091b3d874ad505dd7f8e22e6e52f1.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gini</th>
+      <th>theil</th>
+      <th>I</th>
+      <th>I-P value</th>
+      <th>theil_between</th>
+      <th>theil_within</th>
+      <th>theil_between_share</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021</th>
+      <td>0.912180</td>
+      <td>2.835770</td>
+      <td>0.018315</td>
+      <td>0.056</td>
+      <td>1.079889</td>
+      <td>1.755881</td>
+      <td>0.380810</td>
+    </tr>
+    <tr>
+      <th>2022</th>
+      <td>0.911871</td>
+      <td>2.830554</td>
+      <td>0.019037</td>
+      <td>0.043</td>
+      <td>1.079407</td>
+      <td>1.751147</td>
+      <td>0.381341</td>
+    </tr>
+    <tr>
+      <th>2023</th>
+      <td>0.909600</td>
+      <td>2.807201</td>
+      <td>0.019664</td>
+      <td>0.042</td>
+      <td>1.072888</td>
+      <td>1.734313</td>
+      <td>0.382191</td>
+    </tr>
+    <tr>
+      <th>2024</th>
+      <td>0.902805</td>
+      <td>2.737357</td>
+      <td>0.021660</td>
+      <td>0.035</td>
+      <td>1.052847</td>
+      <td>1.684510</td>
+      <td>0.384622</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="_images/ae21c6bf821732c542852b3fe1b27a7104b091b3d874ad505dd7f8e22e6e52f1.png" src="_images/ae21c6bf821732c542852b3fe1b27a7104b091b3d874ad505dd7f8e22e6e52f1.png" />
 </div>
 </div>
 </section>
@@ -1748,7 +1881,7 @@ G = \frac{\sum_i \sum_j w_{ij} |x_i - x_j|}{2n^2 \bar{x}} + \frac{\sum_i \sum_j 
 </div>
 </div>
 </div>
-<p>Aunque podría parecer que la <strong>desigualdad entre unidades vecinas</strong> es muy pequeña, esto se debe a dos razones:</p>
+<p>La <strong>desigualdad entre unidades vecinas</strong> es alta pese a:</p>
 <ol class="arabic simple">
 <li><p>Los pares de observaciones <strong>cercanas</strong> representan <strong>menos del 3%</strong> (2.493%) de todos los pares posibles.</p></li>
 </ol>
@@ -1768,7 +1901,7 @@ G = \frac{\sum_i \sum_j w_{ij} |x_i - x_j|}{2n^2 \bar{x}} + \frac{\sum_i \sum_j 
 <li><p>Cuando existe una <strong>fuerte dependencia espacial</strong>, las observaciones cercanas tienden a ser <strong>muy similares</strong>, por lo que sus diferencias también son pequeñas. Como resultado, al sumar pocas diferencias y de baja magnitud, el total del componente “vecino” resulta bajo en comparación con las diferencias entre unidades lejanas.</p></li>
 </ol>
 <p>Por lo tanto, un <strong>valor pequeño del componente entre vecinos es en realidad indicativo de dependencia espacial</strong>.</p>
-<p>De hecho, como se observa, a medida que la dependencia espacial disminuye, las diferencias entre vecinos (<strong>near_diffs</strong>) aumentan.</p>
+<p>De hecho, como se observa, a medida que la dependencia espacial aumenta, las diferencias entre vecinos (<strong>near_diffs</strong>) disminuye.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inequalities</span><span class="p">[</span><span class="s2">&quot;near_diffs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatial_gini_results</span><span class="o">.</span><span class="n">near_diffs</span>
@@ -1792,10 +1925,10 @@ G = \frac{\sum_i \sum_j w_{ij} |x_i - x_j|}{2n^2 \bar{x}} + \frac{\sum_i \sum_j 
 <h2><span class="section-number">12.6. </span>Preguntas<a class="headerlink" href="#preguntas" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>¿Por qué es importante el estudio de la desigualdad de ingresos regional? ¿En qué se diferencia el estudio de la desigualdad regional de ingresos respecto al de la desigualdad de ingresos personales?</p></li>
-<li><p>Dado que las estadísticas de Theil y Gini parecen seguir trayectorias temporales similares, ¿por qué un investigador elegiría usar ambas medidas al analizar la dinámica de las disparidades regionales? ¿Por qué no usar solo una u otra?</p></li>
+<li><p>Dado que las estadísticas de Theil y Gini parecen seguir trayectorias temporales diferentes, ¿por qué un investigador elegiría usar ambas medidas al analizar la dinámica de las disparidades regionales? ¿Por qué no usar solo una u otra?</p></li>
 <li><p>¿Qué aspectos de la distribución regional de ingresos no son capturados por el coeficiente de Theil o el de Gini? ¿Por qué son importantes estas omisiones y qué enfoques podrían utilizarse para abordar estas limitaciones?</p></li>
-<li><p>¿Cómo podría verse afectada la medición de la desigualdad de ingresos entre regiones por la elección del esquema de regionalización (es decir, cómo se agrupan las diferentes unidades espaciales para formar regiones)?</p></li>
-<li><p>¿Cuál es la relación entre la desigualdad espacial de ingresos y la dependencia espacial de los ingresos regionales?</p></li>
+<li><p>¿Cómo podría verse afectada la medición de la desigualdad de ventas locales entre regiones por la elección del esquema de regionalización (es decir, cómo se agrupan las diferentes unidades espaciales para formar regiones)?</p></li>
+<li><p>¿Cuál es la relación entre la desigualdad espacial de ventas locales y la dependencia espacial de las ventas locales regionales?</p></li>
 </ol>
 </section>
 </section>

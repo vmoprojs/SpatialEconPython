@@ -31,5 +31,6 @@ parts:
   numbered: true
   chapters:
   - file: SpatialIneq
+  - file: ClusteringRegionalization
   
 
