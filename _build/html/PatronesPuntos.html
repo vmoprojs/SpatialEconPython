@@ -1448,11 +1448,11 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_2881/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_5332/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
   alpha_shape, alpha, circs = lps.cg.alpha_shape_auto(
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_2881/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_5332/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
 See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#implementing-a-custom-legend-handler
   plt.legend();
 </pre></div>
@@ -1579,7 +1579,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/691fbe9bfd0fb36d6e8f05756cbe6dcb38d1c69149937ade72455c87b77d1e92.png" src="_images/691fbe9bfd0fb36d6e8f05756cbe6dcb38d1c69149937ade72455c87b77d1e92.png" />
+<img alt="_images/585db2da341aef888d934207dd32eec80e88a152833a97327583caf234da44e1.png" src="_images/585db2da341aef888d934207dd32eec80e88a152833a97327583caf234da44e1.png" />
 </div>
 </div>
 <p>Como se observa en la simulación básica, el generador de patrones aleatorios —por defecto— utiliza el <strong>rectángulo envolvente (bounding box)</strong> del patrón original como área de referencia. Sin embargo, este enfoque puede ser poco representativo si el patrón observado está concentrado en un espacio <strong>más restringido o con una forma compleja</strong>.</p>
@@ -1625,7 +1625,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d6dfecdad109e420ab77379a54e88e98caf1f1e2c99359966e0470b6d0ae2491.png" src="_images/d6dfecdad109e420ab77379a54e88e98caf1f1e2c99359966e0470b6d0ae2491.png" />
+<img alt="_images/029f06306ac961e65f35aa29146ee5c0bbcc55c43cf316bf9215c979686c5424.png" src="_images/029f06306ac961e65f35aa29146ee5c0bbcc55c43cf316bf9215c979686c5424.png" />
 </div>
 </div>
 </section>
@@ -1754,7 +1754,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/3273996ec608d9dd9720adf8836e9dbb0e441d45dc8234951d1458dd55470c3a.png" src="_images/3273996ec608d9dd9720adf8836e9dbb0e441d45dc8234951d1458dd55470c3a.png" />
+<img alt="_images/0954360a8a363a951c7bf0ea4b0987dc45cecceffb6e0920bb345bc187bd89ea.png" src="_images/0954360a8a363a951c7bf0ea4b0987dc45cecceffb6e0920bb345bc187bd89ea.png" />
 </div>
 </div>
 <p>En contraste con el patrón observado (agrupado), cuando generamos un patrón a partir de un <strong>proceso de puntos completamente aleatorio</strong> (como el <strong>proceso de Poisson</strong>), la distribución de eventos en la cuadrícula es <strong>mucho más uniforme</strong>.</p>
@@ -1766,7 +1766,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.3813424584216654)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.6043090464848726)
 </pre></div>
 </div>
 </div>
@@ -1807,7 +1807,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/2d89842b2bb6363fb367c418e28f2deefaa9c1fdffc4b314b6c06330ea09e728.png" src="_images/2d89842b2bb6363fb367c418e28f2deefaa9c1fdffc4b314b6c06330ea09e728.png" />
+<img alt="_images/b433e763087648e5da117945b305cf2f3adc9a95b43939955f11c33798e5d9d4.png" src="_images/b433e763087648e5da117945b305cf2f3adc9a95b43939955f11c33798e5d9d4.png" />
 </div>
 </div>
 <p>La prueba de cuadrantes determina que esto no es aleatorio desde el punto de vista estadístico, mientras que nuestro proceso de simulación garantizó que, dentro del área de estudio definida, el patrón corresponde a un proceso completamente aleatorio en el espacio.</p>
@@ -1818,7 +1818,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.000437200253023e-16)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.1624809456069898e-09)
 </pre></div>
 </div>
 </div>
@@ -1995,7 +1995,7 @@ G_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9766724206ad9ebc197a6abb093743b6bef0f25d8da1821ff2c0392a9600d5f0.png" src="_images/9766724206ad9ebc197a6abb093743b6bef0f25d8da1821ff2c0392a9600d5f0.png" />
+<img alt="_images/cdda79feae14633a05ee43a59eef39eab950c46ea8152cd7813c4a0effcacec0.png" src="_images/cdda79feae14633a05ee43a59eef39eab950c46ea8152cd7813c4a0effcacec0.png" />
 </div>
 </div>
 <p>La segunda función que introducimos es la <strong>función F de Ripley</strong>, también conocida como la <strong>función del espacio vacío</strong>. A diferencia de la función G, que mide las distancias <strong>entre puntos del patrón</strong>, la función F analiza la distancia <strong>desde ubicaciones aleatorias en el espacio hacia el punto más cercano del patrón</strong>.</p>
@@ -2154,7 +2154,7 @@ F_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e5d65e0947bd871988c24568cb1b8865bed873a75521ada4253159233d157b60.png" src="_images/e5d65e0947bd871988c24568cb1b8865bed873a75521ada4253159233d157b60.png" />
+<img alt="_images/edb64af2bc1f1263c36ff7dd99d23c8553060cf9cca29fa6fbff657abed8edcf.png" src="_images/edb64af2bc1f1263c36ff7dd99d23c8553060cf9cca29fa6fbff657abed8edcf.png" />
 </div>
 </div>
 </section>
