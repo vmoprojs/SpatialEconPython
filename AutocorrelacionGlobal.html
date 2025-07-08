@@ -208,6 +208,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="SpatialIneq.html">12. Inequidad Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ClusteringRegionalization.html">13. Clustering y regionalización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SpatialRegression.html">14. Regresión lineal</a></li>
 </ul>
 
     </div>
@@ -1052,8 +1053,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.001997511360991726
-Z-score (simulado): 6.952293337983033
+Variance: 0.0019827619822951575
+Z-score (simulado): 6.976262684985485
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1136,7 +1137,7 @@ P-value (simulado): 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/dbb1e26ba91325fdc7483cbf616dd8571da2116d2d7e7970b23dbbad171e2560.png" src="_images/dbb1e26ba91325fdc7483cbf616dd8571da2116d2d7e7970b23dbbad171e2560.png" />
+<img alt="_images/75426d1d54f18d9ba699a44947878ab7079252e89d117f4824369aabfc902470.png" src="_images/75426d1d54f18d9ba699a44947878ab7079252e89d117f4824369aabfc902470.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1486,29 +1487,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5503
+I de Moran Observado (esda): 0.5568
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5503
+I de Moran Observado (manual): 0.5568
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 7.8816
+Z-score (normalidad, manual): 7.9681
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0058
-Z-score (aleatorización, manual): 7.7622
+Varianza Var[I] (aleatorización, manual): 0.0059
+Z-score (aleatorización, manual): 7.7967
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/af369f6faa6e97f35c3783b8487aee4718771dd0536304ffb8e00538498cd172.png" src="_images/af369f6faa6e97f35c3783b8487aee4718771dd0536304ffb8e00538498cd172.png" />
+<img alt="_images/c645230d4ba2f6de8a5988507ea615a963dcce6bab5f97bd97ce7470a53ef323.png" src="_images/c645230d4ba2f6de8a5988507ea615a963dcce6bab5f97bd97ce7470a53ef323.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1549,7 +1550,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/caf35d9f14756456fb0e67e072b6c97f8ca7ae96fc009bb64623bd59a5411df2.png" src="_images/caf35d9f14756456fb0e67e072b6c97f8ca7ae96fc009bb64623bd59a5411df2.png" />
+<img alt="_images/6a189055d64e86f7a2d432d60650ed5370f65d58ce7b1aaa053c4bda0fc15151.png" src="_images/6a189055d64e86f7a2d432d60650ed5370f65d58ce7b1aaa053c4bda0fc15151.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1695,7 +1696,7 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 0.0001
-Z-score (simulado): -4.425611923983281
+Z-score (simulado): -4.479763973511149
 </pre></div>
 </div>
 </div>
@@ -1714,7 +1715,7 @@ Z-score (simulado): -4.425611923983281
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 2.471799774826632e-06
-Z-score (simulado): -4.425611923983281
+Z-score (simulado): -4.479763973511149
 </pre></div>
 </div>
 </div>

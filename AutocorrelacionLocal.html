@@ -208,6 +208,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="SpatialIneq.html">12. Inequidad Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ClusteringRegionalization.html">13. Clustering y regionalización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SpatialRegression.html">14. Regresión lineal</a></li>
 </ul>
 
     </div>
@@ -857,7 +858,7 @@ p = \frac{(m + 1)}{(r + 1)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a9cafa58a0247f0143a1a5c7d0cf36a94ad14624c595da3b30c76c1b64995838.png" src="_images/a9cafa58a0247f0143a1a5c7d0cf36a94ad14624c595da3b30c76c1b64995838.png" />
+<img alt="_images/e37c90affd7c2700d0a9a039b5223b4065c30939cb426357f7b57be99cfeeef5.png" src="_images/e37c90affd7c2700d0a9a039b5223b4065c30939cb426357f7b57be99cfeeef5.png" />
 </div>
 </div>
 <p>Las zonas marcadas en púrpura y amarillo en el mapa (esquina superior izquierda) presentan los valores de mayor magnitud, tanto positivos como negativos, del estadístico local <span class="math notranslate nohighlight">\(I_i\)</span>.</p>
@@ -923,7 +924,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(26.08695652173913)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(30.434782608695652)
 </pre></div>
 </div>
 </div>
@@ -978,28 +979,28 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>0.050</td>
+      <td>1</td>
+      <td>0.046</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>0.063</td>
+      <td>1</td>
+      <td>0.042</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
-      <td>0.023</td>
+      <td>0.018</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0</td>
-      <td>0.478</td>
+      <td>0.474</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1</td>
-      <td>0.007</td>
+      <td>0.003</td>
     </tr>
   </tbody>
 </table>
@@ -1043,22 +1044,22 @@ Name: count, dtype: int64
     <tr>
       <th>209</th>
       <td>1</td>
-      <td>0.012</td>
+      <td>0.013</td>
     </tr>
     <tr>
       <th>210</th>
       <td>1</td>
-      <td>0.013</td>
+      <td>0.014</td>
     </tr>
     <tr>
       <th>211</th>
       <td>0</td>
-      <td>0.093</td>
+      <td>0.081</td>
     </tr>
     <tr>
       <th>212</th>
       <td>0</td>
-      <td>0.431</td>
+      <td>0.409</td>
     </tr>
   </tbody>
 </table>
@@ -1100,8 +1101,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    Non-Significant
-1    Non-Significant
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                 LL
+1                 LL
 2                 LL
 3    Non-Significant
 4                 LL
@@ -1130,11 +1131,11 @@ Name: labels, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>labels
-Non-Significant    153
-LL                  23
-HH                  21
-HL                   5
-LH                   5
+Non-Significant    144
+LL                  26
+HH                  23
+HL                   8
+LH                   6
 Name: count, dtype: int64
 </pre></div>
 </div>
