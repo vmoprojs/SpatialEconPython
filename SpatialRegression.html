@@ -456,7 +456,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales">14.7.7. Predicción en modelos espaciales</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">14.8. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-del-espacio-en-modelos-de-regresion">14.8. Inclusión del espacio en modelos de regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">14.9. Ejercicios</a></li>
 </ul>
             </nav>
         </div>
@@ -904,7 +905,7 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 <img alt="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" src="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.3056
 P-valor (perm.): 0.001
-Media permutada: -0.0062
+Media permutada: -0.0054
 </pre></div>
 </div>
 </div>
@@ -937,7 +938,7 @@ Dep. Variable:                      y   R-squared:                       0.120
 Model:                            OLS   Adj. R-squared:                  0.115
 Method:                 Least Squares   F-statistic:                     27.90
 Date:                Wed, 09 Jul 2025   Prob (F-statistic):           3.25e-07
-Time:                        22:42:31   Log-Likelihood:                 130.57
+Time:                        22:47:36   Log-Likelihood:                 130.57
 No. Observations:                 207   AIC:                            -257.1
 Df Residuals:                     205   BIC:                            -250.5
 Df Model:                           1                                         
@@ -1064,7 +1065,7 @@ Número de elementos por clase: [52 52 51 52]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0046
+Media permutada: -0.0047
 </pre></div>
 </div>
 </div>
@@ -1210,8 +1211,8 @@ Impacts computed using the &#39;simple&#39; method.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: -0.0472
-P-valor (perm.): 0.176
-Media permutada: -0.0044
+P-valor (perm.): 0.178
+Media permutada: -0.0045
 </pre></div>
 </div>
 </div>
@@ -1389,7 +1390,7 @@ Warning: Variable(s) [&#39;const&#39;] removed for being constant.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2761
 P-valor (perm.): 0.001
-Media permutada: -0.0055
+Media permutada: -0.0051
 </pre></div>
 </div>
 </div>
@@ -1471,7 +1472,7 @@ Robust LM Lag: (np.float64(12.77130423990935), np.float64(0.00035197733808348255
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0046
+Media permutada: -0.0067
 </pre></div>
 </div>
 </div>
@@ -1988,8 +1989,17 @@ SEM     0.773384 -2.452324e+17  0.773384  1993.464365  0.784924
 </div>
 </section>
 </section>
+<section id="inclusion-del-espacio-en-modelos-de-regresion">
+<h2><span class="section-number">14.8. </span>Inclusión del espacio en modelos de regresión<a class="headerlink" href="#inclusion-del-espacio-en-modelos-de-regresion" title="Link to this heading">#</a></h2>
+<p>En este capítulo hemos abordado solo algunas de las formas más comunes de incorporar explícitamente la dimensión espacial dentro de un marco de regresión. No obstante, existen muchos otros métodos avanzados en econometría espacial que se utilizan ampliamente en estadística aplicada, ciencia de datos y análisis territorial.</p>
+<p>Por ejemplo, los <strong>Modelos Aditivos Generalizados (GAM)</strong> han sido empleados para aplicar suavizados espaciales mediante kernels directamente dentro de la función de regresión. Asimismo, modelos como los <strong>Procesos Gaussianos Espaciales</strong> o el <strong>Kriging</strong> (muy utilizado en geostatística) modelan la dependencia entre ubicaciones bajo el supuesto de suavidad espacial. Estos métodos no se centran en matrices de pesos espaciales, sino en funciones de covarianza que capturan la correlación entre puntos en el espacio.</p>
+<p>Otro grupo de técnicas incorpora la dimensión espacial no desde la distancia física, sino desde la <strong>estructura de grafos o redes</strong>. Aquí destacan las variantes de los <strong>modelos autorregresivos condicionales (CAR)</strong>, los cuales evalúan relaciones espaciales condicionadas al entorno inmediato de cada unidad, en lugar de considerar una dependencia global o simultánea. Estos métodos han sido útiles, por ejemplo, en estudios de salud pública o violencia en contextos urbanos densamente poblados, como los cantones de la Región Metropolitana de Santiago o Quito.</p>
+<p>Aunque no desarrollamos estos enfoques en detalle en este documento —no porque no sean relevantes, sino porque exceden el nivel introductorio que nos hemos propuesto— recomendamos como referencia especializada el trabajo de Banerjee et al. (2008).</p>
+<p>Lo importante es que tanto los modelos aquí presentados como los que no hemos cubierto comparten una característica esencial: <strong>el espacio se integra como una dimensión explícita dentro del modelo de regresión</strong>. Esto se logra modificando la forma funcional del modelo para incorporar el efecto de la ubicación de las observaciones, por ejemplo, mediante una matriz de pesos espaciales o estructuras vecinales.</p>
+<p>Sin embargo, en el próximo capítulo adoptaremos un enfoque diferente. En lugar de introducir la espacialidad a través de la forma funcional del modelo, <strong>utilizaremos variables espaciales derivadas (como accesibilidad, densidad poblacional, conectividad vial o concentración de denuncias) para enriquecer el conjunto de datos antes del modelamiento</strong>. Así, el espacio se incorpora a través de las variables explicativas, lo que resulta especialmente útil cuando se trabaja con datos administrativos georreferenciados en estudios de violencia doméstica, pobreza o riesgo crediticio.</p>
+</section>
 <section id="ejercicios">
-<h2><span class="section-number">14.8. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.9. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Realizar un modelo de regresión entre NBI personas (2010) y el número de robos totales 2019 en Ecuador a nivel cantonal.</p></li>
 <li><p>Usando un análisis de regresión espacial completo usando datos a nivel provincial de la <a class="reference external" href="https://www.ecuadorencifras.gob.ec/encuesta-nacional-de-actividades-de-ciencia-tecnologia-e-innovacion-acti/">Encuesta Nacional de Actividades de Innovación</a> (AI) 2012-2014:</p></li>
@@ -2128,7 +2138,8 @@ exitoso = \beta_0+\beta_1ImasD+\beta_2IngDis+\beta_3Capa+\beta_4AsisTec+\beta_5I
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediccion-en-modelos-espaciales">14.7.7. Predicción en modelos espaciales</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">14.8. Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-del-espacio-en-modelos-de-regresion">14.8. Inclusión del espacio en modelos de regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">14.9. Ejercicios</a></li>
 </ul>
   </nav></div>
 
