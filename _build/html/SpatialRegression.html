@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Regresión lineal &#8212; Econometría Espacial con Python</title>
+    <title>14. Regresión lineal &#8212; Econometría Espacial con Python</title>
   
   
   
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'SpatialRegression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="13. Clustering y regionalización" href="ClusteringRegionalization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +124,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -205,9 +204,10 @@
 <li class="toctree-l1"><a class="reference internal" href="PatronesPuntos.html">11. Patrones de Puntos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tópicos Avanzados</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="SpatialIneq.html">12. Inequidad Espacial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ClusteringRegionalization.html">13. Clustering y regionalización</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Regresión lineal</a></li>
 </ul>
 
     </div>
@@ -403,35 +403,35 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-tipologia-de-modelos-econometricos">Una tipología de modelos econométricos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-clasificacion-general">Una clasificación general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial">Una taxonomía de Modelos de Regresión Lineal Espacial</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales">Modelo clásico de regresión lineal, sin efectos espaciales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-slm">Modelo autorregresivo espacial (SLM)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem">Modelo de regresión lineal con error autorregresivo espacial (SEM)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma">Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-tipologia-de-modelos-econometricos">14.1. Una tipología de modelos econométricos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-clasificacion-general">14.1.1. Una clasificación general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial">14.1.2. Una taxonomía de Modelos de Regresión Lineal Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales">14.1.2.1. Modelo clásico de regresión lineal, sin efectos espaciales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-slm">14.1.2.2. Modelo autorregresivo espacial (SLM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem">14.1.2.3. Modelo de regresión lineal con error autorregresivo espacial (SEM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma">14.1.2.4. Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-rezagos-espacial-slm">Modelo de rezagos espacial (SLM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-del-modelo-slm-spreg-ml-lag">Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-rezagos-espacial-slm">14.2. Modelo de rezagos espacial (SLM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">14.2.1. Ejemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-del-modelo-slm-spreg-ml-lag">14.2.2. Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-durbin-espacial-sdm">Modelo de Durbin espacial (SDM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-error-espacial-sem">Modelo con error espacial (SEM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-mejor-modelo-espacial">El <em>mejor</em> modelo espacial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-modelos-espaciales">Interpretación de los modelos espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-spillovers-espaciales">Propagación (<em>spillovers</em>) espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-globales">Spillovers globales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-locales">Spillovers locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-durbin-espacial-sdm">14.3. Modelo de Durbin espacial (SDM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-error-espacial-sem">14.4. Modelo con error espacial (SEM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-mejor-modelo-espacial">14.5. El <em>mejor</em> modelo espacial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-modelos-espaciales">14.6. Interpretación de los modelos espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-spillovers-espaciales">14.6.1. Propagación (<em>spillovers</em>) espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-globales">14.6.1.1. Spillovers globales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-locales">14.6.1.2. Spillovers locales</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">Efectos marginales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-directo-promedio-adi">Impacto directo promedio (ADI)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-hacia-una-observacion-atit">Impacto total promedio <strong>hacia</strong> una observación (ATIT)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-desde-una-observacion-atif">Impacto total promedio <strong>desde</strong> una observación (ATIF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">14.6.2. Efectos marginales</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-directo-promedio-adi">14.6.2.1. Impacto directo promedio (ADI)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-hacia-una-observacion-atit">14.6.2.2. Impacto total promedio <strong>hacia</strong> una observación (ATIT)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-desde-una-observacion-atif">14.6.2.3. Impacto total promedio <strong>desde</strong> una observación (ATIF)</a></li>
 </ul>
 </li>
 </ul>
@@ -448,7 +448,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regresion-lineal">
-<h1>Regresión lineal<a class="headerlink" href="#regresion-lineal" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">14. </span>Regresión lineal<a class="headerlink" href="#regresion-lineal" title="Link to this heading">#</a></h1>
 <p>En un modelo de regresión espacial, donde tenemos una variable dependiente y variables exógenas, nos debemos preguntar por fuentes de :</p>
 <ul class="simple">
 <li><p>Dependencia espacial: efectos indirectos espaciales (<em>spatial spillovers</em>), que aparecen como flujos interregionales de conocimiento, comercio o factores de producción.</p></li>
@@ -473,10 +473,10 @@ document.write(`
 <li><p>Se debe elegir el <strong>método de estimación espacial correcto</strong>, seleccionando la mejor <strong>matriz de pesos espaciales</strong> posible, el tipo y la clase de modelo adecuados y una buena <strong>especificación del modelo</strong>.</p></li>
 </ul>
 <section id="una-tipologia-de-modelos-econometricos">
-<h2>Una tipología de modelos econométricos<a class="headerlink" href="#una-tipologia-de-modelos-econometricos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>Una tipología de modelos econométricos<a class="headerlink" href="#una-tipologia-de-modelos-econometricos" title="Link to this heading">#</a></h2>
 <p>Podemos agrupar los modelos en función de sus características. Aquí se propone, restringido a modelos de regresión lineal, una clasificación de modelos econométricos espaciales.</p>
 <section id="una-clasificacion-general">
-<h3>Una clasificación general<a class="headerlink" href="#una-clasificacion-general" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.1.1. </span>Una clasificación general<a class="headerlink" href="#una-clasificacion-general" title="Link to this heading">#</a></h3>
 <p>Recordemos que la característica principal de la econometría espacial es cómo los efectos espaciales son tomados en cuenta.</p>
 <p>Esta característica presupone que el espacio ha sido formalizado de una forma u otra.</p>
 <p>En general la matriz de pesos espaciales logra ser aplicable en varios contextos empíricos siempre que:</p>
@@ -519,7 +519,7 @@ y =\epsilon+ \rho W \epsilon
 </ul>
 </section>
 <section id="una-taxonomia-de-modelos-de-regresion-lineal-espacial">
-<h3>Una taxonomía de Modelos de Regresión Lineal Espacial<a class="headerlink" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.1.2. </span>Una taxonomía de Modelos de Regresión Lineal Espacial<a class="headerlink" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial" title="Link to this heading">#</a></h3>
 <p>Esta clasificación asume observaciones de unidades disponibles en corte transversal en un punto del tiempo.</p>
 <p>Se deriven varios modelos mediante imposición de restricciones en el modelo general.</p>
 <p>El punto de partida es:</p>
@@ -558,7 +558,7 @@ h = \sigma^2,
 \]</div>
 <p>Varias estructuras espaciales se derivan cuando sub vectores de <span class="math notranslate nohighlight">\(\theta\)</span> se hacen cero.</p>
 <section id="modelo-clasico-de-regresion-lineal-sin-efectos-espaciales">
-<h4>Modelo clásico de regresión lineal, sin efectos espaciales<a class="headerlink" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.1.2.1. </span>Modelo clásico de regresión lineal, sin efectos espaciales<a class="headerlink" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales" title="Link to this heading">#</a></h4>
 <p>para <span class="math notranslate nohighlight">\(\rho=0\)</span>, <span class="math notranslate nohighlight">\(\lambda=0\)</span>, <span class="math notranslate nohighlight">\(\alpha=0\)</span>, (<span class="math notranslate nohighlight">\(P+2\)</span> restricciones):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -566,7 +566,7 @@ y = X\beta + \epsilon \tag{3}
 \]</div>
 </section>
 <section id="modelo-autorregresivo-espacial-slm">
-<h4>Modelo autorregresivo espacial (SLM)<a class="headerlink" href="#modelo-autorregresivo-espacial-slm" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.1.2.2. </span>Modelo autorregresivo espacial (SLM)<a class="headerlink" href="#modelo-autorregresivo-espacial-slm" title="Link to this heading">#</a></h4>
 <p>incluye especificaciones de factor común (con <span class="math notranslate nohighlight">\(WX\)</span> incluido en las variables explicativas), como caso especial (si se incluye <span class="math notranslate nohighlight">\(WX\)</span> se tiene el modelo de Durbin)</p>
 <p>para <span class="math notranslate nohighlight">\(\rho=0\)</span>, <span class="math notranslate nohighlight">\(\alpha=0\)</span>, (<span class="math notranslate nohighlight">\(P+1\)</span> restricciones):</p>
 <div class="math notranslate nohighlight">
@@ -575,7 +575,7 @@ y = \rho W_1 y + X\beta+\epsilon \tag{4}
 \]</div>
 </section>
 <section id="modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem">
-<h4>Modelo de regresión lineal con error autorregresivo espacial (SEM)<a class="headerlink" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.1.2.3. </span>Modelo de regresión lineal con error autorregresivo espacial (SEM)<a class="headerlink" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem" title="Link to this heading">#</a></h4>
 <p>para <span class="math notranslate nohighlight">\(\rho=0\)</span>, <span class="math notranslate nohighlight">\(\alpha=0\)</span>, (<span class="math notranslate nohighlight">\(P+1\)</span> restricciones):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -591,7 +591,7 @@ y = X\beta+(I-\lambda W_2)^{-1}\mu \tag{5}
 \end{split}\]</div>
 </section>
 <section id="modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma">
-<h4>Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)<a class="headerlink" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.1.2.4. </span>Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)<a class="headerlink" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma" title="Link to this heading">#</a></h4>
 <p>para <span class="math notranslate nohighlight">\(\alpha=0\)</span>, (<span class="math notranslate nohighlight">\(P\)</span> restricciones):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -609,7 +609,7 @@ y = \rho W_1 y+X\beta+(I-\lambda W_2)^{-1}\mu \tag{6}
 </section>
 </section>
 <section id="modelo-de-rezagos-espacial-slm">
-<h2>Modelo de rezagos espacial (SLM)<a class="headerlink" href="#modelo-de-rezagos-espacial-slm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>Modelo de rezagos espacial (SLM)<a class="headerlink" href="#modelo-de-rezagos-espacial-slm" title="Link to this heading">#</a></h2>
 <p>El modelo de rezagos espacial (<em>Spatial lag model</em> o <em>SLM</em>) es:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -678,7 +678,7 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 <li><p>Dado que no hemos asumido nada sobre la varianza del error, podemos decir que <span class="math notranslate nohighlight">\(\mathbb{E}(\epsilon\epsilon^T|W,X)\)</span> es una matriz completa, digamos <span class="math notranslate nohighlight">\(\Omega_\epsilon\)</span>. Esto cubre la posibilidad de heterocedasticidad, autocorrelación espacial o ambas. En ausencia de cualquiera de estas complicaciones, la matriz de varianza se simplifica a la <span class="math notranslate nohighlight">\(\sigma^2I\)</span> habitual.</p></li>
 </ul>
 <section id="ejemplo">
-<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.2.1. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h3>
 <!-- Analizaremos la relación entre casos acumulados de Covid-19 a nivel cantonal, los datos se encuentran en el siguente link: https://www.covid19ecuador.org/cantones. -->
 <p>Realizaremos una regresión donde la variable dependiente es la pobreza por NBI (personas) y la independiente es el valor agregado bruto no petrolero per cápita.</p>
 <ol class="arabic simple">
@@ -891,7 +891,7 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 <img alt="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" src="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.3056
 P-valor (perm.): 0.001
-Media permutada: -0.0057
+Media permutada: -0.0037
 </pre></div>
 </div>
 </div>
@@ -924,7 +924,7 @@ Dep. Variable:                      y   R-squared:                       0.120
 Model:                            OLS   Adj. R-squared:                  0.115
 Method:                 Least Squares   F-statistic:                     27.90
 Date:                Mon, 07 Jul 2025   Prob (F-statistic):           3.25e-07
-Time:                        22:18:26   Log-Likelihood:                 130.57
+Time:                        22:20:58   Log-Likelihood:                 130.57
 No. Observations:                 207   AIC:                            -257.1
 Df Residuals:                     205   BIC:                            -250.5
 Df Model:                           1                                         
@@ -1051,7 +1051,7 @@ Número de elementos por clase: [52 52 51 52]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0063
+Media permutada: -0.0049
 </pre></div>
 </div>
 </div>
@@ -1113,7 +1113,7 @@ Impacts computed using the &#39;simple&#39; method.
 </div>
 </section>
 <section id="resumen-general-del-modelo-slm-spreg-ml-lag">
-<h3>Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)<a class="headerlink" href="#resumen-general-del-modelo-slm-spreg-ml-lag" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.2.2. </span>Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)<a class="headerlink" href="#resumen-general-del-modelo-slm-spreg-ml-lag" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento del resumen</p></th>
@@ -1197,8 +1197,8 @@ Impacts computed using the &#39;simple&#39; method.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: -0.0472
-P-valor (perm.): 0.174
-Media permutada: -0.0045
+P-valor (perm.): 0.194
+Media permutada: -0.0079
 </pre></div>
 </div>
 </div>
@@ -1207,7 +1207,7 @@ Media permutada: -0.0045
 </section>
 </section>
 <section id="modelo-de-durbin-espacial-sdm">
-<h2>Modelo de Durbin espacial (SDM)<a class="headerlink" href="#modelo-de-durbin-espacial-sdm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.3. </span>Modelo de Durbin espacial (SDM)<a class="headerlink" href="#modelo-de-durbin-espacial-sdm" title="Link to this heading">#</a></h2>
 <p>El modelo de Durbin así como su forma estructural (9) y su forma reducida (10):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1286,7 +1286,7 @@ Impacts computed using the &#39;simple&#39; method.
 </div>
 </section>
 <section id="modelo-con-error-espacial-sem">
-<h2>Modelo con error espacial (SEM)<a class="headerlink" href="#modelo-con-error-espacial-sem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.4. </span>Modelo con error espacial (SEM)<a class="headerlink" href="#modelo-con-error-espacial-sem" title="Link to this heading">#</a></h2>
 <p>Otra forma de dependencia espacial ocurre cuando la dependencia opera a través del proceso de error, ya que los errores de diferentes áreas pueden mostrar autocorrelación espacial. El modelo SEM se formula como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1383,7 +1383,7 @@ Warning: Variable(s) [&#39;const&#39;] removed for being constant.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2761
 P-valor (perm.): 0.001
-Media permutada: -0.0042
+Media permutada: -0.0037
 </pre></div>
 </div>
 </div>
@@ -1391,7 +1391,7 @@ Media permutada: -0.0042
 <p>Se rechazar la hipótesis nula, podemos concluir que el residuo del modelo SEM aún presenta autocorrelación espacial.</p>
 </section>
 <section id="el-mejor-modelo-espacial">
-<h2>El <em>mejor</em> modelo espacial<a class="headerlink" href="#el-mejor-modelo-espacial" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.5. </span>El <em>mejor</em> modelo espacial<a class="headerlink" href="#el-mejor-modelo-espacial" title="Link to this heading">#</a></h2>
 <div style="text-align: center;">
 <figure>
   <img src="images/ChooseModel.png" alt="models_dur" width="800">
@@ -1469,7 +1469,7 @@ Robust LM Lag: (np.float64(12.77130423990935), np.float64(0.00035197733808348255
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0049
+Media permutada: -0.008
 </pre></div>
 </div>
 </div>
@@ -1477,9 +1477,9 @@ Media permutada: -0.0049
 <p>Las pruebas <span class="math notranslate nohighlight">\(LM\)</span> robustas tienen en cuenta la posibilidad alternativa, es decir, la prueba <code class="docutils literal notranslate"><span class="pre">LMerr</span></code> responderá tanto a una variable dependiente rezagada espacialmente omitida como a los residuos autocorrelacionados espacialmente, mientras que la prueba <code class="docutils literal notranslate"><span class="pre">RLMerr</span></code> robusta está diseñada para probar residuos autocorrelacionados espacialmente en la posible presencia de una variable dependiente espacialmente rezagada omitida.</p>
 </section>
 <section id="interpretacion-de-los-modelos-espaciales">
-<h2>Interpretación de los modelos espaciales<a class="headerlink" href="#interpretacion-de-los-modelos-espaciales" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.6. </span>Interpretación de los modelos espaciales<a class="headerlink" href="#interpretacion-de-los-modelos-espaciales" title="Link to this heading">#</a></h2>
 <section id="propagacion-spillovers-espaciales">
-<h3>Propagación (<em>spillovers</em>) espaciales<a class="headerlink" href="#propagacion-spillovers-espaciales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.6.1. </span>Propagación (<em>spillovers</em>) espaciales<a class="headerlink" href="#propagacion-spillovers-espaciales" title="Link to this heading">#</a></h3>
 <p>Un enfoque importante de la ciencia regional es el desbordamiento espacial. Una definición básica de derrames en un contexto espacial sería que los cambios que ocurren en una región ejercen impactos en otras regiones (&#64;lesage2014interpreting). Algunos ejemplos son:</p>
 <ul class="simple">
 <li><p>Los cambios en la tasa impositiva por una unidad espacial podrían tener un impacto en las decisiones de fijación de la tasa impositiva de las regiones cercanas, un fenómeno que ha sido etiquetado como <strong>imitación de impuestos</strong> y <strong>competencia de criterios</strong> entre gobiernos locales.</p></li>
@@ -1488,22 +1488,22 @@ Media permutada: -0.0049
 <li><p>La contaminación del aire o del agua generada en una región se extiende a las regiones cercanas.</p></li>
 </ul>
 <section id="spillovers-globales">
-<h4>Spillovers globales<a class="headerlink" href="#spillovers-globales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.6.1.1. </span>Spillovers globales<a class="headerlink" href="#spillovers-globales" title="Link to this heading">#</a></h4>
 <p>Los efectos de propagación globales surgen cuando los cambios en una característica de una región <strong>afectan los resultados de todas las regiones</strong>. Esto se aplica incluso a la propia región, ya que los impactos pueden pasar a los vecinos y regresar a la propia región (<strong>retroalimentación</strong>). Específicamente, los <em>spillovers</em> globales impactan a los vecinos, los vecinos a los vecinos, los vecinos a los vecinos de los vecinos, etc.</p>
 </section>
 <section id="spillovers-locales">
-<h4>Spillovers locales<a class="headerlink" href="#spillovers-locales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.6.1.2. </span>Spillovers locales<a class="headerlink" href="#spillovers-locales" title="Link to this heading">#</a></h4>
 <p>Los efectos de propagación locales representan una situación en la que el impacto recae <strong>solo en los vecinos cercanos o inmediatos</strong>, desapareciendo antes de que afecten a las regiones vecinas de los vecinos.</p>
 <p>Como se puede observar en las definiciones anteriores, la principal diferencia es que <strong>la retroalimentación o la interacción endógena solo es posible para los efectos de contagio globales</strong>.</p>
 </section>
 </section>
 <section id="efectos-marginales">
-<h3>Efectos marginales<a class="headerlink" href="#efectos-marginales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.6.2. </span>Efectos marginales<a class="headerlink" href="#efectos-marginales" title="Link to this heading">#</a></h3>
 <p>Matemáticamente, la noción de <em>spillover</em> puede pensarse como la derivada <span class="math notranslate nohighlight">\(\partial y_i/\partial x_j\)</span>. Esto significa que los cambios en las variables explicativas en la región <span class="math notranslate nohighlight">\(i\)</span> impactan en la variable dependiente en la región <span class="math notranslate nohighlight">\(j \neq i\)</span>.</p>
 <p>En general, se puede notar que el cambio de cada variable en cada región implica <span class="math notranslate nohighlight">\(n^2\)</span> efectos marginales potenciales. Si tenemos <span class="math notranslate nohighlight">\(K\)</span> variables en nuestro modelo, esto implica <span class="math notranslate nohighlight">\(K\times n^2\)</span> medidas potenciales. Incluso para valores pequeños de <span class="math notranslate nohighlight">\(n\)</span> y <span class="math notranslate nohighlight">\(K\)</span>, puede resultar bastante difícil informar estos resultados de forma compacta.</p>
 <p>Para superar este problema, &#64;lesage2009introduction (p. 36-37) proponen las siguientes medidas de resumen escalares:</p>
 <section id="impacto-directo-promedio-adi">
-<h4>Impacto directo promedio (ADI)<a class="headerlink" href="#impacto-directo-promedio-adi" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.6.2.1. </span>Impacto directo promedio (ADI)<a class="headerlink" href="#impacto-directo-promedio-adi" title="Link to this heading">#</a></h4>
 <p>Sea <span class="math notranslate nohighlight">\(S_r = A(W)^{-1}(I_n\beta_r+W\theta_r)\)</span> para la variable <span class="math notranslate nohighlight">\(r\)</span> (<span class="math notranslate nohighlight">\(A(W)=(I_n-\rho W)\)</span>). El impacto de los cambios en la i-ésima observación de <span class="math notranslate nohighlight">\(x_r\)</span>, denotada por <span class="math notranslate nohighlight">\(x_{ir}\)</span>, en <span class="math notranslate nohighlight">\(y_i\)</span> puede ser resumida midiendo el promedio <span class="math notranslate nohighlight">\(S_r(W)_{ii}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1513,7 +1513,7 @@ Media permutada: -0.0049
 <p>Por ejemplo, si la región <span class="math notranslate nohighlight">\(i\)</span> aumenta el número de viajeros que usan el transporte público, ¿cuál será el impacto promedio en los tiempos de viaje en la región <span class="math notranslate nohighlight">\(i\)</span>? Esta medida tendrá en cuenta los efectos de retroalimentación que surgen del cambio en el uso del transporte público de la <span class="math notranslate nohighlight">\(i\)</span>-ésima región en los tiempos de desplazamiento de las regiones vecinas en el sistema de regiones espacialmente dependientes.</p>
 </section>
 <section id="impacto-total-promedio-hacia-una-observacion-atit">
-<h4>Impacto total promedio <strong>hacia</strong> una observación (ATIT)<a class="headerlink" href="#impacto-total-promedio-hacia-una-observacion-atit" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.6.2.2. </span>Impacto total promedio <strong>hacia</strong> una observación (ATIT)<a class="headerlink" href="#impacto-total-promedio-hacia-una-observacion-atit" title="Link to this heading">#</a></h4>
 <p>Sea <span class="math notranslate nohighlight">\(S_r = A(W)^{-1}(I_n\beta_r+W\theta_r)\)</span> para la variable <span class="math notranslate nohighlight">\(r\)</span> (<span class="math notranslate nohighlight">\(A(W)=(I_n-\rho W)\)</span>). La suma en la <span class="math notranslate nohighlight">\(i\)</span>-ésima fila de <span class="math notranslate nohighlight">\(S_r (W)\)</span> representaría el impacto total en la observación individual <span class="math notranslate nohighlight">\(y_i\)</span> resultante de cambiar la <span class="math notranslate nohighlight">\(r\)</span>-ésima variable explicativa en la misma cantidad en todas las <span class="math notranslate nohighlight">\(n\)</span> observaciones. Hay <span class="math notranslate nohighlight">\(n\)</span> de estas sumas dadas por el vector de columna <span class="math notranslate nohighlight">\(c_r = S_r (W)\iota_n\)</span>, por lo que un promedio de estos impactos totales es:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1522,7 +1522,7 @@ Media permutada: -0.0049
 <p>donde <span class="math notranslate nohighlight">\(\iota_n\)</span> denota un vector columna compuesto de unos, esto es: <span class="math notranslate nohighlight">\(\iota_n = (1,1,\ldots,1)'\)</span>.</p>
 </section>
 <section id="impacto-total-promedio-desde-una-observacion-atif">
-<h4>Impacto total promedio <strong>desde</strong> una observación (ATIF)<a class="headerlink" href="#impacto-total-promedio-desde-una-observacion-atif" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">14.6.2.3. </span>Impacto total promedio <strong>desde</strong> una observación (ATIF)<a class="headerlink" href="#impacto-total-promedio-desde-una-observacion-atif" title="Link to this heading">#</a></h4>
 <p>Sea <span class="math notranslate nohighlight">\(S_r = A(W)^{-1}(I_n\beta_r+W\theta_r)\)</span> para la variable <span class="math notranslate nohighlight">\(r\)</span> (<span class="math notranslate nohighlight">\(A(W)=(I_n-\rho W)\)</span>). La suma de la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(S_r (W)\)</span> produciría el impacto total sobre todo <span class="math notranslate nohighlight">\(y_i\)</span> al cambiar la <span class="math notranslate nohighlight">\(r\)</span>-ésima variable explicativa en una cantidad en la <span class="math notranslate nohighlight">\(j\)</span>-ésima observación. Hay <span class="math notranslate nohighlight">\(n\)</span> de estas sumas dadas por el vector fila <span class="math notranslate nohighlight">\(r_r\iota'_nS_r(W)\)</span>, por lo que un promedio de estos impactos totales es:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1577,6 +1577,15 @@ Media permutada: -0.0049
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="ClusteringRegionalization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Clustering y regionalización</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -1593,35 +1602,35 @@ Media permutada: -0.0049
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-tipologia-de-modelos-econometricos">Una tipología de modelos econométricos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-clasificacion-general">Una clasificación general</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial">Una taxonomía de Modelos de Regresión Lineal Espacial</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales">Modelo clásico de regresión lineal, sin efectos espaciales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-slm">Modelo autorregresivo espacial (SLM)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem">Modelo de regresión lineal con error autorregresivo espacial (SEM)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma">Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-tipologia-de-modelos-econometricos">14.1. Una tipología de modelos econométricos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-clasificacion-general">14.1.1. Una clasificación general</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-taxonomia-de-modelos-de-regresion-lineal-espacial">14.1.2. Una taxonomía de Modelos de Regresión Lineal Espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-clasico-de-regresion-lineal-sin-efectos-espaciales">14.1.2.1. Modelo clásico de regresión lineal, sin efectos espaciales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-slm">14.1.2.2. Modelo autorregresivo espacial (SLM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-regresion-lineal-con-error-autorregresivo-espacial-sem">14.1.2.3. Modelo de regresión lineal con error autorregresivo espacial (SEM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-autorregresivo-espacial-mixto-regresivo-con-error-espacial-autorregresivo-sarma">14.1.2.4. Modelo autorregresivo espacial mixto regresivo con error espacial autorregresivo  (SARMA)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-rezagos-espacial-slm">Modelo de rezagos espacial (SLM)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-del-modelo-slm-spreg-ml-lag">Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-rezagos-espacial-slm">14.2. Modelo de rezagos espacial (SLM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">14.2.1. Ejemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-general-del-modelo-slm-spreg-ml-lag">14.2.2. Resumen general del modelo SLM (<code class="docutils literal notranslate"><span class="pre">spreg.ML_Lag</span></code>)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-durbin-espacial-sdm">Modelo de Durbin espacial (SDM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-error-espacial-sem">Modelo con error espacial (SEM)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-mejor-modelo-espacial">El <em>mejor</em> modelo espacial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-modelos-espaciales">Interpretación de los modelos espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-spillovers-espaciales">Propagación (<em>spillovers</em>) espaciales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-globales">Spillovers globales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-locales">Spillovers locales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-durbin-espacial-sdm">14.3. Modelo de Durbin espacial (SDM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-error-espacial-sem">14.4. Modelo con error espacial (SEM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-mejor-modelo-espacial">14.5. El <em>mejor</em> modelo espacial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-modelos-espaciales">14.6. Interpretación de los modelos espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propagacion-spillovers-espaciales">14.6.1. Propagación (<em>spillovers</em>) espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-globales">14.6.1.1. Spillovers globales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spillovers-locales">14.6.1.2. Spillovers locales</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">Efectos marginales</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-directo-promedio-adi">Impacto directo promedio (ADI)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-hacia-una-observacion-atit">Impacto total promedio <strong>hacia</strong> una observación (ATIT)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-desde-una-observacion-atif">Impacto total promedio <strong>desde</strong> una observación (ATIF)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-marginales">14.6.2. Efectos marginales</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-directo-promedio-adi">14.6.2.1. Impacto directo promedio (ADI)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-hacia-una-observacion-atit">14.6.2.2. Impacto total promedio <strong>hacia</strong> una observación (ATIT)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-total-promedio-desde-una-observacion-atif">14.6.2.3. Impacto total promedio <strong>desde</strong> una observación (ATIF)</a></li>
 </ul>
 </li>
 </ul>
