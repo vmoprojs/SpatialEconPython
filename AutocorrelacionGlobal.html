@@ -1053,8 +1053,8 @@ I = \frac{\sum_i\sum_jw_{ij}z_iz_j/S_0}{\sum_iz_i^2/n}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran&#39;s I: 0.305601416888133
 Expected I under null: -0.0048543689320388345
-Variance: 0.0020345621521373203
-Z-score (simulado): 6.888782678374176
+Variance: 0.0019636891217863738
+Z-score (simulado): 7.024347700746136
 P-value (simulado): 0.0001
 </pre></div>
 </div>
@@ -1137,7 +1137,7 @@ P-value (simulado): 0.0001
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Moran’s I observado: 0.8909090909090909
 </pre></div>
 </div>
-<img alt="_images/773b84e2b00db1abafed30b5b5b41c64abe8eb619c336cbea3bd3bace9507b0d.png" src="_images/773b84e2b00db1abafed30b5b5b41c64abe8eb619c336cbea3bd3bace9507b0d.png" />
+<img alt="_images/736fedc4925c5a00bf94cc2a9b60a771958dad835e3a4e513ebffc972a3c2c32.png" src="_images/736fedc4925c5a00bf94cc2a9b60a771958dad835e3a4e513ebffc972a3c2c32.png" />
 </div>
 </div>
 <p>Bajo la hipótesis de <strong>normalidad</strong>, los resultados son los mismos, excepto <code class="docutils literal notranslate"><span class="pre">p_norm</span></code> y <code class="docutils literal notranslate"><span class="pre">z_norm</span></code></p>
@@ -1487,29 +1487,29 @@ P-value (random approximation): 4.218345780994407e-12
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Cálculo con esda.moran.Moran (referencia) ---
-I de Moran Observado (esda): 0.5824
+I de Moran Observado (esda): 0.5910
 P-valor (normalidad, p_norm - esda): 0.0000
 P-valor (simulaciones, p_sim - esda): 0.0001
 P-valor (aleatorización, p_rand - esda): 0.0000
 
 --- Simulación Manual para P_SIM ---
-I de Moran Observado (manual): 0.5824
+I de Moran Observado (manual): 0.5910
 P-valor (simulaciones, p_sim - manual): 0.0000
 
 --- Cálculo Analítico para P_NORM ---
 Esperanza E[I] (normalidad, manual): -0.0417
 Varianza Var[I] (normalidad, manual): 0.0056
-Z-score (normalidad, manual): 8.3087
+Z-score (normalidad, manual): 8.4230
 P-valor (normalidad, p_norm - manual): 0.0000
 
 --- Cálculo Analítico para P_RAND ---
 Esperanza E[I] (aleatorización, manual): -0.0417
-Varianza Var[I] (aleatorización, manual): 0.0059
-Z-score (aleatorización, manual): 8.1265
+Varianza Var[I] (aleatorización, manual): 0.0060
+Z-score (aleatorización, manual): 8.1984
 P-valor (aleatorización, p_rand - manual): 0.0000
 </pre></div>
 </div>
-<img alt="_images/199cf312882ecc7ae370a677e693c00af3766b5dbf5e2880335f9fcef59389fe.png" src="_images/199cf312882ecc7ae370a677e693c00af3766b5dbf5e2880335f9fcef59389fe.png" />
+<img alt="_images/839fa8eebee67e067a2ade3b2dc3e0862fc7ad6645c2075eb7cd7a93d0eb34ec.png" src="_images/839fa8eebee67e067a2ade3b2dc3e0862fc7ad6645c2075eb7cd7a93d0eb34ec.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Resumen Didáctico de las Diferencias ---
 Este gráfico compara las tres formas de evaluar la significancia del Índice I de Moran:
 
@@ -1550,7 +1550,7 @@ Si tu I de Moran observado (línea roja) cae muy lejos del centro de cualquiera 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b25732a5e053b0cf5696ecee000f627a96554c68845e66530b4f2bcd73aab27d.png" src="_images/b25732a5e053b0cf5696ecee000f627a96554c68845e66530b4f2bcd73aab27d.png" />
+<img alt="_images/263333ff4f1c6bee979217d2a8758a5c1f49b2f5d003d2e9f3150d349a650ead.png" src="_images/263333ff4f1c6bee979217d2a8758a5c1f49b2f5d003d2e9f3150d349a650ead.png" />
 </div>
 </div>
 <p>En el panel izquierdo se muestra en gris la distribución empírica obtenida a partir de 9999 simulaciones aleatorias. En cada simulación, los valores de la variable <code class="docutils literal notranslate"><span class="pre">POBRESP</span></code> fueron redistribuidos aleatoriamente sobre el mapa, y se calculó el estadístico de Moran’s I correspondiente. La línea azul representa la media de esta distribución bajo el supuesto de aleatoriedad espacial.</p>
@@ -1696,7 +1696,7 @@ C = \frac{(n-1)}{2S_0}\frac{\sum_i\sum_jw_{ij}(x_i-x_j)^2}{\sum_iz_i^2}
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 0.0001
-Z-score (simulado): -4.461416902718673
+Z-score (simulado): -4.413016321384795
 </pre></div>
 </div>
 </div>
@@ -1715,7 +1715,7 @@ Z-score (simulado): -4.461416902718673
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geary&#39;s C: 0.7651561297240437
 Expected C under null: 1.0
 P-value (simulado): 2.471799774826632e-06
-Z-score (simulado): -4.461416902718673
+Z-score (simulado): -4.413016321384795
 </pre></div>
 </div>
 </div>
