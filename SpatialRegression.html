@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -702,14 +702,14 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ST ***** Mapa</span>
 
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="k">def</span> <span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_git_shp</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al descargar shapefile: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -738,120 +738,10 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
-  _set_context_ca_bundle_path(ca_bundle_path)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR 1: PROJ: proj_create_from_database: /opt/anaconda3/share/proj/proj.db contains DATABASE.LAYOUT.VERSION.MINOR = 2 whereas a number &gt;= 5 is expected. It comes from another PROJ installation.
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CRSError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">30</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Uso correcto</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">30</span> <span class="n">db</span> <span class="o">=</span> <span class="n">read_git_shp</span><span class="p">(</span><span class="s2">&quot;nxcantones&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">db</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;DPA_PROVIN&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;20&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;area_sqm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="mi">1000000</span> <span class="c1">#area esta en metros cuadrados, conviero a KM cuadrados</span>
-
-<span class="nn">Cell In[1], line 25,</span> in <span class="ni">read_git_shp</span><span class="nt">(nombre, url)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>         <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>         <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdirname</span><span class="p">,</span> <span class="n">shp_name</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="k">return</span> <span class="n">gdf</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:316,</span> in <span class="ni">_read_file</span><span class="nt">(filename, bbox, mask, columns, rows, engine, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>             <span class="n">filename</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;pyogrio&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">316</span>     <span class="k">return</span> <span class="n">_read_file_pyogrio</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">filename</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="k">elif</span> <span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;fiona&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_file_like</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:576,</span> in <span class="ni">_read_file_pyogrio</span><span class="nt">(path_or_bytes, bbox, mask, rows, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span>         <span class="s2">&quot;The &#39;include_fields&#39; and &#39;ignore_fields&#39; keywords are deprecated, and &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span>         <span class="s2">&quot;will be removed in a future release. You can use the &#39;columns&#39; keyword &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;include_fields&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">576</span> <span class="k">return</span> <span class="n">pyogrio</span><span class="o">.</span><span class="n">read_dataframe</span><span class="p">(</span><span class="n">path_or_bytes</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyogrio/geopandas.py:371,</span> in <span class="ni">read_dataframe</span><span class="nt">(path_or_buffer, layer, encoding, columns, read_geometry, force_2d, skip_features, max_features, where, bbox, mask, fids, sql, sql_dialect, fid_as_index, use_arrow, on_invalid, arrow_to_pandas_kwargs, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="k">return</span> <span class="n">df</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span> <span class="n">geometry</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_wkb</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">on_invalid</span><span class="o">=</span><span class="n">on_invalid</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">371</span> <span class="k">return</span> <span class="n">gp</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">])</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:243,</span> in <span class="ni">GeoDataFrame.__init__</span><span class="nt">(self, data, geometry, crs, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="n">geometry</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span>         <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span>         <span class="c1"># __init__ always creates geometry col named &quot;geometry&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span>         <span class="c1"># rename as `set_geometry` respects the given series name</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>         <span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">243</span>     <span class="bp">self</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">245</span> <span class="k">if</span> <span class="n">geometry</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">247</span>         <span class="s2">&quot;Assigning CRS to a GeoDataFrame without a geometry column is not &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span>         <span class="s2">&quot;supported. Supply geometry using the &#39;geometry=&#39; keyword argument, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span>         <span class="s2">&quot;or by providing a DataFrame with column name &#39;geometry&#39;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:462,</span> in <span class="ni">GeoDataFrame.set_geometry</span><span class="nt">(self, col, drop, inplace, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">crs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span> <span class="c1"># Check that we are using a listlike of geometries</span>
-<span class="ne">--&gt; </span><span class="mi">462</span> <span class="n">level</span> <span class="o">=</span> <span class="n">_ensure_geometry</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="c1"># ensure_geometry only sets crs on level if it has crs==None</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">GeoSeries</span><span class="p">):</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71,</span> in <span class="ni">_ensure_geometry</span><span class="nt">(data, crs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">return</span> <span class="n">GeoSeries</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">from_shapely</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">return</span> <span class="n">out</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:190,</span> in <span class="ni">from_shapely</span><span class="nt">(data, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input must be valid geometry objects: </span><span class="si">{</span><span class="n">geom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">190</span> <span class="k">return</span> <span class="n">GeometryArray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:340,</span> in <span class="ni">GeometryArray.__init__</span><span class="nt">(self, data, crs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">340</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span>
-<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:392,</span> in <span class="ni">GeometryArray.crs</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span> <span class="k">if</span> <span class="n">HAS_PYPROJ</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
-<span class="ne">--&gt; </span><span class="mi">392</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="k">else</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_user_input</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span>     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503,</span> in <span class="ni">CRS.from_user_input</span><span class="nt">(cls, value, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">return</span> <span class="n">value</span>
-<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:350,</span> in <span class="ni">CRS.__init__</span><span class="nt">(self, projparams, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">projparams</span>
-<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">350</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">_CRS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srs</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/_crs.pyx:2364,</span> in <span class="ni">pyproj._crs._CRS.__init__</span><span class="nt">()</span>
-
-<span class="ne">CRSError</span>: Invalid projection: EPSG:32717: (Internal Proj Error: proj_create: no database context specified)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="c1"># **** Importo datos: VAB no petrolero</span>
 <span class="c1"># URL del archivo CSV con datos de VAB no petrolero por cantón</span>
 <span class="n">url_vab</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/master/SpatialData/VABNoPetroleroCantones2007-2019.csv&quot;</span>
@@ -922,10 +812,10 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">libpysal.weights</span> <span class="kn">import</span> <span class="n">Queen</span>
-<span class="kn">import</span> <span class="nn">libpysal</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
 
 <span class="c1"># Filtramos: Excluimos las provincias con código &quot;90&quot; y &quot;20&quot;</span>
@@ -971,8 +861,8 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span>  <span class="nn">esda</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w">  </span><span class="nn">esda</span>
 
 <span class="c1"># Variables</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s1">&#39;POBRES_P&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -1015,7 +905,7 @@ Var(y|X,W) = \mathbb{E}(yy^T|W,X)\\
 <img alt="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" src="_images/07d50728b10a58504025c35579575b42a88530136c54db00716e55d7dbd9de16.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.3056
 P-valor (perm.): 0.001
-Media permutada: -0.005
+Media permutada: -0.0048
 </pre></div>
 </div>
 </div>
@@ -1100,8 +990,8 @@ Media permutada: -0.005
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
 
 <span class="c1"># Asegúrate de tener x e y como columnas en un DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
@@ -1122,7 +1012,7 @@ Dep. Variable:                      y   R-squared:                       0.120
 Model:                            OLS   Adj. R-squared:                  0.115
 Method:                 Least Squares   F-statistic:                     27.90
 Date:                Thu, 17 Jul 2025   Prob (F-statistic):           3.25e-07
-Time:                        21:54:46   Log-Likelihood:                 130.57
+Time:                        22:09:14   Log-Likelihood:                 130.57
 No. Observations:                 207   AIC:                            -257.1
 Df Residuals:                     205   BIC:                            -250.5
 Df Model:                           1                                         
@@ -1225,8 +1115,8 @@ IC = \hat{\beta} \pm 1.96 \cdot SE
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mapclassify</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">BoundaryNorm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mapclassify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">BoundaryNorm</span>
 
 <span class="c1"># Obtener residuos del modelo (equiv. a mod.lm$residuals)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">resid</span>  <span class="c1"># si usaste smf.ols(&#39;y ~ x&#39;, ...)</span>
@@ -1274,7 +1164,7 @@ Número de elementos por clase: [52 52 51 52]
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Residuos del modelo OLS&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
 <span class="c1"># Crear leyenda personalizada con intervalos</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
 
 <span class="n">legend_labels</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">breaks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
@@ -1323,7 +1213,7 @@ Número de elementos por clase: [52 52 51 52]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0053
+Media permutada: -0.0047
 </pre></div>
 </div>
 </div>
@@ -1335,7 +1225,7 @@ Media permutada: -0.0053
 <p>La función lagsarlm del paquete spatialreg (R. Bivand and Piras (2015)) nos permite hacer la estimación:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">ML_Lag</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">ML_Lag</span>
 <span class="c1"># Variables dependiente e independiente (en matriz y con constante)</span>
 <span class="c1">#y = db[&#39;POBRES_P&#39;].values.reshape(-1, 1)</span>
 <span class="c1">#X = db[[&#39;VAB_PC&#39;]].values</span>
@@ -1540,7 +1430,7 @@ Impacts computed using the &#39;simple&#39; method.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: -0.0472
-P-valor (perm.): 0.163
+P-valor (perm.): 0.186
 Media permutada: -0.0041
 </pre></div>
 </div>
@@ -1670,8 +1560,8 @@ CF = (\hat{\theta} - \hat{\rho}\hat{\beta})^T \Sigma^{-1} (\hat{\theta} - \hat{\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: -0.0257
-P-valor (perm.): 0.301
-Media permutada: -0.0039
+P-valor (perm.): 0.344
+Media permutada: -0.0057
 </pre></div>
 </div>
 </div>
@@ -1706,7 +1596,7 @@ y = X\beta+(I-\rho W)^{-1}\epsilon
 <p>Siguiendo con nuestro ejemplo, la estimación de <span class="math notranslate nohighlight">\(SEM\)</span> en <code class="docutils literal notranslate"><span class="pre">Python</span></code> se puede usar la función <code class="docutils literal notranslate"><span class="pre">ML_Error</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">ML_Error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">ML_Error</span>
 
 <span class="n">model_sem</span> <span class="o">=</span> <span class="n">ML_Error</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
@@ -1779,7 +1669,7 @@ Warning: Variable(s) [&#39;const&#39;] removed for being constant.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2761
 P-valor (perm.): 0.001
-Media permutada: -0.0041
+Media permutada: -0.0042
 </pre></div>
 </div>
 </div>
@@ -1804,10 +1694,10 @@ Media permutada: -0.0041
 <p>Siguiendo con nuestro ejemplo, la prueba del multiplicador de Lagrange en <code class="docutils literal notranslate"><span class="pre">R</span></code> se puede hacer con la función <code class="docutils literal notranslate"><span class="pre">lm.RStests</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">LMtests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">LMtests</span>
 
 <span class="c1"># Ajuste del modelo OLS</span>
-<span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">OLS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">spreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">OLS</span>
 <span class="n">ols</span> <span class="o">=</span> <span class="n">OLS</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span>
     <span class="n">X</span><span class="p">,</span>
@@ -1861,7 +1751,7 @@ Robust LM Lag: (np.float64(12.77130423990935), np.float64(0.00035197733808348255
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I de Moran: 0.2611
 P-valor (perm.): 0.001
-Media permutada: -0.0037
+Media permutada: -0.0079
 </pre></div>
 </div>
 </div>
@@ -1940,7 +1830,7 @@ Media permutada: -0.0037
 <p>Siguiendo con nuestro ejemplo, el modelo elegido es el <span class="math notranslate nohighlight">\(\text{SEM}\)</span>, en R estimamos sus impactos con la función <code class="docutils literal notranslate"><span class="pre">impacts</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spreg.sputils</span> <span class="kn">import</span> <span class="n">spmultiplier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spreg.sputils</span><span class="w"> </span><span class="kn">import</span> <span class="n">spmultiplier</span>
 <span class="n">effects</span> <span class="o">=</span> <span class="n">spmultiplier</span><span class="p">(</span><span class="n">w</span><span class="o">=</span><span class="n">w_queen</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="n">model_slm</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
 <span class="n">effects</span>
 </pre></div>
@@ -2213,8 +2103,8 @@ R^2_{\text{Nagelkerke}} = \frac{R^2_{\text{Cox and Snell}}}{1 - (L_0)^{\frac{2}{
 <p>En Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.stats.diagnostic</span> <span class="kn">import</span> <span class="n">het_breuschpagan</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.diagnostic</span><span class="w"> </span><span class="kn">import</span> <span class="n">het_breuschpagan</span>
 
 <span class="c1"># 1. Obtener residuos del modelo espacial</span>
 <span class="n">residuals</span> <span class="o">=</span> <span class="n">model_slm</span><span class="o">.</span><span class="n">u</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -2241,7 +2131,7 @@ R^2_{\text{Nagelkerke}} = \frac{R^2_{\text{Cox and Snell}}}{1 - (L_0)^{\frac{2}{
 <p>Tenemos un problema de heterocedasticidad, se corrige:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spreg</span> <span class="kn">import</span> <span class="n">GM_Lag</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">GM_Lag</span>
 
 <span class="n">model_slm_robust</span> <span class="o">=</span> <span class="n">GM_Lag</span><span class="p">(</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w_queen</span><span class="p">,</span>
@@ -2287,8 +2177,8 @@ Rho: 0.7814, z = 3.94, p-valor = 0.0001
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Variables (nombre de las covariables + rho)</span>
 <span class="n">variables</span> <span class="o">=</span> <span class="n">model_slm</span><span class="o">.</span><span class="n">name_x</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span>
@@ -2301,7 +2191,7 @@ Rho: 0.7814, z = 3.94, p-valor = 0.0001
 <span class="n">rho_ml</span> <span class="o">=</span> <span class="n">model_slm</span><span class="o">.</span><span class="n">rho</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 <span class="n">se_rho_ml</span> <span class="o">=</span> <span class="n">model_slm</span><span class="o">.</span><span class="n">std_err</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">z_rho_ml</span> <span class="o">=</span> <span class="n">rho_ml</span> <span class="o">/</span> <span class="n">se_rho_ml</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
 <span class="n">p_rho_ml</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z_rho_ml</span><span class="p">)))</span>
 
 <span class="c1"># z y p para todo ML_Lag</span>
@@ -2378,6 +2268,11 @@ Rho: 0.7814, z = 3.94, p-valor = 0.0001
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.261084907924315)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="test-de-la-lagrange-para-seleccion-del-modelo">
@@ -2450,16 +2345,16 @@ RMSE =  \sqrt{\frac{\sum_i^n(y_i-\hat{y_i})^2}{n}}
 <p><strong>Paso 2: Definir métricas</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span>
 
-<span class="k">def</span> <span class="nf">bias</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bias</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">percent_bias</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">percent_bias</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">bias</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">mape</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mape</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -2493,6 +2388,14 @@ RMSE =  \sqrt{\frac{\sum_i^n(y_i-\hat{y_i})^2}{n}}
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">metrics_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Bias        Bias %       MAE         MAPE      RMSE
+ML_Lag  0.764604 -2.424484e+17  0.765121  1957.078666  0.774964
+SDM     0.764604 -2.424484e+17  0.764902  1960.588475  0.774909
+SEM     0.773384 -2.452324e+17  0.773384  1993.464365  0.784924
 </pre></div>
 </div>
 </div>
