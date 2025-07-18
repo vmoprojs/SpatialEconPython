@@ -96,28 +96,28 @@ Cell [0;32mIn[4], line 8[0m
 [1;32m     16[0m [38;5;66;03m# Este sistema es útil para cálculos de distancias y visualización en mapas base como OpenStreetMap o CartoDB[39;00m
 [1;32m     17[0m gdf_3857 [38;5;241m=[39m gdf[38;5;241m.[39mto_crs(epsg[38;5;241m=[39m[38;5;241m3857[39m)
 
-File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:240[0m, in [0;36mGeoDataFrame.__init__[0;34m(self, data, geometry, crs, *args, **kwargs)[0m
-[1;32m    232[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(geometry, pd[38;5;241m.[39mSeries) [38;5;129;01mand[39;00m geometry[38;5;241m.[39mname [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m (
-[1;32m    233[0m         [38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m,
-[1;32m    234[0m         [38;5;28;01mNone[39;00m,
-[1;32m    235[0m     ):
-[1;32m    236[0m         [38;5;66;03m# __init__ always creates geometry col named "geometry"[39;00m
-[1;32m    237[0m         [38;5;66;03m# rename as `set_geometry` respects the given series name[39;00m
-[1;32m    238[0m         geometry [38;5;241m=[39m geometry[38;5;241m.[39mrename([38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m)
-[0;32m--> 240[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mset_geometry[49m[43m([49m[43mgeometry[49m[43m,[49m[43m [49m[43minplace[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
-[1;32m    242[0m [38;5;28;01mif[39;00m geometry [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m crs:
-[1;32m    243[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[1;32m    244[0m         [38;5;124m"[39m[38;5;124mAssigning CRS to a GeoDataFrame without a geometry column is not [39m[38;5;124m"[39m
-[1;32m    245[0m         [38;5;124m"[39m[38;5;124msupported. Supply geometry using the [39m[38;5;124m'[39m[38;5;124mgeometry=[39m[38;5;124m'[39m[38;5;124m keyword argument, [39m[38;5;124m"[39m
-[1;32m    246[0m         [38;5;124m"[39m[38;5;124mor by providing a DataFrame with column name [39m[38;5;124m'[39m[38;5;124mgeometry[39m[38;5;124m'[39m[38;5;124m"[39m,
-[1;32m    247[0m     )
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:243[0m, in [0;36mGeoDataFrame.__init__[0;34m(self, data, geometry, crs, *args, **kwargs)[0m
+[1;32m    235[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(geometry, pd[38;5;241m.[39mSeries) [38;5;129;01mand[39;00m geometry[38;5;241m.[39mname [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m (
+[1;32m    236[0m         [38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m,
+[1;32m    237[0m         [38;5;28;01mNone[39;00m,
+[1;32m    238[0m     ):
+[1;32m    239[0m         [38;5;66;03m# __init__ always creates geometry col named "geometry"[39;00m
+[1;32m    240[0m         [38;5;66;03m# rename as `set_geometry` respects the given series name[39;00m
+[1;32m    241[0m         geometry [38;5;241m=[39m geometry[38;5;241m.[39mrename([38;5;124m"[39m[38;5;124mgeometry[39m[38;5;124m"[39m)
+[0;32m--> 243[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mset_geometry[49m[43m([49m[43mgeometry[49m[43m,[49m[43m [49m[43minplace[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    245[0m [38;5;28;01mif[39;00m geometry [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m crs:
+[1;32m    246[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    247[0m         [38;5;124m"[39m[38;5;124mAssigning CRS to a GeoDataFrame without a geometry column is not [39m[38;5;124m"[39m
+[1;32m    248[0m         [38;5;124m"[39m[38;5;124msupported. Supply geometry using the [39m[38;5;124m'[39m[38;5;124mgeometry=[39m[38;5;124m'[39m[38;5;124m keyword argument, [39m[38;5;124m"[39m
+[1;32m    249[0m         [38;5;124m"[39m[38;5;124mor by providing a DataFrame with column name [39m[38;5;124m'[39m[38;5;124mgeometry[39m[38;5;124m'[39m[38;5;124m"[39m,
+[1;32m    250[0m     )
 
-File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:459[0m, in [0;36mGeoDataFrame.set_geometry[0;34m(self, col, drop, inplace, crs)[0m
-[1;32m    456[0m     crs [38;5;241m=[39m [38;5;28mgetattr[39m(level, [38;5;124m"[39m[38;5;124mcrs[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
-[1;32m    458[0m [38;5;66;03m# Check that we are using a listlike of geometries[39;00m
-[0;32m--> 459[0m level [38;5;241m=[39m [43m_ensure_geometry[49m[43m([49m[43mlevel[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
-[1;32m    460[0m [38;5;66;03m# ensure_geometry only sets crs on level if it has crs==None[39;00m
-[1;32m    461[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(level, GeoSeries):
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:462[0m, in [0;36mGeoDataFrame.set_geometry[0;34m(self, col, drop, inplace, crs)[0m
+[1;32m    459[0m     crs [38;5;241m=[39m [38;5;28mgetattr[39m(level, [38;5;124m"[39m[38;5;124mcrs[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m)
+[1;32m    461[0m [38;5;66;03m# Check that we are using a listlike of geometries[39;00m
+[0;32m--> 462[0m level [38;5;241m=[39m [43m_ensure_geometry[49m[43m([49m[43mlevel[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+[1;32m    463[0m [38;5;66;03m# ensure_geometry only sets crs on level if it has crs==None[39;00m
+[1;32m    464[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(level, GeoSeries):
 
 File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71[0m, in [0;36m_ensure_geometry[0;34m(data, crs)[0m
 [1;32m     69[0m     [38;5;28;01mreturn[39;00m GeoSeries(out, index[38;5;241m=[39mdata[38;5;241m.[39mindex, name[38;5;241m=[39mdata[38;5;241m.[39mname)
@@ -125,23 +125,23 @@ File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/g
 [0;32m---> 71[0m     out [38;5;241m=[39m [43mfrom_shapely[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
 [1;32m     72[0m     [38;5;28;01mreturn[39;00m out
 
-File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:192[0m, in [0;36mfrom_shapely[0;34m(data, crs)[0m
-[1;32m    189[0m             [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInput must be valid geometry objects: [39m[38;5;132;01m{[39;00mgeom[38;5;132;01m}[39;00m[38;5;124m"[39m)
-[1;32m    190[0m     arr [38;5;241m=[39m np[38;5;241m.[39marray(out, dtype[38;5;241m=[39m[38;5;28mobject[39m)
-[0;32m--> 192[0m [38;5;28;01mreturn[39;00m [43mGeometryArray[49m[43m([49m[43marr[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:190[0m, in [0;36mfrom_shapely[0;34m(data, crs)[0m
+[1;32m    187[0m             [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInput must be valid geometry objects: [39m[38;5;132;01m{[39;00mgeom[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m    188[0m     arr [38;5;241m=[39m np[38;5;241m.[39marray(out, dtype[38;5;241m=[39m[38;5;28mobject[39m)
+[0;32m--> 190[0m [38;5;28;01mreturn[39;00m [43mGeometryArray[49m[43m([49m[43marr[49m[43m,[49m[43m [49m[43mcrs[49m[38;5;241;43m=[39;49m[43mcrs[49m[43m)[49m
 
-File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:348[0m, in [0;36mGeometryArray.__init__[0;34m(self, data, crs)[0m
-[1;32m    345[0m [38;5;28mself[39m[38;5;241m.[39m_data [38;5;241m=[39m data
-[1;32m    347[0m [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[0;32m--> 348[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcrs[49m [38;5;241m=[39m crs
-[1;32m    349[0m [38;5;28mself[39m[38;5;241m.[39m_sindex [38;5;241m=[39m [38;5;28;01mNone[39;00m
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:340[0m, in [0;36mGeometryArray.__init__[0;34m(self, data, crs)[0m
+[1;32m    337[0m [38;5;28mself[39m[38;5;241m.[39m_data [38;5;241m=[39m data
+[1;32m    339[0m [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[0;32m--> 340[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcrs[49m [38;5;241m=[39m crs
+[1;32m    341[0m [38;5;28mself[39m[38;5;241m.[39m_sindex [38;5;241m=[39m [38;5;28;01mNone[39;00m
 
-File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:401[0m, in [0;36mGeometryArray.crs[0;34m(self, value)[0m
-[1;32m    398[0m [38;5;28;01mif[39;00m HAS_PYPROJ:
-[1;32m    399[0m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mpyproj[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m CRS
-[0;32m--> 401[0m     [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m value [38;5;28;01melse[39;00m [43mCRS[49m[38;5;241;43m.[39;49m[43mfrom_user_input[49m[43m([49m[43mvalue[49m[43m)[49m
-[1;32m    402[0m [38;5;28;01melse[39;00m:
-[1;32m    403[0m     [38;5;28;01mif[39;00m value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:392[0m, in [0;36mGeometryArray.crs[0;34m(self, value)[0m
+[1;32m    389[0m [38;5;28;01mif[39;00m HAS_PYPROJ:
+[1;32m    390[0m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mpyproj[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m CRS
+[0;32m--> 392[0m     [38;5;28mself[39m[38;5;241m.[39m_crs [38;5;241m=[39m [38;5;28;01mNone[39;00m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m value [38;5;28;01melse[39;00m [43mCRS[49m[38;5;241;43m.[39;49m[43mfrom_user_input[49m[43m([49m[43mvalue[49m[43m)[49m
+[1;32m    393[0m [38;5;28;01melse[39;00m:
+[1;32m    394[0m     [38;5;28;01mif[39;00m value [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
 
 File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503[0m, in [0;36mCRS.from_user_input[0;34m(cls, value, **kwargs)[0m
 [1;32m    501[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(value, [38;5;28mcls[39m):

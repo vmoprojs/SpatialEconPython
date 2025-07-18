@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -496,7 +496,7 @@ document.write(`
 <span class="n">uu</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/vmoprojs/DataLectures/refs/heads/master/SpatialData/REQ_BASE_2013_2016.csv&quot;</span>
 
 <span class="c1"># Se importa la biblioteca pandas, útil para manipulación y análisis de datos estructurados</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># Se lee el archivo CSV desde la URL indicada, especificando que el separador es punto y coma</span>
 <span class="c1"># El argumento &#39;low_memory=False&#39; evita advertencias relacionadas con tipos de datos mezclados</span>
@@ -543,15 +543,21 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">libpysal</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="nn">lps</span> <span class="c1"># pysal se dividio en submodulos especializados (libpysal, esda, mapclassify)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">contextily</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ctx</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">DBSCAN</span> 
-<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pointpats</span><span class="w"> </span><span class="kn">import</span> <span class="n">centrography</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">libpysal</span>  <span class="k">as</span> <span class="nn">lps</span> <span class="c1"># pysal se dividio en submodulos especializados (libpysal, esda, mapclassify)</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">DBSCAN</span> 
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">pointpats</span> <span class="kn">import</span> <span class="n">centrography</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
+  _set_context_ca_bundle_path(ca_bundle_path)
 </pre></div>
 </div>
 </div>
@@ -634,6 +640,86 @@ Data columns (total 23 columns):
  22  CALIFICACION_FLAGRANCIA  9844 non-null   object 
 dtypes: float64(3), object(20)
 memory usage: 2.0+ MB
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CRSError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">db</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># 1. Crear geometría en EPSG:4326</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Se crea un nuevo GeoDataFrame &#39;gdf&#39; a partir de una copia del DataFrame original &#39;db&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># La columna &#39;geometry&#39; se genera combinando las columnas de longitud y latitud como objetos Point</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Se asigna el sistema de referencia de coordenadas (CRS) EPSG:4326, que corresponde a coordenadas geográficas (lat/lon en WGS84)</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">db</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span> <span class="n">db</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])],</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># 2. Transformar a EPSG:3857</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Se transforma el GeoDataFrame al sistema de coordenadas proyectadas EPSG:3857 (Web Mercator)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Este sistema es útil para cálculos de distancias y visualización en mapas base como OpenStreetMap o CartoDB</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">gdf_3857</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:243,</span> in <span class="ni">GeoDataFrame.__init__</span><span class="nt">(self, data, geometry, crs, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="n">geometry</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="s2">&quot;geometry&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>         <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>         <span class="c1"># __init__ always creates geometry col named &quot;geometry&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span>         <span class="c1"># rename as `set_geometry` respects the given series name</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span>         <span class="n">geometry</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">243</span>     <span class="bp">self</span><span class="o">.</span><span class="n">set_geometry</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span> <span class="k">if</span> <span class="n">geometry</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">crs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">247</span>         <span class="s2">&quot;Assigning CRS to a GeoDataFrame without a geometry column is not &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span>         <span class="s2">&quot;supported. Supply geometry using the &#39;geometry=&#39; keyword argument, &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span>         <span class="s2">&quot;or by providing a DataFrame with column name &#39;geometry&#39;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:462,</span> in <span class="ni">GeoDataFrame.set_geometry</span><span class="nt">(self, col, drop, inplace, crs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">crs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="s2">&quot;crs&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span> <span class="c1"># Check that we are using a listlike of geometries</span>
+<span class="ne">--&gt; </span><span class="mi">462</span> <span class="n">level</span> <span class="o">=</span> <span class="n">_ensure_geometry</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="c1"># ensure_geometry only sets crs on level if it has crs==None</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">GeoSeries</span><span class="p">):</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/geodataframe.py:71,</span> in <span class="ni">_ensure_geometry</span><span class="nt">(data, crs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">return</span> <span class="n">GeoSeries</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">from_shapely</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">return</span> <span class="n">out</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:190,</span> in <span class="ni">from_shapely</span><span class="nt">(data, crs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input must be valid geometry objects: </span><span class="si">{</span><span class="n">geom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">190</span> <span class="k">return</span> <span class="n">GeometryArray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:340,</span> in <span class="ni">GeometryArray.__init__</span><span class="nt">(self, data, crs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">340</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sindex</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/array.py:392,</span> in <span class="ni">GeometryArray.crs</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span> <span class="k">if</span> <span class="n">HAS_PYPROJ</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
+<span class="ne">--&gt; </span><span class="mi">392</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="k">else</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_user_input</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span>     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:503,</span> in <span class="ni">CRS.from_user_input</span><span class="nt">(cls, value, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">return</span> <span class="n">value</span>
+<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/crs/crs.py:350,</span> in <span class="ni">CRS.__init__</span><span class="nt">(self, projparams, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">projparams</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">350</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_local</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">_CRS</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">srs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/_crs.pyx:2364,</span> in <span class="ni">pyproj._crs._CRS.__init__</span><span class="nt">()</span>
+
+<span class="ne">CRSError</span>: Invalid projection: EPSG:4326: (Internal Proj Error: proj_create: no database context specified)
 </pre></div>
 </div>
 </div>
@@ -1229,7 +1315,7 @@ memory usage: 2.0+ MB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ellipse</span>  <span class="c1"># Se importa la clase Ellipse para poder graficar una elipse en matplotlib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>  <span class="c1"># Se importa la clase Ellipse para poder graficar una elipse en matplotlib</span>
 
 <span class="c1"># Se crea una figura y un eje para la visualización, de tamaño 9x9 pulgadas</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
@@ -1449,11 +1535,9 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_6876/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_21631/879975568.py:4: UserWarning: Numba not imported, so alpha shape construction may be slower than expected.
   alpha_shape, alpha, circs = lps.cg.alpha_shape_auto(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_6876/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
+/var/folders/3s/mwy450px7bz09c4zp_hpgl480000gn/T/ipykernel_21631/879975568.py:68: UserWarning: Legend does not support handles for PatchCollection instances.
 See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#implementing-a-custom-legend-handler
   plt.legend();
 </pre></div>
@@ -1495,7 +1579,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 <p>Los análisis de aleatoriedad y agrupamiento ayudan a distinguir entre una distribución espacial <strong>estructurada</strong> (por ejemplo, vinculada a factores urbanos o sociales) y una distribución <strong>aleatoria</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pointpats</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pointpats</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">distance_statistics</span><span class="p">,</span>
     <span class="n">QStatistic</span><span class="p">,</span>
     <span class="n">random</span><span class="p">,</span>
@@ -1580,7 +1664,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/70d71f2f79518cab120a223ed4e96e2c7042787119021972d68b7bcb08f2dfc6.png" src="_images/70d71f2f79518cab120a223ed4e96e2c7042787119021972d68b7bcb08f2dfc6.png" />
+<img alt="_images/7259f9dd1d34a573340cafc03ac746d419b5a0339506d2a7799fedd0fd0539d5.png" src="_images/7259f9dd1d34a573340cafc03ac746d419b5a0339506d2a7799fedd0fd0539d5.png" />
 </div>
 </div>
 <p>Como se observa en la simulación básica, el generador de patrones aleatorios —por defecto— utiliza el <strong>rectángulo envolvente (bounding box)</strong> del patrón original como área de referencia. Sin embargo, este enfoque puede ser poco representativo si el patrón observado está concentrado en un espacio <strong>más restringido o con una forma compleja</strong>.</p>
@@ -1626,7 +1710,7 @@ See: https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html#impl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/92b403656046aedc4c58cf9ad34dd477a910a11a528c176021078e148ac57a20.png" src="_images/92b403656046aedc4c58cf9ad34dd477a910a11a528c176021078e148ac57a20.png" />
+<img alt="_images/a90ee509af3c80d2bd5f50aa612826cba63f0a1bff80c877605374d961ca1168.png" src="_images/a90ee509af3c80d2bd5f50aa612826cba63f0a1bff80c877605374d961ca1168.png" />
 </div>
 </div>
 </section>
@@ -1755,7 +1839,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/0ce776dbe7976d10709efe4fc355712efcdcd4102b3a30d8df432e0707241a6e.png" src="_images/0ce776dbe7976d10709efe4fc355712efcdcd4102b3a30d8df432e0707241a6e.png" />
+<img alt="_images/6bcbf2c7dbb9fe075b5631812eb13ff6a506b798159c4fa075581de6714aaa7f.png" src="_images/6bcbf2c7dbb9fe075b5631812eb13ff6a506b798159c4fa075581de6714aaa7f.png" />
 </div>
 </div>
 <p>En contraste con el patrón observado (agrupado), cuando generamos un patrón a partir de un <strong>proceso de puntos completamente aleatorio</strong> (como el <strong>proceso de Poisson</strong>), la distribución de eventos en la cuadrícula es <strong>mucho más uniforme</strong>.</p>
@@ -1767,7 +1851,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.2485119495708333)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.16186593811090463)
 </pre></div>
 </div>
 </div>
@@ -1808,7 +1892,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Quadrat Count&#39;}&gt;
 </pre></div>
 </div>
-<img alt="_images/050b17950121402ab644657c2998e043deff5640927d55a3dea0673f6b1ee7d1.png" src="_images/050b17950121402ab644657c2998e043deff5640927d55a3dea0673f6b1ee7d1.png" />
+<img alt="_images/143c077e9c5c4e920b153d70e5a0d326caa1ea12b911f68b4458b48aac5debfc.png" src="_images/143c077e9c5c4e920b153d70e5a0d326caa1ea12b911f68b4458b48aac5debfc.png" />
 </div>
 </div>
 <p>La prueba de cuadrantes determina que esto no es aleatorio desde el punto de vista estadístico, mientras que nuestro proceso de simulación garantizó que, dentro del área de estudio definida, el patrón corresponde a un proceso completamente aleatorio en el espacio.</p>
@@ -1819,7 +1903,7 @@ Q = \frac{1}{n} \sum_{j=1}^{m} f_j^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(4.912394119208932e-13)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9.926055574192699e-13)
 </pre></div>
 </div>
 </div>
@@ -1996,7 +2080,7 @@ G_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5cf93a66094cd7ed151fd22dc38b79af5d9d4fb3f9dedaa9b6563263bd731bd2.png" src="_images/5cf93a66094cd7ed151fd22dc38b79af5d9d4fb3f9dedaa9b6563263bd731bd2.png" />
+<img alt="_images/78b2abcfaf724a73c4734a67ac491d9de68c42da93587e42903277d180c5851b.png" src="_images/78b2abcfaf724a73c4734a67ac491d9de68c42da93587e42903277d180c5851b.png" />
 </div>
 </div>
 <p>La segunda función que introducimos es la <strong>función F de Ripley</strong>, también conocida como la <strong>función del espacio vacío</strong>. A diferencia de la función G, que mide las distancias <strong>entre puntos del patrón</strong>, la función F analiza la distancia <strong>desde ubicaciones aleatorias en el espacio hacia el punto más cercano del patrón</strong>.</p>
@@ -2155,7 +2239,7 @@ F_{\text{CSR}}(r) = 1 - e^{-\lambda \pi r^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11580ee2827442d89a27fd21b39ef21381f8e04501c79821505d2ce130533e22.png" src="_images/11580ee2827442d89a27fd21b39ef21381f8e04501c79821505d2ce130533e22.png" />
+<img alt="_images/2709a4f8d3bb935d61dca1400fccac7be26f3545b2dee1c7a61f1032402cd426.png" src="_images/2709a4f8d3bb935d61dca1400fccac7be26f3545b2dee1c7a61f1032402cd426.png" />
 </div>
 </div>
 </section>

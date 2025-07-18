@@ -18,78 +18,64 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Define la URL de un archivo ZIP alojado en GitHub que contiene un shapefile (datos espaciales)
+# ST ***** Mapa
+
+import geopandas as gpd
+import requests
+from io import BytesIO
+import zipfile
+import tempfile
+import os
+
+def read_git_shp(nombre, url):
+    response = requests.get(url)
+    if response.status_code != 200:
+        raise Exception(f"Error al descargar shapefile: {response.status_code}")
+    
+    zip_bytes = BytesIO(response.content)
+
+    with zipfile.ZipFile(zip_bytes, "r") as z:
+        shp_files = [f for f in z.namelist() if f.endswith(nombre + ".shp")]
+        if not shp_files:
+            raise FileNotFoundError(f"No se encontró {nombre}.shp en el zip")
+        
+        shp_name = shp_files[0]
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            z.extractall(tmpdirname)
+            gdf = gpd.read_file(os.path.join(tmpdirname, shp_name))
+    return gdf
+
+# Uso correcto
 url = "https://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip"
+db = read_git_shp("nxcantones", url)
+db = db[db['DPA_PROVIN'] != "20"]
 
-# Llama a la función personalizada 'read_git_shp' para leer el shapefile desde el ZIP en la URL
-# Se espera que 'read_git_shp' devuelva un GeoDataFrame, aquí llamado 'pci_df', con datos espaciales de cantones
-pci_df = read_git_shp("nxcantones", url)
+db["area_sqm"] = db.geometry.area/1000000 #area esta en metros cuadrados, conviero a KM cuadrados
 
-
-# (opcional, comentado): crea un DataFrame auxiliar sin la columna de geometría si se quiere trabajar con atributos no espaciales
-# df_aux = pci_df.drop("geometry", axis=1)
-
-# Crea una columna auxiliar 'DPA_CANTON_AUX' que copia los valores originales de 'DPA_CANTON'
-# Esto permite modificar 'DPA_CANTON' sin perder los valores originales
-pci_df["DPA_CANTON_AUX"] = pci_df["DPA_CANTON"]
-
-# Corrige los códigos cantonales que fueron reorganizados administrativamente:
-# Los cantones 0915, 0917 y 0926 ahora pertenecen a la nueva provincia 24 (Santa Elena)
-pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0915", "DPA_CANTON"] = "2403"
-pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0917", "DPA_CANTON"] = "2401"
-pci_df.loc[pci_df["DPA_CANTON_AUX"] == "0926", "DPA_CANTON"] = "2402"
-
-# Los códigos cantonales 1706 y 9001 fueron reclasificados dentro de la provincia 23 (Santo Domingo)
-pci_df.loc[pci_df["DPA_CANTON_AUX"] == "1706", "DPA_CANTON"] = "2301"
-pci_df.loc[pci_df["DPA_CANTON_AUX"] == "9001", "DPA_CANTON"] = "2302"
-
-# Extrae los dos primeros dígitos de 'DPA_CANTON' para crear la columna de código provincial 'DPA_PROVIN'
-# Esto asume que los dos primeros dígitos del código cantonal representan la provincia
-pci_df["DPA_PROVIN"] = pci_df["DPA_CANTON"].str[:2]
-
-# Asigna manualmente el nombre de provincia para los cantones reclasificados:
-# Los códigos provinciales "24" corresponden a Santa Elena
-pci_df.loc[pci_df["DPA_PROVIN"] == "24", "DPA_DESPRO"] = "SANTA ELENA"
-
-# Los cantones con código "2301" y "2302" pertenecen a Santo Domingo de los Tsáchilas
-pci_df.loc[pci_df["DPA_CANTON"] == "2301", "DPA_DESPRO"] = "SANTO DOMINGO DE LOS TSÁCHILAS"
-pci_df.loc[pci_df["DPA_CANTON"] == "2302", "DPA_DESPRO"] = "SANTO DOMINGO DE LOS TSÁCHILAS"
-
-# Filtra y elimina los registros correspondientes a la provincia con código "20" (Galápagos)
-# Esto puede hacerse si se desea excluir datos que no pertenecen al continente o están incompletos
-pci_df = pci_df[pci_df['DPA_PROVIN'] != "20"]
-
-# Realiza una fusión (join) entre el GeoDataFrame 'pci_df' y el DataFrame 'df_pivot' (con datos de ventas por año)
-# Se hace la unión por el código cantonal ('DPA_CANTON' y 'DPA') usando una combinación externa por la izquierda
-# Esto asegura que todos los registros espaciales de 'pci_df' se mantengan, incluso si no hay datos en 'df_pivot'
-pci_df = pci_df.merge(df_pivot, left_on='DPA_CANTON', right_on='DPA', how='left')
-
+# END ***** Mapa
 ------------------
 
+----- stderr -----
+/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/pyproj/network.py:59: UserWarning: pyproj unable to set PROJ database path.
+  _set_context_ca_bundle_path(ca_bundle_path)
 ----- stderr -----
 ERROR 1: PROJ: proj_create_from_database: /opt/anaconda3/share/proj/proj.db contains DATABASE.LAYOUT.VERSION.MINOR = 2 whereas a number >= 5 is expected. It comes from another PROJ installation.
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mCRSError[0m                                  Traceback (most recent call last)
-Cell [0;32mIn[4], line 6[0m
-[1;32m      2[0m url [38;5;241m=[39m [38;5;124m"[39m[38;5;124mhttps://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip[39m[38;5;124m"[39m
-[1;32m      4[0m [38;5;66;03m# Llama a la función personalizada 'read_git_shp' para leer el shapefile desde el ZIP en la URL[39;00m
-[1;32m      5[0m [38;5;66;03m# Se espera que 'read_git_shp' devuelva un GeoDataFrame, aquí llamado 'pci_df', con datos espaciales de cantones[39;00m
-[0;32m----> 6[0m pci_df [38;5;241m=[39m [43mread_git_shp[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mnxcantones[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43murl[49m[43m)[49m
-[1;32m      9[0m [38;5;66;03m# (opcional, comentado): crea un DataFrame auxiliar sin la columna de geometría si se quiere trabajar con atributos no espaciales[39;00m
-[1;32m     10[0m [38;5;66;03m# df_aux = pci_df.drop("geometry", axis=1)[39;00m
-[1;32m     11[0m 
-[1;32m     12[0m [38;5;66;03m# Crea una columna auxiliar 'DPA_CANTON_AUX' que copia los valores originales de 'DPA_CANTON'[39;00m
-[1;32m     13[0m [38;5;66;03m# Esto permite modificar 'DPA_CANTON' sin perder los valores originales[39;00m
-[1;32m     14[0m pci_df[[38;5;124m"[39m[38;5;124mDPA_CANTON_AUX[39m[38;5;124m"[39m] [38;5;241m=[39m pci_df[[38;5;124m"[39m[38;5;124mDPA_CANTON[39m[38;5;124m"[39m]
+Cell [0;32mIn[1], line 30[0m
+[1;32m     28[0m [38;5;66;03m# Uso correcto[39;00m
+[1;32m     29[0m url [38;5;241m=[39m [38;5;124m"[39m[38;5;124mhttps://github.com/vmoprojs/DataLectures/raw/master/SpatialData/SHP.zip[39m[38;5;124m"[39m
+[0;32m---> 30[0m db [38;5;241m=[39m [43mread_git_shp[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mnxcantones[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43murl[49m[43m)[49m
+[1;32m     31[0m db [38;5;241m=[39m db[db[[38;5;124m'[39m[38;5;124mDPA_PROVIN[39m[38;5;124m'[39m] [38;5;241m!=[39m [38;5;124m"[39m[38;5;124m20[39m[38;5;124m"[39m]
+[1;32m     33[0m db[[38;5;124m"[39m[38;5;124marea_sqm[39m[38;5;124m"[39m] [38;5;241m=[39m db[38;5;241m.[39mgeometry[38;5;241m.[39marea[38;5;241m/[39m[38;5;241m1000000[39m [38;5;66;03m#area esta en metros cuadrados, conviero a KM cuadrados[39;00m
 
-Cell [0;32mIn[3], line 37[0m, in [0;36mread_git_shp[0;34m(nombre, url)[0m
-[1;32m     34[0m         z[38;5;241m.[39mextractall(tmpdirname)
-[1;32m     36[0m         [38;5;66;03m# Lee el archivo shapefile desde el directorio temporal utilizando GeoPandas[39;00m
-[0;32m---> 37[0m         gdf [38;5;241m=[39m [43mgpd[49m[38;5;241;43m.[39;49m[43mread_file[49m[43m([49m[43mos[49m[38;5;241;43m.[39;49m[43mpath[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43mtmpdirname[49m[43m,[49m[43m [49m[43mshp_name[49m[43m)[49m[43m)[49m
-[1;32m     39[0m [38;5;66;03m# Devuelve el GeoDataFrame resultante[39;00m
-[1;32m     40[0m [38;5;28;01mreturn[39;00m gdf
+Cell [0;32mIn[1], line 25[0m, in [0;36mread_git_shp[0;34m(nombre, url)[0m
+[1;32m     23[0m     [38;5;28;01mwith[39;00m tempfile[38;5;241m.[39mTemporaryDirectory() [38;5;28;01mas[39;00m tmpdirname:
+[1;32m     24[0m         z[38;5;241m.[39mextractall(tmpdirname)
+[0;32m---> 25[0m         gdf [38;5;241m=[39m [43mgpd[49m[38;5;241;43m.[39;49m[43mread_file[49m[43m([49m[43mos[49m[38;5;241;43m.[39;49m[43mpath[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43mtmpdirname[49m[43m,[49m[43m [49m[43mshp_name[49m[43m)[49m[43m)[49m
+[1;32m     26[0m [38;5;28;01mreturn[39;00m gdf
 
 File [0;32m/opt/anaconda3/envs/geo_env/lib/python3.12/site-packages/geopandas/io/file.py:316[0m, in [0;36m_read_file[0;34m(filename, bbox, mask, columns, rows, engine, **kwargs)[0m
 [1;32m    313[0m             filename [38;5;241m=[39m response[38;5;241m.[39mread()
