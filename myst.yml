@@ -1,0 +1,57 @@
+version: 1
+
+project:
+  title: Econometría Espacial con Python
+  description: Notas de clase de econometría espacial con Python
+  github: https://github.com/vmoprojs/SpatialEconPython
+  bibliography:
+    - references.bib
+  toc:
+    - file: intro.md
+
+    - title: Fundamentos
+      children:
+        - file: IntroduccionPython.ipynb
+        - file: Fundamentos.ipynb
+        - file: Datos.ipynb
+        - file: Pandas.ipynb
+        - file: Descriptiva.ipynb
+        - file: PruebasHipotesis.ipynb
+        - file: Visualizacion.ipynb
+
+    - title: Dependencia Espacial
+      children:
+        - file: PesosEspaciales.ipynb
+        - file: AutocorrelacionGlobal.ipynb
+        - file: AutocorrelacionLocal.ipynb
+        - file: PatronesPuntos.ipynb
+
+    - title: Tópicos Avanzados
+      children:
+        - file: SpatialIneq.ipynb
+        - file: ClusteringRegionalization.ipynb
+        - file: SpatialRegression.ipynb
+
+  settings:
+    output_matplotlib_strings: remove
+    output_stderr: remove-warn
+    parser:
+      dollarmath: true
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+
+site:
+  template: book-theme
+  options:
+    logo: logo.jpg
+    favicon: logo.jpg
+    folders: true
+    actions:
+      - title: Repository
+        url: https://github.com/vmoprojs/SpatialEconPython
+        icon: github
+      - title: Issues
+        url: https://github.com/vmoprojs/SpatialEconPython/issues
+        icon: github
