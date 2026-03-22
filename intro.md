@@ -2,7 +2,7 @@
 
 # Notas de clase
 
-**Actualización**: junio 2025
+**Actualización**: marzo 2026
 
 Este documento está en construcción. Tiene por objetivo recoger material necesario para impartir un curso aplicado en econometría espacial.
 
@@ -10,9 +10,9 @@ En la medida de lo posible el documento trabaja con datos de Ecuador. Además, e
 
 ## Material del autor en Python
 
-- [Machine Learning con Python](https://vmoprojs.github.io/MLPython/intro.html)
+- [Machine Learning con Python](https://vmoprojs.github.io/MLPython/)
 
-- [Econometría Espacial con Python](https://vmoprojs.github.io/SpatialEconPython/intro.html)
+- [Econometría Espacial con Python](https://vmoprojs.github.io/SpatialEconPython/)
 
 - [Introducción a la Econometría](https://vmoprojs.github.io/IntroEconometricsWO/intro.html)
 

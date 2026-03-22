@@ -38,9 +38,6 @@ project:
     parser:
       dollarmath: true
 
-sphinx:
-  config:
-    bibtex_reference_style: author_year
 
 site:
   template: book-theme
