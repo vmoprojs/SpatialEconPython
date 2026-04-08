@@ -9,7 +9,7 @@ project:
   toc:
     - file: intro.md
 
-    - title: Fundamentos
+    - title: Fundamentos de Python
       children:
         - file: IntroduccionPython.ipynb
         - file: Fundamentos.ipynb
@@ -18,6 +18,11 @@ project:
         - file: Descriptiva.ipynb
         - file: PruebasHipotesis.ipynb
         - file: Visualizacion.ipynb
+
+    - title: Un breve recorrido por la Estadística Espacial
+      children:
+        - file: IntroOverview.ipynb
+        - file: QGIS.ipynb
 
     - title: Dependencia Espacial
       children:
