@@ -19,7 +19,7 @@ project:
         - file: PruebasHipotesis.ipynb
         - file: Visualizacion.ipynb
 
-    - title: Un breve recorrido por la Estadística Espacial
+    - title: Estadística Espacial
       children:
         - file: IntroOverview.ipynb
         - file: QGIS.ipynb
