@@ -26,6 +26,12 @@
     <loc>http://localhost:3001/visualizacion</loc>
   </url>
   <url>
+    <loc>http://localhost:3001/introoverview</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3001/qgis</loc>
+  </url>
+  <url>
     <loc>http://localhost:3001/pesosespaciales</loc>
   </url>
   <url>
@@ -45,8 +51,5 @@
   </url>
   <url>
     <loc>http://localhost:3001/spatialregression</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3001/references</loc>
   </url>
 </urlset>
