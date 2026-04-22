@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:3001/sitemap_style.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:3004/sitemap_style.xsl" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3001</loc>
+    <loc>http://localhost:3004</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/introduccionpython</loc>
+    <loc>http://localhost:3004/introduccionpython</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/fundamentos</loc>
+    <loc>http://localhost:3004/fundamentos</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/datos</loc>
+    <loc>http://localhost:3004/datos</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/pandas</loc>
+    <loc>http://localhost:3004/pandas</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/descriptiva</loc>
+    <loc>http://localhost:3004/descriptiva</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/pruebashipotesis</loc>
+    <loc>http://localhost:3004/pruebashipotesis</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/visualizacion</loc>
+    <loc>http://localhost:3004/visualizacion</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/introoverview</loc>
+    <loc>http://localhost:3004/introoverview</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/qgis</loc>
+    <loc>http://localhost:3004/qgis</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/pesosespaciales</loc>
+    <loc>http://localhost:3004/pesosespaciales</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/autocorrelacionglobal</loc>
+    <loc>http://localhost:3004/autocorrelacionglobal</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/autocorrelacionlocal</loc>
+    <loc>http://localhost:3004/autocorrelacionlocal</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/patronespuntos</loc>
+    <loc>http://localhost:3004/patronespuntos</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/spatialineq</loc>
+    <loc>http://localhost:3004/spatialineq</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/clusteringregionalization</loc>
+    <loc>http://localhost:3004/clusteringregionalization</loc>
   </url>
   <url>
-    <loc>http://localhost:3001/spatialregression</loc>
+    <loc>http://localhost:3004/spatialregression</loc>
   </url>
 </urlset>
