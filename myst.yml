@@ -29,6 +29,7 @@ project:
         - file: PesosEspaciales.ipynb
         - file: AutocorrelacionGlobal.ipynb
         - file: AutocorrelacionLocal.ipynb
+        - file: CrossCorrelacionEspacial.ipynb
         - file: PatronesPuntos.ipynb
 
     - title: Tópicos Avanzados
